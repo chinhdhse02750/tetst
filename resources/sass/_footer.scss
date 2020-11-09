@@ -1,0 +1,83 @@
+.footer {
+    &__primary {
+        background: $color-primary;
+        padding-top: 80px;
+        padding-bottom: 67px;
+        color: $color-white;
+    }
+
+    &__information {
+        .text--small {
+            font-size: .83rem;
+        }
+        &-more {
+            margin-top: 38px;
+            max-width: 260px;
+            @include sp {
+                margin-bottom: 15px;
+            }
+            .col {
+                &:first-child {
+                    padding-right: 0;
+                    width: 114px;
+                    max-width: 145px;
+                }
+                &:last-child {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+                .text--small {
+                    margin-bottom: .3rem;
+                    letter-spacing: -0.4px;
+                }
+            }
+            img {
+                @include tab {
+                    width: 90%;
+                    height: auto;
+                }
+                @include tabwide {
+                    width: 90%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    &__logo {
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    &__item-blog {
+        margin-bottom: 23px;
+        img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            @include tabpc {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                @include transform(translateY(-50%));
+            }
+        }
+    }
+
+    &_item-link {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        @include tabpc {
+            height: 100px;
+        }
+    }
+
+    &__copyright {
+        text-align: right;
+        margin-top: 22px;
+        margin-bottom: 0;
+        font-size: .5rem;
+        padding-right: 1px;
+    }
+}

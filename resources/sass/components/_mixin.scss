@@ -1,0 +1,74 @@
+$mob: 520;
+$sp: 768;
+$tab: 960;
+$pc: 1360;
+$pc-middle: 1600;
+$pc-full: 1900;
+
+$compWidth: 640;
+
+@mixin ie {
+    @media all and (-ms-high-contrast: none) {
+        @content;
+    }
+}
+@mixin mob{
+    @media screen and (max-width: ($mob - 1) + px){
+        @content;
+    }
+}
+@mixin sp{
+    @media screen and (max-width: ($sp - 1) + px){
+        @content;
+    }
+}
+@mixin tab{
+    @media screen and (min-width: $sp + px) and (max-width: ($tab - 1) + px){
+        @content;
+    }
+}
+@mixin tabpc{
+    @media screen and (min-width: $sp + px){
+        @content;
+    }
+}
+@mixin tabwide{
+    @media screen and (min-width: $sp + px) and (max-width: ($pc - 1) + px){
+        @content;
+    }
+}
+@mixin pc{
+    @media screen and (min-width: $tab + px){
+        @content;
+    }
+}
+@mixin pc1{
+    @media screen and (min-width: $pc + px) and (max-width: ($pc-middle) + px){
+        @content;
+    }
+}
+@mixin pc2{
+    @media screen and (min-width: $tab + px) and (max-width: ($pc - 1) + px){
+        @content;
+    }
+}
+@mixin pc3{
+    @media screen and (min-width: $pc-full + px){
+        @content;
+    }
+}
+@mixin pc4{
+    @media screen and (min-width: $pc-middle + px){
+        @content;
+    }
+}
+@mixin pc-middle {
+    @media screen and (min-width: $pc-middle + px) and (max-width: ($pc-full - 100) + px){
+        @content;
+    }
+}
+@mixin wide{
+    @media screen and (min-width: $pc + px){
+        @content;
+    }
+}

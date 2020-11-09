@@ -1,0 +1,201 @@
+@mixin display-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($value) {
+  -webkit-box-flex: $value;
+  -moz-box-flex: $value;
+  -webkit-flex: $value;
+  -ms-flex: $value;
+  flex: $value;
+}
+
+@mixin justify-content($value) {
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin align-items($value) {
+  -webkit-align-items: $value;
+  align-items: $value;
+}
+
+@mixin width-column($value) {
+  @if $value == 1 {
+    -ms-flex: $value;
+    flex: $value;
+  } @else {
+    -ms-flex: 0 0 $value;
+    flex: 0 0 $value;
+    max-width: $value;
+  }
+}
+
+@mixin flex-wrap($value) {
+  flex-wrap: $value;
+  -ms-flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+}
+.is_dating {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  border: none;
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+}
+.is_night_dating {
+  background: #F2BD47;
+}
+.is_noon_dating {
+  background: #7495D3;
+}
+.dating-type__title {
+  color: #ffffff;
+}
+#memberSchedule {
+  .fc-header-toolbar {
+    .fc-center {
+      @include flex(1);
+      margin-bottom: 10px;
+      > div {
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+      }
+      h2 {
+        display: inline-block;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      .fc-button {
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        line-height: 1px;
+        @include display-flex;
+        @include justify-content(center);
+        @include align-items(center);
+      }
+      .fc-icon {
+        font-size: 1rem;
+      }
+    }
+    .fc-left {
+      @include display-flex;
+      @include justify-content(space-between);
+      @include flex-wrap(wrap);
+      width: 35%;
+      @media screen and (max-width: 768px){
+        margin-bottom: 15px;
+        width: 100%;
+        @include justify-content(center);
+      }
+    }
+    .fc-right {
+      width: 35%;
+      @media screen and (max-width: 768px){
+        margin-top: 15px;
+        width: 100%;
+        @include justify-content(center);
+      }
+    }
+  }
+}
+.member-schedule__modal {
+  &--title {
+    border-bottom: none;
+    h5 {
+      width: 100%;
+    }
+  }
+  &--footer {
+    border-top: none;
+    @include justify-content(center);
+  }
+}
+.fc {
+  &-toolbar {
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  &-head {
+    &-container {
+      border: none !important;
+      padding-bottom: 5px !important;
+      font-size: .9rem !important;
+    }
+  }
+  &-day-header {
+    border: none !important;
+  }
+  &-day-top {
+    &.fc-other-month {
+      opacity: 1;
+    }
+    &.fc-past {
+      opacity: .3;
+    }
+  }
+  &-buttonNight-button {
+    min-width: 96px;
+    height: 24px;
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    color: #ffffff;
+    background: #F2BD47;
+    font-size: .7rem;
+    border-radius: 50px;
+    border: none;
+    cursor: auto !important;
+    margin-bottom: 10px;
+    &:hover {
+      color: #ffffff !important;
+      background: #F2BD47 !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+  &-buttonNoon-button {
+    min-width: 96px;
+    height: 24px;
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    color: #ffffff;
+    background: #7495D3;
+    font-size: .7rem;
+    border-radius: 50px;
+    border: none;
+    margin-left: 0 !important;
+    cursor: auto !important;
+    &:hover {
+      color: #ffffff !important;
+      background: #7495D3 !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+  &-body {
+    .fc {
+      &-sun, &-sat {
+        background: #FCF5F5;
+      }
+    }
+  }
+}
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 21px;
+}

@@ -1,0 +1,54 @@
+.modal-custom {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    @include transition(all, .3s);
+    &.active {
+        z-index: 100;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &__overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: rgba(0, 0, 0, .3);
+    }
+
+    &__container {
+        position: absolute;
+        width: 50%;
+        height: 80%;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        background: #ffffff;
+        z-index: 2;
+        overflow: scroll;
+        padding: 25px;
+        @include sp {
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+        }
+    }
+    &__header {
+        font-weight: bold;
+        border-bottom: 1px dashed $color-modal-menu;
+        padding-bottom: 10px;
+    }
+    &__body {
+        margin-top: 15px;
+        p {
+            font-size: .8rem;
+        }
+    }
+}

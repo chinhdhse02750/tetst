@@ -1,0 +1,21 @@
+.menu-mobile__button-toggle {
+    position: absolute;
+    display: block;
+    top: 1px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+    background: url("/image/frontend/icon/icon-menu-black.svg") center no-repeat;
+    background-size: 25px 20px;
+}
+.mm-menu {
+    width: 200px !important;
+}
+
+.mm-wrapper_opening .mm-menu_offcanvas.mm-menu_opened~.mm-slideout {
+    -webkit-transform: translate3d(240px, 0, 0) !important;
+    -moz-transform: translate3d(240px, 0, 0) !important;
+    -ms-transform: translate3d(240px, 0, 0) !important;
+    -o-transform: translate3d(240px, 0, 0) !important;
+    transform: translate3d(240px, 0, 0) !important;
+}

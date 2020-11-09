@@ -1,0 +1,85 @@
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
+
+// border-radius
+@mixin border-radius($property) {
+    border-radius: $property;
+    -moz-border-radius: $property;
+    -webkit-border-radius: $property;
+}
+
+// generic transform
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+@mixin transition($property, $duration) {
+    transition: $property $duration;
+    -o-transition: $property $duration;
+    -moz-transition: $property $duration;
+    -webkit-transition: $property $duration;
+}
+
+@mixin user-select($property) {
+    -webkit-user-select: $property;
+    -moz-user-select: $property;
+    -ms-user-select: $property;
+    user-select: $property;
+}
+
+@mixin animation($property) {
+    animation: $property;
+    -o-animation: $property;
+    -moz-animation: $property;
+    -webkit-animation: $property;
+}
+
+@mixin keyframes($animationName) {
+    @keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-khtml-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation-iteration-count($property) {
+    animation-iteration-count: $property;
+    -o-animation-iteration-count: $property;
+    -moz-animation-iteration-count: $property;
+    -webkit-animation-iteration-count: $property;
+}

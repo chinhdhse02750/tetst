@@ -1,0 +1,66 @@
+.form-password {
+    position: relative;
+    input {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    &:before {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 15px;
+        background: url("/image/frontend/icon/icon-lock-fill.svg") center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 7px;
+        @include transform(translateY(-50%));
+    }
+    .icon__show-password {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 7px;
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: url("/image/frontend/icon/icon-eye.svg") center no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        &.active {
+            background-image: url("/image/frontend/icon/icon-eye-slash.svg");
+        }
+    }
+}
+
+.form-input {
+    position: relative;
+    input {
+        padding-left: 25px;
+    }
+    &:before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 10px;
+        background: url("/image/frontend/icon/icon-envelope.svg") center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 7px;
+    }
+}
+.form-password-reset, .form-input {
+    position: relative;
+    .button__clear-content {
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        right: 3px;
+        top: 3px;
+        z-index: 2;
+        cursor: pointer;
+    }
+}

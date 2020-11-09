@@ -1,0 +1,42 @@
+.list-member {
+    padding: 20px;
+    font-size: 10px;
+}
+.item {
+    border-bottom: 1px dotted grey;
+    padding: 10px 0;
+}
+.item-image {
+    height: 55px;
+    overflow: hidden;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item-image >img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.item-link-detail {
+    margin-top: 15px;
+}
+.item-link-detail >a {
+    font-size: 9px;
+    background: #cb8788;
+    padding: 2px;
+    color: white;
+}
+.item-dating-type {
+    padding: 3px 5px;
+    background: burlywood;
+    border-radius: 5%;
+}
+.item-banner {
+    padding: 5px 20px;
+}
+
+.item-banner >a >img {
+    width: 100%;
+}

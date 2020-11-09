@@ -1,0 +1,36 @@
+/*!
+ * Sizzle CSS Selector Engine v2.3.5
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://js.foundation/
+ *
+ * Date: 2020-03-14
+ */
+
+/*!
+ * jQuery JavaScript Library v3.5.1
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2020-05-04T22:49Z
+ */
+
+/*! lg-fullscreen - v1.2.0 - 2020-05-03
+* http://sachinchoolur.github.io/lightGallery
+* Copyright (c) 2020 Sachin N; Licensed GPLv3 */
+
+/*! lg-thumbnail - v1.2.0 - 2020-05-03
+* http://sachinchoolur.github.io/lightGallery
+* Copyright (c) 2020 Sachin N; Licensed GPLv3 */
+
+/*! lightgallery - v1.7.0 - 2020-05-03
+* http://sachinchoolur.github.io/lightGallery/
+* Copyright (c) 2020 Sachin N; Licensed GPLv3 */

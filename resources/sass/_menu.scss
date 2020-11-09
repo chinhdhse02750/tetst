@@ -1,0 +1,17 @@
+.menu-primary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.right-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  @include mob {
+    justify-content: center;
+  }
+  @include tab {
+    justify-content: center;
+  }
+}

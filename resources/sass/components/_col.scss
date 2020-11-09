@@ -1,0 +1,46 @@
+.container-wrap {
+    width: 100%;
+    padding-right: 34px;
+    padding-left: 27px;
+    margin-right: auto;
+    margin-left: auto;
+    @include sp {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.body-wrap {
+    padding-right: 27px;
+    @include sp {
+        padding-right: 0;
+    }
+}
+
+.footer-wrap {
+    max-width: 1707px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-nologin {
+    position: absolute;
+    top: 38%;
+    @include transform(translateY(-50%));
+    width: 100%;
+    .card {
+        border: none;
+        .card-header {
+            border: none;
+            background: transparent;
+        }
+    }
+    @include sp {
+        position: relative;
+        top: 0;
+        margin-top: 15px;
+        @include transform(none);
+    }
+}

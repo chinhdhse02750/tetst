@@ -1,0 +1,68 @@
+.page-error {
+    @media screen and (min-width: 768px) {
+        padding: 120px 0;
+    }
+    &__container {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        position: relative;
+        align-items: flex-end;
+        &:after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 165px;
+            background: url("/image/frontend/girl_animal.jpg") center no-repeat;
+            background-size: contain;
+        }
+    }
+    &__title {
+        text-align: center;
+        font-size: 3rem;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    &__main {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-right: 15px;
+    }
+    &__content {
+        border: 2px solid $color-secondary;
+        @include border-radius(10px);
+        background: $color-bg-search;
+        position: relative;
+        padding: 25px;
+        p {
+            margin-top: 10px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            right: -15px;
+            top: calc(50% - 15px);
+            border-left: 15px solid $color-secondary;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            right: -12px;
+            top: calc(50% - 15px);
+            border-left: 15px solid $color-bg-search;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+    }
+}

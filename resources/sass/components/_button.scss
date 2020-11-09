@@ -1,0 +1,60 @@
+.button {
+    &__user-type {
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        &--square {
+            padding: 0 7px;
+            @include border-radius(3px);
+        }
+        &-item {
+            &--square {
+                min-width: 70px;
+                height: 21px;
+                @include border-radius(5px);
+                border: 1px solid $color-text;
+            }
+        }
+        &-icon {
+            &--square {
+                width: 21px;
+                height: 21px;
+                @include border-radius(3px);
+                border: 1px solid $color-text;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    &__point--square {
+        background: $color-point;
+        @include border-radius(1px);
+        border: none;
+        color: $color-white;
+        padding: 4px 11px;
+        padding-left: 14px;
+        font-size: .8rem;
+        font-weight: bold;
+        letter-spacing: -0.3px;
+    }
+
+    &__search-setting {
+        background-color: $color-button-danger;
+        color: $color-white;
+        @include border-radius(50px);
+    }
+
+    &__filter-selected {
+        height: 31px;
+        border: 1px solid #BFBFBF;
+        @include border-radius(3px);
+        display: flex;
+        align-items: center;
+        color: $color-text;
+        padding-left: 10px;
+        padding-right: 25px;
+        background: #F8F8F8;
+    }
+}

@@ -1,0 +1,26 @@
+.rating-star__item {
+    position: relative;
+    display: inline-block;
+    &-active {
+        overflow: hidden;
+        position: absolute;
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+.icon_star {
+    &_background, &_active {
+        width: 11px;
+        height: 11px;
+    }
+    &_background {
+        background: url("/image/frontend/icon/icon-star-grey.svg") center no-repeat;
+        background-size: contain;
+    }
+    &_active {
+        background: url("/image/frontend/icon/icon-star.svg") center no-repeat;
+        background-size: contain;
+    }
+}

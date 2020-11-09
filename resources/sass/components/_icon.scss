@@ -1,0 +1,18 @@
+.icon {
+    display: inline-block;
+    &__global {
+        width: 18px;
+        height: 18px;
+        background: url("/image/frontend/icon/icon-global.svg") center center no-repeat;
+        background-size: contain;
+    }
+    &__star {
+        margin: 0 1px;
+    }
+    &__loading {
+        background: url("/img/loading.gif") center no-repeat;
+        background-size: contain;
+        width: 32px;
+        height: 32px;
+    }
+}

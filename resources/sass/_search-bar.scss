@@ -1,0 +1,190 @@
+.search {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+    @include tab {
+        display: block;
+        padding-bottom: 5px;
+    }
+    @include sp {
+        display: block;
+    }
+    &-form {
+        flex: 1;
+        align-items: center;
+        height: 46px;
+        @include tab {
+            padding: 5px 0;
+        }
+    }
+    &-input {
+        position: relative;
+        background-color: $color-bg-search;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 0;
+        overflow: hidden;
+        height: 100%;
+        &__submit {
+            position: absolute;
+            top: 45%;
+            left: 9px;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            @include border-radius(50%);
+            @include sp {
+                top: 47%;
+                left: auto;
+                right: 17px;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input {
+            padding-left: 54px;
+            padding-top: 10px;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+            height: 100%;
+            font-size: 1.13rem;
+            @include tabwide {
+                font-size: .75rem;
+            }
+            @include placeholder {
+                color: $color-border-search-item;
+            }
+            &:focus {
+                box-shadow: none;
+                border-color: transparent;
+                background-color: transparent;
+                outline: none;
+            }
+            @include sp {
+                padding-right: 54px;
+                padding-top: .375rem;
+            }
+        }
+    }
+
+    &-more {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 4px;
+        @include pc {
+            width: 673px;
+        }
+        @include tabwide {
+            width: initial;
+        }
+        @include sp {
+            display: block;
+            padding: 7px 0;
+        }
+        @include tab {
+            justify-content: center;
+        }
+    }
+
+    &-list {
+        display: flex;
+        align-items: center;
+        span {
+            @include tabpc {
+                font-size: 0.875rem;
+            }
+            @include tab {
+                font-size: 0.785rem;
+            }
+            @include tabwide {
+                font-size: .75rem;
+            }
+        }
+    }
+
+    &-favorite {
+        position: relative;
+        padding: 0 36px;
+        @include sp {
+            padding: 0 15px;
+        }
+        @include tabwide {
+            padding: 0 5px;
+        }
+        svg {
+            margin-right: 1px;
+        }
+        &:after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 1px;
+            background-color: $color-border-search-item;
+            position: absolute;
+            right: 8px;
+            top: 1px;
+            @include sp {
+                right: 0;
+            }
+            @include tabwide {
+                right: 0;
+            }
+        }
+    }
+
+    &-candidate {
+        padding: 0 21px;
+        @include sp {
+            padding: 0 15px;
+        }
+        @include tabwide {
+            padding: 0 5px;
+        }
+        .count__candidate {
+            color: $color-button-danger;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    }
+
+    &-setting {
+        @include sp {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .button__search-setting {
+            width: 186px;
+            height: 43px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include sp {
+                height: 28px;
+                font-size: .85rem;
+            }
+            @include tab {
+                width: 140px;
+                font-size: .75rem;
+            }
+            @include tabwide {
+                width: 130px;
+                font-size: .75rem;
+            }
+        }
+    }
+}
+.wt-input {
+    @include tab {
+        display: flex;
+        min-height: 60px;
+    }
+}

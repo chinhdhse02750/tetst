@@ -1,0 +1,489 @@
+.detail__bt-area {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-request-setting {
+    font-size: 12px;
+    padding: 2px 10px !important;
+}
+
+.btn-request-setting > a {
+    color: #000000;
+}
+
+.request-setting-disabled {
+    cursor: inherit !important;
+}
+
+#singlecolumn {
+    position: relative;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 35px;
+    overflow: hidden;
+}
+
+.f1_4em {
+    font-size: 1.4em;
+}
+
+.fb {
+    font-weight: bold;
+}
+
+.mb8 {
+    margin-bottom: 8px !important;
+}
+
+#singlecolumn #flow_navi {
+    float: left;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+#singlecolumn #flow_navi .flow-setting {
+    float: left;
+}
+
+li {
+    list-style-type: none;
+}
+
+.btn-setting {
+    cursor: default !important;
+    width: 205px;
+    height: 44px;
+    font-size: 0.8rem;
+    word-break: keep-all;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.other-flow_arrow {
+    margin: 0 10px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.mb11 {
+    margin-bottom: 11px !important;
+}
+
+.fs-16px {
+    font-size: 16px;
+}
+
+.fs-14px {
+    font-size: 14px;
+}
+
+#singlecolumn .display-img {
+    letter-spacing: -.40em;
+}
+
+#singlecolumn .box {
+    clear: both;
+    vertical-align: top;
+}
+
+.mb22 {
+    margin-bottom: 22px !important;
+}
+
+.mr11 {
+    margin-right: 11px !important;
+}
+
+#singlecolumn .display-img .favorite {
+    letter-spacing: normal;
+    vertical-align: text-top;
+}
+
+#priority .pri_handler {
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    padding: 2px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor: move;
+}
+
+#singlecolumn .display-img .favorite #photo_area {
+    float: left;
+    margin-right: 5%;
+    width: 35%;
+}
+
+#singlecolumn .display-img .favorite #detail_area {
+    float: left;
+    width: 55%;
+}
+
+.f1_2em {
+    font-size: 1.2em;
+}
+
+#singlecolumn .display-img .favorite #detail_area #account {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#singlecolumn .display-img .favorite #detail_area dl.personal {
+    font-size: 14px;
+}
+
+#singlecolumn .display-img .favorite #detail_area dt {
+    float: left;
+    padding: 10px 5px 3px 0;
+    text-align: right;
+    height: 21px;
+    font-size: 11px;
+}
+
+#singlecolumn .display-img .favorite #detail_area dd {
+    padding: 10px 0 3px 0;
+    height: 21px;
+    font-size: 0.8rem;
+}
+
+
+#singlecolumn .display-img .favorite #detail_area ul.list {
+    list-style: none;
+}
+
+.form-group-setting {
+    border-top: 1px dotted;
+}
+
+.form-group-setting:last-of-type {
+    border-bottom: 1px dotted;
+}
+
+#singlecolumn .display-img .favorite #detail_area ul.list li {
+    padding: 5px 0px;
+    list-style: none;
+    font-size: 14px;
+    float: right;
+}
+
+a.ulink {
+    color: #000;
+    text-decoration: underline;
+}
+
+a.ulink:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-setting-active {
+    background-color: #bd9a78 !important;
+    color: #FFFFFF !important;
+    border: none;
+}
+
+.btn-back-to-list a {
+    color: #212529;
+}
+
+.w-150px {
+    width: 150px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
+.mw-150px{
+    min-width: 150px;
+}
+
+.image-setting-list {
+    /*background-color: #000000;*/
+    width: 140px;
+    height: 210px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-setting-list .lazy {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.image-setting-list .loaded {
+    height: auto;
+}
+
+.clr-bottom-border {
+    padding: 15px 0;
+    margin-top: 22px;
+    background: url(../image/frontend/dot.gif) repeat-x top left;
+}
+
+.tbl-calendar, .tbl-1colset {
+    width: 100%;
+    border-collapse: collapse;
+    clear: both;
+}
+
+.tbl-calendar td.field, .tbl-1colset td.field {
+    background-color: #f1f1f1;
+    width: 180px;
+    text-align: right;
+    color: #6d6d6d;
+}
+
+.tbl-calendar td {
+    padding: 5px 5px;
+    border: 1px solid #cecece;
+}
+
+.inlinebox {
+    width: 60%;
+    margin-left: 20px;
+}
+
+.txt_sel {
+    width: 100%;
+    height: 140px;
+    padding: 10px;
+    line-height: 1.6em;
+    font-size: 1em;
+    border: solid 1px #cecece;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.reset-margin {
+    margin: 0 !important;
+}
+
+.title-area{
+    width: 100%;
+    display: flex;
+}
+
+.title-area .left-area {
+    width: 725px;
+    vertical-align: bottom;
+}
+
+.title-area .right-area{
+    width: 200px;
+    vertical-align: bottom;
+    text-align: end;
+}
+
+.bt-bt_change a {
+    padding: 2px 15px;
+}
+
+span.red {
+    color: #b15757;
+}
+
+#singlecolumn #section-success {
+    float: left;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.section-description{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.section-fontsize{
+    font-size: 0.8rem;
+}
+
+.detail-name{
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.candidate-setting {
+   display: flex;
+   margin-bottom: 5px;
+}
+
+.candidate-setting .candidate-option{
+    margin-top: 3px;
+}
+
+.candidate-setting label{
+    padding-left: 5px;
+}
+
+#photo_area .img {
+    display: flex;
+    width: 100%;
+}
+
+.font-space{
+    white-space: normal;
+}
+
+.box-confirm{
+    border: solid 1px #cecece;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.section-validate label{
+    margin-bottom: inherit;
+}
+
+.form-check-block{
+    display: inherit;
+    align-items: center;
+}
+
+.box-bank-content {
+    width: 250px;
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.bankInformation {
+    min-width: 600px !important;
+}
+
+.message-paypal{
+    margin-left: 1rem;
+    margin-top: 10px;
+    color: red;
+    font-size: 0.8rem;
+}
+
+@media all and (min-width: 768px) and (max-width: 980px) {
+    .other-flow_arrow {
+        margin: initial;
+    }
+
+    .btn-setting {
+        cursor: default !important;
+        width: 120px;
+        height: 30px;
+        font-size: 0.5rem;
+        word-break: keep-all;
+        border: 1px solid #000000;
+        border-radius: 5px;
+    }
+
+    .left-sidebar{
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+
+    .right-content{
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    .inlinebox {
+        width: 90%;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .mt-button-setting{
+        margin-top: 1rem !important;
+    }
+
+    .flow-setting, .btn-setting{
+        width: 100%;
+    }
+
+    .other-flow_arrow{
+        display: none;
+    }
+
+    #singlecolumn .display-img .favorite {
+        margin: 15px 10px;
+    }
+
+    .inlinebox{
+        width: 95%;
+        font-size: 0.7rem;
+        margin-left: inherit;
+    }
+}
+
+@media all and (width: 1024px) {
+    .btn-setting {
+        width: 165px;
+        height: 36px;
+        font-size: 0.6rem;
+    }
+
+    .left-sidebar{
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+
+    .right-content{
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+}
+
+@media all and (min-width: 1025px) {
+    .section-content{
+        padding: 0 90px;
+    }
+
+    #singlecolumn .display-img .favorite {
+        padding: 15px 25px 20px 25px;
+    }
+
+    .clr-bottom-border {
+       margin: 0 90px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .tbl-calendar td.field, .tbl-1colset td.field {
+        width: 55px;
+        text-align: center;
+        font-size: 0.6rem;
+    }
+
+    .inlinebox{
+        width: 100%;
+        margin-left: inherit;
+        font-size: 0.6rem;
+    }
+
+    .inlinebox .desired-group{
+        font-size: 0.6rem;
+    }
+
+    .section-description {
+        font-size: 0.7rem;
+    }
+
+    .candidate-setting label{
+        font-size: 0.7rem;
+    }
+}

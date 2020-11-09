@@ -1,0 +1,7 @@
+.top_body {
+    border-bottom: 1px solid $color-border-item;
+    padding-right: 27px;
+    @include sp {
+        padding-right: 0;
+    }
+}

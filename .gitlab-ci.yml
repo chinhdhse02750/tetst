@@ -1,0 +1,79 @@
+# Stages
+stages:
+  - test
+  - deploy_dev
+  - deploy_production
+
+# Variables
+variables:
+  MYSQL_DATABASE: homestead
+  MYSQL_ROOT_PASSWORD: secret
+  DB_HOST: mysql
+  DB_USERNAME: root
+
+# Speed up builds
+cache:
+  key: $CI_BUILD_REF_NAME
+  paths:
+    - vendor
+    - node_modules
+    - public
+
+# Test
+test:
+  stage: test
+  services:
+    - mysql:5.7
+  image: bizongcntt1990/laravel-app:v2.0
+  script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress
+    - ln -f -s .env.pipelines .env
+    - php artisan key:generate
+    - php artisan migrate
+    - php artisan serve &
+    - sleep 5
+    - vendor/bin/phpunit
+    - composer cs-check
+    - composer analyse
+    - curl -vk http://localhost:8000
+  artifacts:
+    paths:
+      - ./storage/logs # for debugging
+    expire_in: 7 days
+    when: always
+
+# Deploy to dev
+deploy_dev:
+  stage: deploy_dev
+  environment: dev
+  image: python:latest
+  script:
+    - pip install awsebcli
+    - eb --version
+    - mkdir ~/.aws/
+    - touch ~/.aws/credentials
+    - printf "[oriental-club]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+    - touch ~/.aws/config
+    - printf "[profile oriental-club]\nregion=ap-northeast-1\noutput=json" >> ~/.aws/config
+    - eb deploy OrientalClub-env
+  only:
+    - develop
+  when: on_success
+
+# Deploy to Production
+deploy_production:
+  stage: deploy_production
+  environment: production
+  image: python:latest
+  script:
+    - pip install awsebcli
+    - eb --version
+    - mkdir ~/.aws/
+    - touch ~/.aws/credentials
+    - printf "[oriental-club]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+    - touch ~/.aws/config
+    - printf "[profile oriental-club]\nregion=ap-northeast-1\noutput=json" >> ~/.aws/config
+    - eb deploy OrientalClubProduction-env
+  only:
+    - master
+  when: on_success
