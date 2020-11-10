@@ -20,16 +20,16 @@
                             <input type="hidden" name="remember" value="1">
                             <div class="form-group">
                                 <div class="form-input">
-                                    <label for="user-name">{{ __('Email') }}</label>
+                                    <label for="user-name">Tên tài khoản hoặc địa chỉ Email *</label>
                                     <input
-                                        type="email"
-                                        class="no-round-input form-control form-input__username @error('email') is-invalid @enderror"
-                                        name="email"
-                                        value="{{ old('email') }}"
-                                        required
-                                        autocomplete="email"
-                                        placeholder="@lang('labels.form.email')"
-                                        autofocus>
+                                            type="email"
+                                            class="no-round-input form-control form-input__username @error('email') is-invalid @enderror"
+                                            name="email"
+                                            value="{{ old('email') }}"
+                                            required
+                                            autocomplete="email"
+                                            placeholder="@lang('labels.form.email')"
+                                            autofocus>
                                     @error('email')
                                     <span class="button__clear-content js-button__clear-content"></span>
                                     @enderror
@@ -42,14 +42,14 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label for="password">{{ __('Mật khẩu') }}</label>
+                                <label for="password">Mật khẩu *</label>
                                 <input
-                                    type="password"
-                                    class="no-round-input form-control @error('password') is-invalid @enderror"
-                                    name="password"
-                                    required
-                                    placeholder="@lang('labels.form.password')"
-                                    autocomplete="current-password">
+                                        type="password"
+                                        class="no-round-input form-control @error('password') is-invalid @enderror"
+                                        name="password"
+                                        required
+                                        placeholder="@lang('labels.form.password')"
+                                        autocomplete="current-password">
                                 @error('password')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -89,4 +89,3 @@
         <!-- End partner-->
     </div>
 @endsection
-
