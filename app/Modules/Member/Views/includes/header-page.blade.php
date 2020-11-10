@@ -20,14 +20,13 @@
                         <div class="header__user">
                             <div class="header__user-menu">
                                 @if(empty(Auth::user()))
-                                    <div class="login d-flex"><a href="{{ route('login') }}"><i class="fas fa-user"></i>Đăng
-                                            nhập</a></div>
+                                    <div class="login d-flex"><a href="{{ route('login') }}"><i class="fas fa-user"></i>Đăng nhập</a></div>
                                 @else
                                     <div class="login d-flex">
                                         <a href="#" class=" header__dropdown--user dropdown-toggle" role="button"
                                            id="headerUserDropdown" data-toggle="dropdown"
                                            aria-haspopup="true"
-                                           aria-expanded="false">{{ Auth::user()->userProfile->name }}</a>
+                                           aria-expanded="false">{{ Auth::user()->name }}</a>
                                         <div class="header__dropdown--menu dropdown-menu dropdown-menu-right"
                                              aria-labelledby="headerUserDropdown">
                                             @include('includes.shop-menu')
