@@ -30,7 +30,7 @@ return [
         'array'   => ':attributeには:min〜:max個の要素を持つ配列を指定してください。',
     ],
     'boolean'              => ':attributeには真偽値を指定してください。',
-    'confirmed'            => ':attributeが確認用の値と一致しません。',
+    'confirmed'            => ':attribute không khớp với giá trị xác nhận.',
     'date'                 => ':attributeには正しい形式の日付を指定してください。',
     'date_format'          => '":format"という形式の日付を指定してください。',
     'different'            => ':attributeには:otherとは異なる値を指定してください。',
@@ -84,7 +84,7 @@ return [
     ],
     'string'               => ':attributeには文字列を指定してください。',
     'timezone'             => ':attributeには正しい形式のタイムゾーンを指定してください。',
-    'unique'               => 'その:attributeはすでに使われています。',
+    'unique'               => ':attribute đã tồn tại.',
     'uploaded'             => ':attributeのアップロードに失敗しました。',
     'url'                  => ':attributeには正しい形式のURLを指定してください。',
 
@@ -120,9 +120,9 @@ return [
         'image' => '画像',
         'redirect_url' => '遷移先',
         'order' => '表示順位',
-        'email' => 'メールアドレス',
-        'password_confirmation' => 'パスワードの確認',
-        'password' => 'パスワード',
+        'email' => 'Email',
+        'password_confirmation' => 'Xác minh password',
+        'password' => 'Password',
         'user_name' => '倶楽部ネーム',
         'rank' => 'クラス',
         'tel' => '携帯番号',
@@ -147,6 +147,6 @@ return [
     ],
 
     'other' => [
-        'password' => 'パスワード'
+        'password' => 'password'
     ]
 ];

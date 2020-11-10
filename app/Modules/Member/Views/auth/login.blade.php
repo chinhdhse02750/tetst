@@ -1,66 +1,92 @@
-@extends('layouts.app')
-
+@extends('layouts.shop')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <h3 class="card-header text-center">@lang('labels.form.login')</h3>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <input type="hidden" name="remember" value="1">
-                        <div class="form-group">
-                            <div class="form-input">
-                                <input
-                                    type="email"
-                                    class="form-control form-input__username @error('email') is-invalid @enderror"
-                                    name="email"
-                                    value="{{ old('email') }}"
-                                    required
-                                    autocomplete="email"
-                                    placeholder="@lang('labels.form.email')"
-                                    autofocus>
+    <div id="main">
+        <div class="ogami-breadcrumb">
+            <div class="container">
+                <ul>
+                    <li> <a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
+                    <li> <a class="breadcrumb-link active" href="#">Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End breadcrumb-->
+        <div class="account">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 mx-auto">
+                        <h1 class="title">Đăng nhập</h1>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="remember" value="1">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="user-name">{{ __('Email') }}</label>
+                                    <input
+                                        type="email"
+                                        class="no-round-input form-control form-input__username @error('email') is-invalid @enderror"
+                                        name="email"
+                                        value="{{ old('email') }}"
+                                        required
+                                        autocomplete="email"
+                                        placeholder="@lang('labels.form.email')"
+                                        autofocus>
+                                    @error('email')
+                                    <span class="button__clear-content js-button__clear-content"></span>
+                                    @enderror
+                                </div>
                                 @error('email')
-                                <span class="button__clear-content js-button__clear-content"></span>
-                                @enderror
-                            </div>
-                            @error('email')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group mt-4">
-                            <div class="form-password">
+                            <div class="form-group mt-4">
+                                <label for="password">{{ __('Mật khẩu') }}</label>
                                 <input
                                     type="password"
-                                    class="form-control @error('password') is-invalid @enderror"
+                                    class="no-round-input form-control @error('password') is-invalid @enderror"
                                     name="password"
                                     required
                                     placeholder="@lang('labels.form.password')"
                                     autocomplete="current-password">
-                                <i class="icon icon__show-password js-show-password"></i>
-                            </div>
-                            @error('password')
+                                @error('password')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group mt-4 mb-0">
-                            <button type="submit" class="btn btn-block btn-primary">@lang('labels.form.login')</button>
-
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">@lang('labels.form.forgot_pass')</a>
-                            @endif
-                        </div>
-                    </form>
+                            <div class="account-method">
+                                <div class="account-save">
+                                    <input id="savepass" type="checkbox">
+                                    <label for="savepass">Save Password</label>
+                                </div>
+                                <div class="account-forgot"><a href="#">Forget your Password</a></div>
+                            </div>
+                            <div class="account-function">
+                                <button class="no-round-btn">Sign in</button><a class="create-account" href="{{ route('member.register') }}">Or create an account</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- End account-->
+        <div class="partner">
+            <div class="container">
+                <div class="partner_block d-flex justify-content-between" data-slick="{&quot;slidesToShow&quot;: 6}">
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_01.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_02.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_01.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_02.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_01.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href="#"><img src="/images/partner/partner_02.png" alt="partner logo"></a></div>
+                    <div class="partner--logo" href=""> <a href=""><img src="/images/partner/partner_01.png" alt="partner logo"></a></div>
+                </div>
+            </div>
+        </div>
+        <!-- End partner-->
     </div>
-</div>
 @endsection
+
