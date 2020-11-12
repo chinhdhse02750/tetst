@@ -35,5 +35,6 @@ return [
          */
         'jp' => ['ja', 'ja-JP', false],
         'en' => ['en', 'en_US', false],
+        'vi' => ['vi', 'vi_VN', false],
     ],
 ];

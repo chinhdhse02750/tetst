@@ -154,3 +154,20 @@ Breadcrumbs::for('accounts.edit', function ($trail, $id) {
     $trail->parent('accounts.index');
     $trail->push(trans('labels.account.edit_breadcrumb'), route('accounts.edit', $id));
 });
+
+
+Breadcrumbs::for('units.index', function ($trail) {
+    $trail->push(trans('labels.menu.category'), route('units.index'));
+});
+Breadcrumbs::for('units.create', function ($trail) {
+    $trail->parent('units.index');
+    $trail->push(trans('categories.label.category_register'), route('units.create'));
+});
+Breadcrumbs::for('units.show', function ($trail, $id) {
+    $trail->parent('units.index');
+    $trail->push(trans('categories.label.detail'), route('units.show', $id));
+});
+Breadcrumbs::for('units.edit', function ($trail, $id) {
+    $trail->parent('units.index');
+    $trail->push(trans('categories.label.edit'), route('units.edit', $id));
+});
