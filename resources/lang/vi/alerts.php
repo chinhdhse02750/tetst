@@ -3,10 +3,10 @@
 return [
     'general' => [
         'success' => [
-            'created' => '登録完了しました。',
-            'deleted' => '削除完了しました。',
-            'updated' => '更新完了しました。',
-            'restore' => '復活完了しました。',
+            'created' => 'Đăng ký của bạn đã hòan tất.',
+            'deleted' => 'Xóa thành công.',
+            'updated' => 'Cập nhật đã hoàn tất.',
+            'restore' => 'Khôi phục lại đã hoàn tất.',
             'leave' => '退会完了しました。',
             'send_point' => 'ポイント付与完了しました。'
         ],
@@ -16,7 +16,7 @@ return [
             'updated' => '更新失敗。',
         ],
         'confirm' => [
-            'delete' => 'よろしいですか？',
+            'delete' => 'Bạn có chắc chắn xóa không?',
             'send_point' => 'ポイントを付与します。よろしいでしょうか？'
         ]
     ],

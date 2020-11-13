@@ -292,7 +292,7 @@
                                 </div><!--col-->
                             </div><!--form-group-->
                             <div class="form-group row">
-                                <label class="col-md-2 form-control-label"
+                               dating <label class="col-md-2 form-control-label"
                                        for="dating_type">@lang('users.label.dating_type')
                                     <span class="required">*</span></label>
                                 <div class="col-md-2">

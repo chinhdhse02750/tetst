@@ -6,14 +6,14 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>@lang('categories.label.detail')</h2>
+                        <h2>@lang('units.label.detail')</h2>
                     </div>
                 </div>
             </div>
             <div class="mb-4 mt-3">
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <strong>@lang('categories.label.name'):</strong>
+                        <strong>@lang('units.label.name'):</strong>
                     </div>
                     <div class="col-md-10">
                         {{ $units->name }}
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <strong>@lang('categories.label.description'):</strong>
+                        <strong>@lang('units.label.description'):</strong>
                     </div>
                     <div class="col-md-10">
                         {{ $units->description }}

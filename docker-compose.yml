@@ -14,7 +14,7 @@ services:
       - ./:/var/www/html
     links:
       - db
-      - redis
+#      - redis
   db:
     image: mysql:5.7
     restart: always
@@ -26,11 +26,11 @@ services:
     environment:
       MYSQL_DATABASE: laravel_db
       MYSQL_ROOT_PASSWORD: secret
-  redis:
-    image: redis:latest
-    restart: always
-    volumes:
-      - ./storage/logs/redis:/data
-    ports:
-      - "6679:6379"
-    command: redis-server --appendonly yes
+#  redis:
+#    image: redis:latest
+#    restart: always
+#    volumes:
+#      - ./storage/logs/redis:/data
+#    ports:
+#      - "6679:6379"
+#    command: redis-server --appendonly yes

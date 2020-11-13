@@ -13,13 +13,37 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(\Request::is('admin/contact*'))
-                }}"  href="{{ route('units.index') }}">
-                    <i class="nav-icon cil-envelope-closed"></i>
-                    Quản lý đơn vị tính
+
+            <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/auth*'), 'open')
+                }}">
+                <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/auth*'))
+                    }}" href="#">
+                    <i class="nav-icon far fa-user"></i>
+                     Quản lý sản phầm và danh mục
                 </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(\Request::is('admin/units*'))
+                }}"  href="{{ route('units.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.units_management')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                    active_class(\Request::is('admin/category*'))
+                }}"  href="{{ route('categories.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.category_management')
+                        </a>
+                    </li>
+
+                </ul>
             </li>
 
             <li class="nav-item nav-dropdown {{

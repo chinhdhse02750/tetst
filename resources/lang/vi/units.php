@@ -6,9 +6,9 @@ return [
         'name' => 'Tên đơn vị tính',
         'description' => 'Mô tả',
         'create' => 'Tạo mới',
-        'register_title' => 'Mô tả đăng ký',
+        'register_title' => 'Đăng ký đơn vị tính',
         'register' => 'Đăng ký',
-        'category_register' => 'カテゴリー登録',
+        'unit_register' => 'Đăng ký đơn vị tính',
         'edit' => 'Chỉnh sửa',
         'detail' => 'Chi tiết'
     ]
