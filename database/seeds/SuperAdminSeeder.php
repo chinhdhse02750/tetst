@@ -20,7 +20,7 @@ class SuperAdminSeeder extends Seeder
             DB::table('admins')->insert([
                 'name' => "Admin",
                 'email' => 'admin@tomosia.com',
-                'password' => Hash::make('0os4hkft08'),
+                'password' => Hash::make('123456'),
                 'last_login_ip' => \Request::ip(),
                 'remember_token' => Str::random(60)
                 ,
@@ -31,7 +31,7 @@ class SuperAdminSeeder extends Seeder
             DB::table('admins')->insert([
                 'name' => "Admin",
                 'email' => 'admin@oriental-club.net',
-                'password' => Hash::make('0os4hkft08'),
+                'password' => Hash::make('123456'),
                 'last_login_ip' => \Request::ip(),
                 'remember_token' => Str::random(60)
             ]);
@@ -41,7 +41,7 @@ class SuperAdminSeeder extends Seeder
             DB::table('admins')->insert([
                 'name' => "Admin",
                 'email' => 'admin@pw-unit.com',
-                'password' => Hash::make('0os4hkft08'),
+                'password' => Hash::make('123456'),
                 'last_login_ip' => \Request::ip(),
                 'remember_token' => Str::random(60)
             ]);
@@ -49,7 +49,7 @@ class SuperAdminSeeder extends Seeder
 
         DB::table('admins')
             ->whereIn('email', ['admin@oriental-club.net', 'admin@tomosia.com'])
-            ->update(['password' => Hash::make('0os4hkft08')]);
+            ->update(['password' => Hash::make('123456')]);
 
         $superAdmin1 = Admin::where('email', 'admin@oriental-club.net')->first();
         $superAdmin2 = Admin::where('email', 'admin@tomosia.com')->first();

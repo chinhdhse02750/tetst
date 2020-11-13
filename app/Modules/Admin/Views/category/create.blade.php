@@ -1,5 +1,8 @@
 @extends('layouts.admin')
-
+@section('pagespecificstyles')
+    <!-- flot charts css-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet"/>
+@stop
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -30,6 +33,43 @@
                                                       class="form-control" maxlength="255"></textarea>
                                         </div>
                                     </div>
+                                    <div class="row form-group">
+                                         <label class="col-md-2 form-control-label"
+                                                      for="dating_type">@lang('categories.label.select_category')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            <select class="custom-select" name="parent" id="parent">
+                                                <option value="0">Root</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                            class="form-control-label col-sm-2">@lang('categories.label.alias')</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="alias" id="alias" class="form-control" maxlength="255">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row flex-group">
+                                        <div class="col-md-2 control-label">
+                                            <span>@lang('categories.label.image')</span>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <small class="upload-note"><i class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')</small>
+                                            <div class="row mt-4 mb-4" role="form">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <div class="needsclick dropzone" id="image-private-dropzone"></div>
+                                                    </div>
+                                                    <div id="private-previews" class="previews-image"></div>
+                                                </div>
+                                            </div> <!-- /form -->
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <div class="d-flex justify-content-center">
                                             <input type="submit" class="btn btn-success mr-1 btn-action"
@@ -47,3 +87,20 @@
         </div>
     </div>
 @endsection
+
+@section('pagespecificscripts')
+    <!-- flot charts scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+    {!! script(('assets/admin/js/dropzone.js')) !!}
+    {!! script(('assets/admin/js/editor.js')) !!}
+
+    <script>
+        let url = '{{ url('api/media') }}';
+        console.log(url);
+        let token = '{{ csrf_token() }}';
+        let buttonDelete = '@lang('labels.general.delete')';
+        createDropzone(url, token, buttonDelete);
+        createVideoDropzone(url, token, buttonDelete);
+    </script>
+@stop

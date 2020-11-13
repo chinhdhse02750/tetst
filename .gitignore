@@ -19,3 +19,5 @@ composer.lock
 storage/logs/
 mysql/
 .docker/
+data_hn/
+docker-compose.yml

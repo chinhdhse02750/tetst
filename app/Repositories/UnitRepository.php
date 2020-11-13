@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
-use App\Entities\Category;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Entities\Unit;
 
 /**
- * Class CategoryRepositoryEloquent.
+ * Class UnitRepository.
  *
  * @package namespace App\Repositories;
  */
-class CategoryRepository extends BaseRepository
+class UnitRepository extends BaseRepository
 {
     /**
      * Specify Model class name
@@ -20,7 +20,7 @@ class CategoryRepository extends BaseRepository
      */
     public function model()
     {
-        return Category::class;
+        return Unit::class;
     }
 
     /**
@@ -30,4 +30,5 @@ class CategoryRepository extends BaseRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+    
 }
