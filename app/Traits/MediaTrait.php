@@ -26,38 +26,13 @@ trait MediaTrait
 
     public function __construct()
     {
-        if (Common::isLocalEnv()) {
-            $this->initLocal();
-        } else {
-            $this->initS3();
-        }
+        $this->initLocal();
     }
 
     public function initLocal()
     {
         $adapter = new Local(storage_path($this->rootLocalUpload));
         $this->local = new Filesystem($adapter);
-    }
-
-    public function initS3()
-    {
-        try {
-            $client = new S3Client(
-                [
-                    'region' => config('filesystems.disks.s3.region'),
-                    'version' => 'latest',
-                    'signature' => 'v4',
-                ]
-            );
-            $adapter = new AwsS3Adapter(
-                $client,
-                config('filesystems.disks.s3.bucket')
-            );
-
-            $this->s3 = new Filesystem($adapter);
-        } catch (Exception $e) {
-            Log::error('[ERROR_S3_INIT] => ' . $e->getMessage());
-        }
     }
 
     /**
@@ -74,13 +49,7 @@ trait MediaTrait
         try {
             $fileName = $this->getFileName($file, $isRename);
             $key = $this->getUploadKey($path, $fileName);
-            if (Common::isLocalEnv()) {
-                $this->local->put($key, file_get_contents($file));
-
-                return $fileName;
-            }
-
-            $this->s3->put($key, file_get_contents($file));
+            $this->local->put($key, file_get_contents($file));
 
             return $fileName;
         } catch (Exception $e) {
@@ -90,140 +59,6 @@ trait MediaTrait
         }//end try
     }
 
-    /**
-     * Upload file to s3 role public.
-     *
-     * @param object $file
-     * @param string $path
-     * @param boolean $isRename
-     *
-     * @return boolean|string
-     */
-    public function uploadS3Public(object $file, string $path, bool $isRename = true)
-    {
-        try {
-            $fileName = $this->getFileName($file, $isRename);
-            $key = $this->getUploadKey($path, $fileName);
-            if (Common::isLocalEnv()) {
-                $this->local->put($key, file_get_contents($file));
-
-                return $fileName;
-            }
-
-            Storage::disk('s3')->put($key, file_get_contents($file), 'public');
-
-            return $fileName;
-        } catch (Exception $e) {
-            Log::error('[ERROR_S3_UPLOAD_ROLE_PUBLIC] =>' . $e->getMessage());
-
-            return false;
-        }//end try
-    }
-
-    /**
-     * Upload and get thumbnail role public.
-     *
-     * @param object $file
-     * @param string $path
-     * @param string $fileName
-     * @param int $width
-     * @return array|bool
-     */
-    public function getThumbnailImage(
-        object $file,
-        string $path,
-        string $fileName,
-        int $width = Constants::THUMBNAIL_IMAGE_WIDTH
-    ) {
-        try {
-            $thumbnail = [];
-            $thumbnailName = Media::renameThumbnailImage($fileName);
-            $key = $this->getUploadKey($path, $thumbnailName);
-            $imageResize = Image::make($file->getRealPath());
-            $defaultWidth = $imageResize->width();
-            $defaultHeight = $imageResize->height();
-            $heightResize = $width * ($defaultHeight / $defaultWidth);
-
-            $imageResize->resize($width, $heightResize);
-            $size = strlen((string)$imageResize->encode('png'));
-            Arr::set($thumbnail, 'name', $thumbnailName);
-            Arr::set($thumbnail, 'size', $size);
-
-            if (Common::isLocalEnv()) {
-                $this->local->put($key, (string)$imageResize->encode());
-
-                return $thumbnail;
-            }
-
-            Storage::disk('s3')->put($key, (string)$imageResize->encode(), 'public');
-
-            return $thumbnail;
-        } catch (Exception $e) {
-            Log::error('[ERROR_S3_UPLOAD_ROLE_PUBLIC] =>' . $e->getMessage());
-
-            return false;
-        }//end try
-    }
-
-
-    /**
-     * Upload and get thumbnail role public.
-     *
-     * @param object $file
-     * @param string $path
-     * @param string $fileName
-     * @param int $width
-     * @param int $height
-     *
-     * @return array|bool
-     */
-    public function getThumbnailVideo(
-        object $file,
-        string $path,
-        string $fileName,
-        int $width = Constants::THUMBNAIL_IMAGE_WIDTH,
-        int $height = Constants::THUMBNAIL_VIDEO_HEIGHT
-    ) {
-        try {
-            $thumbnailVideo = [];
-            $thumbnail = explode(".", $fileName);
-            $thumbnailFullName = $thumbnail[0] . '.jpg';
-            $thumbnailName = Media::renameThumbnailVideo($thumbnailFullName);
-            $key = $this->getUploadKey($path, $thumbnailName);
-
-            $thumbnail_path = public_path();
-            \VideoThumbnail::createThumbnail(
-                $file,
-                $thumbnail_path,
-                $thumbnailName,
-                Constants::TIME_CREATE_THUMBNAIL,
-                $width,
-                $height
-            );
-
-            $contents = file_get_contents(public_path($thumbnailName));
-            $size = strlen($contents);
-
-            Arr::set($thumbnailVideo, 'name', $thumbnailName);
-            Arr::set($thumbnailVideo, 'size', $size);
-
-            if (Common::isLocalEnv()) {
-                $this->local->put($key, $contents);
-                unlink(public_path($thumbnailName));
-
-                return $thumbnailVideo;
-            }
-
-            Storage::disk('s3')->put($key, $contents, 'public');
-            unlink(public_path($thumbnailName));
-
-            return $thumbnailVideo;
-        } catch (Exception $e) {
-            Log::error('[ERROR_S3_UPLOAD_ROLE_PUBLIC] =>' . $e->getMessage());
-
-            return false;
-        }//end try
-    }
 
     /**
      * Get url.
@@ -237,25 +72,10 @@ trait MediaTrait
     {
         try {
             $key = $this->getUploadKey($path, $name);
-            if (Common::isLocalEnv()) {
-                return Storage::disk('local')->url($key);
-            }
 
-            if (!$this->s3) {
-                return false;
-            }
-
-            $client = $this->s3->getAdapter()->getClient();
-            if (!$this->isExistS3($key, $client)) {
-                Log::error('[ERROR_S3_URL_NOT_EXIST][name=' . $name . ']
-                [type=' . $path . '] => ' . 'Image not found in S3');
-
-                return null;
-            }
-
-            return $this->generateS3Url($key, $client);
+            return Storage::disk('local')->url($key);
         } catch (Exception $e) {
-            Log::error('ERROR_S3_GET_URL:' . $e->getMessage());
+            Log::error('ERROR_GET_URL:' . $e->getMessage());
 
             return null;
         }//end try
@@ -273,25 +93,10 @@ trait MediaTrait
     {
         try {
             $key = $this->getUploadKey($path, $name);
-            if (Common::isLocalEnv()) {
-                return Storage::disk('local')->url($key);
-            }
 
-            if (!$this->s3) {
-                return false;
-            }
-
-            $client = $this->s3->getAdapter()->getClient();
-            if (!$this->isExistS3($key, $client)) {
-                Log::error('[ERROR_S3_URL_NOT_EXIST][name=' . $name . ']
-                [type=' . $path . '] => ' . 'Image not found in S3');
-
-                return null;
-            }
-
-            return Storage::disk('s3')->url($key);
+            return Storage::disk('local')->url($key);
         } catch (Exception $e) {
-            Log::error('ERROR_S3_GET_PUBLIC_URL:' . $e->getMessage());
+            Log::error('ERROR_GET_PUBLIC_URL:' . $e->getMessage());
 
             return null;
         }//end try
@@ -362,13 +167,10 @@ trait MediaTrait
     {
         try {
             $key = sprintf('%s/%s', $path, $name);
-            if (Common::isLocalEnv()) {
-                return $this->local->delete($key);
-            }
 
-            return $this->s3->delete($key);
+            return $this->local->delete($key);
         } catch (Exception $e) {
-            Log::error('[ERROR_S3_DELETE_IMAGE] =>' . $e->getMessage());
+            Log::error('[ERROR_DELETE_IMAGE] =>' . $e->getMessage());
 
             return false;
         }

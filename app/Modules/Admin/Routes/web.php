@@ -15,6 +15,7 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::get('balances', 'BalanceController@index')->name('member.balances');
         Route::get('balances/search', 'BalanceController@search')->name('member.search-balances');
         Route::resource('/categories', 'CategoryController');
+        Route::resource('/products', 'ProductController');
         Route::resource('/prefectures', 'PrefectureController');
         Route::get('offers/search', 'OfferController@search')->name('offers.search');
         Route::post('/offers/link-to-paypal', 'OfferController@linkPaypal')->name('offers.link-paypal');

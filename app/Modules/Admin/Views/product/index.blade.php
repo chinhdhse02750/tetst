@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4 class="card-title mb-0">
-                        @lang('categories.label.list')
+                        @lang('product.label.list')
                     </h4>
                 </div><!--col-->
                 <div class="col-sm-7 @cannot('create category') d-none @endcannot">
                     <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                        <a href="{{ route('categories.create') }}" class="btn btn-primary mr-1 btn-action"
+                        <a href="{{ route('products.create') }}" class="btn btn-primary mr-1 btn-action"
                            data-original-title="Create New">@lang('categories.label.create')</a>
                     </div><!--btn-toolbar-->
                 </div><!--col-->
@@ -75,13 +75,13 @@
                                         <div>{{$category->created_at}}</div>
                                     </td>
                                     <td>
-                                        <form action="{{ route('categories.destroy', $category->id) }}"
+                                        <form action="{{ route('products.destroy', $category->id) }}"
                                               method="POST">
-                                            <a href="{{ route('categories.show', $category->id) }}"
+                                            <a href="{{ route('products.show', $category->id) }}"
                                                class="btn btn-default"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ route('categories.edit', $category->id) }}"
+                                            <a href="{{ route('products.edit', $category->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="{{ route('categories.destroy', $category->id) }}"
+                                            <a href="{{ route('products.destroy', $category->id) }}"
                                                class="btn btn-danger"
                                                data-method="delete"
                                                data-trans-button-cancel="@lang('labels.general.cancel')"

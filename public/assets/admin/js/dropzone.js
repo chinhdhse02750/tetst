@@ -3,9 +3,9 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
     let uploadedDocumentMap = {};
     $('.dropzone[id]').each(function () {
         let selectedApped = $(this).parent().siblings('.previews-image');
-        let max = null;
-        let nameInput = 'images[]';
-        let nameClass = 'images';
+        let max = maxInput;
+        let nameInput = 'image';
+        let nameClass = 'image';
         if (this.id === "video-dropzone"){
             return;
         }
@@ -13,9 +13,6 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
             max = maxInput;
             nameInput = 'profile-image[]';
             nameClass = 'profile-image';
-        } else if (this.id === 'image-private-dropzone') {
-            nameInput = 'private-images[]';
-            nameClass = 'private-images';
         }
 
         $(this).dropzone({
@@ -34,8 +31,8 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                     if (!Dropzone.files || !Dropzone.files.length) {
                         uploadedDocumentMap[file.name] = response.data_media.name;
                         let dataImages = uploadSuccess(file.upload.uuid,
-                            response.data_media.name, response.thumbnail_url,
-                            response.data_media.size, Object.values(response.data_media).join('|'),
+                            response.data_media.name, response.public_url,
+                            response.data_media.size, response.data_media.name,
                             nameInput, buttonDelete, nameClass
                         );
                         selectedApped.append(dataImages);
@@ -57,9 +54,9 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                 $('.dz-remove').on("click", function () {
                     let id = $(this).data("id");
                     $('#' + id + '').remove();
-                    if($(this).hasClass('profile-image')){
-                        Dropzone.forElement('#image-profile-dropzone').removeAllFiles(true);
-                        Dropzone.forElement('#image-profile-dropzone').options.maxFiles = 1;
+                    if($(this).hasClass('image')){
+                        Dropzone.forElement('#image-dropzone').removeAllFiles(true);
+                        Dropzone.forElement('#image-dropzone').options.maxFiles = 1;
                     }
                 });
 

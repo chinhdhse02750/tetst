@@ -25,7 +25,7 @@ class Constants
     const MODAL_RELATIONS = 'ranks';
     const MODAL_VIDEO_RELATIONS = 'videos';
     const DEFAULT_PUBLIC_PATH = 'tmp';
-    const IS_PUBLIC = true;
+    const IS_PUBLIC = false;
     const MEDIA_PATH_USER = 'users';
     const FIRST_IMAGE = 0;
     const IMAGE_LAZY_LOAD = '/image/frontend/loading-lazy.gif';

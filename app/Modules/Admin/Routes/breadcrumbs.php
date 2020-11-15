@@ -171,3 +171,20 @@ Breadcrumbs::for('units.edit', function ($trail, $id) {
     $trail->parent('units.index');
     $trail->push(trans('units.label.edit'), route('units.edit', $id));
 });
+
+Breadcrumbs::for('products.index', function ($trail) {
+    $trail->push(trans('labels.menu.product'), route('products.index'));
+});
+Breadcrumbs::for('products.create', function ($trail) {
+    $trail->parent('products.index');
+    $trail->push(trans('product.label.product_register'), route('products.create'));
+});
+Breadcrumbs::for('products.show', function ($trail, $id) {
+    $trail->parent('products.index');
+    $trail->push(trans('product.label.detail'), route('products.show', $id));
+});
+
+Breadcrumbs::for('products.edit', function ($trail, $id) {
+    $trail->parent('products.index');
+    $trail->push(trans('product.label.edit'), route('products.edit', $id));
+});

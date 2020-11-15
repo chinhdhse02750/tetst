@@ -11,7 +11,7 @@
                     @include('includes.alerts.messages')
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>@lang('categories.label.register_title')</h3>
+                            <h3>@lang('product.label.register_title')</h3>
                             <div class="panel-body pt-2">
                                 <form action="{{ route('categories.store') }}" method="POST"
                                       class="form-horizontal">
