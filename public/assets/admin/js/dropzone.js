@@ -6,13 +6,9 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
         let max = maxInput;
         let nameInput = 'image';
         let nameClass = 'image';
-        if (this.id === "video-dropzone"){
+        let showAlert = true;
+        if (this.id === "video-dropzone") {
             return;
-        }
-        if (this.id === 'image-profile-dropzone') {
-            max = maxInput;
-            nameInput = 'profile-image[]';
-            nameClass = 'profile-image';
         }
 
         $(this).dropzone({
@@ -27,6 +23,7 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                 'X-CSRF-TOKEN': token
             },
             init: function () {
+
                 this.on('success', function (file, response) {
                     if (!Dropzone.files || !Dropzone.files.length) {
                         uploadedDocumentMap[file.name] = response.data_media.name;
@@ -44,19 +41,24 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                         let errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
                         [errorDisplay.length - 1].innerHTML = 'Error 404: The upload page was not found on the server';
                     } else {
-                        alert(message);
-                        this.removeFile(file);
+                         this.removeFile(file);
+                         if(showAlert){
+                             alert(message);
+                         }
+                        showAlert = false;
                     }
                 });
             },
             queuecomplete: function (file) {
+                showAlert = true;
                 $('.dropzone').removeClass('dz-started');
                 $('.dz-remove').on("click", function () {
                     let id = $(this).data("id");
                     $('#' + id + '').remove();
-                    if($(this).hasClass('image')){
+                    let count = $('.dz-image').length;
+                    if ($(this).hasClass('image')) {
                         Dropzone.forElement('#image-dropzone').removeAllFiles(true);
-                        Dropzone.forElement('#image-dropzone').options.maxFiles = 1;
+                        Dropzone.forElement('#image-dropzone').options.maxFiles = maxInput - count;
                     }
                 });
 

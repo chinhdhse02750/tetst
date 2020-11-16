@@ -13,12 +13,12 @@
                         <div class="panel-heading">
                             <h3>@lang('product.label.register_title')</h3>
                             <div class="panel-body pt-2">
-                                <form action="{{ route('categories.store') }}" method="POST"
+                                <form action="{{ route('products.store') }}" method="POST"
                                       class="form-horizontal">
                                     {{ csrf_field() }}
                                     <div class="row form-group">
                                         <label class="control-label col-sm-2">
-                                            @lang('categories.label.name')
+                                            @lang('product.label.name')
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
@@ -34,6 +34,22 @@
                                                       class="form-control" maxlength="255"></textarea>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="content">@lang('product.label.content')</label>
+
+                                        <div class="col-md-10">
+                                    <textarea class="form-control"
+                                              type="text"
+                                              name="content"
+                                              id="content"
+                                              maxlength="5000"
+                                              placeholder=""
+                                              rows='3'>{{ old('content') }}</textarea>
+                                        </div><!--col-->
+                                    </div><!--form-group-->
+
                                     <div class="row form-group">
                                         <label class="col-md-2 form-control-label"
                                                for="dating_type">@lang('categories.label.select_category')
@@ -58,7 +74,7 @@
 
                                     <div class="row form-group">
                                         <label
-                                                class="form-control-label col-sm-2">@lang('categories.label.alias')
+                                                class="form-control-label col-sm-2">@lang('product.label.alias')
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
@@ -124,9 +140,8 @@
 
     <script>
         let url = '{{ url('api/media') }}';
-        console.log(url);
         let token = '{{ csrf_token() }}';
         let buttonDelete = '@lang('labels.general.delete')';
-        createDropzone(url, token, buttonDelete);
+        createDropzone(url, token, buttonDelete, 5);
     </script>
 @stop

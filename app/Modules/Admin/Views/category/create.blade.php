@@ -124,7 +124,6 @@
 
     <script>
         let url = '{{ url('api/media') }}';
-        console.log(url);
         let token = '{{ csrf_token() }}';
         let buttonDelete = '@lang('labels.general.delete')';
         createDropzone(url, token, buttonDelete);

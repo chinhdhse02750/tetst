@@ -158,7 +158,6 @@
             });
 
             let maxInput = '{{ empty($categories->image) ? 1 : 0 }}';
-            console.log(maxInput);
             createDropzone(url, token, buttonDelete, maxInput);
         });
     </script>

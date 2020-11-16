@@ -38,6 +38,7 @@ var initEditor = (function() {
     let editorComment = CKEDITOR.document.getById( 'comment' );
     let editorClubComment = CKEDITOR.document.getById( 'club_comment' );
     let editorOffer = CKEDITOR.document.getById( 'offer' );
+    let editorContent = CKEDITOR.document.getById( 'content' );
 
     if ( wysiwygAreaAvailable ) {
       if (editorComment) {
@@ -50,6 +51,9 @@ var initEditor = (function() {
 
       if (editorOffer) {
         CKEDITOR.replace( 'offer' );
+      }
+      if (editorContent) {
+        CKEDITOR.replace( 'content' );
       }
     } else {
       if (editorComment) {
@@ -65,6 +69,10 @@ var initEditor = (function() {
       if (editorOffer) {
         editorOffer.setAttribute('contenteditable', 'true');
         CKEDITOR.inline('offer');
+      }
+      if (editorContent) {
+        editorOffer.setAttribute('contenteditable', 'true');
+        CKEDITOR.inline('content');
       }
     }
   };

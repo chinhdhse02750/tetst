@@ -70,6 +70,7 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
+
             $this->categoryRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
