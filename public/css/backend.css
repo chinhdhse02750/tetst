@@ -21793,3 +21793,11 @@ html:not([dir=rtl]) .logo-header-admin{
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.select2-container{
+    display: inherit !important;
+}
+
+.select2-selection--multiple {
+    border: 1px solid #ced4da !important;
+}

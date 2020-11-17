@@ -17,6 +17,11 @@ return [
         'status' => 'Trạng thái',
         'parent' => 'Danh mục cha',
         'delete' => 'Xóa',
-        'content' => 'Chi tiết'
+        'content' => 'Chi tiết',
+        'cost' => 'Giá nhập',
+        'price' => 'Giá bán',
+        'discount_price' => 'Giá khuyến mại',
+        'stock' => 'Số lượng',
+        'unit' => 'Đơn vị khối lượng'
     ]
 ];

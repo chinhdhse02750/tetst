@@ -58,17 +58,13 @@
                                             @php
                                                 $char = "|---";
                                             @endphp
-
-                                            <select class="custom-select" name="parent" id="parent">
+                                            <select class="custom-select" name="parent" id="parent" multiple="multiple">
                                                 <option value="0">--Root--</option>
                                                 @foreach($categories as $menu)
-
                                                     <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
-
                                                     @include('category.childItems', ['char' => $char."|---"] )
                                                 @endforeach
                                             </select>
-
                                         </div>
                                     </div>
 
@@ -91,6 +87,10 @@
                                             <small class="upload-note"><i
                                                         class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')
                                             </small>
+                                            <br>
+                                            <small class="upload-note"><i
+                                                        class="cil-warning"></i> @lang('alerts.upload.accept_max_image')
+                                            </small>
                                             <div class="row mt-4 mb-4" role="form">
                                                 <div class="col">
                                                     <div class="form-group">
@@ -99,6 +99,42 @@
                                                     <div id="private-previews" class="previews-image"></div>
                                                 </div>
                                             </div> <!-- /form -->
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                            class="form-control-label col-sm-2">@lang('product.label.cost')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="cost" id="cost" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                            class="form-control-label col-sm-2">@lang('product.label.price')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="price" id="price" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                            class="form-control-label col-sm-2">@lang('product.label.discount_price')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="discount_price" id="discount_price" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                            class="form-control-label col-sm-2">@lang('product.label.stock')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" name="stock" id="stock" class="form-control">
                                         </div>
                                     </div>
 
@@ -135,6 +171,8 @@
     <!-- flot charts scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     {!! script(('assets/admin/js/dropzone.js')) !!}
     {!! script(('assets/admin/js/editor.js')) !!}
 
@@ -143,5 +181,6 @@
         let token = '{{ csrf_token() }}';
         let buttonDelete = '@lang('labels.general.delete')';
         createDropzone(url, token, buttonDelete, 5);
+        $('.custom-select').select2();
     </script>
 @stop

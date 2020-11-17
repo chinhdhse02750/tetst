@@ -4,12 +4,15 @@ namespace App\Modules\Admin\Controllers;
 
 use App\Entities\Category;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
 use App\Helpers\Constants;
+use Illuminate\View\View;
 use PHPUnit\Exception;
 
 class ProductController extends Controller
@@ -27,7 +30,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -41,7 +44,7 @@ class ProductController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function show(int $id)
     {
@@ -52,11 +55,11 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent','0');
+        $categories = $this->categoryRepository->findByField('parent', '0');
         return view('product.create', ['categories' => $categories]);
     }
 
@@ -70,7 +73,6 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
-
             $this->categoryRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
@@ -88,12 +90,13 @@ class ProductController extends Controller
     /**
      * Show the form for editing the category
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function edit(int $id)
     {
         $categories = $this->categoryRepository->find($id);
-        $menus = $this->categoryRepository->findByField('parent','0');
+        $menus = $this->categoryRepository->findByField('parent', '0');
+
         return view('product.edit', ['categories' => $categories, 'menus' => $menus]);
     }
 

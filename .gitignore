@@ -21,3 +21,4 @@ mysql/
 .docker/
 data_hn/
 docker-compose.yml
+.data_hn/
