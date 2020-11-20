@@ -58,7 +58,7 @@
                                             @php
                                                 $char = "|---";
                                             @endphp
-                                            <select class="custom-select"  multiple="multiple">
+                                            <select class="custom-select select-category"  multiple="multiple">
                                                 <option value="0">--Root--</option>
                                                 @foreach($categories as $menu)
                                                     <option id="{{ $menu->id }}" value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
@@ -66,8 +66,20 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input type="hidden" name="category_store_id" id="category_store_id">
+                                        <input type="text" name="category_id" id="category_id">
+                                    </div>
 
+                                    <div class="row form-group">
+                                        <label class="col-md-2 form-control-label"
+                                               for="">@lang('categories.label.select_unit')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            <select class="custom-select" name="unit_id" id="unit_id" >
+                                                @foreach($units as $unit)
+                                                    <option id="{{ $unit->id }}" value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <div class="row form-group">
@@ -183,16 +195,16 @@
         let token = '{{ csrf_token() }}';
         let buttonDelete = '@lang('labels.general.delete')';
         createDropzone(url, token, buttonDelete, 5);
-        $('.custom-select').select2();
+        $('.select-category').select2();
         // let test = $(".custom-select").val();
         // alert(test);
 
-        $('.custom-select').on('select2:select', function (e) {
+        $('.select-category').on('select2:select', function (e) {
             let data = e.params.data;
-            if( $('#category_store_id').val() === "") {
-                $('#category_store_id').val(data.id);
+            if( $('#category_id').val() === "") {
+                $('#category_id').val(data.id);
             }else{
-                $('#category_store_id').val($('#category_store_id').val() + ',' +  data.id);
+                $('#category_id').val($('#category_id').val() + ',' +  data.id);
             }
         });
     </script>

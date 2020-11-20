@@ -5,6 +5,8 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use \Illuminate\Database\Eloquent\Relations\BelongsTo;
+use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Product.
@@ -15,6 +17,8 @@ class Product extends Model implements Transformable
 {
     use TransformableTrait;
 
+
+    protected $table = 'products';
     /**
      * The attributes that are mass assignable.
      *
@@ -36,13 +40,26 @@ class Product extends Model implements Transformable
         'sold',
         'status',
         'alias',
-        'category_store_id',
-        'store_id'
+        'store_id',
+        'category_id'
     ];
 
-
-    public function products()
+    /**
+     * @return BelongsTo
+     */
+    public function units()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->belongsTo('App\Entities\Unit', 'unit_id');
     }
+
+
+    /**
+     * @return BelongsToMany
+     */
+    public function category()
+    {
+        return $this->belongsToMany('App\Entities\Category', 'product_category', 'product_id', 'category_id')
+            ->withTimestamps();
+    }
+
 }

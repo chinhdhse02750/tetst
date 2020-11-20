@@ -11,122 +11,177 @@
                     @include('includes.alerts.messages')
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>@lang('categories.label.edit')</h3>
-                        </div>
-                        <div class="panel-body">
-                            <form action="{{ route('categories.update', $categories->id) }}" method="POST"
-                                  class="form-horizontal">
-                                {{ csrf_field() }}
-                                @method('PUT')
-                                <div class="row form-group">
-                                    <label class="control-label col-sm-2">
-                                        @lang('categories.label.name')
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="name" id="name" class="form-control"
-                                               value="{{ $categories->name }}"
-                                               maxlength="255" required>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label
-                                            class="control-label col-sm-2">@lang('categories.label.description')</label>
-                                    <div class="col-sm-10">
-                                        <textarea name="description" id="description" class="form-control"
-                                                  maxlength="255">{{ $categories->description }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <label class="col-md-2 form-control-label"
-                                           for="dating_type">@lang('categories.label.select_category')
-                                        <span class="required">*</span></label>
-                                    <div class="col-md-10">
-                                        @php
-                                            $char = "|---";
-                                        @endphp
-
-                                        <select class="custom-select" name="parent" id="parent">
-                                            <option value="0">--Root--</option>
-                                            @foreach($menus as $menu)
-                                                <option value="{{ $menu->id }}"
-                                                        @if($categories->parent == $menu->id) selected @endif>
-                                                    {{ $char }}{{ $menu->name }}</option>
-                                                @include('category.editChildItems', ['char' => $char."|---" , 'categories' => $categories] )
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="row form-group">
-                                    <label
-                                            class="form-control-label col-sm-2">@lang('categories.label.alias')
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="alias" id="alias" class="form-control"
-                                               maxlength="255" required value="{{ $categories->alias }}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row flex-group">
-                                    <div class="col-md-2 control-label">
-                                        <span>@lang('categories.label.image')</span>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <small class="upload-note"><i
-                                                    class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')
-                                        </small>
-                                        <div class="row mt-4 mb-4" role="form">
-                                            <div class="col">
-
-                                                <div class="form-group">
-                                                    <div class="needsclick dropzone" id="image-dropzone"></div>
-                                                </div>
-                                                <div id="private-previews" class="previews-image">
-                                                    @if($categories->image)
-                                                        <div class="dz-image" id="{{ $categories->id }}">
-                                                            <div class="image-frames">
-                                                                <img class="dz-image-display"
-                                                                     src="{{ url('storage/tmp/'.$categories->image) }}"
-                                                                     alt="{{ $categories->image }}">
-                                                            </div>
-                                                            <input type="hidden" name="image"
-                                                                   data-id="{{ $categories->id }}"
-                                                                   value="{{ $categories->image }}">
-                                                            <button type="button" data-id="{{ $categories->id }}"
-                                                                    class="btn btn-danger pull-right dz-remove image">@lang('categories.label.delete')
-                                                            </button>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
+                            <h3>@lang('product.label.product_edit')</h3>
+                            <div class="panel-body pt-2">
+                                <form action="{{ route('products.update', $products->id) }}" method="POST"
+                                      class="form-horizontal">
+                                    {{ csrf_field() }}
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-2">
+                                            @lang('product.label.name')
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                   value="{{ $products->name }}"
+                                                   maxlength="255" required>
                                         </div>
-                                    </div> <!-- /form -->
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-2 form-control-label"
-                                           for="status">@lang('categories.label.status')
-                                    </label>
-
-                                    <div class="col-md-2">
-                                        <input type='hidden' value='0' name='status'>
-                                        <input type="checkbox" class="radio" name="status" value="1" id="status"
-                                            @if($categories->status === 1) checked @endif/>
-                                    </div><!--col-->
-                                </div><!--form-group-->
-
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-center">
-                                        <input type="submit" class="btn btn-primary mr-1 btn-action"
-                                               value="@lang('labels.general.update')"/>
-                                        <a href="{{ route('categories.index') }}"
-                                           class="btn btn-danger btn-action">@lang('labels.general.cancel')</a>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="row form-group">
+                                        <label
+                                                class="control-label col-sm-2">@lang('categories.label.description')</label>
+                                        <div class="col-sm-10">
+                                            <textarea name="description" id="description"
+                                                      class="form-control" maxlength="255">{{ $products->description }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="content">@lang('product.label.content')</label>
+
+                                        <div class="col-md-10">
+                                    <textarea class="form-control"
+                                              type="text"
+                                              name="content"
+                                              id="content"
+                                              maxlength="5000"
+                                              placeholder=""
+                                              rows='3'>{{ $products->content }}</textarea>
+                                        </div><!--col-->
+                                    </div><!--form-group-->
+
+                                    <div class="row form-group">
+                                        <label class="col-md-2 form-control-label"
+                                               for="dating_type">@lang('product.label.select_category')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            @php
+                                                $char = "|---";
+                                            @endphp
+                                            <select class="custom-select select-category"  multiple="multiple">
+                                                <option value="0">--Root--</option>
+                                                @foreach($categories as $menu)
+                                                    <option id="{{ $menu->id }}"  @if (in_array($menu->id, $categoryId->toArray()) ) selected @endif
+                                                            value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
+                                                    @include('product.childItems', ['char' => $char."|---", 'menu' => $menu] )
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <input type="text" name="category_id" id="category_id" value="{{ $stringCategory }}">
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="col-md-2 form-control-label"
+                                               for="">@lang('product.label.select_unit')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            <select class="custom-select" name="unit_id" id="unit_id" >
+                                                @foreach($units as $unit)
+                                                    <option
+                                                            @if($products->unit_id === $unit->id) selected @endif
+                                                            id="{{ $unit->id }}" value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                                class="form-control-label col-sm-2">@lang('product.label.alias')
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="alias" id="alias" class="form-control"
+                                                   value="{{ $products->alias }}"
+                                                   maxlength="255" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row flex-group">
+                                        <div class="col-md-2 control-label">
+                                            <span>@lang('categories.label.image')</span>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <small class="upload-note"><i
+                                                        class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')
+                                            </small>
+                                            <br>
+                                            <small class="upload-note"><i
+                                                        class="cil-warning"></i> @lang('alerts.upload.accept_max_image')
+                                            </small>
+                                            <div class="row mt-4 mb-4" role="form">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <div class="needsclick dropzone" id="image-dropzone"></div>
+                                                    </div>
+                                                    <div id="private-previews" class="previews-image"></div>
+                                                </div>
+                                            </div> <!-- /form -->
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                                class="form-control-label col-sm-2">@lang('product.label.cost')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" value="{{ $products->cost }}"
+                                                   name="cost" id="cost" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                                class="form-control-label col-sm-2">@lang('product.label.price')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" value="{{ $products->price }}"
+                                                   name="price" id="price" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                                class="form-control-label col-sm-2">@lang('product.label.discount_price')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" value="{{ $products->discount_price }}"
+                                                   name="discount_price" id="discount_price" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label
+                                                class="form-control-label col-sm-2">@lang('product.label.stock')
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="number" value="{{ $products->stock }}"
+                                                   name="stock" id="stock" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="status">@lang('categories.label.status')
+                                        </label>
+
+                                        <div class="col-md-2">
+                                            <input type='hidden' value='0' name='status'>
+                                            <input type="checkbox" class="radio" name="status" value="1" id="status"/>
+                                        </div><!--col-->
+                                    </div><!--form-group-->
+
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-center">
+                                            <input type="submit" class="btn btn-success mr-1 btn-action"
+                                                   value="@lang('categories.label.register')"/>
+                                            <a href="{{ route('categories.index') }}"
+                                               class="btn btn-danger btn-action">@lang('labels.general.cancel')</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,29 +194,33 @@
     <!-- flot charts scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     {!! script(('assets/admin/js/dropzone.js')) !!}
     {!! script(('assets/admin/js/editor.js')) !!}
 
     <script>
-        $(document).ready(function () {
-            let url = '{{ url('api/media') }}';
-            let token = '{{ csrf_token() }}';
-            let buttonDelete = '@lang('labels.general.delete')';
+        let url = '{{ url('api/media') }}';
+        let token = '{{ csrf_token() }}';
+        let buttonDelete = '@lang('labels.general.delete')';
+        createDropzone(url, token, buttonDelete, 5);
+        $('.select-category').select2();
+        $('.select-category').on('select2:select', function (e) {
+            let data = e.params.data;
+            if( $('#category_id').val() === "") {
+                $('#category_id').val(data.id);
+            }else{
+                $('#category_id').val($('#category_id').val() + ',' +  data.id);
+            }
+        });
 
-            $('.dz-remove').on("click", function () {
-                let id = $(this).data("id");
-                $('#' + id + '').remove();
-                if ($(this).hasClass('image')) {
-                    Dropzone.forElement('#image-dropzone').removeAllFiles(true);
-                    Dropzone.forElement('#image-dropzone').options.maxFiles = 1;
-                }
-            });
+        $('.select-category').on('select2:unselect', function (e) {
+            let data = e.params.data;
+            let stringID = $('#category_id').val();
+            if(stringID.indexOf(data.id) != -1){
+                console.log(stringID + " found");
+            }
 
-            let maxInput = '{{ empty($categories->image) ? 1 : 0 }}';
-            console.log(maxInput);
-            createDropzone(url, token, buttonDelete, maxInput);
         });
     </script>
 @stop
-
-

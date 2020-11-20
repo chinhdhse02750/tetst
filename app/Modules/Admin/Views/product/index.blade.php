@@ -23,65 +23,68 @@
                             <thead>
                             <tr>
                                 <th width="5%">@lang('labels.general.id')</th>
-                                <th width="15%">@lang('categories.label.image')</th>
-                                <th width="15%">@lang('categories.label.name')</th>
-                                <th width="15%">@lang('categories.label.parent')</th>
-                                <th width="30%">@lang('categories.label.description')</th>
-                                <th width="10%">@lang('categories.label.status')</th>
-                                <th width="15%">@lang('labels.general.created_at')</th>
+                                <th width="15%">@lang('product.label.image')</th>
+                                <th width="15%">@lang('product.label.name')</th>
+                                <th width="15%">@lang('product.label.parent')</th>
+                                <th width="10%">@lang('product.label.cost')</th>
+                                <th width="10%">@lang('product.label.price')</th>
+                                <th width="10%">@lang('product.label.discount_price')</th>
+                                <th width="10%">@lang('product.label.unit')</th>
+                                <th width="10%">@lang('product.label.status')</th>
                                 <th width="10%">@lang('labels.general.action')</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!empty($categories))
+                            @if(!empty($products))
                                 <!-- Table Body -->
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($products as $product)
                                 <tr>
                                     <td class="table-text">
 
-                                        <div>{{$category->id}}</div>
+                                        <div>{{$product->id}}</div>
                                     </td>
                                     <td class="table-text">
                                         <div class="image-frames"><img class="dz-image-display"
-                                                  alt="{{ $category->image }}"
-                                                  src="{{ url('storage/tmp/'.$category->image) }}">
+                                                  alt="{{ $product->image }}"
+                                                  src="{{ url('storage/tmp/'.$product->image) }}">
                                         </div>
                                     </td>
                                     <td class="table-text">
-                                        <div>{{$category->name}}</div>
+                                        <div>{{$product->name}}</div>
                                     </td>
                                     <td class="table-text">
-                                        @if($category->parent === 0)
-                                            ROOT
-                                        @else
-                                            @foreach($categories as $parent)
-                                                @if( $category->parent === $parent->id )
-                                                    {{ $parent->name }}
-                                                @endif
-                                            @endforeach
-                                        @endif
+                                        @foreach($product->category as $key => $value)
+                                            {!! $value->name. "</br>" !!}
+                                        @endforeach
                                     </td>
                                     <td class="table-text">
-                                        <div>{{$category->description}}</div>
+                                        <div>{{$product->cost}}</div>
                                     </td>
+                                    <td class="table-text">
+                                        <div>{{$product->price}}</div>
+                                    </td>
+                                    <td class="table-text">
+                                        <div>{{ $product->discount_price }}</div>
+                                    </td>
+                                    <td class="table-text">
+                                        <div>{{$product->units->name}}</div>
+                                    </td>
+
                                     <td class="table-text">
                                         <div>
-                                            <span class="{{ $category->status === 1 ? "badge badge-success" : "badge badge-danger" }}">
-                                                {{$category->status === 1 ? "ON" : "OFF"}}</span>
+                                            <span class="{{ $product->status === 1 ? "badge badge-success" : "badge badge-danger" }}">
+                                                {{$product->status === 1 ? "ON" : "OFF"}}</span>
                                         </div>
                                     </td>
-                                    <td class="table-text">
-                                        <div>{{$category->created_at}}</div>
-                                    </td>
                                     <td>
-                                        <form action="{{ route('products.destroy', $category->id) }}"
+                                        <form action="{{ route('products.destroy', $product->id) }}"
                                               method="POST">
-                                            <a href="{{ route('products.show', $category->id) }}"
+                                            <a href="{{ route('products.show', $product->id) }}"
                                                class="btn btn-default"><i class="fas fa-eye"></i></a>
-                                            <a href="{{ route('products.edit', $category->id) }}"
+                                            <a href="{{ route('products.edit', $product->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="{{ route('products.destroy', $category->id) }}"
+                                            <a href="{{ route('products.destroy', $product->id) }}"
                                                class="btn btn-danger"
                                                data-method="delete"
                                                data-trans-button-cancel="@lang('labels.general.cancel')"
@@ -103,12 +106,12 @@
             <div class="row">
                 <div class="col-7">
                     <div class="float-left">
-                        {{ __('labels.general.total_number', ['total_number' => $categories->total()]) }}
+                        {{ __('labels.general.total_number', ['total_number' => $products->total()]) }}
                     </div>
                 </div><!--col-->
                 <div class="col-5">
                     <div class="float-right">
-                        {{$categories->links()}}
+                        {{$products->links()}}
                     </div>
                 </div><!--col-->
             </div><!--row-->

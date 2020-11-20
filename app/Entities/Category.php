@@ -17,6 +17,8 @@ class Category extends Model implements Transformable
 {
     use TransformableTrait;
 
+    protected $table = 'categories';
+
     /**
      * The attributes that are mass assignable.
      *

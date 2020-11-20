@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Controllers;
 
 use App\Entities\Category;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
+use App\Repositories\UnitRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
@@ -20,18 +21,22 @@ class ProductController extends Controller
 {
     protected $categoryRepository;
     protected $productRepository;
+    protected $unitRepository;
 
     /**
      * ProductController constructor.
      * @param CategoryRepository $categoryRepository
      * @param ProductRepository $productRepository
      */
-    public function __construct(CategoryRepository $categoryRepository, ProductRepository $productRepository)
-    {
+    public function __construct(
+        CategoryRepository $categoryRepository,
+        ProductRepository $productRepository,
+        UnitRepository $unitRepository
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
+        $this->unitRepository = $unitRepository;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -39,9 +44,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->orderBy('created_at', $direction = 'DESC')
+        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
+            ->with('units')
+            ->with('category')
             ->paginate(Constants::DEFAULT_PER_PAGE);
-        return view('product.index', ['categories' => $categories]);
+        return view('product.index', ['products' => $products]);
     }
 
     /**
@@ -65,7 +72,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = $this->categoryRepository->findByField('parent', '0');
-        return view('product.create', ['categories' => $categories]);
+        $units = $this->unitRepository->all();
+        return view('product.create', ['categories' => $categories, 'units' => $units]);
     }
 
     /**
@@ -78,9 +86,11 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
-            $data['type_id'] = 1;
-            $data['unit_id'] = 1;
-            $this->productRepository->create($data);
+            $listCategoryId = explode(',', $data['category_id']);
+            $product = $this->productRepository->create($data);
+            $productId = $product->id;;
+            $newProduct = $this->productRepository->find($productId);
+            $newProduct->category()->attach($listCategoryId);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
             return redirect()
@@ -101,10 +111,19 @@ class ProductController extends Controller
      */
     public function edit(int $id)
     {
-        $categories = $this->categoryRepository->find($id);
-        $menus = $this->categoryRepository->findByField('parent', '0');
-
-        return view('products.edit', ['categories' => $categories, 'menus' => $menus]);
+        $products = $this->productRepository->find($id);
+        $categories = $this->categoryRepository->findByField('parent', '0');
+        $units = $this->unitRepository->all();
+        $categoryId = $products->category()->pluck('category_id');
+        $stringCategory = $categoryId->implode(',');
+        return view('product.edit',
+            ['products' => $products,
+                'categories' => $categories,
+                'units' => $units,
+                'categoryId' => $categoryId,
+                'stringCategory' => $stringCategory,
+            ]
+        );
     }
 
     /**
@@ -114,11 +133,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(StoreCategoryRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
         try {
             $data = $request->except(['_token']);
-            $this->categoryRepository->find($id)->update($data);
+            $this->productRepository->find($id)->update($data);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
             return redirect()
                 ->route('products.index');
