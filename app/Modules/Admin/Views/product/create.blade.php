@@ -58,14 +58,16 @@
                                             @php
                                                 $char = "|---";
                                             @endphp
-                                            <select class="custom-select" name="parent" id="parent" multiple="multiple">
+                                            <select class="custom-select"  multiple="multiple">
                                                 <option value="0">--Root--</option>
                                                 @foreach($categories as $menu)
-                                                    <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
-                                                    @include('category.childItems', ['char' => $char."|---"] )
+                                                    <option id="{{ $menu->id }}" value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
+                                                    @include('product.childItems', ['char' => $char."|---", 'menu' => $menu] )
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <input type="hidden" name="category_store_id" id="category_store_id">
+
                                     </div>
 
                                     <div class="row form-group">
@@ -182,5 +184,16 @@
         let buttonDelete = '@lang('labels.general.delete')';
         createDropzone(url, token, buttonDelete, 5);
         $('.custom-select').select2();
+        // let test = $(".custom-select").val();
+        // alert(test);
+
+        $('.custom-select').on('select2:select', function (e) {
+            let data = e.params.data;
+            if( $('#category_store_id').val() === "") {
+                $('#category_store_id').val(data.id);
+            }else{
+                $('#category_store_id').val($('#category_store_id').val() + ',' +  data.id);
+            }
+        });
     </script>
 @stop

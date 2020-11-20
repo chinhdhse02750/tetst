@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
+use App\Repositories\ProductRepository;
 use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
@@ -18,13 +19,17 @@ use PHPUnit\Exception;
 class ProductController extends Controller
 {
     protected $categoryRepository;
+    protected $productRepository;
 
     /**
-     * CategoryController constructor.
+     * ProductController constructor.
+     * @param CategoryRepository $categoryRepository
+     * @param ProductRepository $productRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, ProductRepository $productRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -73,16 +78,18 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
-            $this->categoryRepository->create($data);
+            $data['type_id'] = 1;
+            $data['unit_id'] = 1;
+            $this->productRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
             return redirect()
-                ->route('product.index');
+                ->route('products.index');
         } catch (Exception $e) {
-            Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
+            Log::error('[ERROR_CATEGORY_CREATE]: ' . $e->getMessage());
 
             return redirect()
-                ->route('product.index')
+                ->route('products.index')
                 ->withErrors($e->getMessage());
         }//end try
     }
@@ -97,7 +104,7 @@ class ProductController extends Controller
         $categories = $this->categoryRepository->find($id);
         $menus = $this->categoryRepository->findByField('parent', '0');
 
-        return view('product.edit', ['categories' => $categories, 'menus' => $menus]);
+        return view('products.edit', ['categories' => $categories, 'menus' => $menus]);
     }
 
     /**
@@ -114,11 +121,11 @@ class ProductController extends Controller
             $this->categoryRepository->find($id)->update($data);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
             return redirect()
-                ->route('product.index');
+                ->route('products.index');
         } catch (Exception $e) {
-            Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
+            Log::error('[ERROR_CATEGORY_CREATE]: ' . $e->getMessage());
             return redirect()
-                ->route('product.index')
+                ->route('products.index')
                 ->withErrors($e->getMessage());
         }//end try
     }
@@ -135,7 +142,7 @@ class ProductController extends Controller
             $result->delete();
             Session::flash('success_msg', trans('alerts.general.success.deleted'));
         }
-        return redirect()->route('product.index');
+        return redirect()->route('products.index');
     }
 
     /**

@@ -21800,4 +21800,5 @@ html:not([dir=rtl]) .logo-header-admin{
 
 .select2-selection--multiple {
     border: 1px solid #ced4da !important;
+    width: 100% !important;
 }
