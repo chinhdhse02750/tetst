@@ -88,7 +88,7 @@ class ProductController extends Controller
             $data = $request->except(['_token']);
             $listCategoryId = explode(',', $data['category_id']);
             $product = $this->productRepository->create($data);
-            $productId = $product->id;;
+            $productId = $product->id;
             $newProduct = $this->productRepository->find($productId);
             $newProduct->category()->attach($listCategoryId);
             Session::flash('success_msg', trans('alerts.general.success.created'));
@@ -116,7 +116,8 @@ class ProductController extends Controller
         $units = $this->unitRepository->all();
         $categoryId = $products->category()->pluck('category_id');
         $stringCategory = $categoryId->implode(',');
-        return view('product.edit',
+        return view(
+            'product.edit',
             ['products' => $products,
                 'categories' => $categories,
                 'units' => $units,
@@ -138,6 +139,11 @@ class ProductController extends Controller
         try {
             $data = $request->except(['_token']);
             $this->productRepository->find($id)->update($data);
+            $thisProduct = $this->productRepository->find($id);
+            $oldListCategoryId = explode(',', $data['old_category_id']);
+            $listCategoryId = explode(',', $data['category_id']);
+            $thisProduct->category()->detach($oldListCategoryId);
+            $thisProduct->category()->attach($listCategoryId);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
             return redirect()
                 ->route('products.index');

@@ -207,5 +207,14 @@
                 $('#category_id').val($('#category_id').val() + ',' +  data.id);
             }
         });
+
+        $('.select-category').on('select2:unselect', function (e) {
+            let listID =  $('#category_id').val();
+            let data = e.params.data;
+            if(listID.indexOf(data.id) != -1){
+                $('#category_id').val($('#category_id').val().replace(data.id,'').replace(/^,|,$/g, '').replace(/,,/g, ','));
+            }
+        });
+
     </script>
 @stop

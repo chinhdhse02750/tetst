@@ -16,6 +16,7 @@
                                 <form action="{{ route('products.update', $products->id) }}" method="POST"
                                       class="form-horizontal">
                                     {{ csrf_field() }}
+                                    @method('PUT')
                                     <div class="row form-group">
                                         <label class="control-label col-sm-2">
                                             @lang('product.label.name')
@@ -68,6 +69,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <input type="text" name="old_category_id" id="old_category_id" value="{{ $stringCategory }}">
                                         <input type="text" name="category_id" id="category_id" value="{{ $stringCategory }}">
                                     </div>
 
@@ -215,12 +217,12 @@
         });
 
         $('.select-category').on('select2:unselect', function (e) {
+            let listID =  $('#category_id').val();
             let data = e.params.data;
-            let stringID = $('#category_id').val();
-            if(stringID.indexOf(data.id) != -1){
-                console.log(stringID + " found");
+            if(listID.indexOf(data.id) != -1){
+                $('#category_id').val($('#category_id').val().replace(data.id,'').replace(/^,|,$/g, '').replace(/,,/g, ','));
             }
-
         });
+
     </script>
 @stop

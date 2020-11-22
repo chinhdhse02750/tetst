@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
             $table->string('name', 255)->comment('Type of product name');
             $table->string('category_id', 255)->nullable();
-            $table->string('name', 255)->comment('Type of product name');
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
             $table->float('discount_price')->default(0)->nullable();

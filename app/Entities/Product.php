@@ -40,8 +40,7 @@ class Product extends Model implements Transformable
         'sold',
         'status',
         'alias',
-        'store_id',
-        'category_id'
+        'store_id'
     ];
 
     /**
