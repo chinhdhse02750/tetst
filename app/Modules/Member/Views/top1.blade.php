@@ -347,111 +347,111 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6 col-md-4">
-                                            <div class="product pink"><a class="product-img"
-                                                                         href="shop_detail.html"><img
-                                                            src="/images/product/product02.png" alt=""></a>
-                                                <h5 class="product-type">Oranges</h5>
-                                                <h3 class="product-name">Pure Pineapple</h3>
-                                                <h3 class="product-price">$14.00
-                                                    <del>$35.00</del>
-                                                </h3>
-                                                <div class="product-select">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-4">
-                                            <div class="product pink"><a class="product-img"
-                                                                         href="shop_detail.html"><img
-                                                            src="/images/product/product03.png" alt=""></a>
-                                                <h5 class="product-type">Oranges</h5>
-                                                <h3 class="product-name">Apple</h3>
-                                                <h3 class="product-price">$30.00
-                                                    <del>$45.00</del>
-                                                </h3>
-                                                <div class="product-select">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-4">
-                                            <div class="product pink"><a class="product-img"
-                                                                         href="shop_detail.html"><img
-                                                            src="/images/product/product04.png" alt=""></a>
-                                                <h5 class="product-type">Oranges</h5>
-                                                <h3 class="product-name">Pure Pineapple</h3>
-                                                <h3 class="product-price">$14.00
-                                                    <del>$35.00</del>
-                                                </h3>
-                                                <div class="product-select">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-4">
-                                            <div class="product pink"><a class="product-img"
-                                                                         href="shop_detail.html"><img
-                                                            src="/images/product/product05.png" alt=""></a>
-                                                <h5 class="product-type">Oranges</h5>
-                                                <h3 class="product-name">Pure Pineapple</h3>
-                                                <h3 class="product-price">$14.00
-                                                    <del>$35.00</del>
-                                                </h3>
-                                                <div class="product-select">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-4">
-                                            <div class="product pink"><a class="product-img"
-                                                                         href="shop_detail.html"><img
-                                                            src="/images/product/product06.png" alt=""></a>
-                                                <h5 class="product-type">Oranges</h5>
-                                                <h3 class="product-name">Pure Pineapple</h3>
-                                                <h3 class="product-price">$14.00
-                                                    <del>$35.00</del>
-                                                </h3>
-                                                <div class="product-select">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {{--<div class="col-6 col-md-4">--}}
+                                            {{--<div class="product pink"><a class="product-img"--}}
+                                                                         {{--href="shop_detail.html"><img--}}
+                                                            {{--src="/images/product/product02.png" alt=""></a>--}}
+                                                {{--<h5 class="product-type">Oranges</h5>--}}
+                                                {{--<h3 class="product-name">Pure Pineapple</h3>--}}
+                                                {{--<h3 class="product-price">$14.00--}}
+                                                    {{--<del>$35.00</del>--}}
+                                                {{--</h3>--}}
+                                                {{--<div class="product-select">--}}
+                                                    {{--<button class="add-to-wishlist round-icon-btn pink"><i--}}
+                                                                {{--class="icon_heart_alt"></i></button>--}}
+                                                    {{--<button class="add-to-cart round-icon-btn pink"><i--}}
+                                                                {{--class="icon_bag_alt"></i></button>--}}
+                                                    {{--<button class="add-to-compare round-icon-btn pink"><i--}}
+                                                                {{--class="fas fa-random"></i></button>--}}
+                                                    {{--<button class="quickview round-icon-btn pink"><i--}}
+                                                                {{--class="far fa-eye"></i></button>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-6 col-md-4">--}}
+                                            {{--<div class="product pink"><a class="product-img"--}}
+                                                                         {{--href="shop_detail.html"><img--}}
+                                                            {{--src="/images/product/product03.png" alt=""></a>--}}
+                                                {{--<h5 class="product-type">Oranges</h5>--}}
+                                                {{--<h3 class="product-name">Apple</h3>--}}
+                                                {{--<h3 class="product-price">$30.00--}}
+                                                    {{--<del>$45.00</del>--}}
+                                                {{--</h3>--}}
+                                                {{--<div class="product-select">--}}
+                                                    {{--<button class="add-to-wishlist round-icon-btn pink"><i--}}
+                                                                {{--class="icon_heart_alt"></i></button>--}}
+                                                    {{--<button class="add-to-cart round-icon-btn pink"><i--}}
+                                                                {{--class="icon_bag_alt"></i></button>--}}
+                                                    {{--<button class="add-to-compare round-icon-btn pink"><i--}}
+                                                                {{--class="fas fa-random"></i></button>--}}
+                                                    {{--<button class="quickview round-icon-btn pink"><i--}}
+                                                                {{--class="far fa-eye"></i></button>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-6 col-md-4">--}}
+                                            {{--<div class="product pink"><a class="product-img"--}}
+                                                                         {{--href="shop_detail.html"><img--}}
+                                                            {{--src="/images/product/product04.png" alt=""></a>--}}
+                                                {{--<h5 class="product-type">Oranges</h5>--}}
+                                                {{--<h3 class="product-name">Pure Pineapple</h3>--}}
+                                                {{--<h3 class="product-price">$14.00--}}
+                                                    {{--<del>$35.00</del>--}}
+                                                {{--</h3>--}}
+                                                {{--<div class="product-select">--}}
+                                                    {{--<button class="add-to-wishlist round-icon-btn pink"><i--}}
+                                                                {{--class="icon_heart_alt"></i></button>--}}
+                                                    {{--<button class="add-to-cart round-icon-btn pink"><i--}}
+                                                                {{--class="icon_bag_alt"></i></button>--}}
+                                                    {{--<button class="add-to-compare round-icon-btn pink"><i--}}
+                                                                {{--class="fas fa-random"></i></button>--}}
+                                                    {{--<button class="quickview round-icon-btn pink"><i--}}
+                                                                {{--class="far fa-eye"></i></button>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-6 col-md-4">--}}
+                                            {{--<div class="product pink"><a class="product-img"--}}
+                                                                         {{--href="shop_detail.html"><img--}}
+                                                            {{--src="/images/product/product05.png" alt=""></a>--}}
+                                                {{--<h5 class="product-type">Oranges</h5>--}}
+                                                {{--<h3 class="product-name">Pure Pineapple</h3>--}}
+                                                {{--<h3 class="product-price">$14.00--}}
+                                                    {{--<del>$35.00</del>--}}
+                                                {{--</h3>--}}
+                                                {{--<div class="product-select">--}}
+                                                    {{--<button class="add-to-wishlist round-icon-btn pink"><i--}}
+                                                                {{--class="icon_heart_alt"></i></button>--}}
+                                                    {{--<button class="add-to-cart round-icon-btn pink"><i--}}
+                                                                {{--class="icon_bag_alt"></i></button>--}}
+                                                    {{--<button class="add-to-compare round-icon-btn pink"><i--}}
+                                                                {{--class="fas fa-random"></i></button>--}}
+                                                    {{--<button class="quickview round-icon-btn pink"><i--}}
+                                                                {{--class="far fa-eye"></i></button>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-6 col-md-4">--}}
+                                            {{--<div class="product pink"><a class="product-img"--}}
+                                                                         {{--href="shop_detail.html"><img--}}
+                                                            {{--src="/images/product/product06.png" alt=""></a>--}}
+                                                {{--<h5 class="product-type">Oranges</h5>--}}
+                                                {{--<h3 class="product-name">Pure Pineapple</h3>--}}
+                                                {{--<h3 class="product-price">$14.00--}}
+                                                    {{--<del>$35.00</del>--}}
+                                                {{--</h3>--}}
+                                                {{--<div class="product-select">--}}
+                                                    {{--<button class="add-to-wishlist round-icon-btn pink"><i--}}
+                                                                {{--class="icon_heart_alt"></i></button>--}}
+                                                    {{--<button class="add-to-cart round-icon-btn pink"><i--}}
+                                                                {{--class="icon_bag_alt"></i></button>--}}
+                                                    {{--<button class="add-to-compare round-icon-btn pink"><i--}}
+                                                                {{--class="fas fa-random"></i></button>--}}
+                                                    {{--<button class="quickview round-icon-btn pink"><i--}}
+                                                                {{--class="far fa-eye"></i></button>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                                 <div id="tab2">

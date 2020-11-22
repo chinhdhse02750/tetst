@@ -33,7 +33,8 @@
                                                 class="control-label col-sm-2">@lang('categories.label.description')</label>
                                         <div class="col-sm-10">
                                             <textarea name="description" id="description"
-                                                      class="form-control" maxlength="255">{{ $products->description }}</textarea>
+                                                      class="form-control"
+                                                      maxlength="255">{{ $products->description }}</textarea>
                                         </div>
                                     </div>
 
@@ -60,17 +61,20 @@
                                             @php
                                                 $char = "|---";
                                             @endphp
-                                            <select class="custom-select select-category"  multiple="multiple">
-                                                <option value="0">--Root--</option>
+                                            <select class="custom-select select-category" multiple="multiple">
                                                 @foreach($categories as $menu)
-                                                    <option id="{{ $menu->id }}"  @if (in_array($menu->id, $categoryId->toArray()) ) selected @endif
+                                                    <option id="{{ $menu->id }}"
+                                                            @if (in_array($menu->id, $categoryId->toArray()) ) selected
+                                                            @endif
                                                             value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
                                                     @include('product.childItems', ['char' => $char."|---", 'menu' => $menu] )
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input type="text" name="old_category_id" id="old_category_id" value="{{ $stringCategory }}">
-                                        <input type="text" name="category_id" id="category_id" value="{{ $stringCategory }}">
+                                        <input type="hidden" name="old_category_id" id="old_category_id"
+                                               value="{{ $stringCategory }}">
+                                        <input type="hidden" name="category_id" id="category_id"
+                                               value="{{ $stringCategory }}">
                                     </div>
 
                                     <div class="row form-group">
@@ -78,11 +82,12 @@
                                                for="">@lang('product.label.select_unit')
                                             <span class="required">*</span></label>
                                         <div class="col-md-10">
-                                            <select class="custom-select" name="unit_id" id="unit_id" >
+                                            <select class="custom-select" name="unit_id" id="unit_id">
                                                 @foreach($units as $unit)
                                                     <option
                                                             @if($products->unit_id === $unit->id) selected @endif
-                                                            id="{{ $unit->id }}" value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                    id="{{ $unit->id }}"
+                                                            value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -115,9 +120,29 @@
                                             <div class="row mt-4 mb-4" role="form">
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <div class="needsclick dropzone" id="image-dropzone"></div>
+                                                        <div class="needsclick dropzone" id="image-product-dropzone"></div>
                                                     </div>
-                                                    <div id="private-previews" class="previews-image"></div>
+                                                    <div id="private-previews" class="previews-image">
+                                                        @foreach($images as $key => $value)
+                                                            <div class="dz-image" id="{{ $key }}">
+                                                                <div class="image-frames">
+                                                                    <img class="dz-image-display"
+                                                                         alt="{{ $value }}"
+                                                                         src="{{ url('storage/tmp/'.$value) }}">
+                                                                </div>
+                                                                {{--<span class="file-size dz-name-display">{{ $value->size }}</span>--}}
+                                                                {{--<input type="hidden" name="nameMedia[]" value="{{ $value->name }}">--}}
+                                                                <input type="hidden" name="image[]" value="{{ $value }}">
+                                                                {{--<input type="hidden" name="private-images[]"--}}
+                                                                {{--data-id="{{ $value->pivot->media_id }}"--}}
+                                                                {{--value="{{ $value->name }}|{{  $value->thumbnail_name }}|{{ $value->type }}|{{  $value->size }}|{{ $value->thumbnail_size }}">--}}
+                                                                <button type="button"
+                                                                        class="btn btn-danger pull-right dz-remove"
+                                                                        data-id="{{ $key }}">@lang('product.label.delete')
+                                                                </button>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div> <!-- /form -->
                                         </div>
@@ -170,7 +195,9 @@
 
                                         <div class="col-md-2">
                                             <input type='hidden' value='0' name='status'>
-                                            <input type="checkbox" class="radio" name="status" value="1" id="status"/>
+                                            <input type="checkbox" class="radio" name="status" value="1" id="status"
+                                                   @if ($products->status === 1 ) checked @endif
+                                            />
                                         </div><!--col-->
                                     </div><!--form-group-->
 
@@ -196,32 +223,45 @@
     <!-- flot charts scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     {!! script(('assets/admin/js/dropzone.js')) !!}
     {!! script(('assets/admin/js/editor.js')) !!}
 
     <script>
-        let url = '{{ url('api/media') }}';
-        let token = '{{ csrf_token() }}';
-        let buttonDelete = '@lang('labels.general.delete')';
-        createDropzone(url, token, buttonDelete, 5);
-        $('.select-category').select2();
-        $('.select-category').on('select2:select', function (e) {
-            let data = e.params.data;
-            if( $('#category_id').val() === "") {
-                $('#category_id').val(data.id);
-            }else{
-                $('#category_id').val($('#category_id').val() + ',' +  data.id);
-            }
-        });
+        $(document).ready(function () {
+            $('#private-previews').sortable();
+            $('.dz-remove').on("click", function () {
+                let id = $(this).data("id");
+                $('#' + id + '').remove();
+                if($(this).hasClass('profile-image')){
+                    Dropzone.forElement('#image-product-dropzone').removeAllFiles(true);
+                    Dropzone.forElement('#image-product-dropzone').options.maxFiles = 1;
+                }
+            });
 
-        $('.select-category').on('select2:unselect', function (e) {
-            let listID =  $('#category_id').val();
-            let data = e.params.data;
-            if(listID.indexOf(data.id) != -1){
-                $('#category_id').val($('#category_id').val().replace(data.id,'').replace(/^,|,$/g, '').replace(/,,/g, ','));
-            }
+            let url = '{{ url('api/media') }}';
+            let token = '{{ csrf_token() }}';
+            let buttonDelete = '@lang('labels.general.delete')';
+            createDropzone(url, token, buttonDelete, 5);
+
+            $('.select-category').select2();
+
+            $('.select-category').on('select2:select', function (e) {
+                let data = e.params.data;
+                if ($('#category_id').val() === "") {
+                    $('#category_id').val(data.id);
+                } else {
+                    $('#category_id').val($('#category_id').val() + ',' + data.id);
+                }
+            });
+            $('.select-category').on('select2:unselect', function (e) {
+                let listID = $('#category_id').val();
+                let data = e.params.data;
+                if (listID.indexOf(data.id) != -1) {
+                    $('#category_id').val($('#category_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
+                }
+            });
         });
 
     </script>

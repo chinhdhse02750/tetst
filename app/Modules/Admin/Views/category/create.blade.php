@@ -44,13 +44,15 @@
                                             @endphp
 
                                             <select class="custom-select" name="parent" id="parent">
-                                                <option value="0">--Root--</option>
-                                                @foreach($categories as $menu)
+                                                @if($categories->isEmpty())
+                                                    <option value="1">{{ $char }}@lang('categories.label.all_product')</option>
+                                                @else
+                                                    @foreach($categories as $menu)
+                                                        <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
+                                                        @include('category.childItems', ['char' => $char."|---"] )
+                                                    @endforeach
+                                                @endif
 
-                                                    <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
-
-                                                    @include('category.childItems', ['char' => $char."|---"] )
-                                                @endforeach
                                             </select>
 
                                         </div>

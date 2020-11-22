@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent', '0');
+        $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
         return view('product.create', ['categories' => $categories, 'units' => $units]);
     }
@@ -86,6 +86,7 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
+            $data['image'] = implode(',', $data['image']);
             $listCategoryId = explode(',', $data['category_id']);
             $product = $this->productRepository->create($data);
             $productId = $product->id;
@@ -112,7 +113,8 @@ class ProductController extends Controller
     public function edit(int $id)
     {
         $products = $this->productRepository->find($id);
-        $categories = $this->categoryRepository->findByField('parent', '0');
+        $image = explode(',', $products['image']);
+        $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
         $categoryId = $products->category()->pluck('category_id');
         $stringCategory = $categoryId->implode(',');
@@ -123,6 +125,7 @@ class ProductController extends Controller
                 'units' => $units,
                 'categoryId' => $categoryId,
                 'stringCategory' => $stringCategory,
+                'images' => $image
             ]
         );
     }
@@ -138,6 +141,7 @@ class ProductController extends Controller
     {
         try {
             $data = $request->except(['_token']);
+            $data['image'] = implode(',', $data['image']);
             $this->productRepository->find($id)->update($data);
             $thisProduct = $this->productRepository->find($id);
             $oldListCategoryId = explode(',', $data['old_category_id']);
@@ -162,7 +166,7 @@ class ProductController extends Controller
      */
     public function destroy(int $id)
     {
-        $result = $this->categoryRepository->find($id);
+        $result = $this->productRepository->find($id);
         if ($result) {
             $result->delete();
             Session::flash('success_msg', trans('alerts.general.success.deleted'));

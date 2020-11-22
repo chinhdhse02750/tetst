@@ -11,6 +11,11 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
             return;
         }
 
+        if (this.id === "image-product-dropzone") {
+             nameInput = 'image[]';
+             nameClass = 'image';
+        }
+
         $(this).dropzone({
             url: url,
             autoDiscover: false,
@@ -57,8 +62,9 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                     $('#' + id + '').remove();
                     let count = $('.dz-image').length;
                     if ($(this).hasClass('image')) {
-                        Dropzone.forElement('#image-dropzone').removeAllFiles(true);
-                        Dropzone.forElement('#image-dropzone').options.maxFiles = maxInput - count;
+                        console.log(maxInput - count);
+                        Dropzone.forElement('#image-product-dropzone').removeAllFiles(true);
+                        Dropzone.forElement('#image-product-dropzone').options.maxFiles = maxInput - count;
                     }
                 });
 
@@ -69,8 +75,7 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
 
 function uploadSuccess(uuid, name, thumbnail, size, objValue, nameInput, buttonDelete, nameClass) {
     return `<div class="dz-image" id="${uuid}">
-            <div class="image-frames"><img class="dz-image-display" alt="${name}" src = "${thumbnail}" ></div>
-            <span class="file-size dz-name-display">${size}</span>
+            <div class="image-frames"><img class="dz-image-display" alt="${name}" src = "${thumbnail}" ></div>         
             <input type="hidden" name="${nameInput}" value="${objValue}">
             <button type="button" class="btn btn-danger pull-right dz-remove ${ nameClass }" 
             data-dz-remove data-id="${uuid}" >${buttonDelete}</button>

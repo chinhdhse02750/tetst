@@ -46,8 +46,8 @@
                                     </td>
                                     <td class="table-text">
                                         <div class="image-frames"><img class="dz-image-display"
-                                                  alt="{{ $product->image }}"
-                                                  src="{{ url('storage/tmp/'.$product->image) }}">
+                                                  alt="{{ $product->first_image }}"
+                                                  src="{{ url('storage/tmp/'.$product->first_image) }}">
                                         </div>
                                     </td>
                                     <td class="table-text">
@@ -80,8 +80,8 @@
                                     <td>
                                         <form action="{{ route('products.destroy', $product->id) }}"
                                               method="POST">
-                                            <a href="{{ route('products.show', $product->id) }}"
-                                               class="btn btn-default"><i class="fas fa-eye"></i></a>
+                                            {{--<a href="{{ route('products.show', $product->id) }}"--}}
+                                               {{--class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
                                             <a href="{{ route('products.edit', $product->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ route('products.destroy', $product->id) }}"

@@ -8,11 +8,15 @@ use App\Repositories\RankRepository;
 use App\Repositories\UserPrefectureRepository;
 use App\Repositories\UserProfileRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\ProductRepository;
+use App\Repositories\UnitRepository;
 use App\Services\NewsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,9 @@ class HomeController extends Controller
     protected $rankRepository;
     protected $areaRepository;
     protected $newsService;
+    protected $categoryRepository;
+    protected $productRepository;
+    protected $unitRepository;
 
     /**
      * HomeController constructor.
@@ -39,7 +46,10 @@ class HomeController extends Controller
         UserProfileRepository $userProfileRepository,
         RankRepository $rankRepository,
         AreaRepository $areaRepository,
-        NewsService $newsService
+        NewsService $newsService,
+        CategoryRepository $categoryRepository,
+        ProductRepository $productRepository,
+        UnitRepository $unitRepository
     ) {
         $this->middleware('auth')->except('logout','test');
         $this->userPrefectureRepository = $userPrefectureRepository;
@@ -48,6 +58,9 @@ class HomeController extends Controller
         $this->rankRepository = $rankRepository;
         $this->areaRepository = $areaRepository;
         $this->newsService = $newsService;
+        $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
+        $this->unitRepository = $unitRepository;
     }
 
     /**
@@ -74,7 +87,10 @@ class HomeController extends Controller
 
     public function test(Request $request)
     {
-        return view('top1');
+        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
+            ->with('units')
+            ->with('category')->get();
+        return view('top1',['products' => $products]);
     }
 
 

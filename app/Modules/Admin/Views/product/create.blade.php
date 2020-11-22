@@ -58,25 +58,26 @@
                                             @php
                                                 $char = "|---";
                                             @endphp
-                                            <select class="custom-select select-category"  multiple="multiple">
-                                                <option value="0">--Root--</option>
+                                            <select class="custom-select select-category" multiple="multiple">
                                                 @foreach($categories as $menu)
-                                                    <option id="{{ $menu->id }}" value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
+                                                    <option id="{{ $menu->id }}"
+                                                            value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
                                                     @include('product.childItems', ['char' => $char."|---", 'menu' => $menu] )
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input type="text" name="category_id" id="category_id">
+                                        <input type="hidden" name="category_id" id="category_id">
                                     </div>
 
                                     <div class="row form-group">
                                         <label class="col-md-2 form-control-label"
-                                               for="">@lang('categories.label.select_unit')
+                                               for="">@lang('product.label.select_unit')
                                             <span class="required">*</span></label>
                                         <div class="col-md-10">
-                                            <select class="custom-select" name="unit_id" id="unit_id" >
+                                            <select class="custom-select" name="unit_id" id="unit_id">
                                                 @foreach($units as $unit)
-                                                    <option id="{{ $unit->id }}" value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                    <option id="{{ $unit->id }}"
+                                                            value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -108,7 +109,8 @@
                                             <div class="row mt-4 mb-4" role="form">
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <div class="needsclick dropzone" id="image-dropzone"></div>
+                                                        <div class="needsclick dropzone"
+                                                             id="image-product-dropzone"></div>
                                                     </div>
                                                     <div id="private-previews" class="previews-image"></div>
                                                 </div>
@@ -118,7 +120,7 @@
 
                                     <div class="row form-group">
                                         <label
-                                            class="form-control-label col-sm-2">@lang('product.label.cost')
+                                                class="form-control-label col-sm-2">@lang('product.label.cost')
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="number" name="cost" id="cost" class="form-control">
@@ -127,7 +129,7 @@
 
                                     <div class="row form-group">
                                         <label
-                                            class="form-control-label col-sm-2">@lang('product.label.price')
+                                                class="form-control-label col-sm-2">@lang('product.label.price')
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="number" name="price" id="price" class="form-control">
@@ -136,16 +138,17 @@
 
                                     <div class="row form-group">
                                         <label
-                                            class="form-control-label col-sm-2">@lang('product.label.discount_price')
+                                                class="form-control-label col-sm-2">@lang('product.label.discount_price')
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="discount_price" id="discount_price" class="form-control">
+                                            <input type="number" name="discount_price" id="discount_price"
+                                                   class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
                                         <label
-                                            class="form-control-label col-sm-2">@lang('product.label.stock')
+                                                class="form-control-label col-sm-2">@lang('product.label.stock')
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="number" name="stock" id="stock" class="form-control">
@@ -185,35 +188,36 @@
     <!-- flot charts scripts-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="//cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     {!! script(('assets/admin/js/dropzone.js')) !!}
     {!! script(('assets/admin/js/editor.js')) !!}
 
     <script>
-        let url = '{{ url('api/media') }}';
-        let token = '{{ csrf_token() }}';
-        let buttonDelete = '@lang('labels.general.delete')';
-        createDropzone(url, token, buttonDelete, 5);
-        $('.select-category').select2();
-        // let test = $(".custom-select").val();
-        // alert(test);
+        $(document).ready(function () {
+            $('#private-previews').sortable();
+            let url = '{{ url('api/media') }}';
+            let token = '{{ csrf_token() }}';
+            let buttonDelete = '@lang('labels.general.delete')';
+            createDropzone(url, token, buttonDelete, 5);
+            $('.select-category').select2();
 
-        $('.select-category').on('select2:select', function (e) {
-            let data = e.params.data;
-            if( $('#category_id').val() === "") {
-                $('#category_id').val(data.id);
-            }else{
-                $('#category_id').val($('#category_id').val() + ',' +  data.id);
-            }
-        });
+            $('.select-category').on('select2:select', function (e) {
+                let data = e.params.data;
+                if ($('#category_id').val() === "") {
+                    $('#category_id').val(data.id);
+                } else {
+                    $('#category_id').val($('#category_id').val() + ',' + data.id);
+                }
+            });
 
-        $('.select-category').on('select2:unselect', function (e) {
-            let listID =  $('#category_id').val();
-            let data = e.params.data;
-            if(listID.indexOf(data.id) != -1){
-                $('#category_id').val($('#category_id').val().replace(data.id,'').replace(/^,|,$/g, '').replace(/,,/g, ','));
-            }
+            $('.select-category').on('select2:unselect', function (e) {
+                let listID = $('#category_id').val();
+                let data = e.params.data;
+                if (listID.indexOf(data.id) != -1) {
+                    $('#category_id').val($('#category_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
+                }
+            });
         });
 
     </script>

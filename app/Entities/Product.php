@@ -61,4 +61,9 @@ class Product extends Model implements Transformable
             ->withTimestamps();
     }
 
+    public function getFirstImageAttribute()
+    {
+        $image = explode(',', $this->image);
+        return $image[0];
+    }
 }

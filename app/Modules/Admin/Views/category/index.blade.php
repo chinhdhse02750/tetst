@@ -77,8 +77,8 @@
                                     <td>
                                         <form action="{{ route('categories.destroy', $category->id) }}"
                                               method="POST">
-                                            <a href="{{ route('categories.show', $category->id) }}"
-                                               class="btn btn-default"><i class="fas fa-eye"></i></a>
+                                            {{--<a href="{{ route('categories.show', $category->id) }}"--}}
+                                               {{--class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
                                             <a href="{{ route('categories.edit', $category->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ route('categories.destroy', $category->id) }}"

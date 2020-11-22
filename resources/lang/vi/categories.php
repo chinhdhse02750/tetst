@@ -16,6 +16,7 @@ return [
         'image' => 'Hình ảnh',
         'status' => 'Trạng thái',
         'parent' => 'Danh mục cha',
-        'delete' => 'Xóa'
+        'delete' => 'Xóa',
+        'all_product' => 'Tất cả sản phẩm'
     ]
 ];

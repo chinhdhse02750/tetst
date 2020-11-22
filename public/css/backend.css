@@ -21802,3 +21802,7 @@ html:not([dir=rtl]) .logo-header-admin{
     border: 1px solid #ced4da !important;
     width: 100% !important;
 }
+
+.select2-container{
+    width:100% !important;
+}
