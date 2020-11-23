@@ -17,7 +17,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-
 class HomeController extends Controller
 {
 
@@ -39,6 +38,9 @@ class HomeController extends Controller
      * @param RankRepository $rankRepository
      * @param AreaRepository $areaRepository
      * @param NewsService $newsService
+     * @param CategoryRepository $categoryRepository
+     * @param ProductRepository $productRepository
+     * @param UnitRepository $unitRepository
      */
     public function __construct(
         UserPrefectureRepository $userPrefectureRepository,
@@ -51,7 +53,7 @@ class HomeController extends Controller
         ProductRepository $productRepository,
         UnitRepository $unitRepository
     ) {
-        $this->middleware('auth')->except('logout','test');
+        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
         $this->userProfileRepository = $userProfileRepository;
@@ -90,7 +92,12 @@ class HomeController extends Controller
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')->get();
-        return view('top1',['products' => $products]);
+
+        $saleProduct = $this->productRepository->getListSaleProduct();
+        $featuredProduct = $this->productRepository->getListFeatured();
+        $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
+
+        return view('top1', compact('products', 'saleProduct', 'featuredProduct', 'dealOfWeekProduct'));
     }
 
 

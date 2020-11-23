@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
             $table->string('name', 255)->comment('Type of product name');
-            $table->string('category_id', 255)->nullable();
             $table->string('description', 300)->nullable();
             $table->text('content')->nullable();
             $table->float('discount_price')->default(0)->nullable();
@@ -29,6 +28,9 @@ class CreateProductsTable extends Migration
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);
             $table->integer('sold')->nullable()->default(0);
+            $table->integer('best_seller')->nullable()->default(0)->index();
+            $table->integer('featured')->nullable()->default(0)->index();
+            $table->integer('deal_of_week')->nullable()->default(0)->index();
             $table->tinyInteger('status')->default(0)->index();
             $table->string('alias', 120)->index();
             $table->integer('category_store_id')->default(1)->nullable()->index();

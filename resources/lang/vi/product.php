@@ -24,6 +24,10 @@ return [
         'price' => 'Giá bán',
         'discount_price' => 'Giá khuyến mại',
         'stock' => 'Số lượng',
-        'unit' => 'Đơn vị khối lượng'
+        'unit' => 'Đơn vị khối lượng',
+        'bess_seller' => 'Sản phẩm bán chạy',
+        'featured'=> 'Sản phẩm nổi bật',
+        'deal_of_week' => 'Sản phẩm của tuần',
+        'select_main_category' => 'Lựa chọn menu'
     ]
 ];

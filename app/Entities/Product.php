@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Traits\Scope\ProductScope;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -15,7 +16,7 @@ use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Product extends Model implements Transformable
 {
-    use TransformableTrait;
+    use TransformableTrait, ProductScope;
 
 
     protected $table = 'products';
@@ -38,6 +39,9 @@ class Product extends Model implements Transformable
         'cost',
         'stock',
         'sold',
+        'best_seller',
+        'featured',
+        'deal_of_week',
         'status',
         'alias',
         'store_id'
@@ -61,9 +65,18 @@ class Product extends Model implements Transformable
             ->withTimestamps();
     }
 
+    /**
+     * @return mixed|string'
+     */
     public function getFirstImageAttribute()
     {
         $image = explode(',', $this->image);
+
         return $image[0];
+    }
+
+    public function getPercentSaleAttribute()
+    {
+        return 100 - (($this->discount_price)*100)/$this->price;
     }
 }

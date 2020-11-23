@@ -77,6 +77,30 @@
                                                value="{{ $stringCategory }}">
                                     </div>
 
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="alcohol">@lang('product.label.select_main_category')</label>
+
+                                        <div class="col-md-10">
+                                            <input type='hidden' value='0' name='best_seller'>
+                                            <input type='hidden' value='0' name='featured'>
+                                            <input type='hidden' value='0' name='deal_of_week'>
+                                            <input type="checkbox" class="radio" name="best_seller" value="1" id="best_seller"
+                                                   @if ($products->best_seller === 1) checked @endif/>
+                                            <label for="best_seller">@lang('product.label.bess_seller')</label>
+                                            <br>
+                                            <input type="checkbox" class="radio" name="featured" value="1" id="featured"
+                                                   @if ($products->featured === 1) checked @endif/>
+                                            <label for="featured">@lang('product.label.featured')</label>
+                                            <br>
+                                            <input type="checkbox" class="radio" name="deal_of_week" value="1" id="deal_of_week"
+                                                   @if ($products->deal_of_week === 1) checked @endif/>
+                                            <label for="deal_of_week">@lang('product.label.deal_of_week')</label>
+
+                                        </div><!--col-->
+                                    </div><!--form-group-->
+
                                     <div class="row form-group">
                                         <label class="col-md-2 form-control-label"
                                                for="">@lang('product.label.select_unit')
@@ -198,6 +222,7 @@
                                             <input type="checkbox" class="radio" name="status" value="1" id="status"
                                                    @if ($products->status === 1 ) checked @endif
                                             />
+                                            <label for="n_alcohol">Hieenr thij</label>
                                         </div><!--col-->
                                     </div><!--form-group-->
 
