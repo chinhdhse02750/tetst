@@ -45,8 +45,9 @@
 
                                             <select class="custom-select" name="parent" id="parent">
                                                 @if($categories->isEmpty())
-                                                    <option value="1">{{ $char }}@lang('categories.label.all_product')</option>
+                                                    <option value="0">--Root--</option>
                                                 @else
+                                                    <option value="0">--Root--</option>
                                                     @foreach($categories as $menu)
                                                         <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
                                                         @include('category.childItems', ['char' => $char."|---"] )

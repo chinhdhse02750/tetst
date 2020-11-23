@@ -56,7 +56,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent','1');
+        $categories = $this->categoryRepository->findByField('parent','0');
         return view('category.create', ['categories' => $categories]);
     }
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function edit(int $id)
     {
         $categories = $this->categoryRepository->find($id);
-        $menus = $this->categoryRepository->findByField('parent','1');
+        $menus = $this->categoryRepository->findByField('parent','0');
         return view('category.edit', ['categories' => $categories, 'menus' => $menus]);
     }
 

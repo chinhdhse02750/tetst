@@ -93,6 +93,8 @@ class HomeController extends Controller
             ->with('units')
             ->with('category')->get();
 
+
+
         $saleProduct = $this->productRepository->getListSaleProduct();
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();

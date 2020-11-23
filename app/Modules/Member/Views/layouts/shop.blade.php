@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/css/scroll.css">
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/frontend.css">
     <link rel="shortcut icon" href="/images/shortcut_logo.png">
     @yield('custom_style')
 </head>

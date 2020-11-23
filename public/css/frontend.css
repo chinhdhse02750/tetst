@@ -1,0 +1,14 @@
+
+a.logo {
+    display: flex;
+    justify-content: center;
+}
+
+#scrollUp {
+    background-color: #c4996c !important;
+}
+
+a.title:hover {
+    text-decoration: none;
+    color: #c4996c;
+}

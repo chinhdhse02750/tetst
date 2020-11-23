@@ -28,9 +28,6 @@ class CreateProductsTable extends Migration
             $table->integer('cost')->nullable()->nullable()->default(0);
             $table->integer('stock')->nullable()->default(0);
             $table->integer('sold')->nullable()->default(0);
-            $table->integer('best_seller')->nullable()->default(0)->index();
-            $table->integer('featured')->nullable()->default(0)->index();
-            $table->integer('deal_of_week')->nullable()->default(0)->index();
             $table->tinyInteger('status')->default(0)->index();
             $table->string('alias', 120)->index();
             $table->integer('category_store_id')->default(1)->nullable()->index();

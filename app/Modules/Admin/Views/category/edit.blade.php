@@ -47,6 +47,7 @@
                                         @endphp
 
                                         <select class="custom-select" name="parent" id="parent">
+                                            <option value="0">--Root--</option>
                                             @foreach($menus as $menu)
                                                 <option value="{{ $menu->id }}"
                                                         @if($categories->parent == $menu->id) selected @endif>

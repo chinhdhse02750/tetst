@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent', '1');
+        $categories = $this->categoryRepository->findByField('parent', '0');
         $units = $this->unitRepository->all();
         return view('product.create', ['categories' => $categories, 'units' => $units]);
     }
@@ -114,7 +114,7 @@ class ProductController extends Controller
     {
         $products = $this->productRepository->find($id);
         $image = explode(',', $products['image']);
-        $categories = $this->categoryRepository->findByField('parent', '1');
+        $categories = $this->categoryRepository->findByField('parent', '0');
         $units = $this->unitRepository->all();
         $categoryId = $products->category()->pluck('category_id');
         $stringCategory = $categoryId->implode(',');
