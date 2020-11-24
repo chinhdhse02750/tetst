@@ -12,6 +12,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
 use App\Services\NewsService;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -92,14 +93,21 @@ class HomeController extends Controller
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')->get();
-
-
+        $cart = \Cart::getContent();
+        $total = \Cart::getTotal();
 
         $saleProduct = $this->productRepository->getListSaleProduct();
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
 
-        return view('top1', compact('products', 'saleProduct', 'featuredProduct', 'dealOfWeekProduct'));
+        return view('top1', compact(
+            'products',
+            'saleProduct',
+            'featuredProduct',
+            'dealOfWeekProduct',
+            'cart',
+            'total'
+        ));
     }
 
 
@@ -212,5 +220,27 @@ class HomeController extends Controller
         }
 
         return $filter;
+    }
+
+    public function testCart(Request $request)
+    {
+        $data = $request->all();
+        $id = Auth::user()->id;
+
+        \Cart::add(array(
+            'id' => $data['id'],
+            'name' => $data['product_name'],
+            'price' => $data['product_discount_price'] !== null
+                ? $data['product_discount_price'] : $data['product_price'],
+            'quantity' => 1,
+            'attributes' => array()));
+
+        $total = \Cart::getTotal();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => \Cart::getContent(),
+            'total' => $total
+        ], 200);
     }
 }

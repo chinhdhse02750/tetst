@@ -33,6 +33,7 @@ Route::group([['middleware' => 'auth']], function () {
 });
 Auth::routes();
 Route::get('/test', 'HomeController@test')->name('test');
+Route::post('/cart', 'HomeController@testCart')->name('testCart');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('member.register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');

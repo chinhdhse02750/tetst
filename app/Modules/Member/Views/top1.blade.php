@@ -233,7 +233,9 @@
                                                             <h3 class="product-price"> ¥{{ $value->price }}
                                                             </h3>
                                                         @endif
-                                                        <div class="product-select">
+                                                        <div class="product-select" data-id="{{ $value->id }}"
+                                                        data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                        data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
                                                                     class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
@@ -659,12 +661,11 @@
                                                                 <del>¥{{ $value->price }}</del>
                                                             </h3>
                                                         @else
-                                                            <h3 class="product-price"> ¥{{ $value->price }}
-                                                            </h3>
+                                                            <h3 class="product-price"> ¥{{ $value->price }} </h3>
                                                         @endif
                                                         <div class="product-select">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
+                                                                     class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
                                                                     class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
@@ -754,3 +755,37 @@
             <!-- End partner-->
         </div>
 @endsection
+@push('script')
+    <script>
+        $( document ).ready(function() {
+           $(".add-to-cart").on( "click", function() {
+               let id = $(this).closest('.product-select').attr('data-id');
+               let product_name = $(this).closest('.product-select').attr('data-name')
+               let product_price = $(this).closest('.product-select').attr('data-price')
+               let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
+               let url = '{{ url('/cart') }}';
+               let data = {id: id, product_name: product_name,
+                   product_price: product_price, product_discount_price: product_discount_price};
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+               $.ajax({
+                   type: 'POST',
+                   url: url,
+                   data: data,
+                   success: function (data) {
+                       console.log(data);
+                       $('.cart_money').text(data.total);
+                   },
+                   error: function (exception) {
+                       alert('Exeption:' + exception);
+                   }
+               });
+
+           });
+        });
+
+    </script>
+@endpush

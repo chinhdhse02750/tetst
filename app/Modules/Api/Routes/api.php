@@ -11,4 +11,5 @@ Route::group(['prefix' => 'v1'], function () {
     Route::put('member/{id}/status', 'MemberController@updateStatus')->name('member.status');
     Route::get('offers/{id}', 'OfferController@add')->name('offer.add');
     Route::delete('offers/{id}', 'OfferController@destroy')->name('offer.destroy');
+
 });
