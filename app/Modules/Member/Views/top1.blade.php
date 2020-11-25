@@ -84,14 +84,44 @@
                                 @endforeach
                             </div>
                         </div>
+                        <div class="sale-product">
+                            <div class="sale-product_top mini-tab-title underline pink">
+                                <h2 class="title"><a class="title" href="#">Sản phẩm khuyến mãi</a></h2>
+                            </div>
+                            <div class="sale-product_bottom">
+                                <div class="row">
+                                    @foreach($saleProduct as $key => $value)
+                                        @if($key < 5)
+                                            <div class="col-12">
+                                                <div class="mini-product column">
+                                                    <div class="mini-product_img-sale">
+                                                        <a class="sale-product-img"
+                                                           href="shop_detail.html"><img
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="mini-product_info"><a
+                                                            href="shop_detail.html">{{ $value->name }}</a>
+                                                        <p>¥{{ number_format($value->discount_price) }}
+                                                            <del>¥{{ number_format($value->price) }}</del>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                         <div class="sidebar-benefit">
                             <div class="benefit-block">
                                 <div class="our-benefits column shadowless benefit-border">
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon1.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon1.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Free Shipping</h5>
                                                     <p class="benefit-describle">For all order over 99$</p>
@@ -100,8 +130,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon2.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon2.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Delivery On Time</h5>
                                                     <p class="benefit-describle">If good have prolems</p>
@@ -110,8 +140,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon3.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon3.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Secure Payment</h5>
                                                     <p class="benefit-describle">100% secure payment</p>
@@ -132,79 +162,49 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sale-product">
-                            <div class="sale-product_top mini-tab-title underline pink">
-                                <h2 class="title"><a class="title" href="#">Sản phẩm khuyến mãi</a></h2>
-                            </div>
-                            <div class="sale-product_bottom">
-                                <div class="row">
-                                    @foreach($saleProduct as $key => $value)
-                                        @if($key < 5)
-                                            <div class="col-12">
-                                                <div class="mini-product column">
-                                                    <div class="mini-product_img" style="width: 100px; height: 100px">
-                                                        <a class="product-img"
-                                                           href="shop_detail.html"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}">
-                                                        </a>
-                                                    </div>
-                                                    <div class="mini-product_info"><a
-                                                            href="shop_detail.html">{{ $value->name }}</a>
-                                                        <p>¥{{ number_format($value->discount_price) }}
-                                                            <del>¥{{ number_format($value->price) }}</del>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <div class="customer-satisfied text-center">
-                            <div class="customer-satisfied_border">
-                                <div class="customer-satisfied_wrapper">
-                                    <div class="customer-satisfied_block">
-                                        <div class="customer-img mx-auto"><img
-                                                src="/images/homepage03/customer_img_1.png" alt="customer"></div>
-                                        <div class="customer-info">
-                                            <h5 class="customer-name">Steven Ady</h5>
-                                            <p class="customer-comment">Lorem ipsum dolor sit amet consectetur
-                                                adipisicing elit, sed do accusantium </p>
-                                            <div class="customer-rate"><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star-half"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="customer-satisfied_block">
-                                        <div class="customer-img mx-auto"><img
-                                                src="/images/homepage03/customer_img_1.png" alt="customer"></div>
-                                        <div class="customer-info">
-                                            <h5 class="customer-name">Steven Ady</h5>
-                                            <p class="customer-comment">Lorem ipsum dolor sit amet consectetur
-                                                adipisicing elit, sed do accusantium </p>
-                                            <div class="customer-rate"><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star-half"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="customer-satisfied_block">
-                                        <div class="customer-img mx-auto"><img
-                                                src="/images/homepage03/customer_img_1.png" alt="customer"></div>
-                                        <div class="customer-info">
-                                            <h5 class="customer-name">Steven Ady</h5>
-                                            <p class="customer-comment">Lorem ipsum dolor sit amet consectetur
-                                                adipisicing elit, sed do accusantium </p>
-                                            <div class="customer-rate"><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star"></i><i
-                                                    class="icon_star"></i><i class="icon_star-half"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="customer-satisfied_control"></div>
-                            </div>
-                        </div>
+                        {{--<div class="customer-satisfied text-center">--}}
+                            {{--<div class="customer-satisfied_border">--}}
+                                {{--<div class="customer-satisfied_wrapper">--}}
+                                    {{--<div class="customer-satisfied_block">--}}
+                                        {{--<div class="customer-img mx-auto"><img--}}
+                                                {{--src="/images/homepage03/customer_img_1.png" alt="customer"></div>--}}
+                                        {{--<div class="customer-info">--}}
+                                            {{--<h5 class="customer-name">Steven Ady</h5>--}}
+                                            {{--<p class="customer-comment">Lorem ipsum dolor sit amet consectetur--}}
+                                                {{--adipisicing elit, sed do accusantium </p>--}}
+                                            {{--<div class="customer-rate"><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star-half"></i></div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="customer-satisfied_block">--}}
+                                        {{--<div class="customer-img mx-auto"><img--}}
+                                                {{--src="/images/homepage03/customer_img_1.png" alt="customer"></div>--}}
+                                        {{--<div class="customer-info">--}}
+                                            {{--<h5 class="customer-name">Steven Ady</h5>--}}
+                                            {{--<p class="customer-comment">Lorem ipsum dolor sit amet consectetur--}}
+                                                {{--adipisicing elit, sed do accusantium </p>--}}
+                                            {{--<div class="customer-rate"><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star-half"></i></div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="customer-satisfied_block">--}}
+                                        {{--<div class="customer-img mx-auto"><img--}}
+                                                {{--src="/images/homepage03/customer_img_1.png" alt="customer"></div>--}}
+                                        {{--<div class="customer-info">--}}
+                                            {{--<h5 class="customer-name">Steven Ady</h5>--}}
+                                            {{--<p class="customer-comment">Lorem ipsum dolor sit amet consectetur--}}
+                                                {{--adipisicing elit, sed do accusantium </p>--}}
+                                            {{--<div class="customer-rate"><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star"></i><i--}}
+                                                    {{--class="icon_star"></i><i class="icon_star-half"></i></div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="customer-satisfied_control"></div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="col-12 col-xl-9">
                         <div id="tab">
@@ -255,26 +255,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="quick-banner">
-                            <div class="row justify-content-center align-items-center flex-column flex-md-row">
-                                <div class="col-12 col-md-5">
-                                    <div class="bannner-img text-center"><img class="img-fluid"
-                                                                              src="/images/homepage03/quick_banner_1_img.png"
-                                                                              alt=""></div>
-                                </div>
-                                <div class="col-10 col-md-5">
-                                    <div class="banner-text text-center text-md-left">
-                                        <div
-                                            class="discount-block d-flex align-items-center justify-content-center justify-content-md-start text-left">
-                                            <h2 class="big-number">50</h2>
-                                            <h3>%OFF<br>Black <span>Friday</span></h3>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur oce omnis iste natus error sit </p><a
-                                            class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="quick-banner">--}}
+                            {{--<div class="row justify-content-center align-items-center flex-column flex-md-row">--}}
+                                {{--<div class="col-12 col-md-5">--}}
+                                    {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                                                                              {{--src="/images/homepage03/quick_banner_1_img.png"--}}
+                                                                              {{--alt=""></div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-10 col-md-5">--}}
+                                    {{--<div class="banner-text text-center text-md-left">--}}
+                                        {{--<div--}}
+                                            {{--class="discount-block d-flex align-items-center justify-content-center justify-content-md-start text-left">--}}
+                                            {{--<h2 class="big-number">50</h2>--}}
+                                            {{--<h3>%OFF<br>Black <span>Friday</span></h3>--}}
+                                        {{--</div>--}}
+                                        {{--<p>Lorem ipsum dolor sit amet, consectetur oce omnis iste natus error sit </p><a--}}
+                                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div id="tab-so1">
                             <div class="best-seller_top mini-tab-title underline pink">
                                 <div class="row align-items-md-center">
@@ -682,50 +682,84 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="quick-banner quick-banner-2">
-                                        <div class="row justify-content-center align-items-center">
-                                            <div class="col-6 col-md-5">
-                                                <div class="bannner-img text-center"><img class="img-fluid"
-                                                                                          src="/images/homepage03/quick_banner_2_img.png"
-                                                                                          alt=""></div>
-                                            </div>
-                                            <div class="col-6 col-md-5">
-                                                <div class="banner-text text-center text-md-left">
-                                                    <h3 class="day">Black Friday </h3>
-                                                    <h3 class="sale">Sale Off <span>60%</span></h3><a
-                                                        class="normal-btn pink" href="shop_grid+list_3col.html">Shop
-                                                        now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="quick-banner quick-banner-3">
-                                        <div class="row justify-content-center align-items-center">
-                                            <div class="col-6 col-md-5">
-                                                <div class="bannner-img text-center"><img class="img-fluid"
-                                                                                          src="/images/homepage03/quick_banner_3_img.png"
-                                                                                          alt=""></div>
-                                            </div>
-                                            <div class="col-6 col-md-5">
-                                                <div class="banner-text text-center text-md-left">
-                                                    <h3 class="day">Summer</h3>
-                                                    <h3 class="sale">Sale Off <span>50%</span></h3><a
-                                                        class="normal-btn pink" href="shop_grid+list_3col.html">Shop
-                                                        now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="row">--}}
+                                {{--<div class="col-12 col-md-6">--}}
+                                    {{--<div class="quick-banner quick-banner-2">--}}
+                                        {{--<div class="row justify-content-center align-items-center">--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                                                                                          {{--src="/images/homepage03/quick_banner_2_img.png"--}}
+                                                                                          {{--alt=""></div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="banner-text text-center text-md-left">--}}
+                                                    {{--<h3 class="day">Black Friday </h3>--}}
+                                                    {{--<h3 class="sale">Sale Off <span>60%</span></h3><a--}}
+                                                        {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                                                        {{--now</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-12 col-md-6">--}}
+                                    {{--<div class="quick-banner quick-banner-3">--}}
+                                        {{--<div class="row justify-content-center align-items-center">--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                                                                                          {{--src="/images/homepage03/quick_banner_3_img.png"--}}
+                                                                                          {{--alt=""></div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="banner-text text-center text-md-left">--}}
+                                                    {{--<h3 class="day">Summer</h3>--}}
+                                                    {{--<h3 class="sale">Sale Off <span>50%</span></h3><a--}}
+                                                        {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                                                        {{--now</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Button trigger modal-->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAbandonedCart">Launch
+                modal</button>
+
+            <!-- Modal: modalAbandonedCart-->
+            <div class="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <!--Body-->
+                        <div class="modal-body body-add-success">
+
+                            <div class="row">
+                                <div class="col-9">
+                                    <p>Sản phẩm đã được thêm vào giỏ hàng thành công</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!-- Modal: modalAbandonedCart-->
+
+            <div class="card-body">
+                <div class="wrapper text-center">
+                    <h4 class="card-title">Alerts Popups</h4>
+                    <p class="card-description">A success message!</p> <button class="btn btn-outline-success" onclick="showSwal('success-message')">Click here!</button>
+                </div>
+            </div>
+
+
             <!-- End product block-->
             <div class="partner">
                 <div class="container">
@@ -760,7 +794,7 @@
 @push('script')
     <script>
         $( document ).ready(function() {
-           $(".add-to-cart").on( "click", function() {
+            $(".add-to-cart").on( "click", function() {
                let id = $(this).closest('.product-select').attr('data-id');
                let product_name = $(this).closest('.product-select').attr('data-name')
                let product_price = $(this).closest('.product-select').attr('data-price')
@@ -768,6 +802,7 @@
                let url = '{{ url('/cart') }}';
                let data = {id: id, product_name: product_name,
                    product_price: product_price, product_discount_price: product_discount_price};
+               console.log(data);
                $.ajaxSetup({
                    headers: {
                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -778,8 +813,14 @@
                    url: url,
                    data: data,
                    success: function (data) {
-                       console.log(data);
-                       $('.cart_money').text(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(data.total));
+                       if(data.status === "success"){
+                           $('.cart_money').text(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(data.total));
+                           $('.cart_count').text(data.count);
+                           $('#modalAbandonedCart').modal('show')
+                           // setTimeout(function(){
+                           //     $('#modalAbandonedCart').modal('hide')
+                           // }, 2000);
+                       }
                    },
                    error: function (exception) {
                        alert('Exeption:' + exception);

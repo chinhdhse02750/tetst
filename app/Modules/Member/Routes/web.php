@@ -7,7 +7,7 @@ App::bind('view.finder', function ($app) {
     return new \Illuminate\View\FileViewFinder($app['files'], $paths);
 });
 Route::group([['middleware' => 'auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+
     Route::get('/member/{id}', 'MemberController@show')->name('member.detail');
     Route::get('/balances', 'BalanceController@index')->name('balance.index');
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
@@ -32,7 +32,7 @@ Route::group([['middleware' => 'auth']], function () {
     Route::get('/history/detail/{id}', 'HistoryController@detail')->name('history.detail');
 });
 Auth::routes();
-Route::get('/test', 'HomeController@test')->name('test');
+Route::get('/', 'HomeController@index')->name('home');
 Route::post('/cart', 'HomeController@testCart')->name('testCart');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('member.register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');

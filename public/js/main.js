@@ -26,12 +26,12 @@ window.onload = function () {
         /****************************************************
          Navigation
          ****************************************************/
-        $('header .department-dropdown-menu').slideUp();
+        // $('header .department-dropdown-menu').slideUp();
 
-        $('header .department-menu').on('click', function (event) {
-            $(this).next().slideToggle('100');
-            $(this).children('span').children().toggleClass('arrow_carrot-down arrow_carrot-up');
-        });
+        // $('header .department-menu').on('click', function (event) {
+        //     $(this).next().slideToggle('100');
+        //     $(this).children('span').children().toggleClass('arrow_carrot-down arrow_carrot-up');
+        // });
 
         $('#mobile-menu #ogami-mobile-menu .sub-menu').slideUp();
         $('#mobile-menu #ogami-mobile-menu .sub-menu--expander').on('click', function (event) {
@@ -215,7 +215,7 @@ window.onload = function () {
             appendArrows: $('.week-deal_top .week-deal_control'),
             prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
             nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-            autoplay: true,
+            autoplay: false,
             swipe: false,
             adaptiveHeight: true,
             responsive: [

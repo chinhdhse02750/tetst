@@ -12,7 +12,6 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
 use App\Services\NewsService;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +53,7 @@ class HomeController extends Controller
         ProductRepository $productRepository,
         UnitRepository $unitRepository
     ) {
-        $this->middleware('auth')->except('logout', 'test');
+//        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
         $this->userProfileRepository = $userProfileRepository;
@@ -70,31 +69,33 @@ class HomeController extends Controller
      * @param Request $request
      * @return View
      */
+//    public function index(Request $request)
+//    {
+//        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
+//        $filterData = $this->getFilterData($request);
+//        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
+//        if ($request->get('search') != null) {
+//            $members = $this->userProfileRepository
+//                ->filter($filterData, Auth::user()->type, $request->get('search'));
+//        }
+//        $requests = $request->query();
+//        $ranks = $this->rankRepository->get();
+//        $areas = $this->areaRepository->with('prefectures')->get();
+//        $selectOption = config('user-profile');
+//        $news = $this->newsService->getNews();
+//
+//        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
+//    }
+
     public function index(Request $request)
-    {
-        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-        $filterData = $this->getFilterData($request);
-        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
-        if ($request->get('search') != null) {
-            $members = $this->userProfileRepository
-                ->filter($filterData, Auth::user()->type, $request->get('search'));
-        }
-        $requests = $request->query();
-        $ranks = $this->rankRepository->get();
-        $areas = $this->areaRepository->with('prefectures')->get();
-        $selectOption = config('user-profile');
-        $news = $this->newsService->getNews();
-
-        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
-    }
-
-    public function test(Request $request)
     {
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')->get();
+
         $cart = \Cart::getContent();
         $total = \Cart::getTotal();
+        $count =  $cart->count();
 
         $saleProduct = $this->productRepository->getListSaleProduct();
         $featuredProduct = $this->productRepository->getListFeatured();
@@ -106,7 +107,8 @@ class HomeController extends Controller
             'featuredProduct',
             'dealOfWeekProduct',
             'cart',
-            'total'
+            'total',
+            'count'
         ));
     }
 
@@ -225,7 +227,6 @@ class HomeController extends Controller
     public function testCart(Request $request)
     {
         $data = $request->all();
-        $id = Auth::user()->id;
 
         \Cart::add(array(
             'id' => $data['id'],
@@ -234,13 +235,15 @@ class HomeController extends Controller
                 ? $data['product_discount_price'] : $data['product_price'],
             'quantity' => 1,
             'attributes' => array()));
-
+        $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
+        $count =  $cartCollection->count();
 
         return response()->json([
             'status' => 'success',
-            'data' => \Cart::getContent(),
-            'total' => $total
+            'data' => $cartCollection,
+            'total' => $total,
+            'count' => $count
         ], 200);
     }
 }

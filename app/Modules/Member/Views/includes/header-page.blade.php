@@ -20,7 +20,8 @@
                         <div class="header__user">
                             <div class="header__user-menu">
                                 @if(empty(Auth::user()))
-                                    <div class="login d-flex"><a href="{{ route('login') }}"><i class="fas fa-user"></i>Đăng nhập</a></div>
+                                    <div class="login d-flex"><a href="{{ route('login') }}"><i class="fas fa-user"></i>Đăng
+                                            nhập</a></div>
                                 @else
                                     <div class="login d-flex">
                                         <a href="#" class=" header__dropdown--user dropdown-toggle" role="button"
@@ -44,19 +45,12 @@
     <nav class="navigation d-flex align-items-center">
         <div class="container">
             <div class="row">
-                <div class="col-2"><a class="logo" href="{{ route('test') }}"><img src="/images/logo.png" alt=""></a>
+                <div class="col-2"><a class="logo" href="{{ route('home') }}"><img src="/images/logo.png" alt=""></a>
                 </div>
                 <div class="col-8">
                     <div class="navgition-menu d-flex align-items-center justify-content-center">
                         <ul class="mb-0">
-                            <li class="toggleable"><a class="menu-item" href="index.html">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Homepage 1</a></li>
-                                    <li><a href="homepage02.html">Homepage 2</a></li>
-                                    <li><a href="homepage03.html">Homepage 3</a></li>
-                                    <li><a href="homepage04.html">Homepage 4</a></li>
-                                    <li><a href="homepage05.html">Homepage 5</a></li>
-                                </ul>
+                            <li class="toggleable"><a class="menu-item" href="{{ route('home') }}">Trang chủ</a>
                             </li>
                             <li class="toggleable"><a class="menu-item" href="shop_grid+list_3col.html">Shop</a>
                                 <ul class="sub-menu shop d-flex">
@@ -108,11 +102,40 @@
                 </div>
                 <div class="col-2">
                     <div class="product-function d-flex align-items-center justify-content-end">
-                        <div id="wishlist"><a class="function-icon icon_heart_alt" href=""></a></div>
-                        <div id="cart"><a class="function-icon icon_bag_alt" href="">
-                                <span class="cart_count"> 4 </span>
-                                <span class="cart_money">¥{{ number_format($total) }}</span>
-                            </a>
+                        {{--<div id="wishlist"><a class="wishlist-icon" href="https://demoapus.com/ogami/wishlist/"> <i--}}
+                        {{--class="icon_heart_alt"></i> <span class="count"> {{ $count }}</span> </a></div>--}}
+                        <div class="apus-topcart">
+                            <div id="cart">
+                                <a class="dropdown-toggle mini-cart" data-toggle="dropdown" aria-expanded="false"
+                                   href="#"
+                                   title="View your shopping cart"> <i class="icon_bag_alt"></i> <span
+                                            class="count cart_count"> {{ $count }} </span>
+                                    <div class="total-minicart"><span
+                                                class="woocommerce-Price-amount amount cart_money"><span
+                                                    class="woocommerce-Price-currencySymbol">¥</span>{{ number_format($total) }}</span>
+                                    </div>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="widget_shopping_cart_content">
+                                        <div class="shopping_cart_content">
+                                            <div class="cart_list ">
+                                                <p class="buttons clearfix">
+                                                    <a href="https://demoapus.com/ogami/shop/"
+                                                       class="no-round-btn btn-continue-shopping wc-forward">Xem giỏ hàng</a>
+                                                </p>
+                                                <br>
+                                                <p class="buttons clearfix">
+                                                    <a href="https://demoapus.com/ogami/shop/"
+                                                       class="no-round-btn btn-continue-shopping wc-forward">Tiếp tục mua sắm</a>
+                                                </p>
+                                            </div><!-- end product list -->
+                                            <div class="cart-bottom">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,8 +233,7 @@
                 <div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">
                     <div class="department-menu_block">
                         <div class="department-menu d-flex justify-content-between align-items-center"><i
-                                    class="fas fa-bars"></i>Danh mục sản phẩm<span><i
-                                        class="arrow_carrot-down"></i></span></div>
+                                    class="fas fa-bars"></i>Danh mục sản phẩm<span><i></i></span></div>
                         <div class="department-dropdown-menu">
                             <ul>
                                 <li><a href="shop_grid+list_3col.html"> <i class="icon-1"></i>Fresh Meat</a></li>
