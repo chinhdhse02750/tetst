@@ -57,15 +57,17 @@
                                                     <div class="event-countdown deal_of_week_count"></div>
                                                 </div>
                                                 <div class="deal-info text-center">
-                                                    <h5 class="color-type pink deal-type">Oranges</h5><a
-                                                        class="deal-name"
-                                                        href="shop_detail.html">Pure
-                                                        Pinapple</a>
-                                                    <h3 class="deal-price">$14.00
-                                                        <del>$35.00</del>
+{{--                                                    <h5 class="color-type pink deal-type">Oranges</h5><a--}}
+{{--                                                        class="deal-name"--}}
+{{--                                                        href="shop_detail.html">Pure--}}
+{{--                                                        Pinapple</a>--}}
+                                                    <h3 class="deal-price">¥{{ number_format($value->discount_price) }}
+                                                        <del>¥{{ number_format($value->price) }}</del>
                                                     </h3>
                                                 </div>
-                                                <div class="deal-select text-center">
+                                                <div class="deal-select text-center product-select" data-id="{{ $value->id }}"
+                                                     data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                     data-discount_price="{{ $value->discount_price }}">
                                                     <button class="add-to-wishlist round-icon-btn pink"><i
                                                             class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
@@ -149,8 +151,8 @@
                                                     </div>
                                                     <div class="mini-product_info"><a
                                                             href="shop_detail.html">{{ $value->name }}</a>
-                                                        <p>¥{{ $value->discount_price }}
-                                                            <del>¥{{ $value->price }}</del>
+                                                        <p>¥{{ number_format($value->discount_price) }}
+                                                            <del>¥{{ number_format($value->price) }}</del>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -226,11 +228,11 @@
                                                                 alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
-                                                            <h3 class="product-price">¥{{ $value->discount_price }}
-                                                                <del>¥{{ $value->price }}</del>
+                                                            <h3 class="product-price">¥{{ number_format($value->discount_price) }}
+                                                                <del>¥{{ number_format($value->price) }}</del>
                                                             </h3>
                                                         @else
-                                                            <h3 class="product-price"> ¥{{ $value->price }}
+                                                            <h3 class="product-price"> ¥{{ number_format($value->price) }}
                                                             </h3>
                                                         @endif
                                                         <div class="product-select" data-id="{{ $value->id }}"
@@ -657,11 +659,11 @@
                                                                 alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
-                                                            <h3 class="product-price">¥{{ $value->discount_price }}
-                                                                <del>¥{{ $value->price }}</del>
+                                                            <h3 class="product-price">¥{{ number_format($value->discount_price) }}
+                                                                <del>¥{{ number_format($value->price) }}</del>
                                                             </h3>
                                                         @else
-                                                            <h3 class="product-price"> ¥{{ $value->price }} </h3>
+                                                            <h3 class="product-price"> ¥{{ number_format($value->price) }} </h3>
                                                         @endif
                                                         <div class="product-select">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
@@ -777,7 +779,7 @@
                    data: data,
                    success: function (data) {
                        console.log(data);
-                       $('.cart_money').text(data.total);
+                       $('.cart_money').text(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(data.total));
                    },
                    error: function (exception) {
                        alert('Exeption:' + exception);

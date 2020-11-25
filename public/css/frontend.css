@@ -12,3 +12,25 @@ a.title:hover {
     text-decoration: none;
     color: #c4996c;
 }
+
+span.cart_count{
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 10px !important;
+    display: inline-block;
+    color: #fff !important;
+    background: #fd5f5c;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    line-height: 15px !important;
+    min-width: 15px;
+    padding: 0 3px;
+    text-align: center;
+}
+
+a.function-icon.icon_bag_alt {
+    position: relative;
+    padding: 0;
+}
