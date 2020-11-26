@@ -52,7 +52,8 @@ class HomeController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository
-    ) {
+    )
+    {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -69,25 +70,25 @@ class HomeController extends Controller
      * @param Request $request
      * @return View
      */
-//    public function index(Request $request)
-//    {
-//        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-//        $filterData = $this->getFilterData($request);
-//        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
-//        if ($request->get('search') != null) {
-//            $members = $this->userProfileRepository
-//                ->filter($filterData, Auth::user()->type, $request->get('search'));
-//        }
-//        $requests = $request->query();
-//        $ranks = $this->rankRepository->get();
-//        $areas = $this->areaRepository->with('prefectures')->get();
-//        $selectOption = config('user-profile');
-//        $news = $this->newsService->getNews();
-//
-//        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
-//    }
-
     public function index(Request $request)
+    {
+        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
+        $filterData = $this->getFilterData($request);
+        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
+        if ($request->get('search') != null) {
+            $members = $this->userProfileRepository
+                ->filter($filterData, Auth::user()->type, $request->get('search'));
+        }
+        $requests = $request->query();
+        $ranks = $this->rankRepository->get();
+        $areas = $this->areaRepository->with('prefectures')->get();
+        $selectOption = config('user-profile');
+        $news = $this->newsService->getNews();
+
+        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
+    }
+
+    public function test(Request $request)
     {
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
@@ -95,7 +96,7 @@ class HomeController extends Controller
 
         $cart = \Cart::getContent();
         $total = \Cart::getTotal();
-        $count =  $cart->count();
+        $count = $cart->count();
 
         $saleProduct = $this->productRepository->getListSaleProduct();
         $featuredProduct = $this->productRepository->getListFeatured();
@@ -112,6 +113,36 @@ class HomeController extends Controller
         ));
     }
 
+//    public function order(Request $request)
+//    {
+//        $data = $request->all();
+//        $sort = "create_at";
+//        if ($data['order_by'] === "price") {
+//            $sort = 'discount_price';
+//        }
+//        $products = $this->productRepository->getListOrder($sort);
+//
+//        return view('shop.shop', compact(
+//            'products'
+//        ));
+//    }
+
+    public function view(Request $request)
+    {
+        $data = $request->all();
+        $sort = "create_at";
+        if (isset($data) && $data != null) {
+            if ($data['order_by'] === "price") {
+                $sort = 'discount_price';
+            }
+        }
+
+        $products = $this->productRepository->getListOrder($sort);
+
+        return view('shop.shop', compact(
+            'products'
+        ));
+    }
 
     public function register(Request $request)
     {
@@ -237,7 +268,7 @@ class HomeController extends Controller
             'attributes' => array()));
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
-        $count =  $cartCollection->count();
+        $count = $cartCollection->count();
 
         return response()->json([
             'status' => 'success',

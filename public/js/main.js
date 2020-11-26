@@ -26,12 +26,12 @@ window.onload = function () {
         /****************************************************
          Navigation
          ****************************************************/
-        // $('header .department-dropdown-menu').slideUp();
+        $('header .department-dropdown-menu').slideUp();
 
-        // $('header .department-menu').on('click', function (event) {
-        //     $(this).next().slideToggle('100');
-        //     $(this).children('span').children().toggleClass('arrow_carrot-down arrow_carrot-up');
-        // });
+        $('header .department-menu').on('click', function (event) {
+            $(this).next().slideToggle('100');
+            $(this).children('span').children().toggleClass('arrow_carrot-down arrow_carrot-up');
+        });
 
         $('#mobile-menu #ogami-mobile-menu .sub-menu').slideUp();
         $('#mobile-menu #ogami-mobile-menu .sub-menu--expander').on('click', function (event) {

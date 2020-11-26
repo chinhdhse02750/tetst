@@ -52,7 +52,7 @@
                         <ul class="mb-0">
                             <li class="toggleable"><a class="menu-item" href="{{ route('home') }}">Trang chủ</a>
                             </li>
-                            <li class="toggleable"><a class="menu-item" href="shop_grid+list_3col.html">Shop</a>
+                            <li class="toggleable"><a class="menu-item" href="{{ route('shop.view', 'tat-ca-san-pham') }}">Shop</a>
                                 <ul class="sub-menu shop d-flex">
                                     <div class="nav-column">
                                         <h2>Layout shop</h2>

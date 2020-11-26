@@ -8,7 +8,7 @@ namespace App\Helpers;
  */
 class Constants
 {
-    const DEFAULT_PER_PAGE = 20;
+    const DEFAULT_PER_PAGE = 12;
     const DEFAULT_ACTIVE = 1;
     const DEFAULT_COLOR = '#2b2b2b';
 

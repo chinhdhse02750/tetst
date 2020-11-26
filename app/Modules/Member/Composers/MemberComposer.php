@@ -5,6 +5,7 @@ namespace App\Modules\Member\Composers;
 use App\Helpers\Constants;
 use App\Repositories\BalanceRepository;
 use App\Repositories\BannerRepository;
+use App\Repositories\CategoryRepository;
 use App\Repositories\UserPrefectureRepository;
 use App\Repositories\UserRepository;
 use App\Services\NewsService;
@@ -43,25 +44,33 @@ class MemberComposer
     protected $userRepository;
 
     /**
+     * @var CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
      * HomeController constructor.
      * @param UserPrefectureRepository $userPrefectureRepository
      * @param NewsService $newsService
      * @param BalanceRepository $balanceRepository
      * @param BannerRepository $bannerRepository
      * @param UserRepository $userRepository
+     * @param CategoryRepository $categoryRepository
      */
     public function __construct(
         UserPrefectureRepository $userPrefectureRepository,
         NewsService $newsService,
         BalanceRepository $balanceRepository,
         BannerRepository $bannerRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->newsService = $newsService;
         $this->balanceRepository = $balanceRepository;
         $this->bannerRepository = $bannerRepository;
-        $this->userRepository = $userRepository ;
+        $this->userRepository = $userRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -71,27 +80,43 @@ class MemberComposer
      */
     public function compose(View $view)
     {
-        if (Auth::check()) {
-            $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-            $news = $this->newsService->getNews();
-            $balances = $this->balanceRepository->findWhere(['user_id' => Auth::id()]);
-            $banners = $this->bannerRepository->getBannerDisplay();
-            if (Auth::user()->type === null) {
-                $newMembers = $this->userRepository->get();
-            } else {
-                $newMembers = $this->userRepository
-                    ->getListUserActiveByType(Auth::user()->type, Constants::MEMBER_DISPLAY_LIMIT);
-            }
-
-            $countSetting = 0;
-            if (Session::has('member_offer')) {
-                $id = Session::get('member_offer');
-                $countSetting = count($id);
-            }
-
-            return $view->with(compact('userPrefectures', 'news', 'balances', 'banners', 'countSetting', 'newMembers'));
+//        if (Auth::check()) {
+        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
+        $news = $this->newsService->getNews();
+        $balances = $this->balanceRepository->findWhere(['user_id' => Auth::id()]);
+        $banners = $this->bannerRepository->getBannerDisplay();
+        if (Auth::user()->type === null) {
+            $newMembers = $this->userRepository->get();
+        } else {
+            $newMembers = $this->userRepository
+                ->getListUserActiveByType(Auth::user()->type, Constants::MEMBER_DISPLAY_LIMIT);
         }
 
-        return '';
+        $countSetting = 0;
+        if (Session::has('member_offer')) {
+            $id = Session::get('member_offer');
+            $countSetting = count($id);
+        }
+
+//        $category = $this->categoryRepository->find(2);
+
+        $cart = \Cart::getContent();
+        $total = \Cart::getTotal();
+        $count =  $cart->count();
+
+
+        return $view->with(compact(
+            'userPrefectures',
+            'news',
+            'balances',
+            'banners',
+            'countSetting',
+            'newMembers',
+            'total',
+            'count'
+        ));
+//        }//end if
+
+//        return '';
     }
 }

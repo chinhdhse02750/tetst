@@ -21,7 +21,7 @@ trait ProductScope
      */
     public function scopeDealOfWeek(object $query)
     {
-        return  $query->where('deal_of_week', 1);
+        return $query->where('deal_of_week', 1);
     }
 
     /**
@@ -30,7 +30,7 @@ trait ProductScope
      */
     public function scopeBestSeller(object $query)
     {
-        return  $query->where('best_seller', 1);
+        return $query->where('best_seller', 1);
     }
 
     /**
@@ -39,6 +39,15 @@ trait ProductScope
      */
     public function scopeFeatured(object $query)
     {
-        return  $query->where('featured', 1);
+        return $query->where('featured', 1);
     }
+
+    public function scopeOrder(object $query, $order)
+    {
+        if ($order === "discount_price") {
+            return $query->orderByRaw('COALESCE(discount_price, price) ASC');
+        }
+
+    }
+
 }

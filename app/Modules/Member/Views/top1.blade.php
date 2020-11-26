@@ -1,7 +1,6 @@
 @extends('layouts.shop')
 
 @section('content')
-
     <div id="main">
         <div class="banner_v2">
             <div class="container">
@@ -97,6 +96,7 @@
                                                     <div class="mini-product_img-sale">
                                                         <a class="sale-product-img"
                                                            href="shop_detail.html"><img
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                                 src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                                 alt="{{ $value->first_image }}">
                                                         </a>
@@ -665,7 +665,9 @@
                                                         @else
                                                             <h3 class="product-price"> ¥{{ number_format($value->price) }} </h3>
                                                         @endif
-                                                        <div class="product-select">
+                                                        <div class="product-select" data-id="{{ $value->id }}"
+                                                             data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                             data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
                                                                      class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
@@ -726,20 +728,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Button trigger modal-->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAbandonedCart">Launch
-                modal</button>
-
             <!-- Modal: modalAbandonedCart-->
             <div class="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                  aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
                     <!--Content-->
                     <div class="modal-content">
-                        <!--Header-->
-                        <!--Body-->
                         <div class="modal-body body-add-success">
-
                             <div class="row">
                                 <div class="col-9">
                                     <p>Sản phẩm đã được thêm vào giỏ hàng thành công</p>
@@ -751,13 +746,6 @@
                 </div>
             </div>
             <!-- Modal: modalAbandonedCart-->
-
-            <div class="card-body">
-                <div class="wrapper text-center">
-                    <h4 class="card-title">Alerts Popups</h4>
-                    <p class="card-description">A success message!</p> <button class="btn btn-outline-success" onclick="showSwal('success-message')">Click here!</button>
-                </div>
-            </div>
 
 
             <!-- End product block-->
@@ -817,9 +805,9 @@
                            $('.cart_money').text(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(data.total));
                            $('.cart_count').text(data.count);
                            $('#modalAbandonedCart').modal('show')
-                           // setTimeout(function(){
-                           //     $('#modalAbandonedCart').modal('hide')
-                           // }, 2000);
+                           setTimeout(function(){
+                               $('#modalAbandonedCart').modal('hide')
+                           }, 2000);
                        }
                    },
                    error: function (exception) {

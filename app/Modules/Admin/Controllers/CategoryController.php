@@ -4,13 +4,18 @@ namespace App\Modules\Admin\Controllers;
 
 use App\Entities\Category;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
 use App\Helpers\Constants;
+use Illuminate\View\View;
 use PHPUnit\Exception;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class CategoryController extends Controller
 {
@@ -27,7 +32,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -41,7 +46,7 @@ class CategoryController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function show(int $id)
     {
@@ -52,19 +57,20 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent','0');
+        $categories = $this->categoryRepository->findByField('parent', '0');
+
         return view('category.create', ['categories' => $categories]);
     }
 
     /**
      * Store a newly created resource in storage.
      * @param StoreCategoryRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @return RedirectResponse
+     * @throws ValidatorException
      */
     public function store(StoreCategoryRequest $request)
     {
@@ -87,12 +93,12 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the category
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function edit(int $id)
     {
         $categories = $this->categoryRepository->find($id);
-        $menus = $this->categoryRepository->findByField('parent','0');
+        $menus = $this->categoryRepository->findByField('parent', '0');
         return view('category.edit', ['categories' => $categories, 'menus' => $menus]);
     }
 
@@ -100,8 +106,7 @@ class CategoryController extends Controller
      * Update the category in storage
      * @param StoreCategoryRequest $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * @return RedirectResponse
      */
     public function update(StoreCategoryRequest $request, int $id)
     {
@@ -122,7 +127,7 @@ class CategoryController extends Controller
     /**
      * Remove the category from storage.
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy(int $id)
     {

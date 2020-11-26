@@ -79,4 +79,15 @@ class ProductRepository extends BaseRepository
             ->orderBy('created_at', 'DESC')
             ->get();
     }
+
+    public function getListOrder($order, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->order($order)
+            ->paginate($paged);
+    }
 }

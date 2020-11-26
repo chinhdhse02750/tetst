@@ -223,6 +223,12 @@ header .navigation {
     margin-top: 30px;
 }
 
+.mini-tab-title.underline .title, .mini-tab-title.underline .title-bb {
+    font-size: 16px !important;
+    text-transform: uppercase;
+}
+
+
 @media (max-width: 576px) {
     .home3-product-block #tab-so2 {
         margin-bottom: 30px;

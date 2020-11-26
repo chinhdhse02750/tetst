@@ -73,6 +73,7 @@ class ProductController extends Controller
     {
         $categories = $this->categoryRepository->findByField('parent', '0');
         $units = $this->unitRepository->all();
+
         return view('product.create', ['categories' => $categories, 'units' => $units]);
     }
 
