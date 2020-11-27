@@ -42,12 +42,13 @@ trait ProductScope
         return $query->where('featured', 1);
     }
 
-    public function scopeOrder(object $query, $order)
+    public function scopeOrder(object $query, $order, $condition)
     {
         if ($order === "discount_price") {
-            return $query->orderByRaw('COALESCE(discount_price, price) ASC');
+            return $query->orderByRaw("COALESCE(discount_price, price) $condition");
         }
 
+        return $query->orderBy($order, $condition);
     }
 
 }

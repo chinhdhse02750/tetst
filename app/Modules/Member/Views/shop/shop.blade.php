@@ -153,18 +153,26 @@
                                                 <form action="{{ route('shop.view', 'tat-ca-san-pham') }}" method="GET" id="sort_product">
                                                     <div class="product-filter">
                                                         <select class="select-form" name="order_by">
-                                                            <option value="create_at">Thứ tự mặc định</option>
-                                                            <option value="name">A to Z</option>
-                                                            <option value="name-desc">Z to A</option>
-                                                            <option value="price">Thứ tự theo giá: Thấp đến cao</option>
-                                                            <option value="price-desc">Thứ tự theo giá: Cao xuống thấp
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'create_at') selected @endif
+                                                                value="create_at">Thứ tự mặc định</option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name') selected @endif
+                                                                value="name">A to Z</option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name-desc') selected @endif
+                                                                value="name-desc">Z to A</option>
+                                                            <option  @if(isset($data['order_by']) && $data['order_by'] === 'price') selected @endif
+                                                                value="price">Thứ tự theo giá: Thấp đến cao</option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'price-desc') selected @endif
+                                                                value="price-desc">Thứ tự theo giá: Cao xuống thấp
                                                             </option>
                                                         </select>
-                                                        {{--                                                        <select class="select-form" id="sort" name="">--}}
-                                                        {{--                                                            <option value="A-Z">Show 10</option>--}}
-                                                        {{--                                                            <option value="Z-A">Show 20</option>--}}
-                                                        {{--                                                            <option value="High to low price">Show 30</option>--}}
-                                                        {{--                                                        </select>--}}
+                                                        <select class="select-form" id="select_paginate" name="per_page">
+                                                            <option @if(isset($data['page']) && $data['page'] === '10') selected @endif
+                                                                value="1">Hiển thị 15</option>
+                                                            <option  @if(isset($data['page']) && $data['page'] === '20') selected @endif
+                                                                value="2">Hiển thị 60</option>
+                                                            <option @if(isset($data['page']) && $data['page'] === '30') selected @endif
+                                                                value="3">Hiển thị 90</option>
+                                                        </select>
                                                     </div>
                                                 </form>
                                                 <div class="view-method">
@@ -212,22 +220,26 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="shop-pagination">
-                                    <ul>
-                                        <li>
-                                            <button class="no-round-btn smooth active">1</button>
-                                        </li>
-                                        <li>
-                                            <button class="no-round-btn smooth">2</button>
-                                        </li>
-                                        <li>
-                                            <button class="no-round-btn smooth">3</button>
-                                        </li>
-                                        <li>
-                                            <button class="no-round-btn smooth"><i class="arrow_carrot-2right"></i>
-                                            </button>
-                                        </li>
-                                    </ul>
+{{--                                <div class="shop-pagination">--}}
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <button class="no-round-btn smooth active">1</button>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <button class="no-round-btn smooth">2</button>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <button class="no-round-btn smooth">3</button>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <button class="no-round-btn smooth"><i class="arrow_carrot-2right"></i>--}}
+{{--                                            </button>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+                                @include('pagination.link', ['paginator' => $products, request()->getQueryString() ])
+                                            {{ $products->appends(request()->except('page'))->links() }}.
+
                                 </div>
                             </div>
                         </div>

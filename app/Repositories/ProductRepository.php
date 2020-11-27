@@ -80,14 +80,14 @@ class ProductRepository extends BaseRepository
             ->get();
     }
 
-    public function getListOrder($order, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    public function getListOrder($order, $condition, int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
             ->with([
                 'units',
                 'category',
             ])
-            ->order($order)
+            ->order($order, $condition)
             ->paginate($paged);
     }
 }

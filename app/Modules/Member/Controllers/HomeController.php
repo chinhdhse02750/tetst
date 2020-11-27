@@ -52,8 +52,7 @@ class HomeController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository
-    )
-    {
+    ) {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -113,34 +112,34 @@ class HomeController extends Controller
         ));
     }
 
-//    public function order(Request $request)
-//    {
-//        $data = $request->all();
-//        $sort = "create_at";
-//        if ($data['order_by'] === "price") {
-//            $sort = 'discount_price';
-//        }
-//        $products = $this->productRepository->getListOrder($sort);
-//
-//        return view('shop.shop', compact(
-//            'products'
-//        ));
-//    }
-
     public function view(Request $request)
     {
         $data = $request->all();
-        $sort = "create_at";
-        if (isset($data) && $data != null) {
-            if ($data['order_by'] === "price") {
-                $sort = 'discount_price';
+        $sort = "created_at";
+        $condition = "DESC";
+        $page = Constants::MEMBER_LIST_PER_PAGE;
+        if (isset($data['order_by']) && $data != null) {
+            $page = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
+            if (strpos($data['order_by'], 'price') !== false) {
+                $condition = 'DESC';
+                $sort = "discount_price";
+                if ($data['order_by'] === 'price') {
+                    $condition = 'ASC';
+                }
+            } elseif (strpos($data['order_by'], 'name') !== false) {
+                $condition = 'DESC';
+                $sort = 'name';
+                if ($data['order_by'] === 'name') {
+                    $condition = 'ASC';
+                }
             }
         }
 
-        $products = $this->productRepository->getListOrder($sort);
+        $products = $this->productRepository->getListOrder($sort, $condition, $page);
 
         return view('shop.shop', compact(
-            'products'
+            'products',
+            'data'
         ));
     }
 

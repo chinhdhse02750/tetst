@@ -19,12 +19,12 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
             ?>
             @if ($from < $i && $i < $to)
                 <li class="page-item {{ ($paginator->currentPage() == $i) ? ' active' : '' }}">
-                    <a class="page-link" href="{{ $paginator->url($i) }}">{{ $i }}</a>
+                    <a class="page-link" href="{{ $paginator->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
                 </li>
             @endif
         @endfor
         <li class="page-item{{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
-            <a href="{{ $paginator->url($paginator->lastPage()) }}" class="page-link">@lang('labels.general.next')</a>
+            <a href="{{ $paginator->appends(request()->except('page'))->url($paginator->lastPage()) }}" class="page-link">@lang('labels.general.next')</a>
         </li>
     </ul>
 @endif
