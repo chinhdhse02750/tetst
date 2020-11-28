@@ -112,35 +112,41 @@ class HomeController extends Controller
         ));
     }
 
-    public function view(Request $request)
+    public function view(Request $request, $alias)
     {
-        $data = $request->all();
-        $sort = "created_at";
-        $condition = "DESC";
-        $page = Constants::MEMBER_LIST_PER_PAGE;
-        if (isset($data['order_by']) && $data != null) {
-            $page = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
-            if (strpos($data['order_by'], 'price') !== false) {
-                $condition = 'DESC';
-                $sort = "discount_price";
-                if ($data['order_by'] === 'price') {
-                    $condition = 'ASC';
-                }
-            } elseif (strpos($data['order_by'], 'name') !== false) {
-                $condition = 'DESC';
-                $sort = 'name';
-                if ($data['order_by'] === 'name') {
-                    $condition = 'ASC';
+        $categories = $this->categoryRepository->findByField('parent', '0')->pluck('alias')->toArray();
+        $checkUrl = in_array($alias, $categories);
+        if($checkUrl) {
+            $data = $request->all();
+            $sort = "created_at";
+            $condition = "DESC";
+            $page = Constants::MEMBER_LIST_PER_PAGE;
+            if (isset($data['order_by']) && $data != null) {
+                $page = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
+                if (strpos($data['order_by'], 'price') !== false) {
+                    $condition = 'DESC';
+                    $sort = "discount_price";
+                    if ($data['order_by'] === 'price') {
+                        $condition = 'ASC';
+                    }
+                } elseif (strpos($data['order_by'], 'name') !== false) {
+                    $condition = 'DESC';
+                    $sort = 'name';
+                    if ($data['order_by'] === 'name') {
+                        $condition = 'ASC';
+                    }
                 }
             }
+
+            $products = $this->productRepository->getListOrder($sort, $condition, $page);
+
+            return view('shop.shop', compact(
+                'products',
+                'data'
+            ));
         }
 
-        $products = $this->productRepository->getListOrder($sort, $condition, $page);
-
-        return view('shop.shop', compact(
-            'products',
-            'data'
-        ));
+        return abort(404);
     }
 
     public function register(Request $request)

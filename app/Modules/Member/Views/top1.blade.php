@@ -220,10 +220,9 @@
                                 <div id="tab1">
                                     <div class="row no-gutters-sm">
                                         @foreach($featuredProduct as $key => $value)
-                                            @if($key < 6)
-                                                <div class="col-6 col-md-4">
-                                                    <div class="product pink"><a class="product-img"
-                                                                                 href="shop_detail.html"><img
+                                            @if($key < 8)
+                                                <div class="col-6 col-md-3">
+                                                    <div class="product pink"><a class="product-img" href="shop_detail.html"><img
                                                                 src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                                 alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
@@ -651,8 +650,8 @@
                                 <div id="tab1">
                                     <div class="row no-gutters-sm">
                                         @foreach($products as $key => $value)
-                                            @if($key < 3 )
-                                                <div class="col-6 col-md-4">
+                                            @if($key < 8)
+                                                <div class="col-6 col-md-3">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="shop_detail.html"><img
                                                                 src="{{ url('storage/tmp/'.$value->first_image) }}"

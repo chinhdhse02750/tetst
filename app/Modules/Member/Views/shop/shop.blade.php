@@ -149,37 +149,32 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-xl-8">
-                                            <div class="product-option">
+                                            <div class="product-option product-option-custom">
                                                 <form action="{{ route('shop.view', 'tat-ca-san-pham') }}" method="GET" id="sort_product">
                                                     <div class="product-filter">
-                                                        <select class="select-form" name="order_by">
+                                                        <select class="select-form select-custom" name="order_by">
                                                             <option @if(isset($data['order_by']) && $data['order_by'] === 'create_at') selected @endif
                                                                 value="create_at">Thứ tự mặc định</option>
                                                             <option @if(isset($data['order_by']) && $data['order_by'] === 'name') selected @endif
-                                                                value="name">A to Z</option>
+                                                                value="name">Thứ tự theo tên: A đến Z</option>
                                                             <option @if(isset($data['order_by']) && $data['order_by'] === 'name-desc') selected @endif
-                                                                value="name-desc">Z to A</option>
+                                                                value="name-desc">Thứ tự theo tên: Z đến A</option>
                                                             <option  @if(isset($data['order_by']) && $data['order_by'] === 'price') selected @endif
                                                                 value="price">Thứ tự theo giá: Thấp đến cao</option>
                                                             <option @if(isset($data['order_by']) && $data['order_by'] === 'price-desc') selected @endif
                                                                 value="price-desc">Thứ tự theo giá: Cao xuống thấp
                                                             </option>
                                                         </select>
-                                                        <select class="select-form" id="select_paginate" name="per_page">
-                                                            <option @if(isset($data['page']) && $data['page'] === '10') selected @endif
-                                                                value="1">Hiển thị 15</option>
-                                                            <option  @if(isset($data['page']) && $data['page'] === '20') selected @endif
-                                                                value="2">Hiển thị 60</option>
-                                                            <option @if(isset($data['page']) && $data['page'] === '30') selected @endif
-                                                                value="3">Hiển thị 90</option>
-                                                        </select>
+                                                        {{--<select class="select-form" id="select_paginate" name="per_page">--}}
+                                                            {{--<option @if(isset($data['page']) && $data['page'] === '10') selected @endif--}}
+                                                                {{--value="1">Hiển thị 15</option>--}}
+                                                            {{--<option  @if(isset($data['page']) && $data['page'] === '20') selected @endif--}}
+                                                                {{--value="2">Hiển thị 60</option>--}}
+                                                            {{--<option @if(isset($data['page']) && $data['page'] === '30') selected @endif--}}
+                                                                {{--value="3">Hiển thị 90</option>--}}
+                                                        {{--</select>--}}
                                                     </div>
                                                 </form>
-                                                <div class="view-method">
-                                                    <p class="active" id="grid-view"><i class="fas fa-th-large"></i></p>
-                                                    <p id="list-view"><i class="fas fa-list"></i></p>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +183,7 @@
                                 <div class="shop-products_bottom">
                                     <div class="row no-gutters-sm">
                                         @foreach($products as $key => $value)
-                                            <div class="col-6 col-md-4">
+                                            <div class="col-6 col-md-3">
                                                 <div class="product pink"><a class="product-img"
                                                                              href="shop_detail.html"><img
                                                             src="{{ url('storage/tmp/'.$value->first_image) }}"
@@ -220,26 +215,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-{{--                                <div class="shop-pagination">--}}
-{{--                                    <ul>--}}
-{{--                                        <li>--}}
-{{--                                            <button class="no-round-btn smooth active">1</button>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <button class="no-round-btn smooth">2</button>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <button class="no-round-btn smooth">3</button>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <button class="no-round-btn smooth"><i class="arrow_carrot-2right"></i>--}}
-{{--                                            </button>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-                                @include('pagination.link', ['paginator' => $products, request()->getQueryString() ])
-                                            {{ $products->appends(request()->except('page'))->links() }}.
-
+                                    {{ $products->appends(request()->except('page'))->render('pagination.link') }}
                                 </div>
                             </div>
                         </div>

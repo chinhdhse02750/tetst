@@ -80,43 +80,13 @@ class MemberComposer
      */
     public function compose(View $view)
     {
-//        if (Auth::check()) {
-        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-        $news = $this->newsService->getNews();
-        $balances = $this->balanceRepository->findWhere(['user_id' => Auth::id()]);
-        $banners = $this->bannerRepository->getBannerDisplay();
-        if (Auth::user()->type === null) {
-            $newMembers = $this->userRepository->get();
-        } else {
-            $newMembers = $this->userRepository
-                ->getListUserActiveByType(Auth::user()->type, Constants::MEMBER_DISPLAY_LIMIT);
-        }
-
-        $countSetting = 0;
-        if (Session::has('member_offer')) {
-            $id = Session::get('member_offer');
-            $countSetting = count($id);
-        }
-
-//        $category = $this->categoryRepository->find(2);
-
         $cart = \Cart::getContent();
         $total = \Cart::getTotal();
         $count =  $cart->count();
 
-
         return $view->with(compact(
-            'userPrefectures',
-            'news',
-            'balances',
-            'banners',
-            'countSetting',
-            'newMembers',
             'total',
             'count'
         ));
-//        }//end if
-
-//        return '';
     }
 }

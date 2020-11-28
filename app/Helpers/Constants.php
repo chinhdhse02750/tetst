@@ -76,7 +76,7 @@ class Constants
      */
 
     const SHORT_COMMENT = 80;
-    const MEMBER_LIST_PER_PAGE = 30;
+    const MEMBER_LIST_PER_PAGE = 20;
     const PUBLIC_MEDIA_TYPE = 0;
     const TIME_ORDER_BY = 'created_at';
     const TEXT_SEARCH_LIMIT = 1;

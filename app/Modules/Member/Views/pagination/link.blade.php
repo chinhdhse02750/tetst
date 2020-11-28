@@ -1,30 +1,59 @@
-<?php
-// config
-$link_limit = 7; // maximum number of links (a little bit inaccurate, but will be ok for now)
-?>
-
-@if ($paginator->lastPage() > 1)
-    <ul class="pagination">
-        @for ($i = 1; $i <= $paginator->lastPage(); $i++)
-            <?php
-            $half_total_links = floor($link_limit / 2);
-            $from = $paginator->currentPage() - $half_total_links;
-            $to = $paginator->currentPage() + $half_total_links;
-            if ($paginator->currentPage() < $half_total_links) {
-                $to += $half_total_links - $paginator->currentPage();
-            }
-            if ($paginator->lastPage() - $paginator->currentPage() < $half_total_links) {
-                $from -= $half_total_links - ($paginator->lastPage() - $paginator->currentPage()) - 1;
-            }
-            ?>
-            @if ($from < $i && $i < $to)
-                <li class="page-item {{ ($paginator->currentPage() == $i) ? ' active' : '' }}">
-                    <a class="page-link" href="{{ $paginator->appends(request()->except('page'))->url($i) }}">{{ $i }}</a>
+@if ($paginator->hasPages())
+    <nav class="shop-pagination">
+        <ul>
+            @if ($paginator->onFirstPage())
+                <li class="disabled">
+                    <button class="no-round-btn smooth">
+                        <i class="arrow_carrot-2left"></i>
+                    </button>
+                </li>
+            @else
+                <li>
+                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev">
+                        <button class="no-round-btn smooth">
+                            <i class="arrow_carrot-2left"></i>
+                        </button>
+                    </a>
                 </li>
             @endif
-        @endfor
-        <li class="page-item{{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
-            <a href="{{ $paginator->appends(request()->except('page'))->url($paginator->lastPage()) }}" class="page-link">@lang('labels.general.next')</a>
-        </li>
-    </ul>
+
+            @foreach ($elements as $element)
+                @if (is_string($element))
+                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+                @endif
+
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        @if ($page == $paginator->currentPage())
+                            <li>
+                                <button class="no-round-btn smooth active"><span>{{ $page }}</span></button>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ $url }}">
+                                    <button class="no-round-btn smooth"><span>{{ $page }}</span></button>
+                                </a>
+                            </li>
+
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+            @if ($paginator->hasMorePages())
+                <li>
+                    <a href="{{ $paginator->nextPageUrl() }}" rel="prev">
+                        <button class="no-round-btn smooth">
+                            <i class="arrow_carrot-2right"></i>
+                        </button>
+                    </a>
+                </li>
+            @else
+                <li class="disabled">
+                    <button class="no-round-btn smooth">
+                        <i class="arrow_carrot-2right"></i>
+                    </button>
+                </li>
+            @endif
+        </ul>
+    </nav>
 @endif
