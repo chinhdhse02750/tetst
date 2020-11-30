@@ -115,8 +115,9 @@ class HomeController extends Controller
     public function view(Request $request, $alias)
     {
         $categories = $this->categoryRepository->findByField('parent', '0')->pluck('alias')->toArray();
+
         $checkUrl = in_array($alias, $categories);
-        if($checkUrl) {
+        if ($checkUrl) {
             $data = $request->all();
             $sort = "created_at";
             $condition = "DESC";
@@ -144,7 +145,7 @@ class HomeController extends Controller
                 'products',
                 'data'
             ));
-        }
+        }//end if
 
         return abort(404);
     }

@@ -2,14 +2,7 @@
 
 @section('content')
     <div id="main">
-        <div class="ogami-breadcrumb">
-            <div class="container">
-                <ul>
-                    <li><a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
-                    <li><a class="breadcrumb-link active" href="index.html">Shop</a></li>
-                </ul>
-            </div>
-        </div>
+        {!! Breadcrumbs::render() !!}
         <!-- End breadcrumb-->
         <div class="shop-layout">
             <div class="container">
@@ -141,7 +134,7 @@
                                 <div class="shop-products_top mini-tab-title underline">
                                     <div class="row align-items-center">
                                         <div class="col-6 col-xl-4">
-                                            <h2 class="title">Shop Grid 03 Col</h2>
+                                            <h2 class="title">Tất cả sản phẩm</h2>
                                         </div>
                                         <div class="col-6 text-right">
                                             <div id="show-filter-sidebar">

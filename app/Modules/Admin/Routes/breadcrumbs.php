@@ -2,6 +2,11 @@
 
 use App\Helpers\Constants;
 
+App::bind('view.finder', function ($app) {
+    $paths = [realpath(app_path('Modules/Admin/Views'))];
+    return new \Illuminate\View\FileViewFinder($app['files'], $paths);
+});
+
 Breadcrumbs::for('admin.dashboard', function ($trail) {
     $trail->push(trans('labels.menu.dashboard'), route('admin.dashboard'));
 });
