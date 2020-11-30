@@ -2,8 +2,8 @@
 
 @section('content')
     <div id="main">
-        {!! Breadcrumbs::render() !!}
-        <!-- End breadcrumb-->
+    {!! Breadcrumbs::render() !!}
+    <!-- End breadcrumb-->
         <div class="shop-layout">
             <div class="container">
                 <div class="row">
@@ -119,52 +119,70 @@
                                     <h2 class="title">Product tag</h2>
                                 </div>
                                 <div class="tag_bottom"><a class="tag-btn" href="shop_grid+list_3col.html">organic</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">vegatable</a><a class="tag-btn"
-                                                                                                        href="shop_grid+list_3col.html">fruits</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">fresh meat</a><a class="tag-btn"
-                                                                                                         href="shop_grid+list_3col.html">fastfood</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">natural</a></div>
+                                            class="tag-btn" href="shop_grid+list_3col.html">vegatable</a><a
+                                            class="tag-btn"
+                                            href="shop_grid+list_3col.html">fruits</a><a
+                                            class="tag-btn" href="shop_grid+list_3col.html">fresh meat</a><a
+                                            class="tag-btn"
+                                            href="shop_grid+list_3col.html">fastfood</a><a
+                                            class="tag-btn" href="shop_grid+list_3col.html">natural</a></div>
                             </div>
                         </div>
                         <div class="filter-sidebar--background" style="display: none"></div>
                     </div>
                     <div class="col-xl-9">
+                        <input type="hidden" value="{{ url('/cart') }} " id="url-cart">
                         <div class="shop-grid-list">
                             <div class="shop-products">
                                 <div class="shop-products_top mini-tab-title underline">
                                     <div class="row align-items-center">
                                         <div class="col-6 col-xl-4">
-                                            <h2 class="title">Tất cả sản phẩm</h2>
+                                            @foreach($requestSetting as $key => $value)
+                                                @if ($alias === $key)
+                                                    <h2 class="title">{{ $value }}</h2>
+                                                @endif
+                                            @endforeach
                                         </div>
                                         <div class="col-6 text-right">
                                             <div id="show-filter-sidebar">
                                                 <h5><i class="fas fa-bars"></i>Show sidebar</h5>
+                                                Col
                                             </div>
                                         </div>
                                         <div class="col-12 col-xl-8">
                                             <div class="product-option product-option-custom">
-                                                <form action="{{ route('shop.view', 'tat-ca-san-pham') }}" method="GET" id="sort_product">
+                                                <form action="{{ route('shop.view', 'tat-ca-san-pham') }}" method="GET"
+                                                      id="sort_product">
                                                     <div class="product-filter">
                                                         <select class="select-form select-custom" name="order_by">
-                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'create_at') selected @endif
-                                                                value="create_at">Thứ tự mặc định</option>
-                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name') selected @endif
-                                                                value="name">Thứ tự theo tên: A đến Z</option>
-                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name-desc') selected @endif
-                                                                value="name-desc">Thứ tự theo tên: Z đến A</option>
-                                                            <option  @if(isset($data['order_by']) && $data['order_by'] === 'price') selected @endif
-                                                                value="price">Thứ tự theo giá: Thấp đến cao</option>
-                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'price-desc') selected @endif
-                                                                value="price-desc">Thứ tự theo giá: Cao xuống thấp
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'create_at') selected
+                                                                    @endif
+                                                                    value="create_at">Thứ tự mặc định
+                                                            </option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name') selected
+                                                                    @endif
+                                                                    value="name">Thứ tự theo tên: A đến Z
+                                                            </option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'name-desc') selected
+                                                                    @endif
+                                                                    value="name-desc">Thứ tự theo tên: Z đến A
+                                                            </option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'price') selected
+                                                                    @endif
+                                                                    value="price">Thứ tự theo giá: Thấp đến cao
+                                                            </option>
+                                                            <option @if(isset($data['order_by']) && $data['order_by'] === 'price-desc') selected
+                                                                    @endif
+                                                                    value="price-desc">Thứ tự theo giá: Cao xuống thấp
                                                             </option>
                                                         </select>
                                                         {{--<select class="select-form" id="select_paginate" name="per_page">--}}
-                                                            {{--<option @if(isset($data['page']) && $data['page'] === '10') selected @endif--}}
-                                                                {{--value="1">Hiển thị 15</option>--}}
-                                                            {{--<option  @if(isset($data['page']) && $data['page'] === '20') selected @endif--}}
-                                                                {{--value="2">Hiển thị 60</option>--}}
-                                                            {{--<option @if(isset($data['page']) && $data['page'] === '30') selected @endif--}}
-                                                                {{--value="3">Hiển thị 90</option>--}}
+                                                        {{--<option @if(isset($data['page']) && $data['page'] === '10') selected @endif--}}
+                                                        {{--value="1">Hiển thị 15</option>--}}
+                                                        {{--<option  @if(isset($data['page']) && $data['page'] === '20') selected @endif--}}
+                                                        {{--value="2">Hiển thị 60</option>--}}
+                                                        {{--<option @if(isset($data['page']) && $data['page'] === '30') selected @endif--}}
+                                                        {{--value="3">Hiển thị 90</option>--}}
                                                         {{--</select>--}}
                                                     </div>
                                                 </form>
@@ -179,8 +197,8 @@
                                             <div class="col-6 col-md-3">
                                                 <div class="product pink"><a class="product-img"
                                                                              href="shop_detail.html"><img
-                                                            src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                            alt="{{ $value->first_image }}"></a>
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>
                                                     @if($value->discount_price !== null)
                                                         <h3 class="product-price">
@@ -195,27 +213,28 @@
                                                          data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                          data-discount_price="{{ $value->discount_price }}">
                                                         <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                         <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                         <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                         <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                    {{ $products->appends(request()->except('page'))->render('pagination.link') }}
-                                </div>
+                                {{ $products->appends(request()->except('page'))->render('pagination.link') }}
                             </div>
                         </div>
+                        @include('shop.modal_add_success')
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @push('script')
@@ -225,6 +244,5 @@
                 $('#sort_product').submit();
             });
         });
-
     </script>
 @endpush

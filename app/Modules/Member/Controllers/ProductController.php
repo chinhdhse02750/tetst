@@ -17,7 +17,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class ProductController extends Controller
 {
 
     protected $userPrefectureRepository;
@@ -66,58 +66,12 @@ class HomeController extends Controller
         $this->unitRepository = $unitRepository;
     }
 
-    /**
-     * @param Request $request
-     * @return View
-     */
-    public function index(Request $request)
-    {
-        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-        $filterData = $this->getFilterData($request);
-        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
-        if ($request->get('search') != null) {
-            $members = $this->userProfileRepository
-                ->filter($filterData, Auth::user()->type, $request->get('search'));
-        }
-        $requests = $request->query();
-        $ranks = $this->rankRepository->get();
-        $areas = $this->areaRepository->with('prefectures')->get();
-        $selectOption = config('user-profile');
-        $news = $this->newsService->getNews();
-
-        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
-    }
-
-    public function test(Request $request)
-    {
-        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
-            ->with('units')
-            ->with('category')->get();
-
-        $cart = \Cart::getContent();
-        $total = \Cart::getTotal();
-        $count = $cart->count();
-
-        $saleProduct = $this->productRepository->getListSaleProduct();
-        $featuredProduct = $this->productRepository->getListFeatured();
-        $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
-        $bestSeller = $this->productRepository->getListBestSeller(8);
-
-        return view('top1', compact(
-            'products',
-            'saleProduct',
-            'featuredProduct',
-            'dealOfWeekProduct',
-            'bestSeller',
-            'cart',
-            'total',
-            'count'
-        ));
-    }
-
-    public function view(Request $request, $alias)
+    public function index(Request $request, $alias)
     {
         $categories = $this->categoryRepository->findByField('parent', '0')->pluck('alias')->toArray();
+        $settingAlias = config('setting-alias');
+        $requestSetting = $settingAlias['map_alias'];
+
         $checkUrl = in_array($alias, $categories);
         if ($checkUrl) {
             $data = $request->all();
@@ -143,14 +97,55 @@ class HomeController extends Controller
 
             $products = $this->productRepository->getListOrder($sort, $condition, $page);
 
-            return view('shop.shop', compact(
+            return view('shop.product', compact(
                 'products',
-                'data'
+                'data',
+                'alias',
+                'requestSetting'
+            ));
+        } else if ($alias === "san-pham-noi-bat") {
+
+            $data = $request->all();
+            $products = $this->productRepository->getListFeatured();
+
+            return view('shop.product', compact(
+                'products',
+                'data',
+                'alias',
+                'requestSetting'
+            ));
+        } else if ($alias === "san-pham-moi-nhat") {
+
+            $data = $request->all();
+            $products = $this->productRepository->getListNewProduct();
+
+            return view('shop.product', compact(
+                'products',
+                'data',
+                'alias',
+                'requestSetting'
             ));
         }
 
+
         return abort(404);
     }
+
+    /**
+     * @param Request $request
+     * @param $alias
+     */
+    public function productSpecial(Request $request, $alias)
+    {
+        $data = $request->all();
+        $products = $this->productRepository->getListFeatured();
+
+        return view('shop.product', compact(
+            'products',
+            'data'
+        ));
+    }
+
 
     public function register(Request $request)
     {

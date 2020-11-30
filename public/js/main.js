@@ -556,5 +556,48 @@ window.onload = function () {
                 $('#quickview').remove()
             });
         });
+
+        /****************************************************
+         Add to cart
+         ****************************************************/
+        $(".add-to-cart").on("click", function () {
+            let id = $(this).closest('.product-select').attr('data-id');
+            let product_name = $(this).closest('.product-select').attr('data-name');
+            let product_price = $(this).closest('.product-select').attr('data-price');
+            let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
+            let url = $('#url-cart').val();
+            let data = {
+                id: id, product_name: product_name,
+                product_price: product_price, product_discount_price: product_discount_price
+            };
+            console.log(data);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                success: function (data) {
+                    if (data.status === "success") {
+                        $('.cart_money').text(new Intl.NumberFormat('ja-JP', {
+                            style: 'currency',
+                            currency: 'JPY'
+                        }).format(data.total));
+                        $('.cart_count').text(data.count);
+                        $('#modalAbandonedCart').modal('show')
+                        setTimeout(function () {
+                            $('#modalAbandonedCart').modal('hide')
+                        }, 2000);
+                    }
+                },
+                error: function (exception) {
+                    alert('Exeption:' + exception);
+                }
+            });
+        });
     });
+
 }

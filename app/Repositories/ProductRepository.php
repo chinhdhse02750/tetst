@@ -68,7 +68,7 @@ class ProductRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public function getListFeatured()
+    public function getListFeatured(int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
             ->with([
@@ -77,7 +77,7 @@ class ProductRepository extends BaseRepository
             ])
             ->featured()
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate($paged);
     }
 
     public function getListOrder($order, $condition, int $paged = Constants::MEMBER_LIST_PER_PAGE)
@@ -88,6 +88,30 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->order($order, $condition)
+            ->paginate($paged);
+    }
+
+
+    public function getListNewProduct(int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    {
+        return $this->model
+            ->orderBy('created_at', $direction = 'DESC')
+            ->with('units')
+            ->with('category')
+            ->paginate($paged);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getListBestSeller(int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->orderBy('sold', 'DESC')
             ->paginate($paged);
     }
 }
