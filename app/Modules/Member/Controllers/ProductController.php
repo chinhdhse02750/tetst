@@ -52,8 +52,7 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository
-    )
-    {
+    ) {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -103,30 +102,7 @@ class ProductController extends Controller
                 'alias',
                 'requestSetting'
             ));
-        } else if ($alias === "san-pham-noi-bat") {
-
-            $data = $request->all();
-            $products = $this->productRepository->getListFeatured();
-
-            return view('shop.product', compact(
-                'products',
-                'data',
-                'alias',
-                'requestSetting'
-            ));
-        } else if ($alias === "san-pham-moi-nhat") {
-
-            $data = $request->all();
-            $products = $this->productRepository->getListNewProduct();
-
-            return view('shop.product', compact(
-                'products',
-                'data',
-                'alias',
-                'requestSetting'
-            ));
-        }
-
+        }//end if
 
         return abort(404);
     }

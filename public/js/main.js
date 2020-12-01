@@ -166,46 +166,46 @@ window.onload = function () {
         /****************************************************
          Home 1 Slick
          ****************************************************/
-        $('.partner_block').slick({
-            infinite: true,
-            arrows: false,
-            autoplay: false,
-            swipe: false,
-            responsive: [
-                {
-                    breakpoint: 1770,
-                    settings: {
-                        autoplay: true,
-                        slidesToShow: 6,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 996,
-                    settings: {
-                        autoplay: true,
-                        slidesToShow: 5,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        autoplay: true,
-                        slidesToShow: 3,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                    }
-                }
-            ]
-        })
+        // $('.partner_block').slick({
+        //     infinite: true,
+        //     arrows: false,
+        //     autoplay: false,
+        //     swipe: false,
+        //     responsive: [
+        //         {
+        //             breakpoint: 1770,
+        //             settings: {
+        //                 autoplay: true,
+        //                 slidesToShow: 4,
+        //                 slidesToScroll: 1,
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 996,
+        //             settings: {
+        //                 autoplay: true,
+        //                 slidesToShow: 4,
+        //                 slidesToScroll: 1,
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 768,
+        //             settings: {
+        //                 autoplay: true,
+        //                 slidesToShow: 2,
+        //                 slidesToScroll: 1
+        //             }
+        //         },
+        //         {
+        //             breakpoint: 576,
+        //             settings: {
+        //                 slidesToShow: 2,
+        //                 slidesToScroll: 1,
+        //                 autoplay: true,
+        //             }
+        //         }
+        //     ]
+        // })
         /****************************************************
          Home 3 Slick
          ****************************************************/
@@ -270,7 +270,6 @@ window.onload = function () {
             arrows: true,
             slidesToScroll: 1,
             slidesToShow: 3,
-            arrows: false,
             autoplay: false,
             swipe: true,
             adaptiveHeight: true,
@@ -509,52 +508,89 @@ window.onload = function () {
 
         $(document).on('click', '.quickview', function (event) {
             event.preventDefault();
+            let id = $(this).closest('.product-select').attr('data-id');
+            let product_name = $(this).closest('.product-select').attr('data-name');
+            let product_price = $(this).closest('.product-select').attr('data-price');
+            let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
+            let url = $('#url-view').val();
+            let data = {
+                id: id, product_name: product_name,
+                product_price: product_price, product_discount_price: product_discount_price
+            };
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                success: function (data) {
+                    if (data.status === "success") {
+                        $('body').prepend('<div id="quickview"> ' +
+                            '<div class="quickview-box"> <button class="round-icon-btn" ' +
+                            'id="quickview-close-btn"><i class="fas fa-times">' +
+                            '</i></button> <div class="row"> ' +
+                            '<div class="col-12 col-md-6"> ' +
+                            '<div class="shop-detail_img"> ' +
+                            '<button class="round-icon-btn" id="zoom-btn"> ' +
+                            '<i class="icon_zoom-in_alt"></i>' +
+                            '</button> <div class="big-img big-img_qv"> ' +
+                            '<div class="big-img_block">' +
+                            '<img src="assets/images/shop/zoom_img_1.png" alt="product image"></div>' +
+                            '<div class="big-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div>' +
+                            '<div class="big-img_block"><img src="assets/images/shop/zoom_img_3.png" alt="product image"></div>' +
+                            '<div class="big-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div></div>' +
+                            '<div class="slide-img slide-img_qv"> ' +
+                            '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_1.png" alt="product image"></div>' +
+                            '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div>' +
+                            '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_3.png" alt="product image"></div>' +
+                            '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div></div></div></div>' +
+                            '<div class="col-12 col-md-6"> <span class="shop-detail_info"> ' +
+                            '<a class="product-name" href="shop_detail.html">' + data.products.name + '</a>' +
+                            '<div class="price-rate"> <h3 class="product-price"> <del>¥' + data.products.price + '</del>¥'
+                            + data.products.discount_price + '</h3> </div>' +
+                            `<p class="product-describe"> ${data.products.description } </p>` +
+                            '<div class="quantity-select"> <label for="quantity">Số lượng:</label> ' +
+                            '<input class="no-round-input" id="quantity" type="number" min="0" value="1">' +
+                            `<label class="total_product_view">${data.products.stock } sản phẩm sẵn có</label>  </div>` +
+                            '<div class="product-select"> <button class="add-to-cart normal-btn outline">Add to Cart</button> ' +
+                            '<button class="add-to-compare normal-btn outline">+ Add to Compare</button> </div>' +
+                            '<div class="product-share"> <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a>' +
+                            '<a href=""><i class="fab fa-twitter"></i></a><a href="">' +
+                            '<i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a> </div></div></div></div></div></div>')
+                        $('#quickview .big-img_qv').slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            asNavFor: '.slide-img_qv',
+                            swipe: false,
+                            infinite: false,
+                        });
+                        $('#quickview .slide-img_qv').slick({
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            asNavFor: '.big-img',
+                            focusOnSelect: true,
+                            appendArrows: $('.slide-img_qv'),
+                            adaptiveHeight: false,
+                            infinite: false,
+                            prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+                            nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+                        });
+                        $('#quickview-close-btn').on('click', function (event) {
+                            $('#quickview').remove()
+                        });
+                    }
+                },
+                error: function (exception) {
+                    alert('Exeption:' + exception);
+                }
+            });
+
             //Wirte Quick view block to DOM
-            $('body').prepend('<div id="quickview"> ' +
-                '<div class="quickview-box"> <button class="round-icon-btn" ' +
-                'id="quickview-close-btn"><i class="fas fa-times">' +
-                '</i></button> <div class="row"> ' +
-                '<div class="col-12 col-md-6"> ' +
-                '<div class="shop-detail_img"> ' +
-                '<button class="round-icon-btn" id="zoom-btn"> ' +
-                '<i class="icon_zoom-in_alt"></i>' +
-                '</button> <div class="big-img big-img_qv"> ' +
-                '<div class="big-img_block">' +
-                '<img src="assets/images/shop/zoom_img_1.png" alt="product image"></div>' +
-                '<div class="big-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div>' +
-                '<div class="big-img_block"><img src="assets/images/shop/zoom_img_3.png" alt="product image"></div>' +
-                '<div class="big-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div></div>' +
-                '<div class="slide-img slide-img_qv"> ' +
-                '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_1.png" alt="product image"></div>' +
-                '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div>' +
-                '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_3.png" alt="product image"></div>' +
-                '<div class="slide-img_block"><img src="assets/images/shop/zoom_img_2.png" alt="product image"></div></div></div></div>' +
-                '<div class="col-12 col-md-6"> <div class="shop-detail_info"> ' +
-                '<h5 class="product-type color-type">Oranges</h5>' +
-                '<a class="product-name" href="shop_detail.html">Pure Pineapple</a> ' +
-                'k<div class="price-rate"> <h3 class="product-price"> <del>$35.00</del>$14.00 </h3> </div><p class="product-describe"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vero saepe nihil nisi ipsum officiis, tempora reiciendis, rerum ipsa aliquid, repudiandae expedita placeat, vel quae commodi sequi. Repellat, laudantium voluptas.</p><div class="quantity-select"> <label for="quantity">Quatity:</label> <input class="no-round-input" id="quantity" type="number" min="0" value="1"> </div><div class="product-select"> <button class="add-to-cart normal-btn outline">Add to Cart</button> <button class="add-to-compare normal-btn outline">+ Add to Compare</button> </div><div class="product-share"> <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a> </div></div></div></div></div></div>')
-            $('#quickview .big-img_qv').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                asNavFor: '.slide-img_qv',
-                swipe: false,
-                infinite: false,
-            });
-            $('#quickview .slide-img_qv').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                asNavFor: '.big-img',
-                focusOnSelect: true,
-                appendArrows: $('.slide-img_qv'),
-                adaptiveHeight: false,
-                infinite: false,
-                prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-            });
-            $('#quickview-close-btn').on('click', function (event) {
-                $('#quickview').remove()
-            });
+
         });
 
         /****************************************************
@@ -570,7 +606,6 @@ window.onload = function () {
                 id: id, product_name: product_name,
                 product_price: product_price, product_discount_price: product_discount_price
             };
-            console.log(data);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

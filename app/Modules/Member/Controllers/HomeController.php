@@ -52,8 +52,7 @@ class HomeController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository
-    )
-    {
+    ) {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -147,7 +146,7 @@ class HomeController extends Controller
                 'products',
                 'data'
             ));
-        }
+        }//end if
 
         return abort(404);
     }
@@ -261,28 +260,5 @@ class HomeController extends Controller
         }
 
         return $filter;
-    }
-
-    public function testCart(Request $request)
-    {
-        $data = $request->all();
-
-        \Cart::add(array(
-            'id' => $data['id'],
-            'name' => $data['product_name'],
-            'price' => $data['product_discount_price'] !== null
-                ? $data['product_discount_price'] : $data['product_price'],
-            'quantity' => 1,
-            'attributes' => array()));
-        $cartCollection = \Cart::getContent();
-        $total = \Cart::getTotal();
-        $count = $cartCollection->count();
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $cartCollection,
-            'total' => $total,
-            'count' => $count
-        ], 200);
     }
 }

@@ -5,8 +5,7 @@
         <div class="banner_v2">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3"></div>
-                    <div class="col-12 col-xl-9">
+                    <div class="col-12 col-xl-12">
                         <div class="banner-block">
                             <div class="row no-gutters justify-content-center align-items-md-center">
                                 <div class="col-10 col-md-5 col-xl-6">
@@ -14,7 +13,7 @@
                                         <h5 class="color-subtitle pink">Butter & Eggs</h5>
                                         <h2 class="title">Spice 100% Organnic</h2>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p><a
-                                                class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>
+                                            class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5 col-xl-5">
@@ -34,7 +33,7 @@
         <div class="home3-product-block">
             <div class="container">
                 <div class="row">
-                    <input type="hidden" value="{{ url('/cart') }} " id="url-cart">
+                    <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
                     <div class="col-12 col-xl-3">
                         <div class="deal-of-week_slide">
                             <div class="week-deal_top mini-tab-title underline pink">
@@ -70,13 +69,13 @@
                                                      data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                      data-discount_price="{{ $value->discount_price }}">
                                                     <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
+                                                            class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                class="icon_bag_alt"></i></button>
+                                                            class="icon_bag_alt"></i></button>
                                                     <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
+                                                            class="fas fa-random"></i></button>
                                                     <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i>
+                                                            class="far fa-eye"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -98,13 +97,13 @@
                                                     <div class="mini-product_img-sale">
                                                         <a class="sale-product-img"
                                                            href="shop_detail.html"><img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}">
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}">
                                                         </a>
                                                     </div>
                                                     <div class="mini-product_info"><a
-                                                                href="shop_detail.html">{{ $value->name }}</a>
+                                                            href="shop_detail.html">{{ $value->name }}</a>
                                                         <p>¥{{ number_format($value->discount_price) }}
                                                             <del>¥{{ number_format($value->price) }}</del>
                                                         </p>
@@ -122,8 +121,8 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon1.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon1.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Free Shipping</h5>
                                                     <p class="benefit-describle">For all order over 99$</p>
@@ -132,8 +131,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon2.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon2.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Delivery On Time</h5>
                                                     <p class="benefit-describle">If good have prolems</p>
@@ -142,8 +141,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon3.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon3.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">Secure Payment</h5>
                                                     <p class="benefit-describle">100% secure payment</p>
@@ -213,9 +212,7 @@
                             <div class="best-seller_top mini-tab-title underline pink">
                                 <div class="row align-items-md-center">
                                     <div class="col-12 col-md-4">
-                                        <h2 class="title"><a href="{{ route('shop.view', 'san-pham-noi-bat') }}"
-                                                             class="title">Sản phẩm nổi bật</a>
-                                        </h2>
+                                        <h2 class="title"> Sản phẩm nổi bật </h2>
                                     </div>
                                 </div>
                             </div>
@@ -223,12 +220,12 @@
                                 <div id="tab1">
                                     <div class="row no-gutters-sm">
                                         @foreach($featuredProduct as $key => $value)
-                                            @if($key < 8)
+                                            @if($key < 12)
                                                 <div class="col-6 col-md-3">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="shop_detail.html"><img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}"></a>
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -245,13 +242,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                        class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                        class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -296,8 +293,8 @@
                                             <div class="col-6 col-md-3">
                                                 <div class="product pink"><a class="product-img"
                                                                              href="shop_detail.html"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}"></a>
+                                                            src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                            alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>
                                                     @if($value->discount_price !== null)
                                                         <h3 class="product-price">
@@ -314,13 +311,13 @@
                                                          data-price="{{ $value->price }}"
                                                          data-discount_price="{{ $value->discount_price }}">
                                                         <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
+                                                                class="icon_heart_alt"></i></button>
                                                         <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
+                                                                class="icon_bag_alt"></i></button>
                                                         <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
+                                                                class="fas fa-random"></i></button>
                                                         <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
+                                                                class="far fa-eye"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -333,8 +330,7 @@
                             <div class="best-seller_top mini-tab-title underline pink">
                                 <div class="row align-items-md-center">
                                     <div class="col-12 col-md-4">
-                                        <h2 class="title"><a href="{{ route('shop.view', 'san-pham-moi-nhat') }}"
-                                                             class="title">Sản phẩm mới nhất</a></h2>
+                                        <h2 class="title">Sản phẩm mới nhất</h2>
                                     </div>
                                     {{--                                    <div class="col-12 col-md-8 text-lg-right">--}}
                                     {{--                                        <ul class="tab-control text-md-right">--}}
@@ -355,8 +351,8 @@
                                                 <div class="col-6 col-md-3">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="shop_detail.html"><img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}"></a>
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -372,13 +368,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                        class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                        class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -437,7 +433,7 @@
             <div class="partner">
                 <div class="container">
                     <div class="partner_block d-flex justify-content-between"
-                         data-slick="{&quot;slidesToShow&quot;: 6}">
+                         data-slick="{&quot;slidesToShow&quot;: 4}">
                         <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_01.png"
                                                                             alt="partner" title="partner logo"></a>
                         </div>
@@ -450,14 +446,6 @@
                         <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_02.png"
                                                                             alt="partner" title="partner logo"></a>
                         </div>
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_01.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_02.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                        <div class="partner--logo" href=""><a href=""><img src="/images/partner/partner_01.png"
-                                                                           alt="partner" title="partner logo"></a></div>
                     </div>
                 </div>
             </div>
@@ -465,47 +453,4 @@
         </div>
         @endsection
         @push('script')
-            <script>
-                $(document).ready(function () {
-                    $(".add-to-cart").on("click", function () {
-                        let id = $(this).closest('.product-select').attr('data-id');
-                        let product_name = $(this).closest('.product-select').attr('data-name');
-                        let product_price = $(this).closest('.product-select').attr('data-price');
-                        let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
-                        let url = $('#url-cart').val();
-                        let data = {
-                            id: id, product_name: product_name,
-                            product_price: product_price, product_discount_price: product_discount_price
-                        };
-                        console.log(data);
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            data: data,
-                            success: function (data) {
-                                if (data.status === "success") {
-                                    $('.cart_money').text(new Intl.NumberFormat('ja-JP', {
-                                        style: 'currency',
-                                        currency: 'JPY'
-                                    }).format(data.total));
-                                    $('.cart_count').text(data.count);
-                                    $('#modalAbandonedCart').modal('show')
-                                    setTimeout(function () {
-                                        $('#modalAbandonedCart').modal('hide')
-                                    }, 2000);
-                                }
-                            },
-                            error: function (exception) {
-                                alert('Exeption:' + exception);
-                            }
-                        });
-                    });
-                });
-
-            </script>
     @endpush
