@@ -12,6 +12,9 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
 use App\Services\NewsService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -105,6 +108,20 @@ class ProductController extends Controller
         }//end if
 
         return abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|JsonResponse|View
+     */
+    public function productReview(Request  $request)
+    {
+        $data = $request->all();
+        $productId = $data['id'];
+        $products = $this->productRepository->find($productId);
+        $images = explode(',', $products->image);
+
+        return view("shop.quick_view", ['products' => $products, 'images' => $images]);
     }
 
     /**

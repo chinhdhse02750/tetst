@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-xl-9">
                         <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
-                        <input type="hidden" value="{{ url('api/v1/review') }} " id="url-view">
+                        <input type="hidden" value="{{ url('/review') }} " id="url-view">
                         <div class="shop-grid-list">
                             <div class="shop-products">
                                 <div class="shop-products_top mini-tab-title underline">

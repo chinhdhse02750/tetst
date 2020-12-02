@@ -65,7 +65,7 @@ class ProductController extends Controller
             'name' => $data['product_name'],
             'price' => $data['product_discount_price'] !== null
                 ? $data['product_discount_price'] : $data['product_price'],
-            'quantity' => 1,
+            'quantity' => $data['quantity'],
             'attributes' => array()));
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
