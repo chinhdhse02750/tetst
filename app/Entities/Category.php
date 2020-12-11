@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +38,9 @@ class Category extends Model implements Transformable
         'keyword'
     ];
 
+    /**
+     * @return HasMany
+     */
     public function childrenCategories()
     {
         return $this->hasMany('App\Entities\Category', 'parent', 'id');

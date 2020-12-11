@@ -31,21 +31,21 @@
                 <p class="product-describe">{{ $products->description }}</p>
                 <div class="quantity-select"> <label for="quantity">Số lượng:</label>
                     <input class="no-round-input" id="quantity" type="number" min="0" value="1">
-                    <label class="total_product_view"><span class="count_stock">{{ $products->stock }}</span> sản phẩm sẵn có</label>
+                    <label class="total_product_view"><span class="count_stock">{{ $products->stock }}</span> @lang('product.label.in_stock')</label>
                 </div>
                 <div
                      class="product-select" data-id="{{ $products->id }}"
                      data-name="{{ $products->name }}" data-price="{{ $products->price }}"
                      data-discount_price="{{ $products->discount_price }}">
-                    <button class="add-to-cart normal-btn outline">Add to Cart</button>
+                    <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
                     <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
                 </div>
-                <div class="product-share"> <h5>Share link:</h5>
-                    <a href=""><i class="fab fa-facebook-f"> </i></a>
-                    <a href=""><i class="fab fa-twitter"></i></a>
-                    <a href=""><i class="fab fa-invision"> </i></a>
-                    <a href=""><i class="fab fa-pinterest-p"></i></a>
-                </div>
+{{--                <div class="product-share"> <h5>Share link:</h5>--}}
+{{--                    <a href=""><i class="fab fa-facebook-f"> </i></a>--}}
+{{--                    <a href=""><i class="fab fa-twitter"></i></a>--}}
+{{--                    <a href=""><i class="fab fa-invision"> </i></a>--}}
+{{--                    <a href=""><i class="fab fa-pinterest-p"></i></a>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
