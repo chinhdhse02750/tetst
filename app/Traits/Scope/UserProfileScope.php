@@ -119,7 +119,7 @@ trait UserProfileScope
     {
         if (!empty($ids)) {
             return $query->whereHas('user.prefecture', function ($q) use ($ids) {
-                $q->whereIn('user_prefectures.prefecture_id', $ids);
+
             });
         }
 

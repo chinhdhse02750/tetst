@@ -8,6 +8,7 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 
 /**
  * Class Category.
@@ -67,6 +68,28 @@ class Category extends Model implements Transformable
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Entities\Category');
+    }
+
+    public function children ()
+    {
+        return $this->hasMany('App\Entities\Category', 'parent');
+    }
+
+    public function parent ()
+    {
+        return $this->belongsTo('App\Entities\Category', 'parent');
+    }
+
+    public function getAllChildren ()
+    {
+        $sections = new Collection();
+
+        foreach ($this->children as $section) {
+            $sections->push($section);
+            $sections = $sections->merge($section->getAllChildren());
+        }
+
+        return $sections;
     }
 }

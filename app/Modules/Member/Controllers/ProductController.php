@@ -70,12 +70,15 @@ class ProductController extends Controller
 
     public function index(Request $request, $alias)
     {
-        $categories = $this->categoryRepository->findByField('parent', '0')->pluck('alias')->toArray();
+        $categories = $this->categoryRepository->all()->pluck('alias')->toArray();
+        $checkUrl = in_array($alias, $categories);
         $settingAlias = config('setting-alias');
         $requestSetting = $settingAlias['map_alias'];
-
-        $checkUrl = in_array($alias, $categories);
-        if ($checkUrl) {
+        if($checkUrl) {
+            $cateData = $this->categoryRepository->findByField('alias',$alias)->first();
+            $childId = $cateData->getAllChildren()->pluck('id')->toArray();
+            $id = [$cateData->id];
+            $allId = array_merge($id, $childId);
             $data = $request->all();
             $sort = "created_at";
             $condition = "DESC";
@@ -96,16 +99,21 @@ class ProductController extends Controller
                     }
                 }
             }
+            $products = $this->productRepository->getListProductByCategory($sort, $condition, $allId ,  $page);
 
-            $products = $this->productRepository->getListOrder($sort, $condition, $page);
+            if($alias === "tat-ca-san-pham"){
+                    $products = $this->productRepository->getListOrder($sort, $condition, $page);
+            }
 
             return view('shop.product', compact(
                 'products',
                 'data',
                 'alias',
-                'requestSetting'
+                'requestSetting',
+                'cateData'
             ));
-        }//end if
+        }
+
 
         return abort(404);
     }

@@ -42,6 +42,8 @@ trait ProductScope
         return $query->where('featured', 1);
     }
 
+
+
     public function scopeOrder(object $query, $order, $condition)
     {
         if ($order === "discount_price") {
@@ -49,6 +51,14 @@ trait ProductScope
         }
 
         return $query->orderBy($order, $condition);
+    }
+
+
+    public function scopeCategory(object $query, $cateId)
+    {
+        return $query->whereHas('category',  function ($q) use ($cateId)  {
+            $q->whereIn('category_id', $cateId);
+        });
     }
 
 }

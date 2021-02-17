@@ -6,6 +6,6 @@ return [
         'san-pham-noi-bat' => 'Sản phẩm nổi bật',
         'san-pham-khuyen-mai' => 'Sản phẩm khuyến mãi',
         'san-pham-ban-chay' => 'Sản phẩm bán chạy',
-        'san-pham-moi-nhat' => 'Sản phẩm mới nhất'
+        'san-pham-moi-nhat' => 'Sản phẩm mới nhất',
     ],
 ];

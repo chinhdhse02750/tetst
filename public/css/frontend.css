@@ -281,9 +281,9 @@ header .navigation {
 
 
 
-body {
-    background: #f0f0f0;
-}
+/*body {*/
+    /*background: #f0f0f0;*/
+/*}*/
 
 .content {
     width: 260px;
@@ -340,6 +340,7 @@ body {
     position: absolute;
     width: 100%;
     z-index: 99;
+    border: 1px solid #ebebeb
 }
 
 .jquery-accordion-menu .jquery-accordion-menu-footer, .jquery-accordion-menu .jquery-accordion-menu-header {

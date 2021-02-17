@@ -101,6 +101,19 @@ class ProductRepository extends BaseRepository
             ->paginate($paged);
     }
 
+    public function getListProductByCategory($order, $condition, $cateId, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->category($cateId)
+            ->order($order, $condition)
+            ->paginate($paged);
+    }
+
+
     /**
      * @return mixed
      */

@@ -210,7 +210,7 @@
                         <div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">
                             <ul>
                                 @foreach($categories as $menu)
-                                    <li><a href="#">{{ $menu->name }}
+                                    <li><a href="{{ $menu->alias }}">{{ $menu->name }}
                                             @if(count($menu->childrenCategories))
                                                 <span class="submenu-indicator">+</span>
                                             @endif

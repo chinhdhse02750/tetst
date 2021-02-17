@@ -83,7 +83,7 @@ class MemberComposer
         $cart = \Cart::getContent();
         $total = \Cart::getTotal();
         $count =  $cart->count();
-        $categories = $this->categoryRepository->findByField('parent', '4');
+        $categories = $this->categoryRepository->findByField('parent', '1');
 
         return $view->with(compact(
             'total',

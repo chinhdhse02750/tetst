@@ -138,11 +138,7 @@
                                 <div class="shop-products_top mini-tab-title underline">
                                     <div class="row align-items-center">
                                         <div class="col-6 col-xl-4">
-                                            @foreach($requestSetting as $key => $value)
-                                                @if ($alias === $key)
-                                                    <h2 class="title">{{ $value }}</h2>
-                                                @endif
-                                            @endforeach
+                                            <h2 class="title">{{ $cateData->name }}</h2>
                                         </div>
                                         <div class="col-6 text-right">
                                             <div id="show-filter-sidebar">
@@ -152,7 +148,7 @@
                                         </div>
                                         <div class="col-12 col-xl-8">
                                             <div class="product-option product-option-custom">
-                                                <form action="{{ route('shop.view', 'tat-ca-san-pham') }}" method="GET"
+                                                <form action="{{ route('shop.view', $cateData->alias) }}" method="GET"
                                                       id="sort_product">
                                                     <div class="product-filter">
                                                         <select class="select-form select-custom" name="order_by">
