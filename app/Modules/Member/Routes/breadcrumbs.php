@@ -12,7 +12,16 @@ Breadcrumbs::for('home', function ($trail) {
     $trail->push(trans('Trang chủ'), route('home'));
 });
 
-Breadcrumbs::for('shop.view', function ($trail) {
+
+
+Breadcrumbs::for('shop.view', function ($trail, $category) {
+
+//    if ($category->parent !== 0) {
+//        dd($category->parent);
+//        $trail->parent(('shop.view'), $category->parent);
+//    } else {
+//
+//    }
     $trail->parent('home');
-    $trail->push('Tất cả sản phẩm', route('shop.view', 'tat-ca-san-pham'));
+    $trail->push($category->name, route('shop.view', $category->alias));
 });

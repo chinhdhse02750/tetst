@@ -102,7 +102,7 @@ class ProductController extends Controller
             $products = $this->productRepository->getListProductByCategory($sort, $condition, $allId ,  $page);
 
             if($alias === "tat-ca-san-pham"){
-                    $products = $this->productRepository->getListOrder($sort, $condition, $page);
+                $products = $this->productRepository->getListOrder($sort, $condition, $page);
             }
 
             return view('shop.product', compact(
@@ -148,116 +148,6 @@ class ProductController extends Controller
     }
 
 
-    public function register(Request $request)
-    {
-        return view('register');
-    }
-
-
-    protected function getFilterData(Request $request)
-    {
-        $filter = [];
-        // filter member_info
-        switch (Arr::get($request, 'member_info', 1)) {
-            case Constants::FILTER_CHECK_NEW_MEMBER:
-                $filter['label_type'] = Constants::LABEL_NEW_MEMBER_VALUE;
-                break;
-            case Constants::FILTER_CHECK_PICK_UP:
-                $filter['pick_up'] = Constants::FILTER_CHECKED;
-                break;
-            case Constants::FILTER_CHECK_HAS_COMMENT:
-                $filter['label_type'] = Constants::LABEL_NEW_COMMENT_VALUE;
-                break;
-        }
-
-        //filter prefecture
-        if (isset($request['prefecture_ids']) && empty($request['checkAllArea'])) {
-            $filter['prefecture_ids'] = $request['prefecture_ids'];
-        }
-
-        //filter underwear_type
-        if ($request['check_cup']) {
-            $cups = array();
-            $check_cup = array_values($request['check_cup']);
-            foreach ($check_cup as $value) {
-                if ($value == Constants::FILTER_CUP_A_C) {
-                    $filter['underwear_types'] = array_push(
-                        $cups,
-                        Constants::VALUE_A_CUP,
-                        Constants::VALUE_B_CUP,
-                        Constants::VALUE_C_CUP
-                    );
-                }
-                if ($value == Constants::FILTER_CUP_D_F) {
-                    $filter['underwear_types'] = array_push(
-                        $cups,
-                        Constants::VALUE_D_CUP,
-                        Constants::VALUE_E_CUP,
-                        Constants::VALUE_F_CUP
-                    );
-                }
-                if ($value == Constants::FILTER_CUP_G) {
-                    $filter['underwear_types'] = array_push(
-                        $cups,
-                        Constants::VALUE_G_CUP
-                    );
-                }
-            }//end foreach
-            $filter['underwear_types'] = $cups;
-        }//end if
-
-        //filter ages
-        if ($request['check_age'] && empty($request['checkAllAge'])) {
-            $filter['ages'] = array_values($request['check_age']);
-        }
-        //filter height
-        if ($request['check_height'] && empty($request['checkAllHeight'])) {
-            $filter['heights'] = array_values($request['check_height']);
-        }
-
-        //filter dating type
-        if ($request['check_dating_type'] && empty($request['checkAllDatingType'])) {
-            $filter['dating_types'] = array_values($request['check_dating_type']);
-        }
-
-        //filter rank id
-        if (isset($request['check_rank'])) {
-            $filter['rank_ids'] = $request['check_rank'];
-        }
-
-        //filter smoking
-        if (isset($request['smoking'])) {
-            $filter['smoking'] = $request['smoking'];
-        }
-
-        //filter alcohol
-        if (isset($request['alcohol'])) {
-            $filter['alcohol'] = $request['alcohol'];
-        }
-
-        //filter male ages
-        if ($request['check_male_age'] && empty($request['check_all_age'])) {
-            $filter['male_ages'] = array_values($request['check_male_age']);
-        }
-
-        //filter male smoking
-        if ($request['check_male_smoking'] && empty($request['checkAllMaleSmoking'])) {
-            $filter['male_smoking'] = array_values($request['check_male_smoking']);
-        }
-        //filter favorite dating type
-        if ($request['favorite_dating_type'] && empty($request['checkAllDatingType'])) {
-            $filter['favorite_dating_types'] = array_values($request['favorite_dating_type']);
-        }
-
-        //sort order
-        if ($request['order_by']) {
-            $filter['sort'] = $request['order_by'];
-        } else {
-            $filter['sort'] = Constants::FILTER_DEFAULT_SORT_ORDER;
-        }
-
-        return $filter;
-    }
 
     public function testCart(Request $request)
     {
@@ -280,5 +170,21 @@ class ProductController extends Controller
             'total' => $total,
             'count' => $count
         ], 200);
+    }
+
+    /**
+     * @param Request $request
+     * @param $alias
+     * @param $sub_alias
+     * @return Factory|View
+     */
+    public function detail(Request $request, $alias, $sub_alias){
+        $data = $request->all();
+        $products = $this->productRepository->getListFeatured();
+
+        return view('shop.detail', compact(
+            'products',
+            'data'
+        ));
     }
 }
