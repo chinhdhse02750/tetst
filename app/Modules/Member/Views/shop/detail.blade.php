@@ -12,6 +12,7 @@
                         <div class="shop-sidebar">
                             <button class="no-round-btn" id="filter-sidebar--closebtn">Close sidebar</button>
                             <div class="shop-sidebar_department">
+                                <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
                                 <div class="department_top mini-tab-title underline">
                                     <h2 class="title">Departments</h2>
                                 </div>
@@ -110,7 +111,9 @@
                                                 </span> @lang('product.label.in_stock')</label>
                                         </div>
 
-                                        <div class="product-select">
+                                        <div class="product-select" data-id="{{ $subData->id }}"
+                                             data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
+                                             data-discount_price="{{ $subData->discount_price }}">
                                             <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
                                             <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
                                         </div>
@@ -278,6 +281,7 @@
             </div>
         </div>
     </div>
+    @include('shop.modal_add_success')
 @endsection
 @push('script')
     <script>

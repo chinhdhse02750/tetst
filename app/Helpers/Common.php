@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Common
 {
@@ -46,5 +47,20 @@ class Common
                 preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))
             ))
         ), $delimiter));
+    }
+
+    /**
+     * @param $slug
+     * @param $existingCount
+     * @return string
+     */
+    public static function getUniqueUrl($slug, $existingCount)
+    {
+        if($existingCount)
+        {
+            return $slug . '-' . ($existingCount);
+        }
+
+        return $slug;
     }
 }

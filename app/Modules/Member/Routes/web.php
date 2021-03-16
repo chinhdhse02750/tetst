@@ -36,6 +36,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('home');
 Route::get('/{alias}', 'ProductController@index')->name('shop.view');
 Route::get('/{alias}/{sub_alias}', 'ProductController@detail')->name('shop.detail');
+Route::post('/{alias}/{sub_alias}', 'ProductController@detail')->name('shop.detail');
 Route::post('/review', 'ProductController@productReview')->name('product.review');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('member.register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');

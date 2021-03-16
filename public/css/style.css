@@ -7677,6 +7677,11 @@ footer.coffee .newletter .newletter_input button:focus {
 
 .shop-detail .shop-detail_more-info, #quickview .quickview-box .shop-detail_more-info {
     border: 1px solid #ebebeb;
+    margin-top: 10px;
+}
+
+.slick-slide {
+    outline-color : #c4996c;
 }
 
 .shop-detail .shop-detail_more-info #tab-so3 ul, #quickview .quickview-box .shop-detail_more-info #tab-so3 ul {

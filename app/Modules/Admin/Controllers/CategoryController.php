@@ -16,6 +16,8 @@ use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
 use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Support\Str;
+use App\Helpers\Common;
 
 class CategoryController extends Controller
 {
@@ -76,6 +78,9 @@ class CategoryController extends Controller
     {
         try {
             $data = $request->except(['_token']);
+            $slug = Str::slug($data['name']);
+            $existingCount = Category::where('alias', 'like', $slug . '%')->count();
+            $data['alias'] = Common::getUniqueUrl($slug, $existingCount);
             $this->categoryRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 

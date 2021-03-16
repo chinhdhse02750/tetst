@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin\Requests\User;
+namespace App\Modules\Admin\Requests\Product;
 
 use App\Entities\User;
 use App\Helpers\Constants;
@@ -26,40 +26,17 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [];
-        $request = $this->all();
-        $rules['age'] = 'required|numeric';
-        $rules['height'] = 'required|numeric';
-        $rules['weight'] = 'required|numeric';
-        $rules['blood_type'] = 'required';
-        $rules['smoking'] = 'required';
-        $rules['underwear_type'] = 'required';
+        return [
+            'alias' =>'required|unique:products,alias'
+        ];
 
-        return $rules;
     }
 
     public function messages()
     {
         return [
-            'email.required' => trans('validation.required'),
-            'email.unique' => trans('validation.unique'),
-            'password.required' => trans('validation.required'),
-            'password.min' => trans('validation.min'),
-            'password_confirm.required' => trans('validation.required'),
-            'password_confirm.same' => trans('validation.same'),
-            'name.required' => trans('validation.required'),
-            'rank_id.required' => trans('validation.required'),
-            'tel.required' => trans('validation.required'),
-            'tel.numeric' => trans('validation.numeric'),
-            'age.required' => trans('validation.required'),
-            'age.numeric' => trans('validation.numeric'),
-            'height.required' => trans('validation.required'),
-            'height.numeric' => trans('validation.numeric'),
-            'weight.required' => trans('validation.required'),
-            'weight.numeric' => trans('validation.numeric'),
-            'blood_type.required' => trans('validation.required'),
-            'smoking.required' => trans('validation.required'),
-            'underwear_type.required' => trans('validation.required'),
+            'alias.required' => 'URL tùy chỉnh không được để trống',
+            'alias.unique' => 'URL tùy chỉnh đã tồn tại',
         ];
     }
 }

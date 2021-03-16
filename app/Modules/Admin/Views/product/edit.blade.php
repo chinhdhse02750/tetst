@@ -117,17 +117,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row form-group">
-                                        <label
-                                                class="form-control-label col-sm-2">@lang('product.label.alias')
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="alias" id="alias" class="form-control"
-                                                   value="{{ $products->alias }}"
-                                                   maxlength="255" required>
-                                        </div>
-                                    </div>
+
 
                                     <div class="form-group row flex-group">
                                         <div class="col-md-2 control-label">
@@ -222,7 +212,7 @@
                                             <input type="checkbox" class="radio" name="status" value="1" id="status"
                                                    @if ($products->status === 1 ) checked @endif
                                             />
-                                            <label for="n_alcohol">Hieenr thij</label>
+                                            <label for="n_alcohol">Hiển thị</label>
                                         </div><!--col-->
                                     </div><!--form-group-->
 

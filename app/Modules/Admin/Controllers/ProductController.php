@@ -3,6 +3,8 @@
 namespace App\Modules\Admin\Controllers;
 
 use App\Entities\Category;
+use App\Entities\Product;
+use App\Helpers\Common;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
 use App\Repositories\UnitRepository;
 use App\Services\UserService;
@@ -18,6 +20,8 @@ use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
 use App\Services\ProductService;
+use App\Modules\Admin\Requests\Product\UpdateProductRequest;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -95,6 +99,9 @@ class ProductController extends Controller
         try {
             $data = $request->except(['_token']);
             $data['image'] = implode(',', $data['image']);
+            $slug = Str::slug($data['name']);
+            $existingCount = Product::where('alias', 'like', $slug . '%')->count();
+            $data['alias'] = Common::getUniqueUrl($slug, $existingCount);
             $listCategoryId = explode(',', $data['category_id']);
             $product = $this->productRepository->create($data);
             $productId = $product->id;

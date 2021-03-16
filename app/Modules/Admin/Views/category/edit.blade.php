@@ -59,17 +59,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <label
-                                            class="form-control-label col-sm-2">@lang('categories.label.alias')
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="alias" id="alias" class="form-control"
-                                               maxlength="255" required value="{{ $categories->alias }}">
-                                    </div>
-                                </div>
-
                                 <div class="form-group row flex-group">
                                     <div class="col-md-2 control-label">
                                         <span>@lang('categories.label.image')</span>
