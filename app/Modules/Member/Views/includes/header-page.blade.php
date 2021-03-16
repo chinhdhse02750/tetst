@@ -205,12 +205,12 @@
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">
                     <div class="department-menu_block">
-                        <div class="department-menu d-flex justify-content-between align-items-center"><i
-                                class="fas fa-bars"></i>Danh mục sản phẩm<span><i></i></span></div>
+                        <div class="department-menu d-flex justify-content-between align-items-center">
+                            <i class="fas fa-bars"></i>Danh mục sản phẩm<span><i class="arrow_carrot-down arrow_carrot-up"></i></span></div>
                         <div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">
                             <ul>
                                 @foreach($categories as $menu)
-                                    <li><a href="{{ $menu->alias }}">{{ $menu->name }}
+                                    <li><a href="{{ url('/') }}/{{ $menu->alias }}">{{ $menu->name }}
                                             @if(count($menu->childrenCategories))
                                                 <span class="submenu-indicator">+</span>
                                             @endif

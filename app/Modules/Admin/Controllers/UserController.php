@@ -5,7 +5,7 @@ namespace App\Modules\Admin\Controllers;
 use App\Helpers\Media;
 use App\Helpers\Common;
 use App\Helpers\UserProfileAttribute;
-use App\Modules\Admin\Requests\User\UpdateUserRequest;
+use App\Modules\Admin\Requests\User\UpdateProductRequest;
 use App\Repositories\AreaRepository;
 use App\Repositories\MediaRepository;
 use App\Repositories\RankRepository;
@@ -14,7 +14,7 @@ use App\Repositories\UserProfileRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\UserVideoRepository;
 use App\Repositories\VideoRepository;
-use App\Modules\Admin\Requests\User\StoreUserRequest;
+use App\Modules\Admin\Requests\User\StoreProductRequest;
 use App\Services\UserScheduleService;
 use App\Services\UserService;
 use App\Traits\MediaTrait;
@@ -242,12 +242,12 @@ class UserController extends Controller
     /**
      * Add new user.
      *
-     * @param StoreUserRequest $request
+     * @param StoreProductRequest $request
      * @param string $type
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function store(StoreUserRequest $request, string $type)
+    public function store(StoreProductRequest $request, string $type)
     {
         DB::beginTransaction();
         try {
@@ -326,13 +326,13 @@ class UserController extends Controller
     /**
      * Update data users.
      *
-     * @param UpdateUserRequest $request
+     * @param UpdateProductRequest $request
      * @param int $id
      * @param string $type
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function update(UpdateUserRequest $request, string $type, int $id)
+    public function update(UpdateProductRequest $request, string $type, int $id)
     {
         DB::beginTransaction();
         try {

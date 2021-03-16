@@ -30,7 +30,6 @@ window.onload = function () {
 
         $('header .department-menu').on('click', function (event) {
             $(this).next().slideToggle('100');
-            $(this).children('span').children().toggleClass('arrow_carrot-down arrow_carrot-up');
         });
 
         $('#mobile-menu #ogami-mobile-menu .sub-menu').slideUp();

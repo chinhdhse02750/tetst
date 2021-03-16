@@ -1,6 +1,6 @@
 <ul class="submenu">
     @foreach($childs as $child)
-        <li><a href="{{ $child->alias }}">{{ $child->name }}
+        <li><a href="{{ url('/') }}/{{ $child->alias }}">{{ $child->name }}
                 @if(count($child->childrenCategories))
                     <span class="submenu-indicator">+</span>
                 @endif

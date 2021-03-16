@@ -74,8 +74,8 @@ class ProductController extends Controller
         $checkUrl = in_array($alias, $categories);
         $settingAlias = config('setting-alias');
         $requestSetting = $settingAlias['map_alias'];
-        if($checkUrl) {
-            $cateData = $this->categoryRepository->findByField('alias',$alias)->first();
+        if ($checkUrl) {
+            $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
             $childId = $cateData->getAllChildren()->pluck('id')->toArray();
             $id = [$cateData->id];
             $allId = array_merge($id, $childId);
@@ -99,9 +99,9 @@ class ProductController extends Controller
                     }
                 }
             }
-            $products = $this->productRepository->getListProductByCategory($sort, $condition, $allId ,  $page);
+            $products = $this->productRepository->getListProductByCategory($sort, $condition, $allId, $page);
 
-            if($alias === "tat-ca-san-pham"){
+            if ($alias === "tat-ca-san-pham") {
                 $products = $this->productRepository->getListOrder($sort, $condition, $page);
             }
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
                 'requestSetting',
                 'cateData'
             ));
-        }
+        }//end if
 
 
         return abort(404);
@@ -178,13 +178,20 @@ class ProductController extends Controller
      * @param $sub_alias
      * @return Factory|View
      */
-    public function detail(Request $request, $alias, $sub_alias){
+    public function detail(Request $request, $alias, $sub_alias)
+    {
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
+        $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
+        $subData = $this->productRepository->findByField('alias', $sub_alias)->first();
+        $images = explode(',', $subData->image);
 
         return view('shop.detail', compact(
             'products',
-            'data'
+            'data',
+            'cateData',
+            'subData',
+            'images'
         ));
     }
 }

@@ -194,7 +194,7 @@
                                             <div class="col-6 col-md-3">
                                                 <div class="product pink">
                                                     <a class="product-img"
-                                                       href="{{ route('shop.detail', ['alias' => $alias, 'sub_alias' => $value->name]) }}">
+                                                       href="{{ route('shop.detail', ['alias' => $alias, 'sub_alias' => $value->alias]) }}">
                                                         <img src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                              alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>

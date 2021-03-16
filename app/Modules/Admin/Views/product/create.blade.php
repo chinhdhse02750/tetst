@@ -82,7 +82,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="row form-group">
                                         <label
                                                 class="form-control-label col-sm-2">@lang('product.label.alias')

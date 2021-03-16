@@ -5,6 +5,7 @@ namespace App\Modules\Admin\Controllers;
 use App\Entities\Category;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
 use App\Repositories\UnitRepository;
+use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Auth;
@@ -16,26 +17,32 @@ use App\Repositories\ProductRepository;
 use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
     protected $categoryRepository;
     protected $productRepository;
     protected $unitRepository;
+    protected $productService;
 
     /**
      * ProductController constructor.
      * @param CategoryRepository $categoryRepository
      * @param ProductRepository $productRepository
+     * @param UnitRepository $unitRepository
+     * @param ProductService $productService
      */
     public function __construct(
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
-        UnitRepository $unitRepository
+        UnitRepository $unitRepository,
+        ProductService $productService
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
         $this->unitRepository = $unitRepository;
+        $this->productService = $productService;
     }
     /**
      * Display a listing of the resource.
@@ -71,7 +78,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent', '0');
+        $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
 
         return view('product.create', ['categories' => $categories, 'units' => $units]);
@@ -115,7 +122,7 @@ class ProductController extends Controller
     {
         $products = $this->productRepository->find($id);
         $image = explode(',', $products['image']);
-        $categories = $this->categoryRepository->findByField('parent', '0');
+        $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
         $categoryId = $products->category()->pluck('category_id');
         $stringCategory = $categoryId->implode(',');
@@ -143,6 +150,7 @@ class ProductController extends Controller
         try {
             $data = $request->except(['_token']);
             $data['image'] = implode(',', $data['image']);
+
             $this->productRepository->find($id)->update($data);
             $thisProduct = $this->productRepository->find($id);
             $oldListCategoryId = explode(',', $data['old_category_id']);

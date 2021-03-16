@@ -61,4 +61,9 @@ trait ProductScope
         });
     }
 
+    public function scopeWhereAlias(object $query, $alias)
+    {
+        return $query ->where('alias', 'like', "%" . $alias . "%");
+    }
+
 }

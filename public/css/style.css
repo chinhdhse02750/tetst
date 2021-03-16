@@ -3524,14 +3524,12 @@ header .navigation-filter .department-menu_block {
 header .navigation-filter .department-menu_block .department-menu {
     background-color: #3d2314;
     height: 100%;
-    display: flex;
     cursor: pointer;
-    padding: 0 15px;
+    padding: 0 10px;
     font-family: "sans-serif";
     font-size: 18px;
     color: #fff;
     line-height: 1;
-    display: block;
 }
 
 header .navigation-filter .department-menu_block .department-menu i {
@@ -7387,12 +7385,12 @@ footer.coffee .newletter .newletter_input button:focus {
     cursor: pointer;
 }
 
+
 .shop-detail .shop-detail_img .slide-img .slide-img_block:last-child, #quickview .quickview-box .shop-detail_img .slide-img .slide-img_block:last-child {
     margin-right: 0;
 }
 
 .shop-detail .shop-detail_img .slide-img .slide-img_block.slick-current, #quickview .quickview-box .shop-detail_img .slide-img .slide-img_block.slick-current {
-    border: 2px solid #3d2314;
     border-radius: 2px;
 }
 

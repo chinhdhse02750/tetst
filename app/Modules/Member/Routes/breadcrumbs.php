@@ -13,15 +13,15 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 
-
 Breadcrumbs::for('shop.view', function ($trail, $category) {
-
-//    if ($category->parent !== 0) {
-//        dd($category->parent);
-//        $trail->parent(('shop.view'), $category->parent);
-//    } else {
-//
-//    }
     $trail->parent('home');
     $trail->push($category->name, route('shop.view', $category->alias));
+});
+
+Breadcrumbs::for('shop.detail', function ($trail, $category, $sub_category) {
+    $trail->parent(('shop.view'), $category);
+    $trail->push(
+        $sub_category->name,
+        route('shop.detail', ['alias' => $category->alias, 'sub_alias' => $sub_category->alias])
+    );
 });
