@@ -2569,7 +2569,7 @@ a:focus {
     line-height: 39px;
     display: block;
     border: 0;
-    width: 100px;
+    width: 250px;
 }
 
 .shop-sidebar .shop-sidebar_price-filter .price-filter_bottom .filter-group button {
@@ -2582,18 +2582,33 @@ a:focus {
     height: 3px;
     background-color: #ebebeb;
     border: 0;
+    position: relative;
+    text-align: left;
 }
 
 .shop-sidebar .shop-sidebar_price-filter .price-filter_bottom .range-bar {
+    position: absolute;
+    opacity: .5;
+    border-radius: 99px;
+    z-index: 10;
+    font-size: 10px;
+    display: block;
+    border: 0;
     background-color: #3d2314;
+    top: 0;
+    height: 100%;
 }
 
 .shop-sidebar .shop-sidebar_price-filter .price-filter_bottom .handle {
+    position: absolute;
+    z-index: 2;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    outline: none;
+    top: -5px;
     border-radius: 999px;
     background-color: #3d2314;
-    top: -5px;
-    height: 15px;
-    width: 15px;
 }
 
 .shop-sidebar .shop-sidebar_price-filter .price-filter_bottom .ui-state-active {

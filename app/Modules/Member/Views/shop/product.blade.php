@@ -9,114 +9,67 @@
                 <div class="row">
                     <div class="col-xl-3">
                         <div class="shop-sidebar">
+
                             <button class="no-round-btn" id="filter-sidebar--closebtn">Close sidebar</button>
-                            <div class="shop-sidebar_department">
-                                <div class="department_top mini-tab-title underline">
-                                    <h2 class="title">Departments</h2>
-                                </div>
-                                <div class="department_bottom">
-                                    <ul>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Meat</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Vegetables</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fruit & Nut
-                                                Gifts</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Berries</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Ocean Foods</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Butter & Eggs</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fastfood</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Onion</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Papayaya &
-                                                Crisps</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Oatmeal</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Bananas</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="shop-sidebar_price-filter">
-                                <div class="price-filter_top mini-tab-title underline">
-                                    <h2 class="title">Filter By Price</h2>
-                                </div>
-                                <div class="price-filter_bottom">
-                                    <label for="amount">Price range:</label>
-                                    <div class="filter-group">
-                                        <input id="amount" type="text" readonly="">
-                                        <button class="normal-btn">Fiter</button>
+{{--                            <div class="shop-sidebar_department">--}}
+{{--                                <div class="department_top mini-tab-title underline">--}}
+{{--                                    <h2 class="title">Departments</h2>--}}
+{{--                                </div>--}}
+{{--                                <div class="department_bottom">--}}
+{{--                                    <ul>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Meat</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Vegetables</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fruit & Nut--}}
+{{--                                                Gifts</a></li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Berries</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Ocean Foods</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Butter & Eggs</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fastfood</a></li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Onion</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Papayaya &--}}
+{{--                                                Crisps</a></li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Oatmeal</a></li>--}}
+{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Bananas</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <form action="{{ route('shop.view', $cateData->alias) }}" method="GET"
+                                  id="filter_price">
+                                <div class="shop-sidebar_price-filter">
+                                    <div class="price-filter_top mini-tab-title underline">
+                                        <h2 class="title">Lọc theo giá</h2>
                                     </div>
-                                    <div id="slider-range"></div>
-                                </div>
-                            </div>
-                            <div class="shop-sidebar_color-filter">
-                                <div class="color-filter_top mini-tab-title underline">
-                                    <h2 class="title">Color</h2>
-                                </div>
-                                <div class="color-filter_bottom">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: black;"></div>
-                                                <a href="shop_grid+list_3col.html">Black (12)</a>
-                                            </div>
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: red;"></div>
-                                                <a href="shop_grid+list_3col.html">Red (4)</a>
-                                            </div>
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: orange;"></div>
-                                                <a href="shop_grid+list_3col.html">Orange (8)</a>
-                                            </div>
+                                    <div class="price-filter_bottom">
+                                        <label for="amount">Khoảng giá:</label>
+                                        <div class="filter-group">
+                                            <input id="amount" type="text" readonly="">
+                                            <button class="normal-btn">Lọc</button>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: blue;"></div>
-                                                <a href="shop_grid+list_3col.html">Blue (4)</a>
-                                            </div>
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: green;"></div>
-                                                <a href="shop_grid+list_3col.html">Green (9)</a>
-                                            </div>
-                                            <div class="color">
-                                                <div class="visible-color" style="background-color: pink;"></div>
-                                                <a href="shop_grid+list_3col.html">Pink (12)</a>
-                                            </div>
-                                        </div>
+                                        <div id="slider-range"></div>
+                                        <input type="hidden" id="max-price" value="{{ $maxPrice }}">
+                                        <input type="hidden" id="min-price" value="{{ $minPrice }}">
+                                        @foreach($data as $key => $value)
+                                            @if($key != "min-price" && $key != "max-price")
+                                                <input type='hidden' name='{{ $key }}' value='{{ $value }}'/>
+                                            @endif
+                                        @endforeach
+                                        <input type="hidden" name="min-price" id="filter-min-price"
+                                               value="{{ isset($data['min-price']) ? $data['min-price'] : $minPrice }}">
+                                        <input type="hidden" name="max-price" id="filter-max-price"
+                                               value="{{ isset($data['max-price']) ? $data['max-price'] : $maxPrice }}">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="shop-sidebar_size">
-                                <div class="size_top mini-tab-title underline">
-                                    <h2 class="title">Popular size</h2>
-                                </div>
-                                <div class="size_bottom">
-                                    <form>
-                                        <div class="size">
-                                            <input type="checkbox" id="large">
-                                            <label for="large">Large</label>
-                                        </div>
-                                        <div class="size">
-                                            <input type="checkbox" id="medium">
-                                            <label for="medium">Medium</label>
-                                        </div>
-                                        <div class="size">
-                                            <input type="checkbox" id="small">
-                                            <label for="small">Small</label>
-                                        </div>
-                                        <div class="size">
-                                            <input type="checkbox" id="tiny">
-                                            <label for="tiny">Tiny</label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                             <div class="shop-sidebar_tag">
                                 <div class="tag_top mini-tab-title underline">
-                                    <h2 class="title">Product tag</h2>
+                                    <h2 class="title">Từ khóa</h2>
                                 </div>
                                 <div class="tag_bottom"><a class="tag-btn" href="shop_grid+list_3col.html">organic</a><a
                                             class="tag-btn" href="shop_grid+list_3col.html">vegatable</a><a
@@ -143,13 +96,17 @@
                                         <div class="col-6 text-right">
                                             <div id="show-filter-sidebar">
                                                 <h5><i class="fas fa-bars"></i>Show sidebar</h5>
-                                                Col
                                             </div>
                                         </div>
                                         <div class="col-12 col-xl-8">
                                             <div class="product-option product-option-custom">
                                                 <form action="{{ route('shop.view', $cateData->alias) }}" method="GET"
                                                       id="sort_product">
+                                                    @foreach( $data as $key => $value)
+                                                        @if($key != "order_by")
+                                                            <input type='hidden' name='{{ $key }}' value='{{ $value }}'/>
+                                                        @endif
+                                                    @endforeach
                                                     <div class="product-filter">
                                                         <select class="select-form select-custom" name="order_by">
                                                             <option @if(isset($data['order_by']) && $data['order_by'] === 'create_at') selected
@@ -241,6 +198,13 @@
             $('#sort_product').on('change', function () {
                 $('#sort_product').submit();
             });
+
+            // $('.sort_product').on('submit',function(e){
+            //     e.preventDefault();
+            //     let formData=$(this).serialize();
+            //     let fullUrl = window.location.href;
+            //     window.location.href = fullUrl+"&"+formData;
+            // })
         });
     </script>
 @endpush

@@ -80,30 +80,4 @@ class Product extends Model implements Transformable
         return 100 - (($this->discount_price)*100)/$this->price;
     }
 
-    /**
-     * @param $value
-     */
-    public function setSlugAttribute($value)
-    {
-        if (static::whereAlias($slug = str_slug($value))->exists()) {
-            $slug = $this->incrementSlug($slug);
-        }
-
-        $this->attributes['alias'] = $slug;
-    }
-
-    /**
-     * @param $slug
-     * @return string
-     */
-    public function incrementSlug($slug)
-    {
-        $original = $slug;
-        $count = 2;
-        while (static::whereAlias($slug)->exists()) {
-            $slug = "{$original}-" . $count++;
-        }
-
-        return $slug;
-    }
 }

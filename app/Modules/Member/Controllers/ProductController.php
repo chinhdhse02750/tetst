@@ -18,6 +18,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -80,37 +81,47 @@ class ProductController extends Controller
             $id = [$cateData->id];
             $allId = array_merge($id, $childId);
             $data = $request->all();
-            $sort = "created_at";
-            $condition = "DESC";
+            $filter['sort'] = "created_at";
+            $filter['condition'] = "DESC";
+            $filter['min'] = 0;
+            $filter['max'] = 0;
             $page = Constants::MEMBER_LIST_PER_PAGE;
             if (isset($data['order_by']) && $data != null) {
                 $page = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
                 if (strpos($data['order_by'], 'price') !== false) {
-                    $condition = 'DESC';
-                    $sort = "discount_price";
+                    $filter['condition'] = "DESC";
+                    $filter['sort'] = "discount_price";
                     if ($data['order_by'] === 'price') {
-                        $condition = 'ASC';
+                        $filter['condition'] = "ASC";
                     }
                 } elseif (strpos($data['order_by'], 'name') !== false) {
-                    $condition = 'DESC';
-                    $sort = 'name';
+                    $filter['condition'] = "DESC";
+                    $filter['sort'] = "name";
                     if ($data['order_by'] === 'name') {
-                        $condition = 'ASC';
+                        $filter['condition'] = "ASC";
                     }
                 }
             }
-            $products = $this->productRepository->getListProductByCategory($sort, $condition, $allId, $page);
+            if (isset($data['min-price']) &&  isset($data['max-price']) && $data != null) {
+                $filter['min'] = $data['min-price'];
+                $filter['max'] = $data['max-price'];
+            }
+            $products = $this->productRepository->getListProductByCategory($filter, $allId, $page);
 
             if ($alias === "tat-ca-san-pham") {
-                $products = $this->productRepository->getListOrder($sort, $condition, $page);
+                $products = $this->productRepository->getListOrder($filter, $page);
             }
+            $maxPrice = $this->productRepository->all()->max('price');
+            $minPrice =  $this->productRepository->all()->min('price');
 
             return view('shop.product', compact(
                 'products',
                 'data',
                 'alias',
                 'requestSetting',
-                'cateData'
+                'cateData',
+                'maxPrice',
+                'minPrice'
             ));
         }//end if
 

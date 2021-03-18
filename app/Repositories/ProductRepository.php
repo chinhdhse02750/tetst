@@ -66,6 +66,7 @@ class ProductRepository extends BaseRepository
     }
 
     /**
+     * @param int $paged
      * @return mixed
      */
     public function getListFeatured(int $paged = Constants::MEMBER_LIST_PER_PAGE)
@@ -80,18 +81,27 @@ class ProductRepository extends BaseRepository
             ->paginate($paged);
     }
 
-    public function getListOrder($order, $condition, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    /**
+     * @param $filter
+     * @param int $paged
+     * @return mixed
+     */
+    public function getListOrder($filter, int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
             ->with([
                 'units',
                 'category',
             ])
-            ->order($order, $condition)
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
             ->paginate($paged);
     }
 
-
+    /**
+     * @param int $paged
+     * @return mixed
+     */
     public function getListNewProduct(int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
@@ -101,7 +111,13 @@ class ProductRepository extends BaseRepository
             ->paginate($paged);
     }
 
-    public function getListProductByCategory($order, $condition, $cateId, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    /**
+     * @param $filter
+     * @param $cateId
+     * @param int $paged
+     * @return mixed
+     */
+    public function getListProductByCategory($filter, $cateId, int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
             ->with([
@@ -109,12 +125,42 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->category($cateId)
-            ->order($order, $condition)
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
+            ->paginate($paged);
+    }
+
+    /**
+     * @param $order
+     * @param $condition
+     * @param $cateId
+     * @param int $paged
+     * @param $data
+     * @return mixed
+     */
+    public function getListProductWithCondition(
+        $data,
+        $condition,
+        $cateId,
+        int $paged = Constants::MEMBER_LIST_PER_PAGE
+    ) {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->category($cateId)
+            ->filterPrice(
+                isset($data['min-price']) ? $data['min-price'] : null,
+                isset($data['max-price']) ? $data['max-price'] : null
+            )
+            ->order(isset($data['order_by']) ? $data['order_by'] : null, $condition)
             ->paginate($paged);
     }
 
 
     /**
+     * @param int $paged
      * @return mixed
      */
     public function getListBestSeller(int $paged = Constants::MEMBER_LIST_PER_PAGE)

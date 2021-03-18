@@ -3,6 +3,7 @@
 namespace App\Traits\Scope;
 
 use App\Helpers\Constants;
+use Illuminate\Support\Facades\DB;
 
 trait ProductScope
 {
@@ -43,7 +44,12 @@ trait ProductScope
     }
 
 
-
+    /**
+     * @param object $query
+     * @param $order
+     * @param $condition
+     * @return mixed
+     */
     public function scopeOrder(object $query, $order, $condition)
     {
         if ($order === "discount_price") {
@@ -53,17 +59,42 @@ trait ProductScope
         return $query->orderBy($order, $condition);
     }
 
-
+    /**
+     * @param object $query
+     * @param $cateId
+     * @return mixed
+     */
     public function scopeCategory(object $query, $cateId)
     {
-        return $query->whereHas('category',  function ($q) use ($cateId)  {
+        return $query->whereHas('category', function ($q) use ($cateId) {
             $q->whereIn('category_id', $cateId);
         });
     }
 
+    /**
+     * @param object $query
+     * @param $alias
+     * @return mixed
+     */
     public function scopeWhereAlias(object $query, $alias)
     {
         return $query ->where('alias', 'like', "%" . $alias . "%");
+    }
+
+    /**
+     * @param object $query
+     * @param $minPrice
+     * @param $maxPrice
+     * @return object
+     */
+    public function scopeFilterPrice(object $query, $minPrice, $maxPrice)
+    {
+        if ((isset($minPrice) && $minPrice != 0) || ((isset($maxPrice) && $maxPrice != 0))) {
+            return $query->where(DB::raw('COALESCE(discount_price, price)'), '>', $minPrice)
+                ->where(DB::raw('COALESCE(discount_price, price)'), '<', $maxPrice);
+        }
+
+        return $query;
     }
 
 }

@@ -341,22 +341,29 @@ window.onload = function () {
         /****************************************************
          Shop Price filter
          ****************************************************/
+        let max  = $("#max-price").val();
+        let min  = $("#min-price").val();
+        let minFilter  = $("#filter-min-price").val();
+        let maxFilter  = $("#filter-max-price").val();
         $("#slider-range").slider({
             range: true,
-            min: 0,
-            max: 500,
+            min: parseInt(min),
+            max: parseInt(max),
             classes: {
                 "ui-slider": "slider-bar",
                 "ui-slider-range": "range-bar",
                 "ui-slider-handle": "handle"
             },
-            values: [75, 300],
+            values: [parseInt(minFilter), parseInt(maxFilter)],
             slide: function (event, ui) {
-                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $("#amount").val("¥" + ui.values[0] + " - $" + ui.values[1]);
+                $("#filter-min-price").val(ui.values[0]);
+                $("#filter-max-price").val(ui.values[1]);
             }
         });
         $("#amount").val("$" + $("#slider-range").slider("values", 0) +
             " - $" + $("#slider-range").slider("values", 1));
+
         /****************************************************
          Shop change view
          ****************************************************/
