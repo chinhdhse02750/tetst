@@ -342,12 +342,11 @@ window.onload = function () {
          Shop Price filter
          ****************************************************/
         let max  = $("#max-price").val();
-        let min  = $("#min-price").val();
         let minFilter  = $("#filter-min-price").val();
         let maxFilter  = $("#filter-max-price").val();
         $("#slider-range").slider({
             range: true,
-            min: parseInt(min),
+            min: parseInt(0),
             max: parseInt(max),
             classes: {
                 "ui-slider": "slider-bar",

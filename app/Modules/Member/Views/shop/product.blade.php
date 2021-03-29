@@ -61,7 +61,7 @@
                                             @endif
                                         @endforeach
                                         <input type="hidden" name="min-price" id="filter-min-price"
-                                               value="{{ isset($data['min-price']) ? $data['min-price'] : $minPrice }}">
+                                               value="{{ isset($data['min-price']) ? $data['min-price'] : 0 }}">
                                         <input type="hidden" name="max-price" id="filter-max-price"
                                                value="{{ isset($data['max-price']) ? $data['max-price'] : $maxPrice }}">
                                     </div>
