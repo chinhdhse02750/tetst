@@ -34,6 +34,7 @@ return [
         'units_management' => 'Quản lý đơn vị tính',
         'category_management' => 'Quản lý danh mục',
         'product_management' => 'Quản lý sản phẩm',
+        'tag_management' => 'Quản lý từ khóa',
         'prefectures' => '都道府県管理',
         'master' => 'マスターデータ管理',
         'category'=> 'Danh mục',

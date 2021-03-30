@@ -65,6 +65,18 @@ class Product extends Model implements Transformable
             ->withTimestamps();
     }
 
+
+
+    /**
+     * @return BelongsToMany
+     */
+    public function tag()
+    {
+        return $this->belongsToMany('App\Entities\Tag', 'product_tag', 'product_id', 'tag_id')
+            ->withTimestamps();
+    }
+
+
     /**
      * @return mixed|string'
      */

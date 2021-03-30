@@ -48,6 +48,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(\Request::is('admin/tag*')) }}"
+                           href="{{ route('tags.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.tag_management')
+                        </a>
+                    </li>
 
                 </ul>
             </li>

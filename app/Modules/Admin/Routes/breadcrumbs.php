@@ -193,3 +193,19 @@ Breadcrumbs::for('products.edit', function ($trail, $id) {
     $trail->parent('products.index');
     $trail->push(trans('product.label.edit'), route('products.edit', $id));
 });
+
+Breadcrumbs::for('tags.index', function ($trail) {
+    $trail->push(trans('labels.menu.tags'), route('tags.index'));
+});
+Breadcrumbs::for('tags.create', function ($trail) {
+    $trail->parent('tags.index');
+    $trail->push(trans('tags.label.unit_register'), route('tags.create'));
+});
+Breadcrumbs::for('tags.show', function ($trail, $id) {
+    $trail->parent('tags.index');
+    $trail->push(trans('tags.label.detail'), route('tags.show', $id));
+});
+Breadcrumbs::for('tags.edit', function ($trail, $id) {
+    $trail->parent('tags.index');
+    $trail->push(trans('tags.label.edit'), route('tags.edit', $id));
+});

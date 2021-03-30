@@ -23,9 +23,7 @@
                             <thead>
                             <tr>
                                 <th width="5%">@lang('labels.general.id')</th>
-                                <th width="15%">@lang('categories.label.image')</th>
                                 <th width="15%">@lang('categories.label.name')</th>
-                                <th width="15%">@lang('categories.label.parent')</th>
                                 <th width="30%">@lang('categories.label.description')</th>
                                 <th width="10%">@lang('categories.label.status')</th>
                                 <th width="15%">@lang('labels.general.created_at')</th>
@@ -43,24 +41,7 @@
                                         <div>{{$category->id}}</div>
                                     </td>
                                     <td class="table-text">
-                                        <div class="image-frames"><img class="dz-image-display"
-                                                  alt="{{ $category->image }}"
-                                                  src="{{ url('storage/tmp/'.$category->image) }}">
-                                        </div>
-                                    </td>
-                                    <td class="table-text">
                                         <div>{{$category->name}}</div>
-                                    </td>
-                                    <td class="table-text">
-                                        @if($category->parent === 0)
-                                            ROOT
-                                        @else
-                                            @foreach($categories as $parent)
-                                                @if( $category->parent === $parent->id )
-                                                    {{ $parent->name }}
-                                                @endif
-                                            @endforeach
-                                        @endif
                                     </td>
                                     <td class="table-text">
                                         <div>{{$category->description}}</div>

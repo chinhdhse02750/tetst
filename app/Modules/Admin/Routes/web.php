@@ -27,6 +27,7 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::resource('/accounts', 'AccountController');
         Route::post('accounts/restore/{id}', 'AccountController@restore')->name('accounts.restore');
         Route::resource('/units', 'UnitController');
+        Route::resource('/tags', 'TagController');
     });
 
 Route::middleware('auth:admin')
