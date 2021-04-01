@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="tag_bottom">
                                     @foreach($tags as $key => $value)
-                                        <a class="tag-btn" href="shop_grid+list_3col.html">{{ $value->name }}</a>
+                                        <a class="tag-btn" href="{{ route('shop.view', ['alias' => $value->alias]) }}">{{ $value->name }}</a>
                                     @endforeach
                                 </div>
                             </div>
