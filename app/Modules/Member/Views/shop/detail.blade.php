@@ -43,14 +43,13 @@
                             </div>
                             <div class="shop-sidebar_tag">
                                 <div class="tag_top mini-tab-title underline">
-                                    <h2 class="title">Product tag</h2>
+                                    <h2 class="title">Từ khóa</h2>
                                 </div>
-                                <div class="tag_bottom"><a class="tag-btn" href="shop_grid+list_3col.html">organic</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">vegatable</a><a class="tag-btn"
-                                                                                                        href="shop_grid+list_3col.html">fruits</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">fresh meat</a><a class="tag-btn"
-                                                                                                         href="shop_grid+list_3col.html">fastfood</a><a
-                                        class="tag-btn" href="shop_grid+list_3col.html">natural</a></div>
+                                <div class="tag_bottom">
+                                    @foreach($tags as $key => $value)
+                                        <a class="tag-btn" href="shop_grid+list_3col.html">{{ $value->name }}</a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="filter-sidebar--background" style="display: none"></div>

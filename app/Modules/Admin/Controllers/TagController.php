@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Controllers;
 
 use App\Entities\Category;
+use App\Entities\Tag;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use App\Repositories\CategoryRepository;
+use App\Repositories\TagRepository;
 use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
@@ -21,14 +22,14 @@ use App\Helpers\Common;
 
 class TagController extends Controller
 {
-    protected $categoryRepository;
+    protected $tagRepository;
 
     /**
      * CategoryController constructor.
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(TagRepository $tagRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -38,9 +39,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->orderBy('created_at', $direction = 'DESC')
+        $tag = $this->tagRepository->orderBy('created_at', $direction = 'DESC')
             ->paginate(Constants::DEFAULT_PER_PAGE);
-        return view('category.index', ['categories' => $categories]);
+        return view('tag.index', ['tags' => $tag]);
     }
 
     /**
@@ -52,8 +53,8 @@ class TagController extends Controller
      */
     public function show(int $id)
     {
-        $categories = $this->categoryRepository->find($id);
-        return view('category.detail', ['categories' => $categories]);
+        $tags = $this->tagRepository->find($id);
+        return view('tag.detail', ['tags' => $tags]);
     }
 
     /**
@@ -63,9 +64,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        $categories = $this->categoryRepository->findByField('parent', '0');
-
-        return view('category.create', ['categories' => $categories]);
+        return view('tag.create');
     }
 
     /**
@@ -81,16 +80,16 @@ class TagController extends Controller
             $slug = Str::slug($data['name']);
             $existingCount = Category::where('alias', 'like', $slug . '%')->count();
             $data['alias'] = Common::getUniqueUrl($slug, $existingCount);
-            $this->categoryRepository->create($data);
+            $this->tagRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
             return redirect()
-                ->route('categories.index');
+                ->route('tags.index');
         } catch (Exception $e) {
             Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
 
             return redirect()
-                ->route('categories.index')
+                ->route('tags.index')
                 ->withErrors($e->getMessage());
         }//end try
     }
@@ -102,9 +101,8 @@ class TagController extends Controller
      */
     public function edit(int $id)
     {
-        $categories = $this->categoryRepository->find($id);
-        $menus = $this->categoryRepository->findByField('parent', '0');
-        return view('category.edit', ['categories' => $categories, 'menus' => $menus]);
+        $tags = $this->tagRepository->find($id);
+        return view('tag.edit', ['tags' => $tags]);
     }
 
     /**
@@ -117,14 +115,17 @@ class TagController extends Controller
     {
         try {
             $data = $request->except(['_token']);
-            $this->categoryRepository->find($id)->update($data);
+            $slug = Str::slug($data['name']);
+            $existingCount = Category::where('alias', 'like', $slug . '%')->count();
+            $data['alias'] = Common::getUniqueUrl($slug, $existingCount);
+            $this->tagRepository->find($id)->update($data);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
             return redirect()
-                ->route('categories.index');
+                ->route('tags.index');
         } catch (Exception $e) {
             Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
             return redirect()
-                ->route('categories.index')
+                ->route('tags.index')
                 ->withErrors($e->getMessage());
         }//end try
     }
@@ -136,12 +137,12 @@ class TagController extends Controller
      */
     public function destroy(int $id)
     {
-        $result = $this->categoryRepository->find($id);
+        $result = $this->tagRepository->find($id);
         if ($result) {
             $result->delete();
             Session::flash('success_msg', trans('alerts.general.success.deleted'));
         }
-        return redirect()->route('categories.index');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -152,5 +153,3 @@ class TagController extends Controller
         return Auth::guard('admin');
     }
 }
-
-

@@ -14,6 +14,7 @@ return [
         'detail' => 'Chi tiết',
         'select_category' => 'Lựa chọn danh mục',
         'select_unit' => 'Lựa chọn đơn vị tính',
+        'select_tag' => 'Lựa chọn từ khóa',
         'alias' => 'URL tùy chỉnh',
         'image' => 'Hình ảnh',
         'status' => 'Trạng thái',

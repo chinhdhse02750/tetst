@@ -117,7 +117,26 @@
                                         </div>
                                     </div>
 
-
+                                    <div class="row form-group">
+                                        <label class="col-md-2 form-control-label"
+                                               for="">@lang('product.label.select_tag')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            <select class="custom-select select-tag"  multiple="multiple">
+                                                @foreach($tags as $tag)
+                                                    <option
+                                                        @if (in_array($tag->id, $tagId->toArray()) ) selected
+                                                        @endif
+                                                    id="{{ $tag->id }}"
+                                                            value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="hidden" name="old_tag_id" id="old_tag_id"
+                                                   value="{{ $stringTag }}">
+                                            <input type="hidden" name="tag_id" id="tag_id"
+                                                   value="{{ $stringTag }}">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row flex-group">
                                         <div class="col-md-2 control-label">
@@ -275,6 +294,25 @@
                 let data = e.params.data;
                 if (listID.indexOf(data.id) != -1) {
                     $('#category_id').val($('#category_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
+                }
+            });
+
+
+            $('.select-tag').select2();
+
+            $('.select-tag').on('select2:select', function (e) {
+                let data = e.params.data;
+                if ($('#tag_id').val() === "") {
+                    $('#tag_id').val(data.id);
+                } else {
+                    $('#tag_id').val($('#tag_id').val() + ',' + data.id);
+                }
+            });
+            $('.select-tag').on('select2:unselect', function (e) {
+                let listID = $('#tag_id').val();
+                let data = e.params.data;
+                if (listID.indexOf(data.id) != -1) {
+                    $('#tag_id').val($('#tag_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
                 }
             });
         });

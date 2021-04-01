@@ -32,5 +32,12 @@ class Tag extends Model implements Transformable
         'alias',
     ];
 
-
+    /**
+     * @return BelongsToMany
+     */
+    public function product()
+    {
+        return $this->belongsToMany('App\Entities\Product', 'product_tag', 'product_id', 'tag_id')
+            ->withPivot('name', 'alias')->withTimestamps();
+    }
 }

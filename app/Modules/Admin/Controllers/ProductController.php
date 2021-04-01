@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\TagRepository;
 use App\Helpers\Constants;
 use Illuminate\View\View;
 use PHPUnit\Exception;
@@ -29,6 +30,7 @@ class ProductController extends Controller
     protected $productRepository;
     protected $unitRepository;
     protected $productService;
+    protected $tagRepository;
 
     /**
      * ProductController constructor.
@@ -41,12 +43,14 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository,
-        ProductService $productService
+        ProductService $productService,
+        TagRepository $tagRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
         $this->unitRepository = $unitRepository;
         $this->productService = $productService;
+        $this->tagRepository = $tagRepository;
     }
     /**
      * Display a listing of the resource.
@@ -58,6 +62,7 @@ class ProductController extends Controller
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')
+            ->with('tag')
             ->paginate(Constants::DEFAULT_PER_PAGE);
         return view('product.index', ['products' => $products]);
     }
@@ -131,8 +136,11 @@ class ProductController extends Controller
         $image = explode(',', $products['image']);
         $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
+        $tags = $this->tagRepository->all();
         $categoryId = $products->category()->pluck('category_id');
+        $tagId = $products->tag()->pluck('tag_id');
         $stringCategory = $categoryId->implode(',');
+        $stringTag = $tagId->implode(',');
         return view(
             'product.edit',
             ['products' => $products,
@@ -140,7 +148,10 @@ class ProductController extends Controller
                 'units' => $units,
                 'categoryId' => $categoryId,
                 'stringCategory' => $stringCategory,
-                'images' => $image
+                'tagId' => $tagId,
+                'stringTag' => $stringTag,
+                'images' => $image,
+                'tags' => $tags
             ]
         );
     }
@@ -162,8 +173,12 @@ class ProductController extends Controller
             $thisProduct = $this->productRepository->find($id);
             $oldListCategoryId = explode(',', $data['old_category_id']);
             $listCategoryId = explode(',', $data['category_id']);
+            $oldListTag = explode(',', $data['old_tag_id']);
+            $listTag = explode(',', $data['tag_id']);
             $thisProduct->category()->detach($oldListCategoryId);
             $thisProduct->category()->attach($listCategoryId);
+            $thisProduct->tag()->detach($oldListTag);
+            $thisProduct->tag()->attach($listTag);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
             return redirect()
                 ->route('products.index');
