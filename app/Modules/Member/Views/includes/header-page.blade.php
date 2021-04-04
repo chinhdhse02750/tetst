@@ -53,7 +53,7 @@
                         <ul class="mb-0">
                             <li class="toggleable"><a class="menu-item" href="{{ route('home') }}">Trang chủ</a></li>
                             <li class="toggleable"><a class="menu-item"
-                                                      href="{{ route('shop.view', 'tat-ca-san-pham') }}">Shop</a></li>
+                                                      href="{{ route('cate.view', 'tat-ca-san-pham') }}">Shop</a></li>
                             <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>
                                 <ul class="sub-menu">
                                     <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
@@ -132,8 +132,8 @@
                             <button class="no-round-btn" id="mobile-menu--closebtn">Close menu</button>
                             <div class="mobile-menu_items">
                                 <ul class="mb-0 d-flex flex-column">
-                                    <li class="toggleable"><a class="menu-item active" href="index.html">Home</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                    <li class="toggleable"><a class="menu-item active" href="index.html">Home</a>
+                                        <span class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="index.html">Homepage 1</a></li>
                                             <li><a href="homepage02.html">Homepage 2</a></li>
@@ -209,17 +209,17 @@
                             <i class="fas fa-bars"></i>Danh mục sản phẩm<span><i class="arrow_carrot-down arrow_carrot-up"></i></span></div>
                         <div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">
                             <ul>
-                                @foreach($categories as $menu)
-                                    <li><a href="{{ url('/') }}/{{ $menu->alias }}">{{ $menu->name }}
-                                            @if(count($menu->childrenCategories))
-                                                <span class="submenu-indicator">+</span>
-                                            @endif
-                                        </a>
-                                        @if(count($menu->childrenCategories))
-                                            @include('includes.menu_sub',['childs' => $menu->childrenCategories])
-                                        @endif
-                                    </li>
-                                @endforeach
+                                {{--@foreach($categories as $menu)--}}
+                                    {{--<li><a href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}--}}
+                                            {{--@if(count($menu->childrenCategories))--}}
+                                                {{--<span class="submenu-indicator">+</span>--}}
+                                            {{--@endif--}}
+                                        {{--</a>--}}
+                                        {{--@if(count($menu->childrenCategories))--}}
+                                            {{--@include('includes.menu_sub',['childs' => $menu->childrenCategories])--}}
+                                        {{--@endif--}}
+                                    {{--</li>--}}
+                                {{--@endforeach--}}
                             </ul>
                         </div>
                         {{--                        <div class="department-dropdown-menu">--}}

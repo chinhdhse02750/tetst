@@ -34,9 +34,11 @@ Route::group([['middleware' => 'auth']], function () {
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('home');
-Route::get('/{alias}', 'ProductController@index')->name('shop.view');
-Route::get('/{alias}/{sub_alias}', 'ProductController@detail')->name('shop.detail');
-Route::post('/{alias}/{sub_alias}', 'ProductController@detail')->name('shop.detail');
+Route::get('/{product}', 'ProductController@index')->name('product.detail');
+Route::get('/danh-muc/{category}', 'CategoryController@index')->name('cate.view');
+Route::get('/tu-khoa/{alias}', 'TagController@index')->name('tag.view');
+//Route::get('/{alias}/{sub_alias}', 'ProductController@detail')->where('alias', '^(?!tu-khoa).*$')->name('shop.detail');
+//Route::post('/{alias}/{sub_alias}', 'ProductController@detail')->where('alias', '^(?!tu-khoa).*$')->name('shop.detail');
 Route::post('/review', 'ProductController@productReview')->name('product.review');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('member.register');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');

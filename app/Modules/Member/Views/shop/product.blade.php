@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="main">
-    {!! Breadcrumbs::render('shop.view', $cateData) !!}
+    {!! Breadcrumbs::render('cate.view', $cateData) !!}
     <!-- End breadcrumb-->
         <div class="shop-layout">
             <div class="container">
@@ -11,36 +11,33 @@
                         <div class="shop-sidebar">
 
                             <button class="no-round-btn" id="filter-sidebar--closebtn">Close sidebar</button>
-{{--                            <div class="shop-sidebar_department">--}}
-{{--                                <div class="department_top mini-tab-title underline">--}}
-{{--                                    <h2 class="title">Departments</h2>--}}
-{{--                                </div>--}}
-{{--                                <div class="department_bottom">--}}
-{{--                                    <ul>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Meat</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Vegetables</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fruit & Nut--}}
-{{--                                                Gifts</a></li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Berries</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Ocean Foods</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Butter & Eggs</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fastfood</a></li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Onion</a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Papayaya &--}}
-{{--                                                Crisps</a></li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Oatmeal</a></li>--}}
-{{--                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Bananas</a>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <form action="{{ route('shop.view', $cateData->alias) }}" method="GET"
+                            <div class="shop-sidebar_department">
+                                <div class="department_top mini-tab-title underline">
+                                    <h2 class="title">Danh mục sản phẩm</h2>
+                                </div>
+                                <div class="department_bottom">
+                                    <ul>
+                                        @foreach($allCategories as $menu)
+                                                <li class="menu-toggle">
+                                                    <a class="department-link"
+                                                       href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}</a>
+                                                    @if(count($menu->childrenCategories))
+                                                        <span data-toggle="collapse"
+                                                              data-target="#{{ $menu->alias }}"
+                                                              class="collapsed text-truncate submenu-indicator"><i class="icon_plus"></i></span>
+                                                    @endif
+                                                    @if(count($menu->childrenCategories))
+                                                        @include('includes.menu_sub',['childs' => $menu->childrenCategories, 'target' => $menu->alias ])
+                                                    @endif
+                                                </li>
+
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <form action="{{ route('cate.view', $cateData->alias) }}" method="GET"
                                   id="filter_price">
                                 <div class="shop-sidebar_price-filter">
                                     <div class="price-filter_top mini-tab-title underline">
@@ -100,11 +97,12 @@
                                         </div>
                                         <div class="col-12 col-xl-8">
                                             <div class="product-option product-option-custom">
-                                                <form action="{{ route('shop.view', $cateData->alias) }}" method="GET"
+                                                <form action="{{ route('cate.view', $cateData->alias) }}" method="GET"
                                                       id="sort_product">
                                                     @foreach( $data as $key => $value)
                                                         @if($key != "order_by")
-                                                            <input type='hidden' name='{{ $key }}' value='{{ $value }}'/>
+                                                            <input type='hidden' name='{{ $key }}'
+                                                                   value='{{ $value }}'/>
                                                         @endif
                                                     @endforeach
                                                     <div class="product-filter">
@@ -151,7 +149,7 @@
                                             <div class="col-6 col-md-3">
                                                 <div class="product pink">
                                                     <a class="product-img"
-                                                       href="{{ route('shop.detail', ['alias' => $alias, 'sub_alias' => $value->alias]) }}">
+                                                       href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                         <img src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                              alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>

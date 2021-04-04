@@ -71,6 +71,18 @@ trait ProductScope
         });
     }
 
+
+    /**
+     * @param object $query
+     * @param $cateId
+     * @return mixed
+     */
+    public function scopeTag(object $query, $tagId)
+    {
+        return $query->whereHas('tag', function ($q) use ($tagId) {
+            $q->where('tag_id', $tagId);
+        });
+    }
     /**
      * @param object $query
      * @param $alias

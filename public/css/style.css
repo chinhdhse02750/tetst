@@ -10113,3 +10113,12 @@ footer.coffee .newletter .newletter_input button:focus {
         margin-bottom: 60px;
     }
 }
+.submenu-indicator {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.menu-toggle{
+    position: relative;
+}

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
 
     protected $userPrefectureRepository;
@@ -77,27 +77,40 @@ class ProductController extends Controller
 
     public function index(Request $request, $alias)
     {
-        $data = $request->all();
-        $products = $this->productRepository->getListFeatured();
-        $subData = $this->productRepository->findByField('alias', $alias)->first();
         $allCategories = $this->categoryRepository->findByField('parent', '1');
-        if(!$subData){
-            return abort(404);
-        }
+        $categories = $this->categoryRepository->all()->pluck('alias')->toArray();
+        $checkUrl = in_array($alias, $categories);
+        $settingAlias = config('setting-alias');
+        $requestSetting = $settingAlias['map_alias'];
+        if ($checkUrl) {
+            $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
+            $childId = $cateData->getAllChildren()->pluck('id')->toArray();
+            $id = [$cateData->id];
+            $allId = array_merge($id, $childId);
+            $data = $request->all();
+            $filter = $this->filter($data);
+            $products = $this->productRepository->getListProductByCategory($filter, $allId);
 
-        $tags = $subData->tag()->get();
-        $categories = $subData->category()->get();
-        $images = explode(',', $subData->image);
+            if ($alias === "tat-ca-san-pham") {
+                $products = $this->productRepository->getListOrder($filter);
+            }
+            $maxPrice = $this->productRepository->all()->max('price');
+            $minPrice =  $this->productRepository->all()->min('price');
 
-        return view('shop.detail', compact(
-            'products',
-            'data',
-            'subData',
-            'images',
-            'tags',
-            'categories',
-            'allCategories'
-        ));
+            return view('shop.product', compact(
+                'products',
+                'data',
+                'alias',
+                'requestSetting',
+                'cateData',
+                'maxPrice',
+                'minPrice',
+                'allCategories'
+            ));
+        }//end if
+
+
+        return abort(404);
     }
 
     /**

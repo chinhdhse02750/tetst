@@ -13,9 +13,9 @@ Breadcrumbs::for('home', function ($trail) {
 });
 
 
-Breadcrumbs::for('shop.view', function ($trail, $category) {
+Breadcrumbs::for('cate.view', function ($trail, $category) {
     $trail->parent('home');
-    $trail->push($category->name, route('shop.view', $category->alias));
+    $trail->push($category->name, route('cate.view', $category->alias));
 });
 
 Breadcrumbs::for('shop.detail', function ($trail, $category, $sub_category) {

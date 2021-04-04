@@ -38,6 +38,10 @@ window.onload = function () {
             $(this).children().toggleClass('icon_minus-06 icon_plus');
         });
 
+        $('.submenu-indicator').on('click', function (event) {
+            $(this).children().toggleClass('icon_minus-06 icon_plus');
+        });
+
         $('.mobile-menu--control').on('click', function (event) {
             event.preventDefault()
             $('#ogami-mobile-menu').css({
@@ -62,11 +66,11 @@ window.onload = function () {
         (function ($) {
             function mediaSize() {
                 if (window.matchMedia('(min-width: 1200px)').matches) {
-                    $('header .department-dropdown-menu.down').slideDown();
-                    $('header .department-menu_block.down .department-menu span i').removeClass('arrow_carrot-down').addClass('arrow_carrot-up')
+                    $('.department-dropdown-menu.down').slideDown();
+                    $('.department-menu_block.down .department-menu span i').removeClass('arrow_carrot-down').addClass('arrow_carrot-up')
                 } else {
-                    $('header .department-dropdown-menu.down').slideUp();
-                    $('header .department-menu_block.down .department-menu span i').removeClass('arrow_carrot-up').addClass('arrow_carrot-down')
+                    $('.department-dropdown-menu.down').slideUp();
+                    $('.department-menu_block.down .department-menu span i').removeClass('arrow_carrot-up').addClass('arrow_carrot-down')
                 }
             };
             mediaSize();

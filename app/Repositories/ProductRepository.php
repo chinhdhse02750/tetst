@@ -83,10 +83,9 @@ class ProductRepository extends BaseRepository
 
     /**
      * @param $filter
-     * @param int $paged
      * @return mixed
      */
-    public function getListOrder($filter, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    public function getListOrder($filter)
     {
         return $this->model
             ->with([
@@ -95,7 +94,7 @@ class ProductRepository extends BaseRepository
             ])
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
-            ->paginate($paged);
+            ->paginate($filter['page']);
     }
 
     /**
@@ -117,7 +116,7 @@ class ProductRepository extends BaseRepository
      * @param int $paged
      * @return mixed
      */
-    public function getListProductByCategory($filter, $cateId, int $paged = Constants::MEMBER_LIST_PER_PAGE)
+    public function getListProductByCategory($filter, $cateId)
     {
         return $this->model
             ->with([
@@ -127,7 +126,27 @@ class ProductRepository extends BaseRepository
             ->category($cateId)
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
-            ->paginate($paged);
+            ->paginate($filter['page']);
+    }
+
+
+    /**
+     * @param $filter
+     * @param $cateId
+     * @param int $paged
+     * @return mixed
+     */
+    public function getListProductByTag($filter, $tagId)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'tag',
+            ])
+            ->tag($tagId)
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
+            ->paginate($filter['page']);
     }
 
     /**

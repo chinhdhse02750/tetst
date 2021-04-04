@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class Tag extends Controller
+class TagController extends Controller
 {
 
     protected $userPrefectureRepository;
@@ -60,7 +60,8 @@ class Tag extends Controller
         UnitRepository $unitRepository,
         TagRepository $tagRepository
 
-    ) {
+    )
+    {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -74,50 +75,22 @@ class Tag extends Controller
         $this->tagRepository = $tagRepository;
     }
 
+
     public function index(Request $request, $alias)
     {
-        $categories = $this->categoryRepository->all()->pluck('alias')->toArray();
-        $checkUrl = in_array($alias, $categories);
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
+        $tags = $this->tagRepository->all()->pluck('alias')->toArray();
+        $checkTag = in_array($alias, $tags);
         $settingAlias = config('setting-alias');
         $requestSetting = $settingAlias['map_alias'];
-        if ($checkUrl) {
-            $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
-            $childId = $cateData->getAllChildren()->pluck('id')->toArray();
-            $id = [$cateData->id];
-            $allId = array_merge($id, $childId);
+        if ($checkTag) {
+            $cateData = $this->tagRepository->findByField('alias', $alias)->first();
+            $id = $cateData->id;
             $data = $request->all();
-            $filter['sort'] = "created_at";
-            $filter['condition'] = "DESC";
-            $filter['min'] = 0;
-            $filter['max'] = 0;
-            $page = Constants::MEMBER_LIST_PER_PAGE;
-            if (isset($data['order_by']) && $data != null) {
-                $page = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
-                if (strpos($data['order_by'], 'price') !== false) {
-                    $filter['condition'] = "DESC";
-                    $filter['sort'] = "discount_price";
-                    if ($data['order_by'] === 'price') {
-                        $filter['condition'] = "ASC";
-                    }
-                } elseif (strpos($data['order_by'], 'name') !== false) {
-                    $filter['condition'] = "DESC";
-                    $filter['sort'] = "name";
-                    if ($data['order_by'] === 'name') {
-                        $filter['condition'] = "ASC";
-                    }
-                }
-            }
-            if (isset($data['min-price']) &&  isset($data['max-price']) && $data != null) {
-                $filter['min'] = $data['min-price'];
-                $filter['max'] = $data['max-price'];
-            }
-            $products = $this->productRepository->getListProductByCategory($filter, $allId, $page);
-
-            if ($alias === "tat-ca-san-pham") {
-                $products = $this->productRepository->getListOrder($filter, $page);
-            }
+            $filter = $this->filter($data);
+            $products = $this->productRepository->getListProductByTag($filter, $id);
             $maxPrice = $this->productRepository->all()->max('price');
-            $minPrice =  $this->productRepository->all()->min('price');
+            $minPrice = $this->productRepository->all()->min('price');
 
             return view('shop.product', compact(
                 'products',
@@ -126,10 +99,10 @@ class Tag extends Controller
                 'requestSetting',
                 'cateData',
                 'maxPrice',
-                'minPrice'
+                'minPrice',
+                'allCategories'
             ));
-        }//end if
-
+        }
 
         return abort(404);
     }
@@ -138,7 +111,8 @@ class Tag extends Controller
      * @param Request $request
      * @return Application|Factory|JsonResponse|View
      */
-    public function productReview(Request  $request)
+    public
+    function productReview(Request $request)
     {
         $data = $request->all();
         $productId = $data['id'];
@@ -152,7 +126,8 @@ class Tag extends Controller
      * @param Request $request
      * @param $alias
      */
-    public function productSpecial(Request $request, $alias)
+    public
+    function productSpecial(Request $request, $alias)
     {
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
@@ -164,8 +139,8 @@ class Tag extends Controller
     }
 
 
-
-    public function testCart(Request $request)
+    public
+    function testCart(Request $request)
     {
         $data = $request->all();
 
@@ -196,10 +171,15 @@ class Tag extends Controller
      */
     public function detail(Request $request, $alias, $sub_alias)
     {
+        dd(3);
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
         $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
         $subData = $this->productRepository->findByField('alias', $sub_alias)->first();
+        if (!$subData) {
+            return abort(404);
+        }
+
         $tags = $subData->tag()->get();
         $images = explode(',', $subData->image);
         return view('shop.detail', compact(
@@ -210,5 +190,40 @@ class Tag extends Controller
             'images',
             'tags'
         ));
+    }
+
+    /**
+     * @param $data
+     */
+    public
+    function filter($data)
+    {
+        $filter['sort'] = "created_at";
+        $filter['condition'] = "DESC";
+        $filter['min'] = 0;
+        $filter['max'] = 0;
+        $filter['page'] = Constants::MEMBER_LIST_PER_PAGE;
+        if (isset($data['order_by']) && $data != null) {
+            $filter['page'] = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
+            if (strpos($data['order_by'], 'price') !== false) {
+                $filter['condition'] = "DESC";
+                $filter['sort'] = "discount_price";
+                if ($data['order_by'] === 'price') {
+                    $filter['condition'] = "ASC";
+                }
+            } elseif (strpos($data['order_by'], 'name') !== false) {
+                $filter['condition'] = "DESC";
+                $filter['sort'] = "name";
+                if ($data['order_by'] === 'name') {
+                    $filter['condition'] = "ASC";
+                }
+            }
+        }
+        if (isset($data['min-price']) && isset($data['max-price']) && $data != null) {
+            $filter['min'] = $data['min-price'];
+            $filter['max'] = $data['max-price'];
+        }
+
+        return $filter;
     }
 }

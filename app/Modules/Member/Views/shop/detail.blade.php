@@ -1,8 +1,7 @@
 @extends('layouts.shop')
 
 @section('content')
-    <div id="main">
-    {!! Breadcrumbs::render('shop.detail', $cateData, $subData) !!}
+    <div id="main" style="margin-top: 20px">
     <!-- End breadcrumb-->
         <!-- End breadcrumb-->
         <div class="shop-layout">
@@ -14,43 +13,53 @@
                             <div class="shop-sidebar_department">
                                 <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
                                 <div class="department_top mini-tab-title underline">
-                                    <h2 class="title">Departments</h2>
+                                    <h2 class="title">Danh mục sản phẩm</h2>
                                 </div>
                                 <div class="department_bottom">
                                     <ul>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Meat</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Vegetables</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fruit & Nut
-                                                Gifts</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Berries</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Ocean Foods</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Butter & Eggs</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fastfood</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Onion</a>
-                                        </li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Papayaya &
-                                                Crisps</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Oatmeal</a></li>
-                                        <li><a class="department-link" href="shop_grid+list_3col.html">Fresh Bananas</a>
-                                        </li>
+                                        @foreach($allCategories as $menu)
+                                            <li class="menu-toggle">
+                                                <a class="department-link"
+                                                   href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}</a>
+                                                @if(count($menu->childrenCategories))
+                                                    <span data-toggle="collapse"
+                                                          data-target="#{{ $menu->alias }}"
+                                                          class="collapsed text-truncate submenu-indicator"><i class="icon_plus"></i></span>
+                                                @endif
+                                                @if(count($menu->childrenCategories))
+                                                    @include('includes.menu_sub',['childs' => $menu->childrenCategories, 'target' => $menu->alias ])
+                                                @endif
+                                            </li>
+
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <div class="shop-sidebar_tag">
-                                <div class="tag_top mini-tab-title underline">
-                                    <h2 class="title">Từ khóa</h2>
+                            @if(!empty($tags))
+                                <div class="shop-sidebar_tag">
+                                    <div class="tag_top mini-tab-title underline">
+                                        <h2 class="title">Từ khóa</h2>
+                                    </div>
+                                    <div class="tag_bottom">
+                                        @foreach($tags as $key => $value)
+                                            <a class="tag-btn" href="{{ route('tag.view', ['alias' => $value->alias]) }}">{{ $value->name }}</a>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="tag_bottom">
-                                    @foreach($tags as $key => $value)
-                                        <a class="tag-btn" href="{{ route('shop.view', ['alias' => $value->alias]) }}">{{ $value->name }}</a>
-                                    @endforeach
+                            @endif
+
+                            @if(!empty($categories))
+                                <div class="shop-sidebar_tag">
+                                    <div class="tag_top mini-tab-title underline">
+                                        <h2 class="title">Danh mục</h2>
+                                    </div>
+                                    <div class="tag_bottom">
+                                        @foreach($categories as $key => $value)
+                                            <a class="tag-btn" href="{{ route('cate.view', ['category' => $value->alias]) }}">{{ $value->name }}</a>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="filter-sidebar--background" style="display: none"></div>
                     </div>
@@ -86,7 +95,6 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="shop-detail_info">
-                                        <h5 class="product-type color-type">{{$cateData->name}}</h5>
                                         <h2 class="product-name">{{$subData->name}}</h2>
                                         <p class="product-describe">{{ $subData->description }}</p>
 {{--                                        <p class="delivery-status">Free delivery</p>--}}
