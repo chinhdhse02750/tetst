@@ -89,6 +89,7 @@ class HomeController extends Controller
 
     public function test(Request $request)
     {
+        \Cart::clear();
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')->get();

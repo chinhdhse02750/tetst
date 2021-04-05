@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
 
     protected $userPrefectureRepository;
@@ -60,7 +60,8 @@ class ProductController extends Controller
         UnitRepository $unitRepository,
         TagRepository $tagRepository
 
-    ) {
+    )
+    {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -75,28 +76,16 @@ class ProductController extends Controller
     }
 
 
-    public function index(Request $request, $alias)
+    public function index(Request $request)
     {
-        $data = $request->all();
-        $products = $this->productRepository->getListFeatured();
-        $subData = $this->productRepository->findByField('alias', $alias)->first();
-        $allCategories = $this->categoryRepository->findByField('parent', '1');
-        if(!$subData){
-            return abort(404);
-        }
+        $cartCollection = \Cart::getContent();
+        $total = \Cart::getTotal();
+        $count = $cartCollection->count();
+//        dd($cartCollection);
+        return view('shop.cart', compact(
+            'cartCollection',
+            'total'
 
-        $tags = $subData->tag()->get();
-        $categories = $subData->category()->get();
-        $images = explode(',', $subData->image);
-
-        return view('shop.detail', compact(
-            'products',
-            'data',
-            'subData',
-            'images',
-            'tags',
-            'categories',
-            'allCategories'
         ));
     }
 
@@ -104,7 +93,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return Application|Factory|JsonResponse|View
      */
-    public function productReview(Request  $request)
+    public function productReview(Request $request)
     {
         $data = $request->all();
         $productId = $data['id'];
@@ -118,7 +107,8 @@ class ProductController extends Controller
      * @param Request $request
      * @param $alias
      */
-    public function productSpecial(Request $request, $alias)
+    public
+    function productSpecial(Request $request, $alias)
     {
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
@@ -130,6 +120,30 @@ class ProductController extends Controller
     }
 
 
+    public
+    function testCart(Request $request)
+    {
+        $data = $request->all();
+
+        \Cart::add(array(
+            'id' => $data['id'],
+            'name' => $data['product_name'],
+            'price' => $data['product_discount_price'] !== null
+                ? $data['product_discount_price'] : $data['product_price'],
+            'quantity' => 1,
+            'attributes' => array()));
+        $cartCollection = \Cart::getContent();
+        $total = \Cart::getTotal();
+        $count = $cartCollection->count();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $cartCollection,
+            'total' => $total,
+            'count' => $count
+        ], 200);
+    }
+
     /**
      * @param Request $request
      * @param $alias
@@ -138,11 +152,12 @@ class ProductController extends Controller
      */
     public function detail(Request $request, $alias, $sub_alias)
     {
+        dd(3);
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
         $cateData = $this->categoryRepository->findByField('alias', $alias)->first();
         $subData = $this->productRepository->findByField('alias', $sub_alias)->first();
-        if(!$subData){
+        if (!$subData) {
             return abort(404);
         }
 
@@ -161,7 +176,8 @@ class ProductController extends Controller
     /**
      * @param $data
      */
-    public function filter($data)
+    public
+    function filter($data)
     {
         $filter['sort'] = "created_at";
         $filter['condition'] = "DESC";
@@ -184,7 +200,7 @@ class ProductController extends Controller
                 }
             }
         }
-        if (isset($data['min-price']) &&  isset($data['max-price']) && $data != null) {
+        if (isset($data['min-price']) && isset($data['max-price']) && $data != null) {
             $filter['min'] = $data['min-price'];
             $filter['max'] = $data['max-price'];
         }

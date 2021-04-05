@@ -24,11 +24,11 @@ CKEDITOR.config.toolbar = [
   },
   {
     name: 'insert',
-    items: ['Table']
+    items: ['Table', 'Image']
   }
 ];
 CKEDITOR.config.pasteFilter = null;
-CKEDITOR.config.height = 150;
+CKEDITOR.config.height = 300;
 CKEDITOR.config.width = 'auto';
 
 var initEditor = (function() {
@@ -54,6 +54,7 @@ var initEditor = (function() {
       }
       if (editorContent) {
         CKEDITOR.replace( 'content' );
+
       }
     } else {
       if (editorComment) {

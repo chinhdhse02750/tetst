@@ -60,13 +60,9 @@ class ProductController extends Controller
     public function productCart(Request $request)
     {
         $data = $request->all();
-        \Cart::add(array(
-            'id' => $data['id'],
-            'name' => $data['product_name'],
-            'price' => $data['product_discount_price'] !== null
-                ? $data['product_discount_price'] : $data['product_price'],
-            'quantity' => $data['quantity'],
-            'attributes' => array()));
+        $Product = \App\Entities\Product::find($data['id']);
+        \Cart::add($data['id'],  $data['product_name'],  $data['product_discount_price'] !== null
+            ? $data['product_discount_price'] : $data['product_price'], $data['quantity'], array())->associate($Product);
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
         $count = $cartCollection->count();

@@ -99,13 +99,13 @@
                                         <div class="shopping_cart_content">
                                             <div class="cart_list ">
                                                 <p class="buttons clearfix">
-                                                    <a href="https://demoapus.com/ogami/shop/"
+                                                    <a href="{{ route('cart.index') }}"
                                                        class="no-round-btn btn-continue-shopping wc-forward">Xem giỏ
                                                         hàng</a>
                                                 </p>
                                                 <br>
                                                 <p class="buttons clearfix">
-                                                    <a href="https://demoapus.com/ogami/shop/"
+                                                    <a  href="{{ route('cate.view', 'tat-ca-san-pham') }}"
                                                        class="no-round-btn btn-continue-shopping wc-forward">Tiếp tục
                                                         mua sắm</a>
                                                 </p>

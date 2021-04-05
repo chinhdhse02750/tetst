@@ -136,44 +136,16 @@
                                     <div class="shop-detail_more-info">
                                         <div id="tab-so3">
                                             <ul class="mb-0">
-                                                <li class="active"><a href="#tab-1">DESCRIPTION</a></li>
+                                                <li class="active"><a href="#tab-1">Mô tả</a></li>
                                                 <li><a href="#tab-2">Customer Reviews (02)</a></li>
                                             </ul>
                                             <div id="tab-1">
                                                 <div class="description-block">
                                                     <div class="description-item_block">
                                                         <div class="row align-items-center">
-                                                            <div class="col-12 col-md-6">
-                                                                <div class="description-item_img"><img class="img-fluid"
-                                                                                                       src="assets/images/shop/shop_detail_img.png"
-                                                                                                       alt="description image">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
+                                                            <div class="col-12">
                                                                 <div class="description-item_text">
-                                                                    <h2>Product information</h2>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit, sed do eiusmod tempor
-                                                                        incididunt ut labore et dolore magna aliqua.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="description-item_block">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-6">
-                                                                <div class="description-item_img"><img class="img-fluid"
-                                                                                                       src="assets/images/shop/shop_detail_img_2.png"
-                                                                                                       alt="description image">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="description-item_text">
-                                                                    <h2>An incredible view</h2>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit, sed do eiusmod tempor
-                                                                        incididunt ut labore et dolore magna
-                                                                        aliqua. </p>
+                                                                    {!! $subData->content !!}
                                                                 </div>
                                                             </div>
                                                         </div>
