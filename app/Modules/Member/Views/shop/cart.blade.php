@@ -70,7 +70,7 @@
                                             <th class="product-quantity" scope="col">Số lượng</th>
                                             <th class="product-total" scope="col">Tạm tính</th>
                                             <th class="product-clear" scope="col">
-                                                <button class="no-round-btn"><i class="icon_close"></i></button>
+                                                <button class="no-round-btn" id="clear-cart"><i class="icon_close"></i></button>
                                             </th>
                                         </tr>
                                         </thead>
@@ -205,4 +205,11 @@
     </div>
 @endsection
 @push('script')
+    <script>
+        $(document).ready(function () {
+            $('#clear-cart').on('click', function () {
+                console.log("cccc");
+            });
+        });
+    </script>
 @endpush
