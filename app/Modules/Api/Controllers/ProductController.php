@@ -86,4 +86,10 @@ class ProductController extends Controller
             'products' => $products,
         ], 200);
     }
+
+
+    public function productComment(Request $request)
+    {
+        dd($request);
+    }
 }

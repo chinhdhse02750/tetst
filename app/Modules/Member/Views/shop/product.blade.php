@@ -68,7 +68,7 @@
                         <div class="filter-sidebar--background" style="display: none"></div>
                     </div>
                     <div class="col-xl-9">
-                        <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
+                        <input type="hidden" value="{{ url('api/v1/product/cart') }} " id="url-cart">
                         <input type="hidden" value="{{ url('/review') }} " id="url-view">
                         <div class="shop-grid-list">
                             <div class="shop-products">

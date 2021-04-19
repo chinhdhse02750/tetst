@@ -11,6 +11,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::put('member/{id}/status', 'MemberController@updateStatus')->name('member.status');
     Route::get('offers/{id}', 'OfferController@add')->name('offer.add');
     Route::delete('offers/{id}', 'OfferController@destroy')->name('offer.destroy');
-    Route::post('/cart', 'ProductController@productCart')->name('product.cart');
-    Route::post('/review', 'ProductController@productReview')->name('product.review');
+    Route::post('product/cart', 'ProductController@productCart')->name('product.cart');
+    Route::post('product/review', 'ProductController@productReview')->name('product.review');
+    Route::post('product/comment', 'ProductController@productComment')->name('product.comment');
 });

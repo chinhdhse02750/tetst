@@ -11,7 +11,8 @@
                         <div class="shop-sidebar">
                             <button class="no-round-btn" id="filter-sidebar--closebtn">Close sidebar</button>
                             <div class="shop-sidebar_department">
-                                <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
+                                <input type="hidden" value="{{ url('api/v1/product/cart') }} " id="url-cart">
+                                <input type="hidden" value="{{ url('api/v1/product/comment') }} " id="url-comment">
                                 <div class="department_top mini-tab-title underline">
                                     <h2 class="title">Danh mục sản phẩm</h2>
                                 </div>
@@ -287,7 +288,7 @@
                                                                         <textarea class="textarea-form" id="review"
                                                                                   name="" cols="30" rows="4"
                                                                                   placeholder="Nhận xét của bạn*"></textarea>
-                                                                        <button class="normal-btn">Gửi đi</button>
+                                                                        <div id="comment-product" class="normal-btn">Gửi đi</div>
                                                                     </div>
                                                             </form>
                                                         </div>
@@ -359,14 +360,62 @@
 
             });
 
+            function responseMessage(msg) {
+                $('.success-box').fadeIn(200);
+                $('.success-box div.text-message').html("<span>" + msg + "</span>");
+            }
+
+            $('#comment-product').on('click', function() {
+                let url = $('#url-comment').val();
+                return console.log(url);
+
+
+                let id = $(this).closest('.product-select').attr('data-id');
+                let product_name = $(this).closest('.product-select').attr('data-name');
+                let product_price = $(this).closest('.product-select').attr('data-price');
+                let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
+                let quantity = $("#quantity").val();
+                if (typeof quantity === 'undefined') {
+                    quantity = 1;
+                }
+                let data = {
+                    id: id, product_name: product_name,
+                    product_price: product_price, product_discount_price: product_discount_price, quantity: quantity
+                };
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    success: function (data) {
+                        if (data.status === "success") {
+                            $('.cart_money').text(new Intl.NumberFormat('ja-JP', {
+                                style: 'currency',
+                                currency: 'JPY'
+                            }).format(data.total));
+                            $('.cart_count').text(data.count);
+                            $('.count_stock').text()
+                            $('#modalAbandonedCart').modal('show')
+                            setTimeout(function () {
+                                $('#modalAbandonedCart').modal('hide')
+                            }, 2000);
+                        }
+                    },
+                    error: function (exception) {
+                        alert('Exeption:' + exception);
+                    }
+                });
+            });
+
 
         });
 
 
-        function responseMessage(msg) {
-            $('.success-box').fadeIn(200);
-            $('.success-box div.text-message').html("<span>" + msg + "</span>");
-        }
 
     </script>
 @endpush

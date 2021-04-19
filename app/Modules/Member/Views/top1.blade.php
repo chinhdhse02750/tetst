@@ -33,7 +33,7 @@
         <div class="home3-product-block">
             <div class="container">
                 <div class="row">
-                    <input type="hidden" value="{{ url('api/v1/cart') }} " id="url-cart">
+                    <input type="hidden" value="{{ url('api/v1/product/cart') }} " id="url-cart">
                     <input type="hidden" value="{{ url('/review') }} " id="url-view">
                     <div class="col-12 col-xl-3">
                         <div class="deal-of-week_slide">
