@@ -86,9 +86,10 @@ class ProductController extends Controller
         }
 
         $tags = $subData->tag()->get();
+        $comments = $subData->comment()->get();
+        $countComment = $comments->where('status',1)->count();
         $categories = $subData->category()->get();
         $images = explode(',', $subData->image);
-        $reviews = null;
 
         return view('shop.detail', compact(
             'products',
@@ -98,7 +99,8 @@ class ProductController extends Controller
             'tags',
             'categories',
             'allCategories',
-            'reviews'
+            'comments',
+            'countComment'
         ));
     }
 

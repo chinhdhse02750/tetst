@@ -192,7 +192,7 @@
                                         </tbody>
                                     </table>
                                     <div class="checkout-method">
-                                        <button class="normal-btn">Tiến hành thanh toán</button>
+                                        <a class="normal-btn" id="" href="{{ url('cart-checkout') }}">Tiến hành thanh toán</a>
                                     </div>
                                 </div>
                             </div>
@@ -210,6 +210,8 @@
             $('#clear-cart').on('click', function () {
                 console.log("cccc");
             });
+
         });
+
     </script>
 @endpush

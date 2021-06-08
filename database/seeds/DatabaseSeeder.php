@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperAdminSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(UpdatePublicIdOffer::class);
+        $this->call(PrefSeeder::class);
     }
 }

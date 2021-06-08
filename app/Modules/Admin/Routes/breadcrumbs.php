@@ -209,3 +209,19 @@ Breadcrumbs::for('tags.edit', function ($trail, $id) {
     $trail->parent('tags.index');
     $trail->push(trans('tags.label.edit'), route('tags.edit', $id));
 });
+
+Breadcrumbs::for('comments.index', function ($trail) {
+    $trail->push(trans('labels.menu.comments'), route('comments.index'));
+});
+Breadcrumbs::for('comments.create', function ($trail) {
+    $trail->parent('comments.index');
+    $trail->push(trans('comments.label.unit_register'), route('comments.create'));
+});
+Breadcrumbs::for('comments.show', function ($trail, $id) {
+    $trail->parent('comments.index');
+    $trail->push(trans('comments.label.detail'), route('comments.show', $id));
+});
+Breadcrumbs::for('comments.edit', function ($trail, $id) {
+    $trail->parent('comments.index');
+    $trail->push(trans('comments.label.edit'), route('comments.edit', $id));
+});

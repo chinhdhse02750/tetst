@@ -12,6 +12,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
 use App\Repositories\TagRepository;
+use App\Repositories\PrefRepository;
 use App\Services\NewsService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -35,6 +36,7 @@ class CartController extends Controller
     protected $productRepository;
     protected $unitRepository;
     protected $tagRepository;
+    protected $prefRepository;
 
     /**
      * HomeController constructor.
@@ -58,8 +60,8 @@ class CartController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository,
-        TagRepository $tagRepository
-
+        TagRepository $tagRepository,
+        PrefRepository $prefRepository
     )
     {
 //        $this->middleware('auth')->except('logout', 'test');
@@ -73,6 +75,7 @@ class CartController extends Controller
         $this->productRepository = $productRepository;
         $this->unitRepository = $unitRepository;
         $this->tagRepository = $tagRepository;
+        $this->prefRepository = $prefRepository;
     }
 
 
@@ -88,6 +91,26 @@ class CartController extends Controller
 
         ));
     }
+
+
+    public function cartCheckout(Request $request)
+    {
+        $pref = $this->prefRepository->all();
+        $prefConfig = config('pref');
+        $selectTime = $prefConfig['select_time'];
+        $cartCollection = \Cart::getContent();
+        $total = \Cart::getTotal();
+        $count = $cartCollection->count();
+//        dd($cartCollection);
+        return view('shop.cart_checkout', compact(
+            'cartCollection',
+            'total',
+            'pref',
+            'selectTime'
+
+        ));
+    }
+
 
     /**
      * @param Request $request
@@ -107,8 +130,7 @@ class CartController extends Controller
      * @param Request $request
      * @param $alias
      */
-    public
-    function productSpecial(Request $request, $alias)
+    public function productSpecial(Request $request, $alias)
     {
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
@@ -120,8 +142,7 @@ class CartController extends Controller
     }
 
 
-    public
-    function testCart(Request $request)
+    public function testCart(Request $request)
     {
         $data = $request->all();
 
@@ -152,7 +173,6 @@ class CartController extends Controller
      */
     public function detail(Request $request, $alias, $sub_alias)
     {
-        dd(3);
         $data = $request->all();
         $products = $this->productRepository->getListFeatured();
         $cateData = $this->categoryRepository->findByField('alias', $alias)->first();

@@ -8,6 +8,7 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use \Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Product.
@@ -65,7 +66,13 @@ class Product extends Model implements Transformable
             ->withTimestamps();
     }
 
-
+    /**
+     * @return HasMany
+     */
+    public function comment()
+    {
+        return $this->hasMany('App\Entities\ProductComment', 'product_id');
+    }
 
     /**
      * @return BelongsToMany

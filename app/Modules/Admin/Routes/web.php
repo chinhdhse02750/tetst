@@ -28,6 +28,9 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::post('accounts/restore/{id}', 'AccountController@restore')->name('accounts.restore');
         Route::resource('/units', 'UnitController');
         Route::resource('/tags', 'TagController');
+        Route::resource('/comments', 'CommentController');
+        Route::post('/comments/update-status', 'CommentController@updateStatus')->name('comments.updateStatus');
+
     });
 
 Route::middleware('auth:admin')

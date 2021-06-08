@@ -43,7 +43,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\UnitRepository::class);
         $this->app->bind(\App\Repositories\ProductRepository::class);
         $this->app->bind(\App\Repositories\ProductCategoryRepository::class);
-
+        $this->app->bind(\App\Repositories\ProductCommentRepository::class);
+        $this->app->bind(\App\Repositories\PrefRepository::class);
         //:end-bindings:
     }
 }

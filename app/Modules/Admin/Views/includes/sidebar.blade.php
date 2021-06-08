@@ -56,6 +56,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(\Request::is('admin/comment*')) }}"
+                           href="{{ route('comments.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.comment_management')
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

@@ -36,6 +36,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test')->name('home');
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@index')->name('cart.index');
+Route::get('/cart-checkout', 'CartController@cartCheckout')->name('cart.checkout');
 Route::get('/{product}', 'ProductController@index')->name('product.detail');
 Route::post('/review', 'ProductController@productReview')->name('product.review');
 Route::get('/danh-muc/{category}', 'CategoryController@index')->name('cate.view');

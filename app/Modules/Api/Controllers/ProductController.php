@@ -4,6 +4,7 @@ namespace App\Modules\Api\Controllers;
 
 use App\Modules\Admin\Controllers\Controller;
 use App\Repositories\ProductRepository;
+use App\Repositories\ProductCommentRepository;
 use App\Repositories\UserRepository;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -20,6 +21,9 @@ class ProductController extends Controller
 
     protected $productRepository;
 
+    protected $productCommentRepository;
+
+    const REVIEW_STATUS_COMMENT = 0;
     /**
      * MemberController constructor.
      * @param UserRepository $userRepository
@@ -27,10 +31,12 @@ class ProductController extends Controller
      */
     public function __construct(
         UserRepository $userRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        ProductCommentRepository $productCommentRepository
     ) {
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
+        $this->productCommentRepository = $productCommentRepository;
     }
 
     /**
@@ -75,6 +81,10 @@ class ProductController extends Controller
         ], 200);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function productReview(Request  $request)
     {
         $data = $request->all();
@@ -88,8 +98,19 @@ class ProductController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @throws ValidatorException
+     */
     public function productComment(Request $request)
     {
-        dd($request);
+        $data = $request->all();
+        $data['status'] = self::REVIEW_STATUS_COMMENT;
+        $comment = $this->productCommentRepository->create($data);
+
+        return response()->json([
+            'status' => 'success',
+            'comment' => $comment,
+        ], 200);
     }
 }

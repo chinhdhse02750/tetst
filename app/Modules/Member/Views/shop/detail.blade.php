@@ -99,6 +99,7 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="shop-detail_info">
+                                        <input type="hidden" id="product_id" value="{{ $subData->id }}">
                                         <h2 class="product-name">{{$subData->name}}</h2>
                                         <p class="product-describe">{{ $subData->description }}</p>
                                         {{--                                        <p class="delivery-status">Free delivery</p>--}}
@@ -141,7 +142,7 @@
                                         <div id="tab-so3">
                                             <ul class="mb-0">
                                                 <li class="active"><a href="#tab-1">Mô tả</a></li>
-                                                <li><a href="#tab-2">Đánh giá (02)</a></li>
+                                                <li><a href="#tab-2">Đánh giá ({{ $countComment }})</a></li>
                                             </ul>
                                             <div id="tab-1">
                                                 <div class="description-block">
@@ -158,93 +159,57 @@
                                             </div>
                                             <div id="tab-2">
                                                 <div class="customer-reviews_block">
-                                                    @if (!$reviews)
+                                                    @if (count($comments) == 0)
                                                         <div class="block-review">
                                                             <h3 class="reply-title">Hãy là người đầu tiên nhận xét
                                                                 "{{ $subData->name }}"</h3>
                                                         </div>
                                                     @else
                                                         <div class="block-review">
-                                                            <div class="customer-review">
-                                                                <div class="row">
-                                                                    <div class="col-12 col-sm-3 col-lg-2">
-                                                                        <div class="customer-review_left">
-                                                                            <div class="customer-review_img text-center">
-                                                                                <img
-                                                                                        class="img-fluid"
-                                                                                        src="assets/images/shop/reviewer_01.png"
-                                                                                        alt="customer image"></div>
-                                                                            <div class="customer-rate"><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star-half"></i>
+                                                            @foreach($comments as $key => $value)
+                                                                @if($value->status == 1)
+                                                                    <div class="customer-review">
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-sm-3 col-lg-2">
+                                                                                <div class="customer-review_left">
+                                                                                    <div class="customer-review_img text-center">
+                                                                                        <img class="img-fluid"
+                                                                                                src="/images/profile.png"
+                                                                                                alt="customer image"></div>
+                                                                                    <div class="customer-rate">
+                                                                                        @for($i = 0; $i < $value->rating; $i++)
+                                                                                            <i class="icon_star"></i>
+                                                                                        @endfor
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-sm-9 col-lg-10">
+                                                                                <div class="customer-comment">
+                                                                                    <h5 class="comment-date">
+                                                                                        {{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y') }}</h5>
+                                                                                    <h3 class="customer-name">{{ $value->name }}</h3>
+                                                                                    <p class="customer-commented">{{ $value->description }} </p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-12 col-sm-9 col-lg-10">
-                                                                        <div class="customer-comment">
-                                                                            <h5 class="comment-date">27 Aug 2016</h5>
-                                                                            <h3 class="customer-name">Jenney Kelley</h3>
-                                                                            <p class="customer-commented">Lorem ipsum
-                                                                                dolor sit
-                                                                                amet, consectetur adipisicing elit, sed
-                                                                                do
-                                                                                eiusmod tempor incididunt ut labore et
-                                                                                dolore
-                                                                                magna alation uidem dolore eu fugiat
-                                                                                nulla
-                                                                                pariatur. </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="customer-review">
-                                                                <div class="row">
-                                                                    <div class="col-12 col-sm-3 col-lg-2">
-                                                                        <div class="customer-review_left">
-                                                                            <div class="customer-review_img text-center">
-                                                                                <img
-                                                                                        class="img-fluid"
-                                                                                        src="assets/images/shop/reviewer_02.png"
-                                                                                        alt="customer image"></div>
-                                                                            <div class="customer-rate"><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star"></i><i
-                                                                                        class="icon_star-half"></i>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-sm-9 col-lg-10">
-                                                                        <div class="customer-comment">
-                                                                            <h5 class="comment-date">27 Aug 2016</h5>
-                                                                            <h3 class="customer-name">Jenney Kelley</h3>
-                                                                            <p class="customer-commented">Lorem ipsum
-                                                                                dolor sit
-                                                                                amet, consectetur adipisicing elit, sed
-                                                                                do
-                                                                                eiusmod tempor incididunt ut labore et
-                                                                                dolore
-                                                                                magna alation uidem dolore eu fugiat
-                                                                                nulla
-                                                                                pariatur. </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                @endif
+                                                            @endforeach
                                                         </div>
                                                     @endif
                                                     <div class="add-review">
+
+                                                        <div class="add-review-status display-none">
+                                                            <h2>Cảm ơn bạn đã gửi đánh giá, đánh giá của bạn sẽ được hiển thị sau khi kiểm duyệt.</h2>
+                                                        </div>
+
                                                         <div class="add-review_top">
                                                             <h2>Đánh giá của bạn</h2>
                                                         </div>
                                                         <div class="add-review_bottom">
-                                                            <form action="" method="post">
+                                                            <form method="post" id="rate_form">
                                                                 <div class="row">
-                                                                    <dic class="col-12">
+                                                                    <div class="col-12">
                                                                         <div class="rating">
                                                                             <div class="comment-form-rating">
                                                                                 <div class='rating-stars'>
@@ -273,22 +238,27 @@
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
+                                                                            <input type="hidden" name="rate-star" id="rate_star">
                                                                         </div>
-                                                                    </dic>
+                                                                    </div>
 
                                                                     <div class="col-12 col-md-6">
                                                                         <input class="no-round-input" type="text"
+                                                                               name="rate_name" id="rate_name"
                                                                                placeholder="Tên*">
                                                                     </div>
                                                                     <div class="col-12 col-md-6">
                                                                         <input class="no-round-input" type="text"
+                                                                               name="rate_email" id="rate_email"
                                                                                placeholder="Email*">
                                                                     </div>
                                                                     <div class="col-12">
-                                                                        <textarea class="textarea-form" id="review"
-                                                                                  name="" cols="30" rows="4"
+                                                                        <textarea class="textarea-form" id="rate_comment"
+                                                                                  name="rate_comment" cols="30" rows="4"
                                                                                   placeholder="Nhận xét của bạn*"></textarea>
-                                                                        <div id="comment-product" class="normal-btn">Gửi đi</div>
+                                                                        <div id="comment-product" class="normal-btn">Gửi
+                                                                            đi
+                                                                        </div>
                                                                     </div>
                                                             </form>
                                                         </div>
@@ -308,6 +278,7 @@
     @include('shop.modal_add_success')
 @endsection
 @push('script')
+    {!! script(('js/validator/jquery.validate.min.js')) !!}
     <script>
         $(document).ready(function () {
             $('#sort_product').on('change', function () {
@@ -349,6 +320,7 @@
 
                 // JUST RESPONSE (Not needed)
                 var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+                $("#rate_star").val(ratingValue);
                 var msg = "";
                 if (ratingValue > 1) {
                     msg = "Thanks! You rated this " + ratingValue + " stars.";
@@ -356,6 +328,7 @@
                 else {
                     msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
                 }
+
                 responseMessage(msg);
 
             });
@@ -365,57 +338,83 @@
                 $('.success-box div.text-message').html("<span>" + msg + "</span>");
             }
 
-            $('#comment-product').on('click', function() {
-                let url = $('#url-comment').val();
-                return console.log(url);
 
-
-                let id = $(this).closest('.product-select').attr('data-id');
-                let product_name = $(this).closest('.product-select').attr('data-name');
-                let product_price = $(this).closest('.product-select').attr('data-price');
-                let product_discount_price = $(this).closest('.product-select').attr('data-discount_price');
-                let quantity = $("#quantity").val();
-                if (typeof quantity === 'undefined') {
-                    quantity = 1;
+            const message = {
+                "rate_name": {
+                    required: "Tên không được để trống",
+                },
+                "rate_comment": {
+                    required: "Nội dung không được để trống",
+                },
+                "rate_email": {
+                    required: 'Email không được để trống.',
+                    email: "Sai định dạng email!",
+                },
+                "rate-star": {
+                    required: 'Bạn chưa chọn số sao.',
                 }
-                let data = {
-                    id: id, product_name: product_name,
-                    product_price: product_price, product_discount_price: product_discount_price, quantity: quantity
-                };
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data,
-                    success: function (data) {
-                        if (data.status === "success") {
-                            $('.cart_money').text(new Intl.NumberFormat('ja-JP', {
-                                style: 'currency',
-                                currency: 'JPY'
-                            }).format(data.total));
-                            $('.cart_count').text(data.count);
-                            $('.count_stock').text()
-                            $('#modalAbandonedCart').modal('show')
-                            setTimeout(function () {
-                                $('#modalAbandonedCart').modal('hide')
-                            }, 2000);
-                        }
+            };
+            $('#rate_form').validate({
+                ignore: [],
+                rules: {
+                    "rate_name": {
+                        required: true,
                     },
-                    error: function (exception) {
-                        alert('Exeption:' + exception);
+                    "rate_email": {
+                        required: true,
+                        email: true
+                    },
+                    "rate_comment": {
+                        required: true,
+                    },
+                    "rate-star" :{
+                        required: true,
                     }
-                });
+                },
+                messages: message,
             });
 
 
+            $('#comment-product').on('click', function () {
+                if ($("#rate_form").valid()) {
+                    let url = $('#url-comment').val();
+                    let id = $('#product_id').val();
+                    let name = $('#rate_name').val();
+                    let email = $('#rate_email').val();
+                    let comment = $('#rate_comment').val();
+                    let star = $('#rate_star').val();
+
+                    let data = {
+                        product_id: id, name: name,
+                        email: email, description: comment, rating: star
+                    };
+
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data,
+                        success: function (data) {
+                            if (data.status === "success") {
+                                $(".add-review-status").removeClass('display-none');
+                                $("#rate_star").val(0);
+                                $('#rate_name').val('');
+                                $('#rate_email').val('');
+                                $('#rate_comment').val('');
+                                $('.star').removeClass('selected');
+                            }
+                        },
+                        error: function (exception) {
+                            alert('Exeption:' + exception);
+                        }
+                    });
+                }
+            });
         });
-
-
-
     </script>
 @endpush
