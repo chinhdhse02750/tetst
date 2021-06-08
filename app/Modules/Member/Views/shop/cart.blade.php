@@ -13,6 +13,7 @@
                         </ul>
                     </div>
                 </div>
+                <div id="loader" class="display-none"></div>
                 <!-- End breadcrumb-->
                 <div class="order-step">
                     <div class="container">
@@ -53,7 +54,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="product-table">
-                                    <table class="table table-responsive">
+                                    <table class="table table-responsive table-cart">
                                         <colgroup>
                                             <col span="1" style="width: 15%">
                                             <col span="1" style="width: 30%">
@@ -76,7 +77,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($cartCollection as $key => $value)
-                                            <tr>
+                                            <tr class="row-product-{{ $value->id }}">
                                                 <td class="product-iamge">
                                                     <div class="img-wrapper">
                                                         <img src="{{ url('storage/tmp/'.$value->associatedModel->first_image) }}"
@@ -92,7 +93,8 @@
                                                 <td class="product-total">
                                                     ¥{{ number_format((int)$value->quantity * $value->price) }}</td>
                                                 <td class="product-clear">
-                                                    <button class="no-round-btn"><i class="icon_close"></i></button>
+                                                    <button class="no-round-btn button-delete-product" data-id="{{ $value->id }}">
+                                                        <i class="icon_close"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -202,13 +204,41 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
 @push('script')
     <script>
         $(document).ready(function () {
             $('#clear-cart').on('click', function () {
                 console.log("cccc");
+            });
+
+            $('.button-delete-product').on('click', function() {
+                let id = $(this).data("id");
+                let url = "{{ url("api/v1/cart/delete-product/:id")  }}".replace(':id', id);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {id: id},
+                    success: function (data) {
+                        if(data.status === "success"){
+                            $('.row-product-'+id).remove();
+                        }
+                    },
+                    beforeSend: function(){
+                        $('#loader').show();
+                    },
+                    complete: function(){
+                        $('#loader').hide();
+                    },
+                    error: function (exception) {
+                        alert('Exeption:' + exception);
+                    }
+                });
             });
 
         });

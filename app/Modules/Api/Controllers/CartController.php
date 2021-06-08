@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use PHPUnit\Exception;
 use Prettus\Validator\Exceptions\ValidatorException;
+use Darryldecode\Cart\Cart;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
     use ResponseTrait;
 
@@ -39,25 +40,6 @@ class ProductController extends Controller
         $this->productCommentRepository = $productCommentRepository;
     }
 
-    /**
-     * Update user status.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return JsonResponse
-     * @throws ValidatorException
-     */
-    public function updateStatus(Request $request, int $id)
-    {
-        try {
-            $data['active'] = $request->get('active');
-            $this->userRepository->update($data, $id);
-
-            return $this->success($data, trans('alerts.general.success.updated'));
-        } catch (Exception $e) {
-            return $this->error('[ERROR_STORE_FAVORITE]: ' . $e->getMessage());
-        }//end try
-    }
 
     /**
      * @param Request $request
@@ -81,43 +63,24 @@ class ProductController extends Controller
         ], 200);
     }
 
+
     /**
      * @param Request $request
      * @return JsonResponse
      */
-    public function productReview(Request  $request)
-    {
-        $data = $request->all();
-        $productId = $data['id'];
-        $products = $this->productRepository->find($productId);
-
-        return response()->json([
-            'status' => 'success',
-            'products' => $products,
-        ], 200);
-    }
-
-
-    /**
-     * @param Request $request
-     * @throws ValidatorException
-     */
-    public function productComment(Request $request)
-    {
-        $data = $request->all();
-        $data['status'] = self::REVIEW_STATUS_COMMENT;
-        $comment = $this->productCommentRepository->create($data);
-
-        return response()->json([
-            'status' => 'success',
-            'comment' => $comment,
-        ], 200);
-    }
-
     public function deleteProduct(Request $request)
     {
         $data = $request->all();
         $product = $this->productRepository->find($data['id']);
-        dd($product);
+        if (\Cart::remove($data['id'])){
+
+            return response()->json([
+                'status' => 'success',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 'fail',
+        ], 400);
     }
 }

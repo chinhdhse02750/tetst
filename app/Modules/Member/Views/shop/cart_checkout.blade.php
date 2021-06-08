@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="form-group select-city">
-                                        <label for="inputCity">Tỉnh - Thành Phố *</label>
+                                        <label for="inputCity">Thời gian giao hàng *</label>
                                         <select class="form-control no-round-input-bg" id="select-time-dropdown" required>
                                             @foreach($selectTime as $key => $item)
                                                 <option value="{{ $key }}">{{ $item }}</option>
@@ -96,11 +96,10 @@
                                         </select>
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <input id="differentAddress" type="checkbox">
-                                        <label for="differentAddress">Giao hàng tới địa chỉ khác?</label>
-                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--<input id="differentAddress" type="checkbox">--}}
+                                        {{--<label for="differentAddress">Giao hàng tới địa chỉ khác?</label>--}}
+                                    {{--</div>--}}
                                     <div class="form-group">
                                         <label for="inputNote">Ghi chú đơn hàng (tùy chọn)</label>
                                         <textarea class="textarea-form-bg" id="inputNote" name="" cols="30" rows="7"></textarea>
