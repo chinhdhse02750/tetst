@@ -71,11 +71,38 @@ class CartController extends Controller
     public function deleteProduct(Request $request)
     {
         $data = $request->all();
-        $product = $this->productRepository->find($data['id']);
         if (\Cart::remove($data['id'])){
-
+            $total = \Cart::getTotal();
             return response()->json([
                 'status' => 'success',
+                'total' => $total,
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 'fail',
+        ], 400);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateQuantity(Request $request)
+    {
+        $data = $request->all();
+        if (\Cart::update($data['id'], array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $data['quantity']
+            ))))
+        {
+            $total = \Cart::getTotal();
+            $product  = \Cart::get($data['id']);
+            return response()->json([
+                'status' => 'success',
+                'product' => $product,
+                'total' =>  $total
             ], 200);
         }
 

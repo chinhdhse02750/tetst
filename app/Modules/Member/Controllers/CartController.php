@@ -84,11 +84,11 @@ class CartController extends Controller
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
         $count = $cartCollection->count();
-//        dd($cartCollection);
+
         return view('shop.cart', compact(
             'cartCollection',
-            'total'
-
+            'total',
+            'count'
         ));
     }
 

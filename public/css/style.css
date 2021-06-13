@@ -10383,3 +10383,14 @@ label.error {
     from{ bottom:-100px; opacity:0 }
     to{ bottom:0; opacity:1 }
 }
+
+.text-empty-cart {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+.button-empty-cart {
+     display: flex;
+     justify-content: center;
+    margin-top: 40px;
+ }

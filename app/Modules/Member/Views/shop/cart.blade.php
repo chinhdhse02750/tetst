@@ -49,7 +49,8 @@
                     </div>
                 </div>
                 <!-- End order step-->
-                <div class="shopping-cart">
+                @if($count > 0)
+                    <div class="shopping-cart">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -85,15 +86,16 @@
                                                     </div>
                                                 </td>
                                                 <td class="product-name">{{ $value->name }}</td>
-                                                <td class="product-price"> ¥{{ number_format($value->price) }}</td>
+                                                <td class="product-price"><span>¥{{ number_format($value->price) }}</span></td>
                                                 <td class="product-quantity">
-                                                    <input class="quantity no-round-input"
+                                                    <input class="quantity no-round-input change-input-quantity" data-id="{{ $value->id }}"
                                                            type="number" min="1" value="{{ $value->quantity }}">
                                                 </td>
                                                 <td class="product-total">
-                                                    ¥{{ number_format((int)$value->quantity * $value->price) }}</td>
+                                                    ¥<span class="price_{{$value->id}}">{{ number_format((int)$value->quantity * $value->price) }}</span></td>
                                                 <td class="product-clear">
-                                                    <button class="no-round-btn button-delete-product" data-id="{{ $value->id }}">
+                                                    <button class="no-round-btn button-delete-product button-delete-product_{{ $value->id }}"
+                                                            data-id="{{ $value->id }}">
                                                         <i class="icon_close"></i></button>
                                                 </td>
                                             </tr>
@@ -126,7 +128,7 @@
                                         <tbody>
                                         <tr>
                                             <th>Tạm tính</th>
-                                            <td>¥{{ number_format($total) }}</td>
+                                            <td class="all_product_price">¥<span>{{ number_format($total) }}</span></td>
                                         </tr>
                                         <tr>
                                             <th>Giao hàng</th>
@@ -189,7 +191,7 @@
                                         </tr>
                                         <tr>
                                             <th>Tổng</th>
-                                            <td>¥{{ number_format($total) }}</td>
+                                            <td class="total_all_price">¥<span>{{ number_format($total) }}</span></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -201,6 +203,14 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    <div class="text-empty-cart">Chưa có sản phẩm nào trong giỏ hàng.</div>
+                    <div class="button-empty-cart">
+                        <a  href="{{ route('cate.view', 'tat-ca-san-pham') }}"
+                            class="no-round-btn black cart-update wc-forward">Quay trở lại cửa hàng</a>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
@@ -225,8 +235,11 @@
                     url: url,
                     data: {id: id},
                     success: function (data) {
+                        console.log(data.total);
                         if(data.status === "success"){
                             $('.row-product-'+id).remove();
+                            $('.all_product_price span').text(data.total);
+                            $('.total_all_price span').text(data.total);
                         }
                     },
                     beforeSend: function(){
@@ -239,6 +252,43 @@
                         alert('Exeption:' + exception);
                     }
                 });
+            });
+
+            $('.change-input-quantity').bind('keyup change', function (e) {
+                let qty = $(this).val();
+                let id = $(this).data("id");
+                let url = "{{ url("api/v1/cart/update-quantity/:id")  }}".replace(':id', id);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                if(qty > 0){
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: {id: id, quantity: qty },
+                        success: function (data) {
+                            if(data.status === "success"){
+                                $('.price_'+id).text(data.product.price * data.product.quantity);
+                                $('.all_product_price span').text(data.total);
+                                $('.total_all_price span').text(data.total);
+                            }
+                        },
+                        beforeSend: function(){
+                            $('#loader').show();
+                        },
+                        complete: function(){
+                            $('#loader').hide();
+                        },
+                        error: function (exception) {
+                            alert('Exeption:' + exception);
+                        }
+                    });
+                }else if(parseInt(qty) === 0){
+                    $('.button-delete-product_'+id).trigger( "click" );
+                }
+
             });
 
         });
