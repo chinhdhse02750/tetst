@@ -194,8 +194,34 @@
 
 
             $('#button-checkout').on('click', function() {
-                console.log("cccc");
+                let id = $(this).data("id");
+                let url = "{{ url("api/v1/cart/order")}}";
 
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {id: id},
+                    success: function (data) {
+                        if(data.status === "success"){
+
+                        }
+                    },
+                    beforeSend: function(){
+                        $('#loader').show();
+                    },
+                    complete: function(){
+                        $('#loader').hide();
+                    },
+                    error: function (exception) {
+                        alert('Exeption:' + exception);
+                    }
+                });
             });
             // $('#select2-dropdown').on('change', function (e) {
             //     var data = $('#select2-dropdown').select2("val");

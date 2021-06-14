@@ -110,4 +110,14 @@ class CartController extends Controller
             'status' => 'fail',
         ], 400);
     }
+
+    public function order(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+
+        return response()->json([
+            'status' => 'fail',
+        ], 400);
+    }
 }

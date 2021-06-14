@@ -113,7 +113,9 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-4 text-right">
-                                <button class="no-round-btn black cart-update">Cập nhật giỏ hàng</button>
+                                <a  href="{{ route('cate.view', 'tat-ca-san-pham') }}"
+                                    class="no-round-btn black cart-update">Tiếp tục xem sản phẩm!
+                                </a>
                             </div>
                         </div>
                         <div class="row justify-content-end">
