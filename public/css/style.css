@@ -5968,7 +5968,6 @@ footer .footer-quicklink a:hover {
 }
 
 footer .newletter {
-    margin-top: 60px;
     padding: 30px;
     background-color: #3d2314;
 }
@@ -10390,7 +10389,28 @@ label.error {
     font-size: 20px;
 }
 .button-empty-cart {
-     display: flex;
-     justify-content: center;
+    display: flex;
+    justify-content: center;
     margin-top: 40px;
  }
+
+.footer-text-describe{
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 20px;
+    color: #000000;
+}
+
+.text-section-footer{
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.footer-top {
+    padding: 60px 0;
+    background: #e5e5e5;
+    text-align: left;
+    color: #aaa;
+}

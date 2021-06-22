@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="header-left d-flex flex-column flex-md-row align-items-center">
-                        <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>info.deercreative@gmail.com
+                        <p class="d-flex align-items-center"><i class="fas fa-envelope"></i>hanoitaphoa.jp@gmail.com
                         </p>
-                        <p class="d-flex align-items-center"><i class="fas fa-phone"></i>+65 11.188.888</p>
+                        <p class="d-flex align-items-center"><i class="fas fa-phone"></i>080-5316-7125</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
