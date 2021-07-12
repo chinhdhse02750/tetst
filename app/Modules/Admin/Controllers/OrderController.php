@@ -20,6 +20,7 @@ use App\Repositories\PrefRepository;
 use App\Repositories\ShippingRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\OrderDetailRepository;
+use App\Repositories\UnitRepository;
 
 class OrderController extends Controller
 {
@@ -29,6 +30,7 @@ class OrderController extends Controller
     protected $shippingRepository;
     protected $oderRepository;
     protected $oderDetailRepository;
+    protected $unitRepository;
 
     /**
      * CategoryController constructor.
@@ -39,8 +41,8 @@ class OrderController extends Controller
         PrefRepository $prefRepository,
         ShippingRepository $shippingRepository,
         OrderRepository $oderRepository,
-        OrderDetailRepository $oderDetailRepository
-
+        OrderDetailRepository $oderDetailRepository,
+        UnitRepository $unitRepository
     ) {
         $this->tagRepository = $tagRepository;
         $this->productCommentRepository = $productCommentRepository;
@@ -48,6 +50,7 @@ class OrderController extends Controller
         $this->shippingRepository = $shippingRepository;
         $this->orderRepository = $oderRepository;
         $this->oderDetailRepository = $oderDetailRepository;
+        $this->unitRepository = $unitRepository;
     }
 
     /**
@@ -101,6 +104,54 @@ class OrderController extends Controller
         $orderDetail = $this->oderDetailRepository->findByField(['order_id'=> $order->id]);
 
         return view('order.detail', ['order' => $order, 'orderDetail' => $orderDetail]);
+    }
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\JsonResponse
+     */
+    public function updateStatus(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $data = $request->except(['_token']);
+            $this->orderRepository->find($id)->update($data);
+
+            return response()->json([
+                'status' => 'success',
+                'key_status' => $data['status']
+            ], 200);
+
+        } catch (Exception $e) {
+            Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
+            return redirect()
+                ->route('order.index')
+                ->withErrors($e->getMessage());
+        }//end try
+    }
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\JsonResponse
+     */
+    public function updatePaymentStatus(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $data = $request->except(['_token']);
+            $this->orderRepository->find($id)->update($data);
+
+            return response()->json([
+                'status' => 'success',
+                'key_status' => $data['payment_status']
+            ], 200);
+
+        } catch (Exception $e) {
+            Log::error('[ERROR_CATEGORY_CREATE]: '. $e->getMessage());
+            return redirect()
+                ->route('order.index')
+                ->withErrors($e->getMessage());
+        }//end try
     }
 
     /**

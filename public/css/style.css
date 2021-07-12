@@ -2917,7 +2917,7 @@ a:focus {
 
 .order-step .order-step_block .step-block .step h2 {
     font-family: "sans-serif";
-    font-size: 17px;
+    font-size: 18px;
     color: #252525;
     line-height: 1;
     display: block;
@@ -2928,7 +2928,7 @@ a:focus {
 
 .order-step .order-step_block .step-block .step span {
     font-family: "sans-serif";
-    font-size: 35px;
+    font-size: 40px;
     color: rgba(45, 44, 64, 0.1);
     line-height: 1;
     display: block;
@@ -5919,7 +5919,7 @@ footer .footer-contact {
 footer .footer-contact p {
     font-family: "sans-serif";
     font-size: 16px;
-    color: #636363;
+    color: #000;
     line-height: 36px;
     display: block;
 }
@@ -5930,7 +5930,7 @@ footer .footer-social a {
     line-height: 40px;
     text-align: center;
     margin-right: 12px;
-    color: #636363;
+    color: #000;
 }
 
 footer .footer-quicklink {
@@ -8515,9 +8515,9 @@ footer.coffee .newletter .newletter_input button:focus {
     font-size: 16px;
     color: #636363;
     line-height: 1;
+    display: block;
     display: table-cell;
     padding: 20px 10px;
-    vertical-align: middle !important;
 }
 .shopping-cart .cart-total_block .table tbody tr:last-child {
     border-bottom: 2px solid #ebebeb;
@@ -8529,9 +8529,9 @@ footer.coffee .newletter .newletter_input button:focus {
     font-size: 16px;
     color: #252525;
     line-height: 1;
+    display: block;
     display: table-cell;
     padding: 20px 10px;
-    text-align: right;
 }
 
 .shopping-cart .cart-total_block .table tbody td p {
@@ -8676,8 +8676,6 @@ footer.coffee .newletter .newletter_input button:focus {
 
 .shop-checkout .shopping-cart .submit-btn {
     width: 100%;
-    text-align: center;
-    cursor: pointer;
 }
 
 /************************************
@@ -10141,11 +10139,6 @@ footer.coffee .newletter .newletter_input button:focus {
     border-radius: 5px;
     margin-top: 5px;
 }
-.shipping-calculator-form input, select{
-    width:100%;
-    margin-top: 5px;
-    line-height: inherit;
-}
 
 
 *:before, *:after {
@@ -10316,12 +10309,8 @@ h3.reply-title {
 }
 
 label.error {
-    color: red !important;
-    display: block !important;
-}
-
-.shop-checkout .form-group label.error {
-    margin-top: 10px;
+    color: red;
+    display: block;
 }
 
 .text-payment{
@@ -10424,44 +10413,4 @@ label.error {
     background: #e5e5e5;
     text-align: left;
     color: #aaa;
-}
-
-span#select2-calc_shipping_state_field-container {
-    text-align: left;
-}
-
-.shiping-update{
-    background-color: #000;
-    color: #fff;
-    font-size: 13px;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    padding: 10px 30px;
-    text-transform: uppercase;
-    font-family: 'sans-serif';
-    border: 2px solid #000;
-    -webkit-transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -ms-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-    transition: 0.3s ease;
-    display: inline-block;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.shipping-calculator-form span.select2.select2-container.select2-container--default {
-    width: 100% !important;
-    border-radius: unset;
-}
-
-.select2-container--default .select2-selection--single {
-    border-radius: 0 !important;
-}
-
-.bold-price{
-    font-weight: bold;
 }

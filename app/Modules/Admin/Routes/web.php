@@ -32,6 +32,8 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::resource('/shipping', 'ShippingController');
         Route::resource('/order', 'OrderController');
         Route::post('/comments/update-status', 'CommentController@updateStatus')->name('comments.updateStatus');
+        Route::post('/order/update-status', 'OrderController@updateStatus')->name('order.updateStatus');
+        Route::post('/order/update-payment-status', 'OrderController@updatePaymentStatus')->name('order.updatePaymentStatus');
     });
 
 Route::middleware('auth:admin')

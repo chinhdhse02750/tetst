@@ -24,7 +24,8 @@
                                     <th width="10%">Tổng đơn(bao gồm phí ship + thu hộ)</th>
                                     <th width="15%">Địa chỉ</th>
                                     <th width="10%">Tỉnh thành phố</th>
-                                    <th width="10%">Trạng thái</th>
+                                    <th width="10%">Trạng thái đơn hàng</th>
+                                    <th width="10%">Trạng thái thanh toán</th>
                                     <th width="10%">Quản lý</th>
                                 </thead>
                                 <tbody>
@@ -53,19 +54,28 @@
                                             </td>
                                             <td class="table-text">
                                                 <div>
-                                                    @if($order->status == 0)
-                                                        <div>Đơn chưa xác nhận</div>
-                                                    @else
-                                                        <div>Đơn đã xác nhận</div>
-                                                    @endif
+                                                    <select name="status" class="bill_status" data-id="{{ $order->id }}">
+                                                        <option value="0"  @if($order->status == 0) selected @endif>
+                                                            Đơn chưa xác nhận</option>
+                                                        <option value="1"  @if($order->status == 1) selected @endif>
+                                                            Đơn đã xác nhận</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td class="table-text">
+                                                <div>
+                                                    <select name="status" class="payment_status" data-id="{{ $order->id }}">
+                                                        <option value="0"  @if($order->payment_status == 0) selected @endif>
+                                                            Đơn chưa thanh toán</option>
+                                                        <option value="1"  @if($order->payment_status == 1) selected @endif>
+                                                            Đơn đã thanh toán</option>
+                                                    </select>
                                                 </div>
                                             </td>
                                             <td>
                                                 <form method="POST">
                                                     <a href="{{ route('order.show', $order->id) }}"
                                                        class="btn btn-default"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('order.edit', $order->id) }}"
-                                                       class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                                                     <a href="{{ route('order.destroy', $order->id) }}"
                                                        class="btn btn-danger"
                                                        data-method="delete"
@@ -93,15 +103,12 @@
     <!-- flot charts scripts-->
     <script>
         $(document).ready(function () {
-            $(".enable_status").change(function(){
+            $('.bill_status').on('change', function() {
                 let id = $(this).data('id');
-                let isChecked = 0;
-                if($(this).is(":checked")){
-                    isChecked = 1;
-                }
-                let url = '{{ url('/admin/comments/update-status') }}';
+                let val = $(this).val();
+                let url = '{{ url('/admin/order/update-status') }}';
                 let data = {
-                    id: id, status: isChecked,
+                    id: id, status: val,
                 };
 
                 $.ajaxSetup({
@@ -116,9 +123,41 @@
                     success: function(msg){
                         if(msg.status == 'success'){
                             if(msg.key_status == 1){
-                                alert('Comment đã được hiển thị');
+                                alert('Đơn hàng đã được xác nhận');
                             }else{
-                                alert('Comment đã được ẩn đi');
+                                alert('Hủy bỏ xác nhận đơn hàng');
+                            }
+                        }
+                        else{
+                            alert('Cập nhật không thành công!');
+                        }
+                    }
+                });
+            });
+
+            $('.payment_status').on('change', function() {
+                let id = $(this).data('id');
+                let val = $(this).val();
+                let url = '{{ url('/admin/order/update-payment-status') }}';
+                let data = {
+                    id: id, payment_status: val,
+                };
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,        //POST variable name value
+                    success: function(msg){
+                        if(msg.status == 'success'){
+                            if(msg.key_status == 1){
+                                alert('Xác nhận đơn hàng thanh toán thành công');
+                            }else{
+                                alert('Hủy bỏ xác nhận thanh toán ');
                             }
 
                         }
@@ -128,6 +167,7 @@
                     }
                 });
             });
+
         });
     </script>
 @stop

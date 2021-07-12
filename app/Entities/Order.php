@@ -15,6 +15,7 @@ class Order extends Model implements Transformable
 {
     use TransformableTrait;
 
+    protected $table = 'orders';
     /**
      * The attributes that are mass assignable.
      *
