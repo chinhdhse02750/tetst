@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/frontend.css">
     <link rel="shortcut icon" href="/images/shortcut_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
     @yield('custom_style')
 </head>
 <body>
@@ -37,7 +38,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 <script src="/js/jquery.countdown.min.js"></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/jquery.easing.js"></script>
@@ -48,6 +49,7 @@
 <script src="/js/numscroller-1.0.js"></script>
 <script src="/js/vanilla-tilt.min.js"></script>
 <script src="/js/main.js"></script>
+
 @stack('script')
 @yield('custom_script')
 </body>

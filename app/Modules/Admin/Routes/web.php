@@ -29,8 +29,9 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::resource('/units', 'UnitController');
         Route::resource('/tags', 'TagController');
         Route::resource('/comments', 'CommentController');
+        Route::resource('/shipping', 'ShippingController');
+        Route::resource('/order', 'OrderController');
         Route::post('/comments/update-status', 'CommentController@updateStatus')->name('comments.updateStatus');
-
     });
 
 Route::middleware('auth:admin')

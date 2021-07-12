@@ -603,8 +603,8 @@ window.onload = function () {
                             currency: 'JPY'
                         }).format(data.total));
                         $('.cart_count').text(data.count);
-                        $('.count_stock').text()
-                        $('#modalAbandonedCart').modal('show')
+                        $('.count_stock').text();
+                        $('#modalAbandonedCart').modal('show');
                         setTimeout(function () {
                             $('#modalAbandonedCart').modal('hide')
                         }, 2000);

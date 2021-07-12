@@ -70,7 +70,7 @@ class ProductController extends Controller
         \Cart::add($data['id'],  $data['product_name'],  $data['product_discount_price'] !== null
             ? $data['product_discount_price'] : $data['product_price'], $data['quantity'], array())->associate($Product);
         $cartCollection = \Cart::getContent();
-        $total = \Cart::getTotal();
+        $total = \Cart::getSubTotalWithoutConditions();
         $count = $cartCollection->count();
 
         return response()->json([

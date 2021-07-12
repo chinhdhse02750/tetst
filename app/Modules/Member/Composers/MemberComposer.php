@@ -81,7 +81,7 @@ class MemberComposer
     public function compose(View $view)
     {
         $cart = \Cart::getContent();
-        $total = \Cart::getTotal();
+        $total = \Cart::getSubTotalWithoutConditions();
         $count =  $cart->count();
         $categories = $this->categoryRepository->findByField('parent', '1');
 

@@ -36,6 +36,8 @@ return [
         'product_management' => 'Quản lý sản phẩm',
         'tag_management' => 'Quản lý từ khóa',
         'comment_management' => 'Quản lý bình luận',
+        'shipping_management' => 'Quản lý phí ship',
+        'order_management' => 'Quản lý đơn hàng',
         'prefectures' => '都道府県管理',
         'master' => 'マスターデータ管理',
         'category'=> 'Danh mục',

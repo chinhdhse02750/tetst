@@ -225,3 +225,37 @@ Breadcrumbs::for('comments.edit', function ($trail, $id) {
     $trail->parent('comments.index');
     $trail->push(trans('comments.label.edit'), route('comments.edit', $id));
 });
+
+Breadcrumbs::for('shipping.index', function ($trail) {
+    $trail->push(trans('labels.menu.shipping'), route('shipping.index'));
+});
+Breadcrumbs::for('shipping.create', function ($trail) {
+    $trail->parent('shipping.index');
+    $trail->push(trans('shipping.label.unit_register'), route('shipping.create'));
+});
+Breadcrumbs::for('shipping.show', function ($trail, $id) {
+    $trail->parent('shipping.index');
+    $trail->push(trans('shipping.label.detail'), route('shipping.show', $id));
+});
+Breadcrumbs::for('shipping.edit', function ($trail, $id) {
+    $trail->parent('shipping.index');
+    $trail->push(trans('shipping.label.edit'), route('shipping.edit', $id));
+});
+
+
+Breadcrumbs::for('order.index', function ($trail) {
+    $trail->push(trans('labels.menu.product'), route('order.index'));
+});
+Breadcrumbs::for('order.create', function ($trail) {
+    $trail->parent('order.index');
+    $trail->push(trans('product.label.product_register'), route('order.create'));
+});
+Breadcrumbs::for('order.show', function ($trail, $id) {
+    $trail->parent('order.index');
+    $trail->push(trans('product.label.detail'), route('order.show', $id));
+});
+
+Breadcrumbs::for('order.edit', function ($trail, $id) {
+    $trail->parent('order.index');
+    $trail->push(trans('product.label.edit'), route('order.edit', $id));
+});

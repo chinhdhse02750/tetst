@@ -13,6 +13,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\PrefRepository;
+use App\Repositories\OrderRepository;
 use App\Services\NewsService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -37,6 +38,7 @@ class CartController extends Controller
     protected $unitRepository;
     protected $tagRepository;
     protected $prefRepository;
+    protected $oderRepository;
 
     /**
      * HomeController constructor.
@@ -61,7 +63,8 @@ class CartController extends Controller
         ProductRepository $productRepository,
         UnitRepository $unitRepository,
         TagRepository $tagRepository,
-        PrefRepository $prefRepository
+        PrefRepository $prefRepository,
+        OrderRepository $oderRepository
     )
     {
 //        $this->middleware('auth')->except('logout', 'test');
@@ -76,6 +79,7 @@ class CartController extends Controller
         $this->unitRepository = $unitRepository;
         $this->tagRepository = $tagRepository;
         $this->prefRepository = $prefRepository;
+        $this->orderRepository = $oderRepository;
     }
 
 
@@ -84,31 +88,65 @@ class CartController extends Controller
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
         $count = $cartCollection->count();
+        $pref = $this->prefRepository->all();
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+        $shipping = \Cart::getCondition('Shipping');
+        $daibiky = \Cart::getCondition('daiBiKi');
 
         return view('shop.cart', compact(
             'cartCollection',
             'total',
-            'count'
+            'totalWithoutCondition',
+            'count',
+            'pref',
+            'shipping',
+            'daibiky'
         ));
     }
 
 
     public function cartCheckout(Request $request)
     {
+        $cartContent =  \Cart::getContent();
+        if(\Cart::isEmpty()){
+            return abort(404);
+        }
         $pref = $this->prefRepository->all();
         $prefConfig = config('pref');
         $selectTime = $prefConfig['select_time'];
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
+        $totalWtCondition = \Cart::getSubTotalWithoutConditions();
         $count = $cartCollection->count();
-//        dd($cartCollection);
+        $shipping = \Cart::getCondition('Shipping');
+        $daibiky = \Cart::getCondition('daiBiKi');
+
         return view('shop.cart_checkout', compact(
             'cartCollection',
             'total',
+            'totalWtCondition',
             'pref',
-            'selectTime'
-
+            'selectTime',
+            'count',
+            'shipping',
+            'daibiky'
         ));
+    }
+
+
+    /**
+     * @return Factory|View
+     */
+    public function cartSuccess()
+    {
+        if(\Cart::isEmpty()){
+            return abort(404);
+        }
+
+        \Cart::clear();
+        \Cart::clearCartConditions();
+
+        return view('shop.cart_success');
     }
 
 
@@ -196,8 +234,7 @@ class CartController extends Controller
     /**
      * @param $data
      */
-    public
-    function filter($data)
+    public function filter($data)
     {
         $filter['sort'] = "created_at";
         $filter['condition'] = "DESC";

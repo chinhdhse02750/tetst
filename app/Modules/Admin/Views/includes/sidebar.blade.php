@@ -13,7 +13,6 @@
                 </a>
             </li>
 
-
             <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/auth*'), 'open')
                 }}">
@@ -24,6 +23,14 @@
                     Quản lý sản phầm và danh mục
                 </a>
                 <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(\Request::is('admin/order*')) }}"
+                           href="{{ route('order.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.order_management')
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ active_class(\Request::is('admin/category*')) }}"
                            href="{{ route('products.index') }}">
@@ -61,6 +68,14 @@
                            href="{{ route('comments.index') }}">
                             <i class="nav-icon cil-envelope-closed"></i>
                             @lang('labels.menu.comment_management')
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ active_class(\Request::is('admin/shipping*')) }}"
+                           href="{{ route('shipping.index') }}">
+                            <i class="nav-icon cil-envelope-closed"></i>
+                            @lang('labels.menu.shipping_management')
                         </a>
                     </li>
 

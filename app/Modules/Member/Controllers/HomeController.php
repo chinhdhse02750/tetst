@@ -65,29 +65,7 @@ class HomeController extends Controller
         $this->unitRepository = $unitRepository;
     }
 
-    /**
-     * @param Request $request
-     * @return View
-     */
     public function index(Request $request)
-    {
-        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
-        $filterData = $this->getFilterData($request);
-        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
-        if ($request->get('search') != null) {
-            $members = $this->userProfileRepository
-                ->filter($filterData, Auth::user()->type, $request->get('search'));
-        }
-        $requests = $request->query();
-        $ranks = $this->rankRepository->get();
-        $areas = $this->areaRepository->with('prefectures')->get();
-        $selectOption = config('user-profile');
-        $news = $this->newsService->getNews();
-
-        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
-    }
-
-    public function test(Request $request)
     {
         \Cart::clear();
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')

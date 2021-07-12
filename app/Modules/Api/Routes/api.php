@@ -17,4 +17,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('cart/delete-product/{id}', 'CartController@deleteProduct')->name('cart.deleteProduct');
     Route::post('cart/update-quantity/{id}', 'CartController@updateQuantity')->name('cart.updateQuantity');
     Route::post('cart/order', 'CartController@order')->name('cart.order');
+    Route::post('cart/get-fee-shipping/{id}', 'CartController@getFeeShipping')->name('cart.getFeeShipping');
+    Route::post('cart/get-daibiki-shipping', 'CartController@getDaiBiKiShipping')->name('cart.getDaiBiKiShipping');
 });

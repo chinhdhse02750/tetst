@@ -14,7 +14,7 @@ class CreateTablePref extends Migration
     public function up()
     {
         Schema::create('pref', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name', 255);
             $table->tinyInteger('sort_no');
             $table->timestamps();

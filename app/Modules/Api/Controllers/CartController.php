@@ -9,10 +9,11 @@ use App\Repositories\UserRepository;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use PHPUnit\Exception;
-use Prettus\Validator\Exceptions\ValidatorException;
-use Darryldecode\Cart\Cart;
+use App\Repositories\PrefRepository;
+use App\Repositories\ShippingRepository;
+use App\Repositories\OrderRepository;
+use App\Repositories\OrderDetailRepository;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -24,7 +25,19 @@ class CartController extends Controller
 
     protected $productCommentRepository;
 
+    protected $prefRepository;
+
+    protected $shippingRepository;
+
+    protected $oderRepository;
+
+    protected $oderDetailRepository;
+
     const REVIEW_STATUS_COMMENT = 0;
+    const DAIBIKI_MIN = 330;
+    const DAIBIKI_MAX = 440;
+    const TOTAL_DAIBIKI = 10000;
+    const FREE_SHIP_TOTAL = 10000;
     /**
      * MemberController constructor.
      * @param UserRepository $userRepository
@@ -33,11 +46,19 @@ class CartController extends Controller
     public function __construct(
         UserRepository $userRepository,
         ProductRepository $productRepository,
-        ProductCommentRepository $productCommentRepository
+        ProductCommentRepository $productCommentRepository,
+        PrefRepository $prefRepository,
+        ShippingRepository $shippingRepository,
+        OrderRepository $oderRepository,
+        OrderDetailRepository $oderDetailRepository
     ) {
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
         $this->productCommentRepository = $productCommentRepository;
+        $this->prefRepository = $prefRepository;
+        $this->shippingRepository = $shippingRepository;
+        $this->orderRepository = $oderRepository;
+        $this->orderDetailRepository = $oderDetailRepository;
     }
 
 
@@ -53,12 +74,14 @@ class CartController extends Controller
             ? $data['product_discount_price'] : $data['product_price'], $data['quantity'], array())->associate($Product);
         $cartCollection = \Cart::getContent();
         $total = \Cart::getTotal();
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
         $count = $cartCollection->count();
 
         return response()->json([
             'status' => 'success',
             'data' => $cartCollection,
             'total' => $total,
+            'totalWtCondition' => $totalWithoutCondition,
             'count' => $count
         ], 200);
     }
@@ -71,11 +94,30 @@ class CartController extends Controller
     public function deleteProduct(Request $request)
     {
         $data = $request->all();
-        if (\Cart::remove($data['id'])){
-            $total = \Cart::getTotal();
+        $cartCollection = \Cart::getContent();
+        $countItem = $cartCollection->count();
+        if($countItem === 1){
+            \Cart::clear();
+            \Cart::clearCartConditions();
+
             return response()->json([
                 'status' => 'success',
-                'total' => $total,
+                'message'=> 'cart empty'
+            ], 200);
+
+        } else if (\Cart::remove($data['id'])){
+            $this->updateNewShippingByTotal();
+            $shipping = \Cart::getCondition('Shipping');
+            $total = \Cart::getTotal();
+            $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+            $daiBiKyFee = \Cart::getCondition('daiBiKi');
+
+            return response()->json([
+                'status' => 'success',
+                'total' =>  $total,
+                'totalWithoutCondition' => $totalWithoutCondition,
+                'daiBiKyFee' =>  isset($shipping) ? $daiBiKyFee->getValue() : 0,
+                'shipping' => isset($shipping) ? $shipping->getValue() : 0,
             ], 200);
         }
 
@@ -97,12 +139,20 @@ class CartController extends Controller
                 'value' => $data['quantity']
             ))))
         {
-            $total = \Cart::getTotal();
             $product  = \Cart::get($data['id']);
+            $this->updateNewShippingByTotal();
+            $shipping = \Cart::getCondition('Shipping');
+            $daiBiKyFee = \Cart::getCondition('daiBiKi');
+            $total = \Cart::getTotal();
+            $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+
             return response()->json([
                 'status' => 'success',
+                'shipping' => isset($shipping) ? $shipping->getValue() : 0,
                 'product' => $product,
-                'total' =>  $total
+                'total' =>  $total,
+                'totalWithoutCondition' => $totalWithoutCondition,
+                'daiBiKyFee' =>  isset($daiBiKyFee) ? $daiBiKyFee->getValue() : 0,
             ], 200);
         }
 
@@ -111,13 +161,196 @@ class CartController extends Controller
         ], 400);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
     public function order(Request $request)
     {
+        try {
+            $data = $request->all();
+            $dataInsert = [];
+            parse_str($data['data'], $dataInsert);
+            if( Auth::id()){
+                $dataInsert['customer_id'] = Auth::id();
+            }else{
+                $dataInsert['customer_id'] = 0;
+            }
+            $dataShipping = \Cart::getCondition('Shipping');
+            $daiBiKi = \Cart::getCondition('daiBiKi');
+            $dataInsert['subtotal'] = \Cart::getSubTotalWithoutConditions();
+            $dataInsert['shipping'] =  isset($dataShipping) ? $dataShipping->getValue() : 0 ;
+            $dataInsert['daibiky'] =  isset($daiBiKi) ? $daiBiKi->getValue() : 0 ;
+            $dataInsert['total'] = \Cart::getTotal();
+
+            $order = $this->orderRepository->create($dataInsert);
+            $cartContent =  \Cart::getContent();
+
+            foreach($cartContent as $key => $value){
+                $orderDetail = $this->getDataOrderDetail($value);
+                $orderDetail['order_id'] = $order->id;
+                $this->orderDetailRepository->create($orderDetail);
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Đặt hàng thành công!'
+            ], 200);
+
+        } catch (Throwable $e) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => $e
+            ], 400);
+        }
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getDataOrderDetail($value)
+    {
+        $dataDetail['product_id'] = $value['id'];
+        $dataDetail['name'] = $value['name'];
+        $dataDetail['price'] = $value['price'];
+        $dataDetail['qty'] = $value['quantity'];
+        $dataDetail['total_price'] = $value['quantity'] * $value['price'];
+
+        return $dataDetail;
+
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getFeeShipping(Request $request)
+    {
         $data = $request->all();
-        dd($data);
+        $shipping = $this->shippingRepository->findWhere(['pref_id' => $data['id']])->first();
+        $price = $shipping->price;
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+        if($totalWithoutCondition >= self::FREE_SHIP_TOTAL){
+            $price = 0;
+        }
+        $itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'Shipping',
+            'type' => 'shipping',
+            'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+            'value' => $price,
+            'attributes' => array( // attributes field is optional
+                'id' => $data['id'],
+                'name' => $shipping->pref->name
+            )
+        ));
+        \Cart::condition($itemCondition3);
+        $dataShipping = \Cart::getCondition('Shipping');
+        $cartTotal = \Cart::getTotal(); // the total with the conditions targeted to "total" applied
+        //$cartConditions = \Cart::getCondition('Shipping');
+        if($shipping){
+            return response()->json([
+                'status' => 'success',
+                'price' => $shipping->price,
+                'name' => $shipping->pref->name,
+                'total' => number_format($cartTotal),
+                'totalNotFormat' => $cartTotal,
+                'cartNoCondition' => number_format($totalWithoutCondition),
+                'shippingPrice' =>  isset($dataShipping) ? $dataShipping->getValue() : 0,
+            ], 200);
+        }
 
         return response()->json([
             'status' => 'fail',
         ], 400);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getDaiBiKiShipping(Request $request)
+    {
+        $data = $request->all();
+        $daiBiKiPrice = self::DAIBIKI_MIN;
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+        if($totalWithoutCondition > self::TOTAL_DAIBIKI) {
+            $daiBiKiPrice = self::DAIBIKI_MAX;
+        }
+        if($data['id'] === "bank"){
+            \Cart::removeCartCondition("daiBiKi");
+        }else{
+            $daiBiKiCondition = new \Darryldecode\Cart\CartCondition(array(
+                'name' => 'daiBiKi',
+                'type' => 'shipping',
+                'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'value' => $daiBiKiPrice
+            ));
+            \Cart::condition($daiBiKiCondition);
+        }
+
+        $cartTotal = \Cart::getTotal(); // the total with the conditions targeted to "total" applied
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+        $daiBiKyFee = \Cart::getCondition('daiBiKi');
+
+        return response()->json([
+            'status' => 'success',
+            'total' => $cartTotal,
+            'cartNoCondition' => $totalWithoutCondition,
+            'daiBiKyFee' => isset($daiBiKyFee) ? $daiBiKyFee->getValue() : 0
+        ], 200);
+
+    }
+
+    public function updateNewShippingByTotal()
+    {
+        $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
+        $shipping = \Cart::getCondition('Shipping');
+        $daiBiKyFee = \Cart::getCondition('daiBiKi');
+        if(isset($daiBiKyFee)) {
+            $daiBiKiPrice = self::DAIBIKI_MIN;
+            if($totalWithoutCondition > self::TOTAL_DAIBIKI) {
+                $daiBiKiPrice = self::DAIBIKI_MAX;
+            }
+            $daiBiKiCondition = new \Darryldecode\Cart\CartCondition(array(
+                'name' => 'daiBiKi',
+                'type' => 'shipping',
+                'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'value' => $daiBiKiPrice
+            ));
+            \Cart::condition($daiBiKiCondition);
+        }
+
+        if(isset($shipping)){
+            if($totalWithoutCondition >= self::FREE_SHIP_TOTAL){
+                $itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+                    'name' => 'Shipping',
+                    'type' => 'shipping',
+                    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                    'value' => 0,
+                    'attributes' => array( // attributes field is optional
+                        'id' => $shipping->getAttributes()['id'],
+                        'name' => $shipping->getAttributes()['name']
+                    )
+                ));
+
+                \Cart::condition($itemCondition3);
+            }else{
+                $dataShipping = $this->shippingRepository->findWhere(['pref_id' =>$shipping->getAttributes()['id']])->first();
+                $price = $dataShipping->price;
+                $itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+                    'name' => 'Shipping',
+                    'type' => 'shipping',
+                    'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                    'value' => $price,
+                    'attributes' => array( // attributes field is optional
+                        'id' => $shipping->getAttributes()['id'],
+                        'name' => $shipping->getAttributes()['name']
+                    )
+                ));
+                \Cart::condition($itemCondition3);
+            }
+        }
     }
 }

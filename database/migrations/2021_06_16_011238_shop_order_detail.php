@@ -13,7 +13,7 @@ class ShopOrderDetail extends Migration
      */
     public function up()
     {
-        Schema::create('shoorder_detail', function (Blueprint $table) {
+        Schema::create('shop_order_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
             $table->integer('product_id');
@@ -38,6 +38,6 @@ class ShopOrderDetail extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shoorder_detail');
+        Schema::dropIfExists('shop_order_detail');
     }
 }

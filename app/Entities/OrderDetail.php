@@ -7,31 +7,27 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Pref.
+ * Class OrderDetail.
  *
  * @package namespace App\Entities;
  */
-class Pref extends Model implements Transformable
+class OrderDetail extends Model implements Transformable
 {
     use TransformableTrait;
-
-    protected $table = 'pref';
-
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [];
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function shipping()
-    {
-        return $this->hasOne('App\Entities\Shipping');
-    }
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'name',
+        'price',
+        'qty',
+        'total_price',
+        'tax'
+    ];
 
 }
