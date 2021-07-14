@@ -19,20 +19,24 @@
                                 <div class="department_bottom">
                                     <ul>
                                         @foreach($allCategories as $menu)
-                                            <li class="menu-toggle">
-                                                <a class="department-link"
+                                            <li class="menu-toggle menu-parent {{ ($alias == $menu->alias) ? 'active' : '' }}" >
+                                                <a class="department-link link-parent"
                                                    href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}</a>
                                                 @if(count($menu->childrenCategories))
                                                     <span data-toggle="collapse"
                                                           data-target="#{{ $menu->alias }}"
-                                                          class="collapsed text-truncate submenu-indicator"><i
-                                                                class="icon_plus"></i></span>
+                                                          class="collapsed text-truncate submenu-indicator">
+                                                            <i class="{{ ($menu->alias == $alias
+                                                            || $menu->childrenCategories->pluck('alias')->contains($alias)) ? 'icon_minus-06' : 'icon_plus' }} "></i></span>
                                                 @endif
                                                 @if(count($menu->childrenCategories))
-                                                    @include('includes.menu_sub',['childs' => $menu->childrenCategories, 'target' => $menu->alias ])
+                                                    @include('includes.menu_sub',
+                                                    ['childs' => $menu->childrenCategories,
+                                                     'target' => $menu->alias,
+                                                     'pluck' => $menu->childrenCategories->pluck('alias')]
+)
                                                 @endif
                                             </li>
-
                                         @endforeach
                                     </ul>
                                 </div>
@@ -123,14 +127,23 @@
                                                 </span> @lang('product.label.in_stock')</label>
                                         </div>
 
-                                        <div class="product-select" data-id="{{ $subData->id }}"
-                                             data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
-                                             data-discount_price="{{ $subData->discount_price }}">
-                                            <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
-                                            <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
-                                        </div>
+                                        @if($subData->stock == 0)
+                                            <div class="product-select" data-id="{{ $subData->id }}"
+                                                 data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
+                                                 data-discount_price="{{ $subData->discount_price }}">
+                                                <button class="normal-btn outline">Liên hệ chúng tôi</button>
+                                            </div>
+                                        @else
+                                            <div class="product-select" data-id="{{ $subData->id }}"
+                                                 data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
+                                                 data-discount_price="{{ $subData->discount_price }}">
+                                                <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
+                                                <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
+                                            </div>
+                                        @endif
+
                                         <div class="product-share">
-                                            <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a
+                                            <h5>Chia sẻ:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a
                                                     href=""><i class="fab fa-twitter"></i></a><a href=""><i
                                                         class="fab fa-invision"> </i></a><a href=""><i
                                                         class="fab fa-pinterest-p"></i></a>

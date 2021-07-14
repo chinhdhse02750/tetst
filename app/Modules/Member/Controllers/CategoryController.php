@@ -74,10 +74,28 @@ class CategoryController extends Controller
         $this->tagRepository = $tagRepository;
     }
 
+    function array_values_recursive($arr)
+    {
+        foreach ($arr as $key => $value)
+        {
+            if (is_array($value))
+            {
+                $arr[$key] = $this->array_values_recursive($value);
+            }
+        }
+
+        if (isset($arr['children']))
+        {
+            $arr['children'] = array_values($arr['children']);
+        }
+
+        return $arr;
+    }
 
     public function index(Request $request, $alias)
     {
         $allCategories = $this->categoryRepository->findByField('parent', '1');
+        $test = $this->array_values_recursive($allCategories->toArray());
         $categories = $this->categoryRepository->all()->pluck('alias')->toArray();
         $checkUrl = in_array($alias, $categories);
         $settingAlias = config('setting-alias');

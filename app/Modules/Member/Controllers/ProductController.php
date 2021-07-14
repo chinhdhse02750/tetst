@@ -97,6 +97,7 @@ class ProductController extends Controller
             'subData',
             'images',
             'tags',
+            'alias',
             'categories',
             'allCategories',
             'comments',

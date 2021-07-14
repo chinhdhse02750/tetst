@@ -53,7 +53,7 @@
                         <ul class="mb-0">
                             <li class="toggleable"><a class="menu-item" href="{{ route('home') }}">Trang chủ</a></li>
                             <li class="toggleable"><a class="menu-item"
-                                                      href="{{ route('cate.view', 'tat-ca-san-pham') }}">Shop</a></li>
+                                                      href="{{ route('cate.view', 'tat-ca-san-pham') }}">Cửa hàng</a></li>
                             <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>
                                 <ul class="sub-menu">
                                     <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
@@ -64,17 +64,7 @@
                                     <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>
                                 </ul>
                             </li>
-                            <li class="toggleable"><a class="menu-item active" href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="login.html">login</a></li>
-                                    <li><a href="register.html">register</a></li>
-                                    <li><a href="FAQ.html">FAQ</a></li>
-                                    <li><a href="coming_soon.html">coming soon</a></li>
-                                    <li><a href="contact_us.html">contact us</a></li>
-                                    <li><a href="404_error.html">404 error</a></li>
-                                </ul>
-                            </li>
-                            <li class="toggleable"><a class="menu-item" href="about_us.html">About us</a></li>
+                            <li class="toggleable"><a class="menu-item" href="about_us.html">Về Hà Nội Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -190,7 +180,7 @@
                 </div>
                 <div class="col-6">
                     <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a
-                            href=""><img src="/images/logo.png" alt=""></a></div>
+                            href=""><img  src="{{ asset('images/logo.png') }}" alt=""></a></div>
                 </div>
                 <div class="col-3">
                     <div class="mobile-product_function d-flex align-items-center justify-content-end"><a

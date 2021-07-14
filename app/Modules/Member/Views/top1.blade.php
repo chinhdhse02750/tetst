@@ -125,8 +125,8 @@
                                                     class="benefit-img" src="/images/homepage02/benefit-icon1.png"
                                                     alt="">
                                                 <div class="benefit-detail_info">
-                                                    <h5 class="benefit-title">Free Shipping</h5>
-                                                    <p class="benefit-describle">For all order over 99$</p>
+                                                    <h5 class="benefit-title">MIỄN PHÍ SHIP HÀNG</h5>
+                                                    <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9999</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,8 +135,8 @@
                                                     class="benefit-img" src="/images/homepage02/benefit-icon2.png"
                                                     alt="">
                                                 <div class="benefit-detail_info">
-                                                    <h5 class="benefit-title">Delivery On Time</h5>
-                                                    <p class="benefit-describle">If good have prolems</p>
+                                                    <h5 class="benefit-title">GIAO HÀNG</h5>
+                                                    <p class="benefit-describle">Giao hàng nhanh, rẻ , đúng hẹn</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,8 +145,8 @@
                                                     class="benefit-img" src="/images/homepage02/benefit-icon3.png"
                                                     alt="">
                                                 <div class="benefit-detail_info">
-                                                    <h5 class="benefit-title">Secure Payment</h5>
-                                                    <p class="benefit-describle">100% secure payment</p>
+                                                    <h5 class="benefit-title">BẢO MẬT THANH TOÁN</h5>
+                                                    <p class="benefit-describle">100% bảo mật</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,8 +155,8 @@
                                                 <img class="benefit-img" src="/images/homepage02/benefit-icon4.png"
                                                      alt="">
                                                 <div class="benefit-detail_info">
-                                                    <h5 class="benefit-title">24/7 Support</h5>
-                                                    <p class="benefit-describle">Dedicated support </p>
+                                                    <h5 class="benefit-title">HỖ TRỢ 24/7!</h5>
+                                                    <p class="benefit-describle">Hỗ trợ tận tâm</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -385,72 +385,52 @@
                                 </div>
                             </div>
                             {{--<div class="row">--}}
-                            {{--<div class="col-12 col-md-6">--}}
-                            {{--<div class="quick-banner quick-banner-2">--}}
-                            {{--<div class="row justify-content-center align-items-center">--}}
-                            {{--<div class="col-6 col-md-5">--}}
-                            {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
-                            {{--src="/images/homepage03/quick_banner_2_img.png"--}}
-                            {{--alt=""></div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-6 col-md-5">--}}
-                            {{--<div class="banner-text text-center text-md-left">--}}
-                            {{--<h3 class="day">Black Friday </h3>--}}
-                            {{--<h3 class="sale">Sale Off <span>60%</span></h3><a--}}
-                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
-                            {{--now</a>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-12 col-md-6">--}}
-                            {{--<div class="quick-banner quick-banner-3">--}}
-                            {{--<div class="row justify-content-center align-items-center">--}}
-                            {{--<div class="col-6 col-md-5">--}}
-                            {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
-                            {{--src="/images/homepage03/quick_banner_3_img.png"--}}
-                            {{--alt=""></div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-6 col-md-5">--}}
-                            {{--<div class="banner-text text-center text-md-left">--}}
-                            {{--<h3 class="day">Summer</h3>--}}
-                            {{--<h3 class="sale">Sale Off <span>50%</span></h3><a--}}
-                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
-                            {{--now</a>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+                                {{--<div class="col-12 col-md-6">--}}
+                                    {{--<div class="quick-banner quick-banner-2">--}}
+                                        {{--<div class="row justify-content-center align-items-center">--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                                                                                          {{--src="/images/homepage03/quick_banner_2_img.png"--}}
+                                                                                          {{--alt=""></div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="banner-text text-center text-md-left">--}}
+                                                    {{--<h3 class="day">Black Friday </h3>--}}
+                                                    {{--<h3 class="sale">Sale Off <span>60%</span></h3><a--}}
+                                                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                                                        {{--now</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-12 col-md-6">--}}
+                                    {{--<div class="quick-banner quick-banner-3">--}}
+                                        {{--<div class="row justify-content-center align-items-center">--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                                                                                          {{--src="/images/homepage03/quick_banner_3_img.png"--}}
+                                                                                          {{--alt=""></div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-6 col-md-5">--}}
+                                                {{--<div class="banner-text text-center text-md-left">--}}
+                                                    {{--<h3 class="day">Summer</h3>--}}
+                                                    {{--<h3 class="sale">Sale Off <span>50%</span></h3><a--}}
+                                                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                                                        {{--now</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                             {{--</div>--}}
                         </div>
                     </div>
                 </div>
             </div>
         @include('shop.modal_add_success')
+        @include('includes.slide_footer')
 
-        <!-- End product block-->
-            <div class="partner">
-                <div class="container">
-                    <div class="partner_block d-flex justify-content-between"
-                         data-slick="{&quot;slidesToShow&quot;: 4}">
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_01.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_02.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_01.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                        <div class="partner--logo" href=""><a href="#"><img src="/images/partner/partner_02.png"
-                                                                            alt="partner" title="partner logo"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End partner-->
         </div>
         @endsection
         @push('script')

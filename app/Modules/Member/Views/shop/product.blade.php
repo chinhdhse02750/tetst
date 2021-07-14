@@ -16,21 +16,26 @@
                                     <h2 class="title">Danh mục sản phẩm</h2>
                                 </div>
                                 <div class="department_bottom">
-                                    <ul>
+                                    <ul class="ul-parent">
                                         @foreach($allCategories as $menu)
-                                                <li class="menu-toggle">
-                                                    <a class="department-link"
+                                                <li class="menu-toggle menu-parent {{ ($alias == $menu->alias) ? 'active' : '' }}" >
+                                                    <a class="department-link link-parent"
                                                        href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}</a>
                                                     @if(count($menu->childrenCategories))
                                                         <span data-toggle="collapse"
                                                               data-target="#{{ $menu->alias }}"
-                                                              class="collapsed text-truncate submenu-indicator"><i class="icon_plus"></i></span>
+                                                              class="collapsed text-truncate submenu-indicator">
+                                                            <i class="{{ ($menu->alias == $alias
+                                                            || $menu->childrenCategories->pluck('alias')->contains($alias)) ? 'icon_minus-06' : 'icon_plus' }} "></i></span>
                                                     @endif
                                                     @if(count($menu->childrenCategories))
-                                                        @include('includes.menu_sub',['childs' => $menu->childrenCategories, 'target' => $menu->alias ])
+                                                        @include('includes.menu_sub',
+                                                        ['childs' => $menu->childrenCategories,
+                                                         'target' => $menu->alias,
+                                                         'pluck' => $menu->childrenCategories->pluck('alias')]
+)
                                                     @endif
                                                 </li>
-
                                         @endforeach
                                     </ul>
                                 </div>
@@ -149,18 +154,23 @@
                                                         <h3 class="product-price">
                                                             ¥{{ number_format($value->price) }} </h3>
                                                     @endif
-                                                    <div class="product-select" data-id="{{ $value->id }}"
-                                                         data-name="{{ $value->name }}" data-price="{{ $value->price }}"
-                                                         data-discount_price="{{ $value->discount_price }}">
-                                                        <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
-                                                        <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
-                                                        <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
-                                                        <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
-                                                    </div>
+
+                                                    @if($value->stock == 0)
+                                                        <div class="out-of-stock-label">Hết hàng</div>
+                                                    @else
+                                                        <div class="product-select" data-id="{{ $value->id }}"
+                                                             data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                             data-discount_price="{{ $value->discount_price }}">
+                                                            <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                        class="icon_heart_alt"></i></button>
+                                                            <button class="add-to-cart round-icon-btn pink"><i
+                                                                        class="icon_bag_alt"></i></button>
+                                                            <button class="add-to-compare round-icon-btn pink"><i
+                                                                        class="fas fa-random"></i></button>
+                                                            <button class="quickview round-icon-btn pink"><i
+                                                                        class="far fa-eye"></i></button>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
