@@ -249,11 +249,11 @@
                             </div>
                             <div class="col-8 col-md-8 col-lg-5 col-xl-7">
                                 <div class="search-input">
-                                    <input class="no-round-input no-border" type="text" placeholder="What do you need">
+                                    <input class="no-round-input no-border" type="text" placeholder="Bạn muốn tìm gì?">
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-3 col-xl-2">
-                                <button class="no-round-btn">Search</button>
+                                <button class="no-round-btn">Tìm kiếm</button>
                             </div>
                         </div>
                     </div>

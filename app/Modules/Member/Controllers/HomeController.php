@@ -65,33 +65,55 @@ class HomeController extends Controller
         $this->unitRepository = $unitRepository;
     }
 
+    /**
+     * @param Request $request
+     * @return View
+     */
     public function index(Request $request)
     {
-        \Cart::clear();
-        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
-            ->with('units')
-            ->with('category')->get();
+        $userPrefectures = $this->userPrefectureRepository->totalUserByPrefectures();
+        $filterData = $this->getFilterData($request);
+        $members = $this->userProfileRepository->filter($filterData, Auth::user()->type);
+        if ($request->get('search') != null) {
+            $members = $this->userProfileRepository
+                ->filter($filterData, Auth::user()->type, $request->get('search'));
+        }
+        $requests = $request->query();
+        $ranks = $this->rankRepository->get();
+        $areas = $this->areaRepository->with('prefectures')->get();
+        $selectOption = config('user-profile');
+        $news = $this->newsService->getNews();
 
-        $cart = \Cart::getContent();
-        $total = \Cart::getTotal();
-        $count = $cart->count();
-
-        $saleProduct = $this->productRepository->getListSaleProduct();
-        $featuredProduct = $this->productRepository->getListFeatured();
-        $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
-        $bestSeller = $this->productRepository->getListBestSeller(8);
-
-        return view('top1', compact(
-            'products',
-            'saleProduct',
-            'featuredProduct',
-            'dealOfWeekProduct',
-            'bestSeller',
-            'cart',
-            'total',
-            'count'
-        ));
+        return view('top', compact('userPrefectures', 'members', 'ranks', 'areas', 'selectOption', 'requests', 'news'));
     }
+
+//    public function index(Request $request)
+//    {
+//        \Cart::clear();
+//        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
+//            ->with('units')
+//            ->with('category')->get();
+//
+//        $cart = \Cart::getContent();
+//        $total = \Cart::getTotal();
+//        $count = $cart->count();
+//
+//        $saleProduct = $this->productRepository->getListSaleProduct();
+//        $featuredProduct = $this->productRepository->getListFeatured();
+//        $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
+//        $bestSeller = $this->productRepository->getListBestSeller(8);
+//
+//        return view('top1', compact(
+//            'products',
+//            'saleProduct',
+//            'featuredProduct',
+//            'dealOfWeekProduct',
+//            'bestSeller',
+//            'cart',
+//            'total',
+//            'count'
+//        ));
+//    }
 
     public function view(Request $request, $alias)
     {
