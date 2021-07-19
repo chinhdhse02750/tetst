@@ -9,6 +9,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use \Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\FullTextSearch;
 
 /**
  * Class Product.
@@ -17,7 +18,7 @@ use \Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Product extends Model implements Transformable
 {
-    use TransformableTrait, ProductScope;
+    use TransformableTrait, ProductScope, FullTextSearch;
 
 
     protected $table = 'products';
@@ -47,6 +48,16 @@ class Product extends Model implements Transformable
         'alias',
         'store_id'
     ];
+
+    /**
+     * @var array
+     */
+    protected $searchable = [
+        'name',
+        'description',
+        'content'
+    ];
+
 
     /**
      * @return BelongsTo

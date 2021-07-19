@@ -3,10 +3,13 @@
 namespace App\Traits\Scope;
 
 use App\Helpers\Constants;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use App\Traits\FullTextSearch;
+use Illuminate\Support\Facades\Auth;
 
 trait ProductScope
 {
+
     /**
      * @param object $query
      * @return mixed
@@ -101,11 +104,28 @@ trait ProductScope
      */
     public function scopeFilterPrice(object $query, $minPrice, $maxPrice)
     {
+
         if ((isset($minPrice) && $minPrice != 0) || ((isset($maxPrice) && $maxPrice != 0))) {
-            return $query->where(DB::raw('COALESCE(discount_price, price)'), '>', $minPrice)
-                ->where(DB::raw('COALESCE(discount_price, price)'), '<', $maxPrice);
+            return $query->where(\DB::raw('COALESCE(discount_price, price)'), '>', $minPrice)
+                ->where(\DB::raw('COALESCE(discount_price, price)'), '<', $maxPrice);
         }
 
+        return $query;
+    }
+
+    /**
+     * Scope a query that matches a full text search of term.
+     *
+     * @param Builder $query Query.
+     * @param string $search Search.
+     * @return Builder
+     */
+    public function scopeSearch($query, $search)
+    {
+        if ($search != '') {
+            $columns = implode(',', $this->searchable);
+            $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($search));
+        }
         return $query;
     }
 

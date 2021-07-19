@@ -34,6 +34,7 @@ Route::group([['middleware' => 'auth']], function () {
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/test', 'HomeController@test')->name('test');
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@index')->name('cart.index');

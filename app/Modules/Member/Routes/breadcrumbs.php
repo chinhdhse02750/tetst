@@ -12,6 +12,11 @@ Breadcrumbs::for('home', function ($trail) {
     $trail->push(trans('Trang chủ'), route('home'));
 });
 
+Breadcrumbs::for('search', function ($trail) {
+    $trail->push(trans('Trang chủ'), route('home'));
+});
+
+
 
 Breadcrumbs::for('cate.view', function ($trail, $category) {
     $trail->parent('home');

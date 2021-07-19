@@ -367,6 +367,14 @@ window.onload = function () {
         $("#amount").val("$" + $("#slider-range").slider("values", 0) +
             " - $" + $("#slider-range").slider("values", 1));
 
+
+        $("#btn_search_all").on('click', function() {
+            let search_data = $('#search_input').val();
+            let url =  $('#search_url').val();
+            window.location.href= url+ "?search="+search_data;
+        });
+
+
         /****************************************************
          Shop change view
          ****************************************************/

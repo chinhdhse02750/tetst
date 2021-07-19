@@ -230,30 +230,15 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2">
-                    <div class="website-search">
+                    <input type="hidden" value="{{ route('search') }}" id="search_url">
                         <div class="row no-gutters">
-                            <div class="col-0 col-md-0 col-lg-4 col-xl-3">
-                                <div class="filter-search">
-                                    <div class="categories-select d-flex align-items-center justify-content-around">
-                                        <span>All Categories</span><i class="arrow_carrot-down"></i></div>
-                                    <div class="categories-select_box">
-                                        <ul>
-                                            <li>Fruit & Nut Gifts</li>
-                                            <li>Fresh Berries</li>
-                                            <li>Ocean Foods</li>
-                                            <li>Butter & Eggs</li>
-                                            <li>Ocean Foods</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8 col-md-8 col-lg-5 col-xl-7">
+                            <div class="col-8 col-md-8 col-lg-9 col-xl-10">
                                 <div class="search-input">
-                                    <input class="no-round-input no-border" type="text" placeholder="Bạn muốn tìm gì?">
+                                    <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"  placeholder="Bạn muốn tìm gì?">
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-3 col-xl-2">
-                                <button class="no-round-btn">Tìm kiếm</button>
+                                <button class="no-round-btn" id="btn_search_all">Tìm kiếm</button>
                             </div>
                         </div>
                     </div>

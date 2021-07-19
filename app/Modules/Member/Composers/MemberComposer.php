@@ -9,6 +9,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\UserPrefectureRepository;
 use App\Repositories\UserRepository;
 use App\Services\NewsService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -80,6 +81,12 @@ class MemberComposer
      */
     public function compose(View $view)
     {
+        $data = $view->getData();
+        $search = "";
+
+        if(isset($data['data']['search'])) {
+            $search = $data['data']['search'];
+        }
         $cart = \Cart::getContent();
         $total = \Cart::getSubTotalWithoutConditions();
         $count =  $cart->count();
@@ -88,7 +95,8 @@ class MemberComposer
         return $view->with(compact(
             'total',
             'count',
-            'categories'
+            'categories',
+            'search'
         ));
     }
 }

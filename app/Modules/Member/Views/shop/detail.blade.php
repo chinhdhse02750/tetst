@@ -15,7 +15,7 @@
                                 <input type="hidden" value="{{ url('api/v1/product/comment') }} " id="url-comment">
                                 <div class="department_top mini-tab-title underline">
                                     <h2 class="title">Danh mục sản phẩm</h2>
-                                </div>+
+                                </div>
                                 <div class="department_bottom">
                                     <ul>
                                         @foreach($allCategories as $menu)

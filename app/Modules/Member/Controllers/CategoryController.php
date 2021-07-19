@@ -127,7 +127,6 @@ class CategoryController extends Controller
             ));
         }//end if
 
-
         return abort(404);
     }
 

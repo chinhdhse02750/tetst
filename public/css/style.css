@@ -881,7 +881,7 @@ a:focus {
     -o-border-radius: 0;
     border: 1px solid #ebebeb;
     padding: 0 20px;
-    height: 50px;
+    height: 48px;
     width: 100%;
     transition: border 0.3s ease;
 }

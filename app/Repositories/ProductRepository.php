@@ -192,4 +192,31 @@ class ProductRepository extends BaseRepository
             ->orderBy('sold', 'DESC')
             ->paginate($paged);
     }
+
+
+    /**
+     * @param array $filter
+     * @param int $type
+     * @param string $search
+     * @param int $paged
+     * @param string $orderBy
+     * @param string $sort
+     * @return mixed
+     */
+    public function filter(
+        string $search = '',
+        $filter,
+        int $paged = Constants::MEMBER_LIST_PER_PAGE
+    ) {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->search($search)
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
+            ->paginate($paged);
+    }
+
 }

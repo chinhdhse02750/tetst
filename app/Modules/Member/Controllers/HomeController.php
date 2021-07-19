@@ -114,6 +114,25 @@ class HomeController extends Controller
         ));
     }
 
+
+    public function search(Request $request)
+    {
+        $data = $request->all();
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
+        $maxPrice = $this->productRepository->all()->max('price');
+        $minPrice =  $this->productRepository->all()->min('price');
+        $filter = $this->filter($data);
+        $products = $this->productRepository->filter($request->get('search'), $filter);
+
+        return view('shop.search', compact(
+            'products',
+            'data',
+            'maxPrice',
+            'minPrice',
+            'allCategories'
+        ));
+    }
+
     public function view(Request $request, $alias)
     {
         $categories = $this->categoryRepository->findByField('parent', '0')->pluck('alias')->toArray();
@@ -257,6 +276,41 @@ class HomeController extends Controller
             $filter['sort'] = $request['order_by'];
         } else {
             $filter['sort'] = Constants::FILTER_DEFAULT_SORT_ORDER;
+        }
+
+        return $filter;
+    }
+
+
+    /**
+     * @param $data
+     */
+    public function filter($data)
+    {
+        $filter['sort'] = "created_at";
+        $filter['condition'] = "DESC";
+        $filter['min'] = 0;
+        $filter['max'] = 0;
+        $filter['page'] = Constants::MEMBER_LIST_PER_PAGE;
+        if (isset($data['order_by']) && $data != null) {
+            $filter['page'] = isset($data['per_page']) ? $data['per_page'] : Constants::MEMBER_LIST_PER_PAGE;
+            if (strpos($data['order_by'], 'price') !== false) {
+                $filter['condition'] = "DESC";
+                $filter['sort'] = "discount_price";
+                if ($data['order_by'] === 'price') {
+                    $filter['condition'] = "ASC";
+                }
+            } elseif (strpos($data['order_by'], 'name') !== false) {
+                $filter['condition'] = "DESC";
+                $filter['sort'] = "name";
+                if ($data['order_by'] === 'name') {
+                    $filter['condition'] = "ASC";
+                }
+            }
+        }
+        if (isset($data['min-price']) &&  isset($data['max-price']) && $data != null) {
+            $filter['min'] = $data['min-price'];
+            $filter['max'] = $data['max-price'];
         }
 
         return $filter;
