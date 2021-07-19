@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use App\Repositories\PrefRepository;
 
 class ProfileController extends Controller
 {
@@ -29,17 +30,24 @@ class ProfileController extends Controller
     protected $userProfileRepository;
 
     /**
+     * @var PrefRepository
+     */
+    protected $prefRepository;
+
+    /**
      * ProfileController constructor.
      * @param UserRepository $userRepository
      * @param userProfileRepository $userProfileRepository
      */
     public function __construct(
         UserRepository $userRepository,
-        userProfileRepository $userProfileRepository
+        userProfileRepository $userProfileRepository,
+        PrefRepository $prefRepository
     ) {
         $this->middleware('auth')->except('logout');
         $this->userRepository = $userRepository;
         $this->userProfileRepository = $userProfileRepository;
+        $this->prefRepository = $prefRepository;
     }
 
     /**
@@ -49,9 +57,13 @@ class ProfileController extends Controller
     {
         try {
             $user = $this->userRepository->find(Auth::id());
+            $pref = $this->prefRepository->all();
+            $prefConfig = config('pref');
+            $selectTime = $prefConfig['select_time'];
 
-            return view('profile.index', compact('user'));
+            return view('profile.index_shop', compact('user', 'pref', 'selectTime'));
         } catch (\Exception $e) {
+
             return abort(404);
         }
     }
@@ -66,7 +78,14 @@ class ProfileController extends Controller
             $request->all();
             $data = $request->except('_token');
             $user = $this->userRepository->find(Auth::id());
-            $dataUpdate = $this->userProfileRepository->update($data, $user->userProfile->id);
+            $userProfile = $this->userProfileRepository->findByField('user_id', Auth::id())->first();
+            if(!$userProfile){
+                $data['user_id'] = $user->id;
+                $dataUpdate = $this->userProfileRepository->create($data);
+            }else{
+                $dataUpdate = $this->userProfileRepository->update($data, $user->userProfile->id);
+            }
+
 
             return $this->success($dataUpdate->toArray());
         } catch (\Exception $e) {
@@ -76,7 +95,7 @@ class ProfileController extends Controller
 
     public function password()
     {
-        return view('profile.change_password');
+        return view('profile.change_password_shop');
     }
 
     /**

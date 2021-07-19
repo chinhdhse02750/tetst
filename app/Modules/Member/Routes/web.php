@@ -9,10 +9,10 @@ App::bind('view.finder', function ($app) {
 Route::group([['middleware' => 'auth']], function () {
     Route::get('/member/{id}', 'MemberController@show')->name('member.detail');
     Route::get('/balances', 'BalanceController@index')->name('balance.index');
-    Route::get('/profile', 'ProfileController@index')->name('profile.index');
-    Route::post('profile/update', 'ProfileController@update')->name('profile.update');
-    Route::get('/profile/change-password', 'ProfileController@password')->name('profile.password');
-    Route::post('/profile/change-password', 'ProfileController@changePassword')->name('profile.change-password');
+    Route::get('/tai-khoan', 'ProfileController@index')->name('profile.index');
+    Route::post('tai-khoan/update', 'ProfileController@update')->name('profile.update');
+    Route::get('/tai-khoan/doi-mat-khau', 'ProfileController@password')->name('profile.password');
+    Route::post('/tai-khoan/doi-mat-khau', 'ProfileController@changePassword')->name('profile.change-password');
     Route::get('/contact', 'ContactController@create')->name('contact.index');
     Route::post('/store', 'ContactController@store')->name('contact.store');
     Route::get('/favorites', 'FavoriteController@index')->name('favorites');
@@ -34,6 +34,7 @@ Route::group([['middleware' => 'auth']], function () {
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/test', 'HomeController@test')->name('test');
 Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/cart', 'CartController@index')->name('cart.index');
 Route::get('/cart-checkout', 'CartController@cartCheckout')->name('cart.checkout');

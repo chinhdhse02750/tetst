@@ -4,15 +4,7 @@
     <div id="main">
         <div class="shop-layout">
             <div class="container">
-                <div class="ogami-breadcrumb">
-                    <div class="container">
-                        <ul>
-                            <li><a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
-                            <li><a class="breadcrumb-link" href="index.html">Shop</a></li>
-                            <li><a class="breadcrumb-link active" href="index.html">Shoping cart</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @include('shop.bread_crumb')
                 <div id="loader" class="display-none"></div>
                 <div class="order-step">
                     <div class="container">

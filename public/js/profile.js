@@ -1,13 +1,13 @@
 $(document).ready(function () {
     const message = {
         "password": {
-            required: "パスワードを入力してください。",
-            minlength: "8文字以上の半角英数字にて入力してください。",
+            required: "Vui lòng nhập mật khẩu.",
+            minlength: "Vui lòng nhập ít nhất 8 ký tự chữ hoặc số.",
         },
         "confirm_password": {
-            required : '確認の為、パスワードを入力してください。',
-            equalTo: "もう一度、パスワードをお確かめください。",
-            minlength: "8文字以上の半角英数字にて入力してください。",
+            required : 'Vui lòng nhập mật khẩu xác nhận.',
+            equalTo: "Mật khẩu xác nhận không trùng khớp.",
+            minlength: "Vui lòng nhập ít nhất 8 ký tự chữ hoặc số.",
         }
     };
     $('#member-form').validate({
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 maxlength: 50
             }
         },
-        messages: (locate === 'jp') ? message : 'default',
+        messages: message,
     });
 
     $('#btn-change-password').on('click', function () {
@@ -33,15 +33,25 @@ $(document).ready(function () {
         }
     });
 
-    $('#confirm-change-password').on('click', function() {
+    $('#button-change-password').on('click', function() {
         $('#member-form').submit();
     });
 
     $('#btn-change-profile').on('click', function () {
-        let receipt = $("input[type='radio'][name='receipt_type']:checked").val()
+        let phone = $(".phone").val();
+        let address = $(".address").val();
+        let facebook = $(".facebook").val();
+        let postcode = $(".postcode").val();
+        let pref_id = $(".pref_id").val();
+        let time_shipping = $(".time_shipping").val();
         let url = $('#url-change-profile').val();
         let formData = new FormData();
-        formData.append('receipt_type', receipt);
+        formData.append('phone', phone);
+        formData.append('address', address);
+        formData.append('facebook', facebook);
+        formData.append('postcode', postcode);
+        formData.append('pref_id', pref_id);
+        formData.append('time_shipping', time_shipping);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

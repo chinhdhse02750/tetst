@@ -117,28 +117,28 @@
                     <a href="javascript:void(0)" class="filter__header filter__header-collapse" data-toggle="collapse" data-target="#filterItemAge">
                         @lang('users.label.age')
                     </a>
-                    <div class="collapse js-collapse" id="filterItemAge">
-                        @foreach($selectOption['ages'][App::getLocale()] as $key => $age)
-                            @if($key == 0)
-                                <label class="filter__form-check" for="checkAllAge">
-                                    <input class="filter__form-check-input check-all" type="checkbox" name="checkAllAge" id="checkAllAge" value="-1">
-                                    <span class="checkmark checkmark__radio"></span>
-                                    <span class="checkmark__label">{{$age}}</span>
-                                </label>
-                            @else
-                                <label class="filter__form-check" for="check_age_{{$key}}">
-                                    <input class="filter__form-check-input check_age"
-                                           type="checkbox"
-                                           name="check_age[{{$key}}]"
-                                           id="check_age_{{$key}}"
-                                           value="{{$key}}"
-                                           data-name="{{$age}}">
-                                    <span class="checkmark checkmark__checkbox"></span>
-                                    <span class="checkmark__label">{{$age}}</span>
-                                </label>
-                            @endif
-                        @endforeach
-                    </div>
+                    {{--<div class="collapse js-collapse" id="filterItemAge">--}}
+                        {{--@foreach($selectOption['ages'][App::getLocale()] as $key => $age)--}}
+                            {{--@if($key == 0)--}}
+                                {{--<label class="filter__form-check" for="checkAllAge">--}}
+                                    {{--<input class="filter__form-check-input check-all" type="checkbox" name="checkAllAge" id="checkAllAge" value="-1">--}}
+                                    {{--<span class="checkmark checkmark__radio"></span>--}}
+                                    {{--<span class="checkmark__label">{{$age}}</span>--}}
+                                {{--</label>--}}
+                            {{--@else--}}
+                                {{--<label class="filter__form-check" for="check_age_{{$key}}">--}}
+                                    {{--<input class="filter__form-check-input check_age"--}}
+                                           {{--type="checkbox"--}}
+                                           {{--name="check_age[{{$key}}]"--}}
+                                           {{--id="check_age_{{$key}}"--}}
+                                           {{--value="{{$key}}"--}}
+                                           {{--data-name="{{$age}}">--}}
+                                    {{--<span class="checkmark checkmark__checkbox"></span>--}}
+                                    {{--<span class="checkmark__label">{{$age}}</span>--}}
+                                {{--</label>--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

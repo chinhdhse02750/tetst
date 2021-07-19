@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/frontend.css">
     <link rel="shortcut icon" href="/images/shortcut_logo.png">
+    <link href="/css/member.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
     @yield('custom_style')
 </head>

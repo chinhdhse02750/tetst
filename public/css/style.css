@@ -3358,10 +3358,22 @@ header .header-block .header-right .login a {
     -ms-transition: 0.3s ease;
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
+    padding: 10px 20px !important;
+}
+
+.menu-primary{
+    margin-bottom: initial !important;
+}
+.menu-primary li {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.menu-primary li:last-child{
+    border-bottom: none;
 }
 
 header .header-block .header-right .login a:hover {
-    color: #3d2314;
+    color: #c4996c;
     text-decoration: none;
 }
 
