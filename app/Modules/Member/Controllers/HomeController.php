@@ -101,6 +101,7 @@ class HomeController extends Controller
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
         $bestSeller = $this->productRepository->getListBestSeller(8);
+        $news = $this->newsService->getNews();
 
         return view('top1', compact(
             'products',
@@ -110,7 +111,8 @@ class HomeController extends Controller
             'bestSeller',
             'cart',
             'total',
-            'count'
+            'count',
+            'news'
         ));
     }
 

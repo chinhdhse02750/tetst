@@ -1,19 +1,18 @@
 <footer>
     <div class="footer-top">
         <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-lg-4 footer-about wow fadeInUp animated"
+            <div class="row ">
+                <div class="col-md-4 col-lg-4 footer-about wow fadeInUp animated row-mobile"
                      style="visibility: visible; animation-name: fadeInUp;">
                     <h3 class="text-section-footer">Giới thiệu</h3>
-                    <img class="logo-footer" src="/images/logo.png" alt="logo-footer" data-at2x="assets/img/logo.png">
+                    <img class="logo-footer" src="{{ asset('images/logo_hn_taphoa.png') }}" alt="logo-footer" data-at2x="assets/img/logo.png">
                     <p class="footer-text-describe">
                         Đưa ẩm thực Việt tới Nhật Bản. Sản phẩm gồm thực phẩm, gia vị, đặc sản, các nguyên liệu chế
                         biến món ăn Việt Nam.
                     </p>
                 </div>
 
-                <div class="col-md-4 col-lg-4 offset-lg-1 footer-contact wow fadeInDown animated"
+                <div class="col-md-4 col-lg-4 offset-lg-1 footer-contact wow fadeInDown animated row-mobile"
                      style="visibility: visible; animation-name: fadeInDown;">
                     <h3 class="text-section-footer">Liên hệ</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Chi nhánh Kobe 〒652-0035</p>
@@ -26,7 +25,7 @@
                     <p><i class="fab fa-skype"></i> Skype: you_online</p>
                 </div>
 
-                <div class="col-md-4 col-lg-3  footer-social wow fadeInUp animated"
+                <div class="col-md-4 col-lg-3  footer-social wow fadeInUp animated row-mobile"
                      style="visibility: visible; animation-name: fadeInUp;">
                     <h3 class="text-section-footer">Về Hà Nội Shop</h3>
 

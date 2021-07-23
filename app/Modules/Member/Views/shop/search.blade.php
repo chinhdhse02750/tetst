@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="main">
-    {!! Breadcrumbs::render('home') !!}
+    {!! Breadcrumbs::render('search') !!}
     <!-- End breadcrumb-->
         <div class="shop-layout">
             <div class="container">
@@ -10,7 +10,7 @@
                     <div class="col-xl-3">
                         <div class="shop-sidebar">
 
-                            <button class="no-round-btn" id="filter-sidebar--closebtn">Close sidebar</button>
+                            <button class="no-round-btn" id="filter-sidebar--closebtn">Đóng menu</button>
                             <div class="shop-sidebar_department">
                                 <div class="department_top mini-tab-title underline">
                                     <h2 class="title">Danh mục sản phẩm</h2>
@@ -25,7 +25,8 @@
                                                     <span data-toggle="collapse"
                                                           data-target="#{{ $menu->alias }}"
                                                           class="collapsed text-truncate submenu-indicator">
-                                                            <i class="icon_minus-06"></i></span>
+                                                            {{--<i class="icon_minus-06"></i>--}}
+                                                    </span>
                                                 @endif
                                                 @if(count($menu->childrenCategories))
                                                     @include('includes.menu_sub_search',
@@ -83,7 +84,7 @@
                                         </div>
                                         <div class="col-6 text-right">
                                             <div id="show-filter-sidebar">
-                                                <h5><i class="fas fa-bars"></i>Show sidebar</h5>
+                                                <h5><i class="fas fa-bars"></i>Mở menu</h5>
                                             </div>
                                         </div>
                                         <div class="col-12 col-xl-8">
@@ -138,8 +139,8 @@
                                     <div class="shop-products_bottom">
                                         <div class="row no-gutters-sm">
                                             @foreach($products as $key => $value)
-                                                <div class="col-6 col-md-3">
-                                                    <div class="product pink">
+                                                <div class="col-6 col-md-3 row-product">
+                                                    <div class="product pink @if( $key%2 == 0) product-left @else product-right @endif">
                                                         <a class="product-img"
                                                            href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                             <img src="{{ url('storage/tmp/'.$value->first_image) }}"

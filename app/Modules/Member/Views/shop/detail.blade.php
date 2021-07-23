@@ -26,8 +26,10 @@
                                                     <span data-toggle="collapse"
                                                           data-target="#{{ $menu->alias }}"
                                                           class="collapsed text-truncate submenu-indicator">
-                                                            <i class="{{ ($menu->alias == $alias
-                                                            || $menu->childrenCategories->pluck('alias')->contains($alias)) ? 'icon_minus-06' : 'icon_plus' }} "></i></span>
+                                                            {{--<i class="{{ ($menu->alias == $alias--}}
+                                                            {{--|| $menu->childrenCategories->pluck('alias')->contains($alias))--}}
+                                                            {{--? 'icon_plus' : 'icon_minus-06' }} "></i>--}}
+                                                    </span>
                                                 @endif
                                                 @if(count($menu->childrenCategories))
                                                     @include('includes.menu_sub',
@@ -76,7 +78,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div id="show-filter-sidebar">
-                                        <h5><i class="fas fa-bars"></i>Show sidebar</h5>
+                                        <h5><i class="fas fa-bars"></i>Mở menu</h5>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">

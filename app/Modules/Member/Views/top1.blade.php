@@ -8,21 +8,7 @@
                     <div class="col-12 col-xl-12">
                         <div class="banner-block">
                             <div class="row no-gutters justify-content-center align-items-md-center">
-                                <div class="col-10 col-md-5 col-xl-6">
-                                    <div class="banner-text text-center text-md-left">
-                                        <h5 class="color-subtitle pink">Butter & Eggs</h5>
-                                        <h2 class="title">Spice 100% Organnic</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p><a
-                                            class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-5 col-xl-5">
-                                    <div class="banner-img">
-                                        <div class="img-block text-center"><img class="mymove"
-                                                                                src="/images/homepage03/banner_img.png"
-                                                                                alt=""></div>
-                                    </div>
-                                </div>
+                                <div class="img-block text-center"></div>
                             </div>
                         </div>
                     </div>
@@ -48,7 +34,7 @@
                                             <div class="deal-block_detail">
                                                 <h5 class="deal-discount">- {{ $value->percent_sale }}%</h5>
                                                 <div class="deal-img">
-                                                    <a href="shop_detail.html">
+                                                    <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                         <img src="{{ url('storage/tmp/'.$value->first_image) }}"
                                                              alt="{{ $value->first_image }}">
                                                     </a>
@@ -70,13 +56,13 @@
                                                      data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                      data-discount_price="{{ $value->discount_price }}">
                                                     <button class="add-to-wishlist round-icon-btn pink"><i
-                                                            class="icon_heart_alt"></i></button>
+                                                                class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
-                                                            class="icon_bag_alt"></i></button>
+                                                                class="icon_bag_alt"></i></button>
                                                     <button class="add-to-compare round-icon-btn pink"><i
-                                                            class="fas fa-random"></i></button>
+                                                                class="fas fa-random"></i></button>
                                                     <button class="quickview round-icon-btn pink"><i
-                                                            class="far fa-eye"></i>
+                                                                class="far fa-eye"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -97,14 +83,15 @@
                                                 <div class="mini-product column">
                                                     <div class="mini-product_img-sale">
                                                         <a class="sale-product-img"
-                                                           href="shop_detail.html"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}">
+                                                           href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
+                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                    alt="{{ $value->first_image }}">
                                                         </a>
                                                     </div>
-                                                    <div class="mini-product_info"><a
-                                                            href="shop_detail.html">{{ $value->name }}</a>
+                                                    <div class="mini-product_info">
+                                                        <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
+                                                            {{ $value->name }}
+                                                        </a>
                                                         <p>¥{{ number_format($value->discount_price) }}
                                                             <del>¥{{ number_format($value->price) }}</del>
                                                         </p>
@@ -122,8 +109,8 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon1.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon1.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">MIỄN PHÍ SHIP HÀNG</h5>
                                                     <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9999</p>
@@ -132,8 +119,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon2.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon2.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">GIAO HÀNG</h5>
                                                     <p class="benefit-describle">Giao hàng nhanh, rẻ , đúng hẹn</p>
@@ -142,8 +129,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                    class="benefit-img" src="/images/homepage02/benefit-icon3.png"
-                                                    alt="">
+                                                        class="benefit-img" src="/images/homepage02/benefit-icon3.png"
+                                                        alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">BẢO MẬT THANH TOÁN</h5>
                                                     <p class="benefit-describle">100% bảo mật</p>
@@ -224,9 +211,9 @@
                                             @if($key < 12)
                                                 <div class="col-6 col-md-3">
                                                     <div class="product pink"><a class="product-img"
-                                                                                 href="shop_detail.html"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}"></a>
+                                                                                 href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
+                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                    alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -243,13 +230,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
+                                                                        class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
+                                                                        class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
+                                                                        class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
+                                                                        class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -293,9 +280,9 @@
                                         @foreach($bestSeller as $key => $value)
                                             <div class="col-6 col-md-3">
                                                 <div class="product pink"><a class="product-img"
-                                                                             href="shop_detail.html"><img
-                                                            src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                            alt="{{ $value->first_image }}"></a>
+                                                                             href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>
                                                     @if($value->discount_price !== null)
                                                         <h3 class="product-price">
@@ -312,13 +299,13 @@
                                                          data-price="{{ $value->price }}"
                                                          data-discount_price="{{ $value->discount_price }}">
                                                         <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                         <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                         <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                         <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -351,9 +338,10 @@
                                             @if($key < 8)
                                                 <div class="col-6 col-md-3">
                                                     <div class="product pink"><a class="product-img"
-                                                                                 href="shop_detail.html"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}"></a>
+                                                                                 href="{{ route('product.detail', ['product' => $value->alias]) }}">
+                                                            <img
+                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                    alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -369,13 +357,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
+                                                                        class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
+                                                                        class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
+                                                                        class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
+                                                                        class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -385,53 +373,53 @@
                                 </div>
                             </div>
                             {{--<div class="row">--}}
-                                {{--<div class="col-12 col-md-6">--}}
-                                    {{--<div class="quick-banner quick-banner-2">--}}
-                                        {{--<div class="row justify-content-center align-items-center">--}}
-                                            {{--<div class="col-6 col-md-5">--}}
-                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
-                                                                                          {{--src="/images/homepage03/quick_banner_2_img.png"--}}
-                                                                                          {{--alt=""></div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col-6 col-md-5">--}}
-                                                {{--<div class="banner-text text-center text-md-left">--}}
-                                                    {{--<h3 class="day">Black Friday </h3>--}}
-                                                    {{--<h3 class="sale">Sale Off <span>60%</span></h3><a--}}
-                                                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
-                                                        {{--now</a>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-12 col-md-6">--}}
-                                    {{--<div class="quick-banner quick-banner-3">--}}
-                                        {{--<div class="row justify-content-center align-items-center">--}}
-                                            {{--<div class="col-6 col-md-5">--}}
-                                                {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
-                                                                                          {{--src="/images/homepage03/quick_banner_3_img.png"--}}
-                                                                                          {{--alt=""></div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col-6 col-md-5">--}}
-                                                {{--<div class="banner-text text-center text-md-left">--}}
-                                                    {{--<h3 class="day">Summer</h3>--}}
-                                                    {{--<h3 class="sale">Sale Off <span>50%</span></h3><a--}}
-                                                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
-                                                        {{--now</a>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+                            {{--<div class="col-12 col-md-6">--}}
+                            {{--<div class="quick-banner quick-banner-2">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                            {{--<div class="col-6 col-md-5">--}}
+                            {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                            {{--src="/images/homepage03/quick_banner_2_img.png"--}}
+                            {{--alt=""></div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-6 col-md-5">--}}
+                            {{--<div class="banner-text text-center text-md-left">--}}
+                            {{--<h3 class="day">Black Friday </h3>--}}
+                            {{--<h3 class="sale">Sale Off <span>60%</span></h3><a--}}
+                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                            {{--now</a>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-12 col-md-6">--}}
+                            {{--<div class="quick-banner quick-banner-3">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                            {{--<div class="col-6 col-md-5">--}}
+                            {{--<div class="bannner-img text-center"><img class="img-fluid"--}}
+                            {{--src="/images/homepage03/quick_banner_3_img.png"--}}
+                            {{--alt=""></div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-6 col-md-5">--}}
+                            {{--<div class="banner-text text-center text-md-left">--}}
+                            {{--<h3 class="day">Summer</h3>--}}
+                            {{--<h3 class="sale">Sale Off <span>50%</span></h3><a--}}
+                            {{--class="normal-btn pink" href="shop_grid+list_3col.html">Shop--}}
+                            {{--now</a>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
                             {{--</div>--}}
                         </div>
                     </div>
                 </div>
             </div>
-        @include('shop.modal_add_success')
-        @include('includes.slide_footer')
+            @include('shop.modal_add_success')
+            @include('includes.slide_footer')
 
         </div>
-        @endsection
-        @push('script')
-    @endpush
+@endsection
+@push('script')
+@endpush

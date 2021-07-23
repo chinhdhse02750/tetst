@@ -374,6 +374,11 @@ window.onload = function () {
             window.location.href= url+ "?search="+search_data;
         });
 
+        $('#search_input').keypress(function(ev){
+            if (ev.which === 13)
+                $('#btn_search_all').click();
+        });
+
 
         /****************************************************
          Shop change view

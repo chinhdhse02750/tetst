@@ -5025,10 +5025,12 @@ header.coffee-2 .navigation-filter .website-search .filter-search .categories-se
 
 .banner_v2 .banner-block, .banner_v3 .banner-block {
     padding: 70px 0;
-    background-image: url(../images/homepage03/banner_bg.jpg);
+    background-image: url(../images/shop/banner-top-2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    height: 460px;
+    width: 100%;
 }
 
 .banner_v2 .banner-block .banner-text h5, .banner_v3 .banner-block .banner-text h5 {
@@ -8118,9 +8120,9 @@ footer.coffee .newletter .newletter_input button:focus {
         overflow-x: auto;
     }
 
-    .shop-grid-list .shop-products .shop-products_top .product-option .product-filter {
-        margin-right: 20px;
-    }
+    /*.shop-grid-list .shop-products .shop-products_top .product-option .product-filter {*/
+        /*margin-right: 20px;*/
+    /*}*/
 
     .shop-grid-list .shop-products .shop-products_top .product-option {
         margin-top: 15px;
@@ -8875,6 +8877,25 @@ footer.coffee .newletter .newletter_input button:focus {
 @media (min-width: 576px) and (max-width: 767px) {
     .shop-compare .compre-table .table {
         display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+   #btn_search_all{
+       padding: 8px 30px;
+   }
+    .search-line{
+        margin-bottom: 10px;
+    }
+    .product-left{
+        margin: 0 5px 10px 10px;
+    }
+    .product-right{
+        margin: 0 10px 10px 5px;
+    }
+
+    .row-product{
+        margin-bottom: 10px;
     }
 }
 
@@ -10520,3 +10541,9 @@ span#select2-calc_shipping_state_field-container {
     text-align: center;
     opacity: .9;
 }
+
+.logo-footer{
+    width: 120px;
+    height: 90px;
+}
+

@@ -11,7 +11,7 @@
         {{--</li>--}}
     {{--@endforeach--}}
 {{--</ul>--}}
-<ul class="sub-menu collapse {{ ($target == $alias || $pluck->contains($alias)) ? 'show' : '' }} "  id="{{ $target }}">
+<ul class="sub-menu collapse show"  id="{{ $target }}">
     @foreach($childs as $child)
         <li class="menu-toggle  menu-children {{ ($alias == $child->alias) ? 'active' : '' }}" style="padding-left: 20px">
             <a class="nav-link department-link link-children" href="{{ route('cate.view', $child->alias) }}">{{ $child->name }}</a>
@@ -19,8 +19,9 @@
                 <span data-toggle="collapse"
                       data-target="#{{ $child->alias }}"
                       class="collapsed text-truncate submenu-indicator">
-                    <i class="{{ ($child->alias == $alias
-                    || $child->childrenCategories->pluck('alias')->contains($alias)) ? 'icon_minus-06' : 'icon_plus' }}  "></i></span>
+                    {{--<i class="{{ ($child->alias == $alias--}}
+                    {{--|| $child->childrenCategories->pluck('alias')->contains($alias)) ? 'icon_plus' : 'icon_minus-06' }}  "></i>--}}
+                </span>
             @endif
             @if(count($child->childrenCategories))
                 @include('includes.menu_sub',[

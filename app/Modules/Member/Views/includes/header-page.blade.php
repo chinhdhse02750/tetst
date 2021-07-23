@@ -9,9 +9,12 @@
                         <p class="d-flex align-items-center"><i class="fas fa-phone"></i>080-5316-7125</p>
                     </div>
                 </div>
+                {{--<div class="header__slogan">--}}
+                {{--<div class="marquee"></div>--}}
+                {{--</div>--}}
                 <div class="col-12 col-md-6">
                     <div
-                        class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
+                            class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
                         <div class="social-link d-flex">
                             <a href=""><i class="fab fa-facebook-f"> </i></a>
                             <a href=""><i class="fab fa-twitter"></i></a>
@@ -53,7 +56,8 @@
                         <ul class="mb-0">
                             <li class="toggleable"><a class="menu-item" href="{{ route('home') }}">Trang chủ</a></li>
                             <li class="toggleable"><a class="menu-item"
-                                                      href="{{ route('cate.view', 'tat-ca-san-pham') }}">Cửa hàng</a></li>
+                                                      href="{{ route('cate.view', 'tat-ca-san-pham') }}">Cửa hàng</a>
+                            </li>
                             <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>
                                 <ul class="sub-menu">
                                     <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
@@ -77,10 +81,10 @@
                                 <a class="dropdown-toggle mini-cart" data-toggle="dropdown" aria-expanded="false"
                                    href="#"
                                    title="View your shopping cart"> <i class="icon_bag_alt"></i> <span
-                                        class="count cart_count"> {{ $count }} </span>
+                                            class="count cart_count"> {{ $count }} </span>
                                     <div class="total-minicart"><span
-                                            class="woocommerce-Price-amount amount cart_money"><span
-                                                class="woocommerce-Price-currencySymbol">¥</span>{{ number_format($total) }}</span>
+                                                class="woocommerce-Price-amount amount cart_money"><span
+                                                    class="woocommerce-Price-currencySymbol">¥</span>{{ number_format($total) }}</span>
                                     </div>
                                 </a>
 
@@ -95,7 +99,7 @@
                                                 </p>
                                                 <br>
                                                 <p class="buttons clearfix">
-                                                    <a  href="{{ route('cate.view', 'tat-ca-san-pham') }}"
+                                                    <a href="{{ route('cate.view', 'tat-ca-san-pham') }}"
                                                        class="no-round-btn btn-continue-shopping wc-forward">Tiếp tục
                                                         mua sắm</a>
                                                 </p>
@@ -117,7 +121,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="mobile-menu_block d-flex align-items-center"><a class="mobile-menu--control" href="#"><i
-                                class="fas fa-bars"></i></a>
+                                    class="fas fa-bars"></i></a>
                         <div id="ogami-mobile-menu">
                             <button class="no-round-btn" id="mobile-menu--closebtn">Close menu</button>
                             <div class="mobile-menu_items">
@@ -133,7 +137,7 @@
                                         </ul>
                                     </li>
                                     <li class="toggleable"><a class="menu-item" href="shop_grid+list_3col.html">Shop</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             @foreach($categories as $menu)
                                                 <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
@@ -143,7 +147,7 @@
                                     </li>
                                     <li class="toggleable"><a class="menu-item"
                                                               href="blog_list_sidebar.html">Blog</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
                                             <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>
@@ -154,7 +158,7 @@
                                         </ul>
                                     </li>
                                     <li class="toggleable"><a class="menu-item" href="#">Pages</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="login.html">login</a></li>
                                             <li><a href="register.html">register</a></li>
@@ -171,70 +175,77 @@
                                 <h2>My account</h2><a href="login.html">Login</a><a href="register.html">Register</a>
                             </div>
                             <div class="mobile-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i
-                                        class="fab fa-twitter"></i></a><a href=""><i
-                                        class="fab fa-invision"> </i></a><a href=""><i
-                                        class="fab fa-pinterest-p"> </i></a></div>
+                                            class="fab fa-twitter"></i></a><a href=""><i
+                                            class="fab fa-invision"> </i></a><a href=""><i
+                                            class="fab fa-pinterest-p"> </i></a></div>
                         </div>
                         <div class="ogamin-mobile-menu_bg"></div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a
-                            href=""><img  src="{{ asset('images/logo.png') }}" alt=""></a></div>
+                                href=""><img src="{{ asset('images/logo.png') }}" alt=""></a></div>
                 </div>
                 <div class="col-3">
-                    <div class="mobile-product_function d-flex align-items-center justify-content-end"><a
-                            class="function-icon icon_heart_alt" href="wishlist.html"></a><a
-                            class="function-icon icon_bag_alt" href="shop_cart.html"></a></div>
+                    <div class="mobile-product_function d-flex align-items-center justify-content-end">
+                        <a class="dropdown-toggle mini-cart" data-toggle="dropdown" aria-expanded="false" href="#"
+                                title="View your shopping cart"> <i class="icon_bag_alt"></i> <span
+                                    class="count cart_count"> {{ $count }} </span>
+                            <div class="total-minicart"><span
+                                        class="woocommerce-Price-amount amount cart_money"><span
+                                            class="woocommerce-Price-currencySymbol">¥</span>{{ number_format($total) }}</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="navigation-filter">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">
-                    <div class="department-menu_block">
-                        <div class="department-menu d-flex justify-content-between align-items-center">
-                            <i class="fas fa-bars"></i>Danh mục sản phẩm<span><i class="arrow_carrot-down arrow_carrot-up"></i></span></div>
-                        <div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">
-                            <ul>
-                                {{--@foreach($categories as $menu)--}}
-                                    {{--<li><a href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}--}}
-                                            {{--@if(count($menu->childrenCategories))--}}
-                                                {{--<span class="submenu-indicator">+</span>--}}
-                                            {{--@endif--}}
-                                        {{--</a>--}}
-                                        {{--@if(count($menu->childrenCategories))--}}
-                                            {{--@include('includes.menu_sub',['childs' => $menu->childrenCategories])--}}
-                                        {{--@endif--}}
-                                    {{--</li>--}}
-                                {{--@endforeach--}}
-                            </ul>
-                        </div>
-                        {{--                        <div class="department-dropdown-menu">--}}
-                        {{--                            <ul>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-1"></i>Fresh Meat</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-2"></i>Vegetables</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-3"></i>Fruit & Nut Gifts</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-4"></i>Fresh Berries</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-5"></i>Ocean Foods</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-6"></i>Butter & Eggs</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-7"></i>Fastfood</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-8"></i>Fresh Onion</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-9"></i>Papayaya & Crisps</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-10"></i>Oatmeal</a></li>--}}
-                        {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-11"></i>Fresh Bananas</a></li>--}}
-                        {{--                            </ul>--}}
-                        {{--                        </div>--}}
-                    </div>
-                </div>
-                <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2">
-                    <input type="hidden" value="{{ route('search') }}" id="search_url">
+        <div class="navigation-filter">
+            <div class="container">
+                <div class="row">
+                    {{--<div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">--}}
+                    {{--<div class="department-menu_block">--}}
+                    {{--<div class="department-menu d-flex justify-content-between align-items-center">--}}
+                    {{--<i class="fas fa-bars"></i>Danh mục sản phẩm<span><i class="arrow_carrot-down arrow_carrot-up"></i></span></div>--}}
+                    {{--<div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">--}}
+                    {{--<ul>--}}
+                    {{--@foreach($categories as $menu)--}}
+                    {{--<li><a href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}--}}
+                    {{--@if(count($menu->childrenCategories))--}}
+                    {{--<span class="submenu-indicator">+</span>--}}
+                    {{--@endif--}}
+                    {{--</a>--}}
+                    {{--@if(count($menu->childrenCategories))--}}
+                    {{--@include('includes.menu_sub',['childs' => $menu->childrenCategories])--}}
+                    {{--@endif--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--                        <div class="department-dropdown-menu">--}}
+                    {{--                            <ul>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-1"></i>Fresh Meat</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-2"></i>Vegetables</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-3"></i>Fruit & Nut Gifts</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-4"></i>Fresh Berries</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-5"></i>Ocean Foods</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-6"></i>Butter & Eggs</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-7"></i>Fastfood</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-8"></i>Fresh Onion</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-9"></i>Papayaya & Crisps</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-10"></i>Oatmeal</a></li>--}}
+                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-11"></i>Fresh Bananas</a></li>--}}
+                    {{--                            </ul>--}}
+                    {{--                        </div>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
+                    <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2 search-line">
+                        <input type="hidden" value="{{ route('search') }}" id="search_url">
                         <div class="row no-gutters">
                             <div class="col-8 col-md-8 col-lg-9 col-xl-10">
                                 <div class="search-input">
-                                    <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"  placeholder="Bạn muốn tìm gì?">
+                                    <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"
+                                           placeholder="Bạn muốn tìm gì?">
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-3 col-xl-2">

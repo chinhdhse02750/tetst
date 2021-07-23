@@ -19,7 +19,8 @@
                 <span data-toggle="collapse"
                       data-target="#{{ $child->alias }}"
                       class="collapsed text-truncate submenu-indicator">
-                    <i class="icon_minus-06"></i></span>
+                    {{--<i class="icon_minus-06"></i>--}}
+                </span>
             @endif
             @if(count($child->childrenCategories))
                 @include('includes.menu_sub_search',[
