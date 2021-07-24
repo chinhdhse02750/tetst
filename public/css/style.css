@@ -771,17 +771,33 @@ a:focus {
     .title, .title-bb {
         font-size: 30px;
     }
+
+    #cart-information {
+        margin-top: 20px;
+    }
+
+    #cart-information .form-title{
+        margin-bottom: 10px !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
     .title, .title-bb {
         font-size: 38px;
     }
+
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .title, .title-bb {
         font-size: 38px;
+    }
+    #cart-information {
+        margin-top: 20px;
+    }
+
+    #cart-information .form-title{
+        margin-bottom: 10px !important;
     }
 }
 
@@ -961,7 +977,7 @@ a:focus {
     -ms-border-radius: 0;
     -o-border-radius: 0;
     border: 1px solid #ebebeb;
-    padding: 0 15px;
+    padding: 0 10px;
     height: 40px;
     width: 100%;
     transition: border 0.3s ease;
@@ -1042,7 +1058,7 @@ a:focus {
     -ms-border-radius: 0;
     -o-border-radius: 0;
     border: 1px solid #ebebeb;
-    padding: 20px 20px;
+    padding: 10px;
     height: auto;
     width: 100%;
     transition: border 0.3s ease;
@@ -2900,8 +2916,12 @@ a:focus {
     top: 0;
 }
 
+
 .order-step .order-step_block .step-block.active {
     background-color: #3d2314;
+}
+.order-step .order-step_block .step-block.active::after {
+    border-width: 0 !important;
 }
 
 .order-step .order-step_block .step-block.active .step h2 {
@@ -10353,8 +10373,8 @@ pre {
 
 h3.reply-title {
     font-family: "Roboto", sans-serif;
-    font-size: 1.25em !important;
-    color: #555555 !important;
+    font-size: 18px !important;
+    color: #0a0a0a!important;
 }
 .add-review_top h2{
     font-weight: bold !important;

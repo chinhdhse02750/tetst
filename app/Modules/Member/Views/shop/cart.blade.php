@@ -8,14 +8,12 @@
                 <div id="loader" class="display-none"></div>
                 <!-- End breadcrumb-->
                 <div class="order-step">
-                    <div class="container">
-                        @include('shop.step_menu')
-                    </div>
+                    @include('shop.step_menu')
                 </div>
                 <!-- End order step-->
                 @if($count > 0)
                     <div class="shopping-cart">
-                        <div class="container">
+                        <div class="">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="product-table">
