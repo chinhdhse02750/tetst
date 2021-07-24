@@ -17,6 +17,7 @@ return [
     |
     */
 
+
     'view' => 'includes.partials.breadcrumbs',
 
     /*

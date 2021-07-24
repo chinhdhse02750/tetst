@@ -24,7 +24,7 @@
                 <span class="text--small">@lang('top_header.label.favorite_list')</span>
             </a>
             <div class="search-candidate">
-                <span class="count__candidate">{{ $countSetting }}</span>
+                <span class="count__candidate"></span>
                 <span class="text--small">@lang('labels.menu.select_setting')</span>
             </div>
         </div>

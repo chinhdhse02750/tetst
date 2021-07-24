@@ -23,10 +23,10 @@
                             <thead>
                             <tr>
                                 <th width="5%">@lang('labels.general.id')</th>
-                                <th width="20%">@lang('categories.label.name')</th>
-                                <th width="35%">@lang('categories.label.description')</th>
+                                <th width="15%">@lang('categories.label.name')</th>
+                                <th width="30%">@lang('categories.label.description')</th>
+                                <th width="10%">@lang('categories.label.status')</th>
                                 <th width="15%">@lang('labels.general.created_at')</th>
-                                <th width="15%">@lang('labels.general.updated_at')</th>
                                 <th width="10%">@lang('labels.general.action')</th>
                             </tr>
                             </thead>
@@ -37,6 +37,7 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td class="table-text">
+
                                         <div>{{$category->id}}</div>
                                     </td>
                                     <td class="table-text">
@@ -46,16 +47,19 @@
                                         <div>{{$category->description}}</div>
                                     </td>
                                     <td class="table-text">
-                                        <div>{{$category->created_at}}</div>
+                                        <div>
+                                            <span class="{{ $category->status === 1 ? "badge badge-success" : "badge badge-danger" }}">
+                                                {{$category->status === 1 ? "ON" : "OFF"}}</span>
+                                        </div>
                                     </td>
                                     <td class="table-text">
-                                        <div>{{$category->updated_at}}</div>
+                                        <div>{{$category->created_at}}</div>
                                     </td>
                                     <td>
                                         <form action="{{ route('categories.destroy', $category->id) }}"
                                               method="POST">
-                                            <a href="{{ route('categories.show', $category->id) }}"
-                                               class="btn btn-default"><i class="fas fa-eye"></i></a>
+                                            {{--<a href="{{ route('categories.show', $category->id) }}"--}}
+                                               {{--class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
                                             <a href="{{ route('categories.edit', $category->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ route('categories.destroy', $category->id) }}"

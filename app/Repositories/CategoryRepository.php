@@ -30,4 +30,5 @@ class CategoryRepository extends BaseRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
 }

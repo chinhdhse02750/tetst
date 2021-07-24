@@ -19,7 +19,14 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Frontend
         View::composer(
-            ['includes.header', 'layouts.member', 'includes.footer', 'includes.search_bar', 'includes.left_sidebar'],
+            [
+                'includes.header',
+                'layouts.member',
+                'includes.header-page',
+                'includes.footer',
+                'includes.search_bar',
+                'includes.left_sidebar'
+            ],
             MemberComposer::class
         );
     }

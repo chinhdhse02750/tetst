@@ -11,4 +11,12 @@ Route::group(['prefix' => 'v1'], function () {
     Route::put('member/{id}/status', 'MemberController@updateStatus')->name('member.status');
     Route::get('offers/{id}', 'OfferController@add')->name('offer.add');
     Route::delete('offers/{id}', 'OfferController@destroy')->name('offer.destroy');
+    Route::post('product/cart', 'ProductController@productCart')->name('product.cart');
+    Route::post('product/review', 'ProductController@productReview')->name('product.review');
+    Route::post('product/comment', 'ProductController@productComment')->name('product.comment');
+    Route::post('cart/delete-product/{id}', 'CartController@deleteProduct')->name('cart.deleteProduct');
+    Route::post('cart/update-quantity/{id}', 'CartController@updateQuantity')->name('cart.updateQuantity');
+    Route::post('cart/order', 'CartController@order')->name('cart.order');
+    Route::post('cart/get-fee-shipping/{id}', 'CartController@getFeeShipping')->name('cart.getFeeShipping');
+    Route::post('cart/get-daibiki-shipping', 'CartController@getDaiBiKiShipping')->name('cart.getDaiBiKiShipping');
 });

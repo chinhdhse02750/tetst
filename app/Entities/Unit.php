@@ -15,6 +15,7 @@ class Unit extends Model implements Transformable
 {
     use TransformableTrait;
 
+    protected $table = 'units';
     /**
      * The attributes that are mass assignable.
      *
@@ -23,5 +24,10 @@ class Unit extends Model implements Transformable
     protected $fillable = [
         'name', 'description'
     ];
+
+    public function product()
+    {
+        return $this->hasOne('App\Entities\Product');
+    }
 
 }

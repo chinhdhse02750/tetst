@@ -53,8 +53,7 @@
 }
 
 .detail__balance--description {
-    font-size: 0.8rem;
-    margin-top: 5px;
+    font-size: 16px;
     padding-left: 1px;
     line-height: 15px;
     font-weight: 300;
@@ -62,6 +61,7 @@
 
 .detail__balance--description span {
     display: block;
+    line-height: 25px;
 }
 
 .sent-contact {
@@ -102,14 +102,14 @@
 
 .tbl-2col td.change, .tbl-2col td.field {
     background-color: #f1f1f1;
-    width: 140px;
+    width: 145px;
     text-align: right;
     color: #6d6d6d;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tbl-2col td {
-    padding: 7px 10px;
+    padding: 10px 10px;
     border: 1px solid #cecece;
 }
 
@@ -189,8 +189,8 @@
 }
 
 .textfield {
-    width: 200px;
-    height: 24px;
+    width: 250px;
+    height: 30px;
     padding: 2px;
     resize: none;
     line-height: 1.6em;
@@ -207,8 +207,8 @@
 }
 
 #password-error, #confirm_password-error{
-    font-size: 13px;
-    padding-left: 10px;
+    font-size: 14px;
+    padding: 10px 0 0 10px;
 }
 
 .gray {
@@ -222,7 +222,7 @@
 }
 
 .font-size-label{
-    font-size: 13px !important;
+    font-size: 14px !important;
 }
 
 .detail__bt-area {
@@ -278,3 +278,45 @@
     padding-left: 15px;
 }
 
+.modal-confim-pasword p{
+    padding: 5px;
+}
+
+.border-side-menu{
+    border-right: 1px solid #ececec;
+}
+
+form .form-row {
+    margin: 0 0 20px;
+    padding: 0;
+}
+
+.form .form-row-first {
+    float: left;
+}
+.form-row.form-row-first {
+    width: 47%;
+    float: left;
+}
+ form .form-row-last {
+    float: right;
+}
+
+.form-row.form-row-last {
+    width: 47%;
+    float: right;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    font-weight: 500;
+}

@@ -3,7 +3,7 @@
 return [
     'general' => [
         'success' => [
-            'created' => 'Đăng ký của bạn đã hòan tất.',
+            'created' => 'Đăng ký của bạn đã hoàn tất.',
             'deleted' => 'Xóa thành công.',
             'updated' => 'Cập nhật đã hoàn tất.',
             'restore' => 'Khôi phục lại đã hoàn tất.',
@@ -39,6 +39,7 @@ return [
     ],
     'upload' => [
         'accept_extension_video' => '動画ファイル形式には、mp4やmkvやaviタイプのファイルを指定してください。',
-        'accept_extension_image' => '画像ファイル形式には、jpegやjpgやpngやgifタイプのファイルを指定してください。'
+        'accept_extension_image' => 'Bạn chỉ có thể tải lên các tệp .jpeg, .jpg, .png, .gif',
+        'accept_max_image' => 'Bạn chỉ có thể tải lên tối đa 5 tập tin'
     ]
 ];

@@ -1,0 +1,655 @@
+
+a.logo {
+    display: flex;
+    justify-content: center;
+}
+
+#scrollUp {
+    background-color: #c4996c !important;
+}
+
+a.title:hover {
+    text-decoration: none;
+    color: #c4996c;
+}
+
+.wishlist-icon i, .mini-cart i {
+    font-size: 21px;
+    margin: 0 !important;
+}
+
+.wishlist-icon, .mini-cart {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    color: #252525;
+    line-height: 1;
+}
+
+.wishlist-icon .count, .mini-cart .count {
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    display: inline-block;
+    font-size: 10px;
+    color: #fff;
+    background: #fd5f5c;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    line-height: 15px;
+    min-width: 15px;
+    padding: 0 3px;
+    text-align: center;
+}
+
+a.wishlist-icon, a.mini-cart {
+    box-shadow: none;
+    text-decoration: none;
+}
+
+a.wishlist-icon:hover, a.mini-cart:hover {
+    color: #c4996c;
+    text-decoration: none;
+}
+
+.total-minicart {
+    color: #252525;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.mini-cart::after {
+    display: none;
+}
+
+.apus-topcart .dropdown-menu {
+    top: 50px;
+    margin: 0;
+    padding: 20px;
+    min-width: 280px;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-box-shadow: 0 10px 40px -10px rgba(0, 0, 0, .15);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, .15);
+    background: #fff;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.shopping_cart_content {
+    font-size: 14px;
+}
+
+.shopping_cart_content .cart_list {
+    padding: 0 0 10px;
+    max-height: 270px;
+    overflow: hidden;
+}
+
+.shopping_cart_content .total.empty {
+    border: none;
+    margin: 0;
+    padding-top: 0;
+}
+
+.shopping_cart_content .total {
+    color: #88c74a;
+    border-top: 1px solid #ededed;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.text-theme {
+    color: #fd5f5c !important;
+}
+
+.shopping_cart_content .total strong {
+    font-weight: 400;
+}
+
+.shopping_cart_content .total .amount {
+    font-size: 18px;
+    float: right;
+}
+
+.apus-topcart .buttons {
+    margin: 0;
+}
+
+.apus-topcart .buttons .wc-forward:last-child {
+    margin: 0;
+}
+
+.apus-topcart .buttons .wc-forward {
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.apus-topcart .show .dropdown-menu {
+    display: block;
+    opacity: 1;
+}
+
+header .navigation {
+    padding: 0 !important;
+}
+
+.dropdown-menu-right {
+    left: auto;
+    right: 0;
+}
+
+.btn-continue-shopping {
+    color: #fff;
+    background-color: #3d2314;
+    border-color: #050505;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    letter-spacing: 0;
+    padding: 10px 30px;
+    font-size: 14px;
+    line-height: 1.71;
+    border-radius: 30px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-transform: uppercase;
+    -webkit-transition: all .3s ease-in-out 0s;
+    -o-transition: all .3s ease-in-out 0s;
+    transition: all .3s ease-in-out 0s;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.sale-product-img {
+    background-color: #ffffff;
+    min-width: 100px;
+    max-width: 100px;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.sale-product-img img {
+    overflow: hidden;
+    z-index: 10;
+    max-height: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.mini-product .mini-product_info {
+    padding-left: 10px;
+}
+
+.mini-product:hover {
+    border-color: #c4996c !important;
+}
+
+.mini-product.column {
+    border: 1px solid #ebebeb;
+}
+
+.sale-product_bottom {
+    border: none !important;
+}
+
+.partner {
+    height: 120px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.mini-tab-title.underline .title, .mini-tab-title.underline .title-bb {
+    font-size: 16px !important;
+    text-transform: uppercase;
+}
+
+.product {
+    padding: 10px !important;
+
+}
+
+.product .product-name, .product .shopping-cart .product-table .table tbody .product-price, .shopping-cart .product-table .table tbody .product .product-price, .product .shopping-cart .product-table .table tbody .product-total, .shopping-cart .product-table .table tbody .product .product-total, .product .shopping-cart .product-table .shop-compare .compre-table .table tbody .product-availability, .shopping-cart .product-table .shop-compare .compre-table .table tbody .product .product-availability, .product .shop-compare .compre-table .shopping-cart .product-table .table tbody .product-availability, .shop-compare .compre-table .shopping-cart .product-table .table tbody .product .product-availability, .product .shopping-cart .product-table .shop-compare .compre-table .table tbody .product-weight, .shopping-cart .product-table .shop-compare .compre-table .table tbody .product .product-weight, .product .shop-compare .compre-table .shopping-cart .product-table .table tbody .product-weight, .shop-compare .compre-table .shopping-cart .product-table .table tbody .product .product-weight, .product .shopping-cart .product-table .shop-compare .compre-table .table tbody .product-sku, .shopping-cart .product-table .shop-compare .compre-table .table tbody .product .product-sku, .product .shop-compare .compre-table .shopping-cart .product-table .table tbody .product-sku, .shop-compare .compre-table .shopping-cart .product-table .table tbody .product .product-sku {
+    font-size: 14px;
+}
+
+.product .product-price del, .product .shopping-cart .product-table .table tbody .product-total del, .shopping-cart .product-table .table tbody .product .product-total del, .product .shop-compare .compre-table .table .product-availability del, .shop-compare .compre-table .table .product .product-availability del, .product .shop-compare .compre-table .table .product-weight del, .shop-compare .compre-table .table .product .product-weight del, .product .shop-compare .compre-table .table .product-sku del, .shop-compare .compre-table .table .product .product-sku del {
+    font-size: 14px;
+}
+
+.product .product-price, .product .shopping-cart .product-table .table tbody .product-total, .shopping-cart .product-table .table tbody .product .product-total, .product .shop-compare .compre-table .table .product-availability, .shop-compare .compre-table .table .product .product-availability, .product .shop-compare .compre-table .table .product-weight, .shop-compare .compre-table .table .product .product-weight, .product .shop-compare .compre-table .table .product-sku, .shop-compare .compre-table .table .product .product-sku {
+    font-size: 14px;
+}
+
+.mini-product .mini-product_info a {
+    font-size: 14px;
+}
+
+.mini-product .mini-product_info p, .mini-product .mini-product_info p del {
+    font-size: 14px;
+}
+
+.select-custom {
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 35px 0 20px;
+}
+
+.product-option-custom {
+    float: right;
+}
+
+.shop-grid-list .shop-products .shop-pagination ul li .no-round-btn {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+}
+
+#quickview .quickview-box .shop-detail_info .quantity-select input {
+    border-radius: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+.total_product_view {
+    padding-left: 10px;
+}
+
+
+
+/*body {*/
+    /*background: #f0f0f0;*/
+/*}*/
+
+.content {
+    width: 260px;
+    margin: 100px auto;
+}
+
+.colors {
+    width: 260px;
+    float: left;
+    margin: 20px auto;
+}
+
+.colors a {
+    width: 43.3px;
+    height: 30px;
+    float: left;
+}
+
+.colors .default {
+    background: #414956;
+}
+
+.colors .blue {
+    background: #4A89DC;
+}
+
+.colors .green {
+    background: #03A678;
+}
+
+.colors .red {
+    background: #ED5565;
+}
+
+.colors .white {
+    background: #fff;
+}
+
+.colors .black {
+    background: #292929;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
+.jquery-accordion-menu, .jquery-accordion-menu * {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: 0
+}
+
+.jquery-accordion-menu {
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    border: 1px solid #ebebeb
+}
+
+.jquery-accordion-menu .jquery-accordion-menu-footer, .jquery-accordion-menu .jquery-accordion-menu-header {
+    width: 100%;
+    height: 50px;
+    padding-left: 22px;
+    float: left;
+    line-height: 50px;
+    font-weight: 600;
+    color: #f0f0f0;
+    background: #414956
+}
+
+.jquery-accordion-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.jquery-accordion-menu ul li {
+    width: 100%;
+    border-bottom: 1px dashed #ebebeb;
+}
+
+.jquery-accordion-menu ul li a {
+    width: 100%;
+    padding: 14px 22px;
+    float: left;
+    text-decoration: none;
+    color: #000000;
+    font-size: 13px;
+    background: #fff;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    -o-transition: color .2s linear, background .2s linear;
+    -moz-transition: color .2s linear, background .2s linear;
+    -webkit-transition: color .2s linear, background .2s linear;
+    transition: color .2s linear, background .2s linear
+}
+
+.jquery-accordion-menu > ul > li.active > a, .jquery-accordion-menu > ul > li:hover > a {
+    color: #fff;
+    background: #3d2314;
+}
+
+.jquery-accordion-menu > ul > li > a {
+    border-bottom: dotted 1px #3b424d
+}
+
+.jquery-accordion-menu > ul > li:last-child > a {
+    border-bottom: none
+}
+
+.jquery-accordion-menu ul li a i {
+    width: 34px;
+    float: left;
+    line-height: 18px;
+    font-size: 16px;
+    text-align: left
+}
+
+.jquery-accordion-menu .submenu-indicator {
+    float: right;
+    right: 22px;
+    position: absolute;
+    line-height: 19px;
+    font-size: 20px;
+    -o-transition: transform .3s linear;
+    -moz-transition: transform .3s linear;
+    -webkit-transition: transform .3s linear;
+    -ms-transition: transform .3s linear
+}
+
+.jquery-accordion-menu ul ul.submenu .submenu-indicator {
+    line-height: 16px
+}
+
+.jquery-accordion-menu .submenu-indicator-minus > .submenu-indicator {
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.jquery-accordion-menu ul ul.submenu, .jquery-accordion-menu ul ul.submenu li ul.submenu {
+    width: 100%;
+    display: none;
+    position: static
+}
+
+.jquery-accordion-menu ul ul.submenu li {
+    clear: both;
+    width: 100%
+}
+
+.jquery-accordion-menu ul ul.submenu li a {
+    width: 100%;
+    float: left;
+    font-size: 11px;
+    background: #fff;
+    border-top: none;
+    position: relative;
+    border-left: solid 6px transparent;
+    -o-transition: border .2s linear;
+    -moz-transition: border .2s linear;
+    -webkit-transition: border .2s linear;
+    transition: border .2s linear
+}
+
+.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #414956
+}
+
+.jquery-accordion-menu ul ul.submenu > li > a {
+    padding-left: 30px
+}
+
+.jquery-accordion-menu ul ul.submenu > li > ul.submenu > li > a {
+    padding-left: 45px
+}
+
+.jquery-accordion-menu ul ul.submenu > li > ul.submenu > li > ul.submenu > li > a {
+    padding-left: 60px
+}
+
+.jquery-accordion-menu ul li .jquery-accordion-menu-label, .jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label {
+    min-width: 20px;
+    padding: 1px 2px 1px 1px;
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #555;
+    text-align: center;
+    line-height: 18px;
+    background: #f0f0f0;
+    border-radius: 100%
+}
+
+.jquery-accordion-menu ul ul.submenu li .jquery-accordion-menu-label {
+    top: 12px
+}
+
+.ink {
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, .3);
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0)
+}
+
+.animate-ink {
+    -webkit-animation: ripple .5s linear;
+    -moz-animation: ripple .5s linear;
+    -ms-animation: ripple .5s linear;
+    -o-animation: ripple .5s linear;
+    animation: ripple .5s linear
+}
+
+header .navigation-filter .department-menu_block .department-menu i {
+    font-size: 20px;
+}
+
+@-webkit-keyframes ripple {
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(2.5)
+    }
+}
+
+@-moz-keyframes ripple {
+    100% {
+        opacity: 0;
+        -moz-transform: scale(2.5)
+    }
+}
+
+@-o-keyframes ripple {
+    100% {
+        opacity: 0;
+        -o-transform: scale(2.5)
+    }
+}
+
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5)
+    }
+}
+
+.blue.jquery-accordion-menu .jquery-accordion-menu-footer, .blue.jquery-accordion-menu .jquery-accordion-menu-header, .blue.jquery-accordion-menu ul li a {
+    background: #4A89DC
+}
+
+.blue.jquery-accordion-menu > ul > li.active > a, .blue.jquery-accordion-menu > ul > li:hover > a {
+    background: #3e82da
+}
+
+.blue.jquery-accordion-menu > ul > li > a {
+    border-bottom-color: #3e82da
+}
+
+.blue.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #3e82da
+}
+
+.green.jquery-accordion-menu .jquery-accordion-menu-footer, .green.jquery-accordion-menu .jquery-accordion-menu-header, .green.jquery-accordion-menu ul li a {
+    background: #03A678
+}
+
+.green.jquery-accordion-menu > ul > li.active > a, .green.jquery-accordion-menu > ul > li:hover > a {
+    background: #049372
+}
+
+.green.jquery-accordion-menu > ul > li > a {
+    border-bottom-color: #049372
+}
+
+.green.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #049372
+}
+
+.red.jquery-accordion-menu .jquery-accordion-menu-footer, .red.jquery-accordion-menu .jquery-accordion-menu-header, .red.jquery-accordion-menu ul li a {
+    background: #ED5565
+}
+
+.red.jquery-accordion-menu > ul > li.active > a, .red.jquery-accordion-menu > ul > li:hover > a {
+    background: #DA4453
+}
+
+.red.jquery-accordion-menu > ul > li > a {
+    border-bottom-color: #DA4453
+}
+
+.red.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #DA4453
+}
+
+.white.jquery-accordion-menu .jquery-accordion-menu-footer, .white.jquery-accordion-menu .jquery-accordion-menu-header, .white.jquery-accordion-menu ul li a {
+    background: #fff;
+    color: #555
+}
+
+.white.jquery-accordion-menu > ul > li.active > a, .white.jquery-accordion-menu > ul > li:hover > a {
+    background: #f0f0f0
+}
+
+.white.jquery-accordion-menu > ul > li > a {
+    border-bottom-color: #f0f0f0
+}
+
+.white.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #f0f0f0
+}
+
+.white.jquery-accordion-menu ul ul.submenu li a {
+    color: #f0f0f0
+}
+
+.white.jquery-accordion-menu > ul > li > a > .ink {
+    background: rgba(0, 0, 0, .1)
+}
+
+.black.jquery-accordion-menu .jquery-accordion-menu-footer, .black.jquery-accordion-menu .jquery-accordion-menu-header, .black.jquery-accordion-menu ul li a {
+    background: #292929
+}
+
+.black.jquery-accordion-menu > ul > li.active > a, .black.jquery-accordion-menu > ul > li:hover > a {
+    background: #222
+}
+
+.black.jquery-accordion-menu > ul > li > a {
+    border-bottom-color: #222
+}
+
+.black.jquery-accordion-menu ul ul.submenu li:hover > a {
+    border-left-color: #222
+}
+
+
+
+
+@media (max-width: 576px) {
+    .home3-product-block #tab-so2 {
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal .modal-dialog.modal-bottom-right {
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal .modal-side {
+        position: absolute;
+        /* right: 10px; */
+        top: 10px;
+        width: 400px;
+        margin: 0;
+    }
+}
+

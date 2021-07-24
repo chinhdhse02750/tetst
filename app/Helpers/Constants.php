@@ -8,7 +8,7 @@ namespace App\Helpers;
  */
 class Constants
 {
-    const DEFAULT_PER_PAGE = 20;
+    const DEFAULT_PER_PAGE = 12;
     const DEFAULT_ACTIVE = 1;
     const DEFAULT_COLOR = '#2b2b2b';
 
@@ -25,7 +25,7 @@ class Constants
     const MODAL_RELATIONS = 'ranks';
     const MODAL_VIDEO_RELATIONS = 'videos';
     const DEFAULT_PUBLIC_PATH = 'tmp';
-    const IS_PUBLIC = true;
+    const IS_PUBLIC = false;
     const MEDIA_PATH_USER = 'users';
     const FIRST_IMAGE = 0;
     const IMAGE_LAZY_LOAD = '/image/frontend/loading-lazy.gif';
@@ -76,7 +76,7 @@ class Constants
      */
 
     const SHORT_COMMENT = 80;
-    const MEMBER_LIST_PER_PAGE = 30;
+    const MEMBER_LIST_PER_PAGE = 20;
     const PUBLIC_MEDIA_TYPE = 0;
     const TIME_ORDER_BY = 'created_at';
     const TEXT_SEARCH_LIMIT = 1;

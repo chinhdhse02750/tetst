@@ -21,7 +21,7 @@ return [
          */
         'langs' => [
             'en' => '英語（English）',
-            'ja' => '日本語（Japanese）',
+            'jp' => '日本語（Japanese）',
             'vi' => 'Việt Nam',
         ],
     ],

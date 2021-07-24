@@ -15,6 +15,7 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::get('balances', 'BalanceController@index')->name('member.balances');
         Route::get('balances/search', 'BalanceController@search')->name('member.search-balances');
         Route::resource('/categories', 'CategoryController');
+        Route::resource('/products', 'ProductController');
         Route::resource('/prefectures', 'PrefectureController');
         Route::get('offers/search', 'OfferController@search')->name('offers.search');
         Route::post('/offers/link-to-paypal', 'OfferController@linkPaypal')->name('offers.link-paypal');
@@ -26,6 +27,13 @@ Route::middleware(['role:super_admin', 'auth:admin'])
         Route::resource('/accounts', 'AccountController');
         Route::post('accounts/restore/{id}', 'AccountController@restore')->name('accounts.restore');
         Route::resource('/units', 'UnitController');
+        Route::resource('/tags', 'TagController');
+        Route::resource('/comments', 'CommentController');
+        Route::resource('/shipping', 'ShippingController');
+        Route::resource('/order', 'OrderController');
+        Route::post('/comments/update-status', 'CommentController@updateStatus')->name('comments.updateStatus');
+        Route::post('/order/update-status', 'OrderController@updateStatus')->name('order.updateStatus');
+        Route::post('/order/update-payment-status', 'OrderController@updatePaymentStatus')->name('order.updatePaymentStatus');
     });
 
 Route::middleware('auth:admin')

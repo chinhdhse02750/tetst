@@ -29,25 +29,25 @@
             </tr>
             <tr>
                 <td class="field">@lang('users.label.expired')</td>
-                <td class="font-size-label">{{ $user->expired }}</td>
+                <td class="font-size-label"></td>
             </tr>
             <tr>
                 <td class="field">@lang('users.label.rank')</td>
                 <td class="font-size-label">
-                    <div class="icon-class_sb flLeft">{{ $user->userProfile->rank_name }}</div>
+                    <div class="icon-class_sb flLeft"></div>
                 </td>
             </tr>
             <tr>
                 <td class="field">@lang('users.label.name')</td>
-                <td class="font-size-label">{{ $user->userProfile->name }}</td>
+                <td class="font-size-label"></td>
             </tr>
             <tr>
                 <td class="field">@lang('users.label.tel')</td>
-                <td class="font-size-label">{{ $user->userProfile->tel }}</td>
+                <td class="font-size-label"></td>
             </tr>
             <tr>
                 <td class="field">@lang('users.label.line_id')</td>
-                <td class="font-size-label">{{ $user->userProfile->line_id }}</td>
+                <td class="font-size-label"></td>
             </tr>
             </tbody>
         </table>
@@ -68,16 +68,13 @@
                     <td class="field">@lang('user_profile.label.receipt_type')</td>
                     <td class="font-size-label">
                         <div>
-                            <input type="radio" class="radio" name="receipt_type" value="0" id="no_receipt"
-                                   @if($user->userProfile->receipt_type === 0) checked @endif/>
+                            <input type="radio" class="radio" name="receipt_type" value="0" id="no_receipt"/>
                             <label for="no_receipt" class="mr-2">@lang('user_profile.label.no_receipt')</label>
 
-                            <input type="radio" class="radio" name="receipt_type" value="1" id="receipt_mail"
-                                   @if($user->userProfile->receipt_type === 1) checked @endif/>
+                            <input type="radio" class="radio" name="receipt_type" value="1" id="receipt_mail"/>
                             <label for="receipt_mail" class="mr-2">@lang('user_profile.label.receipt_mail')</label>
 
-                            <input type="radio" class="radio" name="receipt_type" value="2" id="receipt_pdf"
-                                   @if($user->userProfile->receipt_type === 2) checked @endif/>
+                            <input type="radio" class="radio" name="receipt_type" value="2" id="receipt_pdf"/>
                             <label for="receipt_pdf" class="mr-2">@lang('user_profile.label.receipt_pdf')</label>
                         </div>
                         <span style="color: red">@lang('users.label.receipt_des')</span>

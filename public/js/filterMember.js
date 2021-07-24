@@ -128,7 +128,7 @@ showDropdown('#filterItemAlcohol', '.alcohol');
 $('.area-filter').on('click', function () {
     let areaId = $(this).attr('id');
     let inputFilter = $('input[value='+areaId+']');
-    
+
     let url = encodeURIComponent(inputFilter.attr('name'));
     window.location.href = '/' + '?' +  url + '=' + areaId;
 

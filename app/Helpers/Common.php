@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Common
 {
@@ -28,5 +29,38 @@ class Common
         $paymentExpired = $carbon_date->addHours($time);
 
         return  date_format($paymentExpired, 'Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $str
+     * @param string $delimiter
+     * @return string
+     */
+    public static function createSlug($str, $delimiter = '-')
+    {
+        return strtolower(trim(preg_replace(
+            '/[\s-]+/',
+            $delimiter,
+            preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace(
+                '/[&]/',
+                'and',
+                preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))
+            ))
+        ), $delimiter));
+    }
+
+    /**
+     * @param $slug
+     * @param $existingCount
+     * @return string
+     */
+    public static function getUniqueUrl($slug, $existingCount)
+    {
+        if($existingCount)
+        {
+            return $slug . '-' . ($existingCount);
+        }
+
+        return $slug;
     }
 }

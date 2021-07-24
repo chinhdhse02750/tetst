@@ -22,33 +22,40 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" id="name" class="form-control" maxlength="255">
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                   maxlength="255" required>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <label
-                                            class="control-label col-sm-2">@lang('categories.label.description')</label>
+                                                class="control-label col-sm-2">@lang('categories.label.description')</label>
                                         <div class="col-sm-10">
                                             <textarea name="description" id="description"
                                                       class="form-control" maxlength="255"></textarea>
                                         </div>
                                     </div>
                                     <div class="row form-group">
-                                         <label class="col-md-2 form-control-label"
-                                                      for="dating_type">@lang('categories.label.select_category')
+                                        <label class="col-md-2 form-control-label"
+                                               for="dating_type">@lang('categories.label.select_category')
                                             <span class="required">*</span></label>
                                         <div class="col-md-10">
-                                            <select class="custom-select" name="parent" id="parent">
-                                                <option value="0">Root</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                            @php
+                                                $char = "|---";
+                                            @endphp
 
-                                    <div class="row form-group">
-                                        <label
-                                            class="form-control-label col-sm-2">@lang('categories.label.alias')</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="alias" id="alias" class="form-control" maxlength="255">
+                                            <select class="custom-select" name="parent" id="parent">
+                                                @if($categories->isEmpty())
+                                                    <option value="0">--Root--</option>
+                                                @else
+                                                    <option value="0">--Root--</option>
+                                                    @foreach($categories as $menu)
+                                                        <option value="{{ $menu->id }}">{{ $char }}{{ $menu->name }}</option>
+                                                        @include('category.childItems', ['char' => $char."|---"] )
+                                                    @endforeach
+                                                @endif
+
+                                            </select>
+
                                         </div>
                                     </div>
 
@@ -57,11 +64,13 @@
                                             <span>@lang('categories.label.image')</span>
                                         </div>
                                         <div class="col-md-10">
-                                            <small class="upload-note"><i class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')</small>
+                                            <small class="upload-note"><i
+                                                        class="cil-warning"></i> @lang('alerts.upload.accept_extension_image')
+                                            </small>
                                             <div class="row mt-4 mb-4" role="form">
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <div class="needsclick dropzone" id="image-private-dropzone"></div>
+                                                        <div class="needsclick dropzone" id="image-dropzone"></div>
                                                     </div>
                                                     <div id="private-previews" class="previews-image"></div>
                                                 </div>
@@ -69,6 +78,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="status">@lang('categories.label.status')
+                                        </label>
+
+                                        <div class="col-md-2">
+                                            <input type='hidden' value='0' name='status'>
+                                            <input type="checkbox" class="radio" name="status" value="1" id="status"/>
+                                        </div><!--col-->
+                                    </div><!--form-group-->
 
                                     <div class="form-group">
                                         <div class="d-flex justify-content-center">
@@ -97,10 +116,8 @@
 
     <script>
         let url = '{{ url('api/media') }}';
-        console.log(url);
         let token = '{{ csrf_token() }}';
         let buttonDelete = '@lang('labels.general.delete')';
         createDropzone(url, token, buttonDelete);
-        createVideoDropzone(url, token, buttonDelete);
     </script>
 @stop

@@ -6,8 +6,8 @@
         <div class="ogami-breadcrumb">
             <div class="container">
                 <ul>
-                    <li><a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
-                    <li><a class="breadcrumb-link active" href="#">Register</a></li>
+                    <li><a class="breadcrumb-link" href="{{ route('home') }}"> <i class="fas fa-home"></i>Trang chủ</a></li>
+                    <li><a class="breadcrumb-link active" >Đăng ký</a></li>
                 </ul>
             </div>
         </div>
@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6 mx-auto">
-                        <h1 class="title">Register</h1>
+                        <h1 class="title">Đăng ký</h1>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group mt-4">
@@ -66,8 +66,8 @@
                                        name="password_confirmation" required>
                             </div>
                             <div class="account-function">
-                                <button type="submit" class="no-round-btn">{{ __('Register') }}</button>
-                                <a class="create-account" href="{{ route('login') }}">Or login</a>
+                                <button type="submit" class="no-round-btn">{{ __('Đăng ký') }}</button>
+                                <a class="create-account" href="{{ route('login') }}">Quay lại đăng nhập</a>
                             </div>
                         </form>
                     </div>

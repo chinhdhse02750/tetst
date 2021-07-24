@@ -3,19 +3,17 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
     let uploadedDocumentMap = {};
     $('.dropzone[id]').each(function () {
         let selectedApped = $(this).parent().siblings('.previews-image');
-        let max = null;
-        let nameInput = 'images[]';
-        let nameClass = 'images';
-        if (this.id === "video-dropzone"){
+        let max = maxInput;
+        let nameInput = 'image';
+        let nameClass = 'image';
+        let showAlert = true;
+        if (this.id === "video-dropzone") {
             return;
         }
-        if (this.id === 'image-profile-dropzone') {
-            max = maxInput;
-            nameInput = 'profile-image[]';
-            nameClass = 'profile-image';
-        } else if (this.id === 'image-private-dropzone') {
-            nameInput = 'private-images[]';
-            nameClass = 'private-images';
+
+        if (this.id === "image-product-dropzone") {
+             nameInput = 'image[]';
+             nameClass = 'image';
         }
 
         $(this).dropzone({
@@ -30,12 +28,13 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                 'X-CSRF-TOKEN': token
             },
             init: function () {
+
                 this.on('success', function (file, response) {
                     if (!Dropzone.files || !Dropzone.files.length) {
                         uploadedDocumentMap[file.name] = response.data_media.name;
                         let dataImages = uploadSuccess(file.upload.uuid,
-                            response.data_media.name, response.thumbnail_url,
-                            response.data_media.size, Object.values(response.data_media).join('|'),
+                            response.data_media.name, response.public_url,
+                            response.data_media.size, response.data_media.name,
                             nameInput, buttonDelete, nameClass
                         );
                         selectedApped.append(dataImages);
@@ -47,19 +46,25 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                         let errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
                         [errorDisplay.length - 1].innerHTML = 'Error 404: The upload page was not found on the server';
                     } else {
-                        alert(message);
-                        this.removeFile(file);
+                         this.removeFile(file);
+                         if(showAlert){
+                             alert(message);
+                         }
+                        showAlert = false;
                     }
                 });
             },
             queuecomplete: function (file) {
+                showAlert = true;
                 $('.dropzone').removeClass('dz-started');
                 $('.dz-remove').on("click", function () {
                     let id = $(this).data("id");
                     $('#' + id + '').remove();
-                    if($(this).hasClass('profile-image')){
-                        Dropzone.forElement('#image-profile-dropzone').removeAllFiles(true);
-                        Dropzone.forElement('#image-profile-dropzone').options.maxFiles = 1;
+                    let count = $('.dz-image').length;
+                    if ($(this).hasClass('image')) {
+                        console.log(maxInput - count);
+                        Dropzone.forElement('#image-product-dropzone').removeAllFiles(true);
+                        Dropzone.forElement('#image-product-dropzone').options.maxFiles = maxInput - count;
                     }
                 });
 
@@ -70,8 +75,7 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
 
 function uploadSuccess(uuid, name, thumbnail, size, objValue, nameInput, buttonDelete, nameClass) {
     return `<div class="dz-image" id="${uuid}">
-            <div class="image-frames"><img class="dz-image-display" alt="${name}" src = "${thumbnail}" ></div>
-            <span class="file-size dz-name-display">${size}</span>
+            <div class="image-frames"><img class="dz-image-display" alt="${name}" src = "${thumbnail}" ></div>         
             <input type="hidden" name="${nameInput}" value="${objValue}">
             <button type="button" class="btn btn-danger pull-right dz-remove ${ nameClass }" 
             data-dz-remove data-id="${uuid}" >${buttonDelete}</button>

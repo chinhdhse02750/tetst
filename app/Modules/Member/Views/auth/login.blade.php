@@ -4,8 +4,8 @@
         <div class="ogami-breadcrumb">
             <div class="container">
                 <ul>
-                    <li> <a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
-                    <li> <a class="breadcrumb-link active" href="#">Login</a></li>
+                    <li> <a class="breadcrumb-link" href="{{ route('home') }}"> <i class="fas fa-home"></i>Trang chủ</a></li>
+                    <li> <a class="breadcrumb-link active">Đăng nhập</a></li>
                 </ul>
             </div>
         </div>
@@ -62,10 +62,10 @@
                                     <input id="savepass" type="checkbox">
                                     <label for="savepass">Save Password</label>
                                 </div>
-                                <div class="account-forgot"><a href="#">Forget your Password</a></div>
+                                <div class="account-forgot"><a href="#">Quên mật khẩu</a></div>
                             </div>
                             <div class="account-function">
-                                <button class="no-round-btn">Sign in</button><a class="create-account" href="{{ route('member.register') }}">Or create an account</a>
+                                <button class="no-round-btn">Đăng nhập</button><a class="create-account" href="{{ route('member.register') }}">Hoặc đăng ký tài khoản</a>
                             </div>
                         </form>
                     </div>
