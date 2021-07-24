@@ -157,6 +157,7 @@
                                             <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>
                                         </ul>
                                     </li>
+                                    </li>
                                     <li class="toggleable"><a class="menu-item" href="#">Pages</a><span
                                                 class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
@@ -189,7 +190,7 @@
                 <div class="col-3">
                     <div class="mobile-product_function d-flex align-items-center justify-content-end">
                         <a class="dropdown-toggle mini-cart" data-toggle="dropdown" aria-expanded="false" href="#"
-                                title="View your shopping cart"> <i class="icon_bag_alt"></i> <span
+                           title="View your shopping cart"> <i class="icon_bag_alt"></i> <span
                                     class="count cart_count"> {{ $count }} </span>
                             <div class="total-minicart"><span
                                         class="woocommerce-Price-amount amount cart_money"><span
@@ -200,61 +201,28 @@
                 </div>
             </div>
         </div>
-        <div class="navigation-filter">
-            <div class="container">
-                <div class="row">
-                    {{--<div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">--}}
-                    {{--<div class="department-menu_block">--}}
-                    {{--<div class="department-menu d-flex justify-content-between align-items-center">--}}
-                    {{--<i class="fas fa-bars"></i>Danh mục sản phẩm<span><i class="arrow_carrot-down arrow_carrot-up"></i></span></div>--}}
-                    {{--<div id="jquery-accordion-menu" class="jquery-accordion-menu" style="display: none">--}}
-                    {{--<ul>--}}
-                    {{--@foreach($categories as $menu)--}}
-                    {{--<li><a href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}--}}
-                    {{--@if(count($menu->childrenCategories))--}}
-                    {{--<span class="submenu-indicator">+</span>--}}
-                    {{--@endif--}}
-                    {{--</a>--}}
-                    {{--@if(count($menu->childrenCategories))--}}
-                    {{--@include('includes.menu_sub',['childs' => $menu->childrenCategories])--}}
-                    {{--@endif--}}
-                    {{--</li>--}}
-                    {{--@endforeach--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--                        <div class="department-dropdown-menu">--}}
-                    {{--                            <ul>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-1"></i>Fresh Meat</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-2"></i>Vegetables</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-3"></i>Fruit & Nut Gifts</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-4"></i>Fresh Berries</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-5"></i>Ocean Foods</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-6"></i>Butter & Eggs</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-7"></i>Fastfood</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-8"></i>Fresh Onion</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-9"></i>Papayaya & Crisps</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"><i class="icon-10"></i>Oatmeal</a></li>--}}
-                    {{--                                <li><a href="shop_grid+list_3col.html"> <i class="icon-11"></i>Fresh Bananas</a></li>--}}
-                    {{--                            </ul>--}}
-                    {{--                        </div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2 search-line">
-                        <input type="hidden" value="{{ route('search') }}" id="search_url">
-                        <div class="row no-gutters">
-                            <div class="col-8 col-md-8 col-lg-9 col-xl-10">
-                                <div class="search-input">
-                                    <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"
-                                           placeholder="Bạn muốn tìm gì?">
-                                </div>
+    </div>
+    <div class="navigation-filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">
+                    <div class="department-menu_block"></div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2">
+                    <input type="hidden" value="{{ route('search') }}" id="search_url">
+                    <div class="row no-gutters">
+                        <div class="col-8 col-md-8 col-lg-9 col-xl-10">
+                            <div class="search-input">
+                                <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"  placeholder="Bạn muốn tìm gì?">
                             </div>
-                            <div class="col-4 col-md-4 col-lg-3 col-xl-2">
-                                <button class="no-round-btn" id="btn_search_all">Tìm kiếm</button>
-                            </div>
+                        </div>
+                        <div class="col-4 col-md-4 col-lg-3 col-xl-2">
+                            <button class="no-round-btn" id="btn_search_all">Tìm kiếm</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </header>
