@@ -641,6 +641,16 @@ header .navigation-filter .department-menu_block .department-menu i {
     .home3-product-block #tab-so2 {
         margin-bottom: 30px;
     }
+    .apus-topcart .dropdown-menu{
+        min-width: 240px;
+    }
+    .select-custom {
+        padding: 0 20px 0 20px;
+    }
+    .select-form{
+        background-position: 98% center;
+    }
+
 }
 
 @media (min-width: 768px) {

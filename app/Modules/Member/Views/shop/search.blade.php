@@ -82,12 +82,10 @@
                                         <div class="col-12">
                                             <h2 class="title">Kết quả tìm kiếm cho " {{ isset($data['search']) ? $data['search'] : '' }} "</h2>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 menu-filter-mobile">
                                             <div id="show-filter-sidebar">
-                                                <h5><i class="fas fa-bars"></i>Mở menu</h5>
+                                                <h5><i class="fas fa-bars"></i>Menu</h5>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
                                             <div class="product-option product-option-custom">
                                                 <form action="" method="GET"
                                                       id="sort_product">
@@ -132,6 +130,7 @@
                                                 </form>
                                             </div>
                                         </div>
+
                                     </div>
                                     <!--Using column-->
                                 </div>
