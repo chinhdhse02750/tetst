@@ -14,7 +14,7 @@
                 <div class="col-12 col-md-4">
                     <a href="{{ route('cart.checkout') }}">
                         <div class="step-block {{ (request()->is('cart-checkout')) ? 'active' : '' }}">
-                            <div class="step">
+                            <div class="step step-payment">
                                 <h2>Thông tin thanh toán</h2><span>02</span>
                             </div>
                         </div>

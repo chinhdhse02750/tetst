@@ -80,7 +80,7 @@
                             <button class="no-round-btn" id="mobile-menu--closebtn">Close menu</button>
                             <div class="mobile-menu_items">
                                 <ul class="mb-0 d-flex flex-column">
-                                    <li class="toggleable"><a class="menu-item active" href="index.html">Home</a>
+                                    <li class="toggleable"><a class="menu-item active" href="/">Home</a>
                                         <span class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="index.html">Homepage 1</a></li>
@@ -188,17 +188,17 @@
                         <img src="/images/logo.png" alt="">
                     </a>
                 </div>
-                <div class="col-12 col-md-9 col-lg-9">
+                <div class="col-12 col-md-12 col-lg-9">
                     <input type="hidden" value="{{ route('search') }}" id="search_url">
                     <div class="row no-gutters">
-                        <div class="col-8 col-md-8 col-lg-9 col-xl-10">
+                        <div class="col-10 col-md-10 col-lg-10 col-xl-10">
                             <div class="search-input">
                                 <input class="no-round-input" id="search_input" type="text" value="{{ $search }}"
                                        placeholder="Bạn muốn tìm gì?">
                             </div>
                         </div>
-                        <div class="col-4 col-md-4 col-lg-3 col-xl-2">
-                            <button class="no-round-btn" id="btn_search_all">Tìm kiếm</button>
+                        <div class="col-2 col-md-2 col-lg-2 col-xl-2">
+                            <button class="no-round-btn" id="btn_search_all"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
