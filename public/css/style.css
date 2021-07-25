@@ -10631,6 +10631,8 @@ span#select2-calc_shipping_state_field-container {
 @media (max-width: 576px) {
     #mobile-menu {
         display: block;
+        padding: initial;
+        margin-bottom: 0;
     }
 
     .footer-top {
@@ -10663,6 +10665,8 @@ span#select2-calc_shipping_state_field-container {
 @media (min-width: 576px) and (max-width: 767px) {
     #mobile-menu {
         display: block;
+        padding: initial;
+        margin-bottom: 0;
     }
 
     #mobile-menu .mobile-menu_block #ogami-mobile-menu {
@@ -10683,6 +10687,8 @@ span#select2-calc_shipping_state_field-container {
 @media (min-width: 768px) and (max-width: 991px) {
     #mobile-menu {
         display: block;
+        padding: initial;
+        margin-bottom: 0;
     }
 
     #mobile-menu .mobile-menu_block #ogami-mobile-menu {
