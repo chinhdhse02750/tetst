@@ -174,7 +174,7 @@
                                             </div>
                                             <div id="tab-2">
                                                 <div class="customer-reviews_block">
-                                                    @if (count($comments) == 0)
+                                                    @if ($countComment == 0)
                                                         <div class="block-review">
                                                             <h3 class="reply-title">Hãy là người đầu tiên nhận xét
                                                                 "{{ $subData->name }}"</h3>
@@ -213,7 +213,6 @@
                                                         </div>
                                                     @endif
                                                     <div class="add-review">
-
                                                         <div class="add-review-status display-none">
                                                             <h2>Cảm ơn bạn đã gửi đánh giá, đánh giá của bạn sẽ được hiển thị sau khi kiểm duyệt.</h2>
                                                         </div>

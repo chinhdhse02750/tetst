@@ -21,6 +21,10 @@
                             </br>
                             <span>Hà Nội Shop xin chân thành cám ơn!</span>
                             </h1>
+                            <div class="checkout-method">
+                                <a class="normal-btn"
+                                   href="{{ route('cate.view', 'tat-ca-san-pham') }}">Tiếp tục mua sắm</a>
+                            </div>
                         </div>
                     </div>
                 </div>
