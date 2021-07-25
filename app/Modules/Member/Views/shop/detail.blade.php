@@ -78,7 +78,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div id="show-filter-sidebar">
-                                        <h5><i class="fas fa-bars"></i>Mở menu</h5>
+                                        <h5><i class="fas fa-bars"></i>Menu</h5>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
