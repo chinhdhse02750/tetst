@@ -16,133 +16,135 @@
                     <form method="post" id="form-order" action="{{ url('api/v1/cart/order') }}">
                         <div class="row">
                             <div class="col-12 col-lg-7">
-                                <h2 class="form-title bold-price">THÔNG TIN THANH TOÁN</h2>
-                                {{--<p class="red" style="margin-bottom: 10px">Đánh dấu (*) là các trường bắt buộc</p>--}}
-                                <div class="form-group">
-                                    <label for="inputName" class="bold-price">Họ và tên <span class="red">*</span></label>
-                                    <input class="no-round-input-bg" name="full_name" id="inputName" type="text" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputFacebook" class="bold-price">Tên Facebook</label>
-                                    <input class="no-round-input-bg" name="facebook" id="inputFacebook" type="text"
-                                           placeholder="Bỏ trống nếu không dùng facebook">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputTel" class="bold-price">Số điện thoại <span class="red">*</span></label>
-                                    <input class="no-round-input-bg" name="phone" id="inputTel" type="text"
-                                           placeholder="Nhập số điện thoại ở Nhật hoặc ở Việt Nam">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail" class="bold-price">Email <span class="red">*</span></label>
-                                    <input class="no-round-input-bg" name="email" id="inputEmail" type="text" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputAddress" class="bold-price">Địa chỉ <span class="red">*</span></label>
-                                    <input class="no-round-input-bg" name="address" id="inputAddress" type="text" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPostcode" class="bold-price">Mã bưu điện: (VD: 544-0001 hoặc 5440001) *</label>
-                                    <input class="no-round-input-bg" name="postcode" id="inputPostcode" type="text">
-                                </div>
-                                <div class="form-group select-city">
-                                    <label for="inputCountry" class="bold-price">Tỉnh - Thành Phố <span class="red">*</span></label>
-                                    <select class="form-control no-round-input-bg" name="pref_id" id="select2-dropdown" required>
-                                        @foreach($pref as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group select-city">
-                                    <label for="inputTimeShipping" class="bold-price">Thời gian giao hàng <span class="red">*</span></label>
-                                    <select class="form-control no-round-input-bg" id="inputTimeShipping" name="time_shipping" id="select-time-dropdown" required>
-                                        @foreach($selectTime as $key => $item)
-                                            <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                {{--<div class="form-group">--}}
-                                    {{--<input id="differentAddress" type="checkbox">--}}
-                                    {{--<label for="differentAddress">Giao hàng tới địa chỉ khác?</label>--}}
-                                {{--</div>--}}
-                                <div class="form-group">
-                                    <label for="inputComment" class="bold-price">Ghi chú đơn hàng (tùy chọn)</label>
-                                    <textarea class="textarea-form-bg" id="inputComment" name="comment" cols="30" rows="7"
-                                    placeholder="Ghi chú tới Hà Nội tạp h về chi tiết địa chỉ, thời gian nhận hàng..."></textarea>
+                                <div class="billing-fields">
+                                    <h2 class="form-title bold-price">THÔNG TIN THANH TOÁN</h2>
+                                    {{--<p class="red" style="margin-bottom: 10px">Đánh dấu (*) là các trường bắt buộc</p>--}}
+                                    <div class="form-group">
+                                        <label for="inputName" class="bold-price">Họ và tên <span class="red">*</span></label>
+                                        <input class="no-round-input-bg" name="full_name" id="inputName" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputFacebook" class="bold-price">Tên Facebook</label>
+                                        <input class="no-round-input-bg" name="facebook" id="inputFacebook" type="text"
+                                               placeholder="Bỏ trống nếu không dùng facebook">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputTel" class="bold-price">Số điện thoại <span class="red">*</span></label>
+                                        <input class="no-round-input-bg" name="phone" id="inputTel" type="text"
+                                               placeholder="Nhập số điện thoại ở Nhật hoặc ở Việt Nam">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail" class="bold-price">Email <span class="red">*</span></label>
+                                        <input class="no-round-input-bg" name="email" id="inputEmail" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress" class="bold-price">Địa chỉ <span class="red">*</span></label>
+                                        <input class="no-round-input-bg" name="address" id="inputAddress" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPostcode" class="bold-price">Mã bưu điện: (VD: 544-0001 hoặc 5440001) *</label>
+                                        <input class="no-round-input-bg" name="postcode" id="inputPostcode" type="text">
+                                    </div>
+                                    <div class="form-group select-city">
+                                        <label for="inputCountry" class="bold-price">Tỉnh - Thành Phố <span class="red">*</span></label>
+                                        <select class="form-control no-round-input-bg" name="pref_id" id="select2-dropdown" required>
+                                            @foreach($pref as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group select-city">
+                                        <label for="inputTimeShipping" class="bold-price">Thời gian giao hàng <span class="red">*</span></label>
+                                        <select class="form-control no-round-input-bg" id="inputTimeShipping" name="time_shipping" id="select-time-dropdown" required>
+                                            @foreach($selectTime as $key => $item)
+                                                <option value="{{ $key }}">{{ $item }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--<input id="differentAddress" type="checkbox">--}}
+                                        {{--<label for="differentAddress">Giao hàng tới địa chỉ khác?</label>--}}
+                                    {{--</div>--}}
+                                    <div class="form-group">
+                                        <label for="inputComment" class="bold-price">Ghi chú đơn hàng (tùy chọn)</label>
+                                        <textarea class="textarea-form-bg" id="inputComment" name="comment" cols="30" rows="7"
+                                        placeholder="Ghi chú tới Hà Nội tạp h về chi tiết địa chỉ, thời gian nhận hàng..."></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-12 col-lg-5" id="cart-information">
-                                <h2 class="form-title bold-price">ĐƠN HÀNG CỦA BẠN</h2>
-                                <div class="shopping-cart">
-                                    <div class="cart-total_block">
-                                        <table class="table">
-                                            <colgroup>
-                                                <col span="1" style="width: 50%">
-                                                <col span="1" style="width: 50%">
-                                            </colgroup>
-                                            <tbody>
-                                            @foreach($cartCollection as $key => $value)
+                                <div class="has-border">
+                                    <h2 class="form-title bold-price">ĐƠN HÀNG CỦA BẠN</h2>
+                                    <div class="shopping-cart">
+                                        <div class="cart-total_block">
+                                            <table class="table">
+                                                <colgroup>
+                                                    <col span="1" style="width: 50%">
+                                                    <col span="1" style="width: 50%">
+                                                </colgroup>
+                                                <tbody>
+                                                @foreach($cartCollection as $key => $value)
+                                                    <tr>
+                                                        <th class="name">{{ $value->name }} × <span>{{ $value->quantity }}</span></th>
+                                                        <td class="price bold-price" style="border-top: 0"> ￥<span>{{ number_format( $value->price) }}</span>
+                                                    </tr>
+                                                @endforeach
                                                 <tr>
-                                                    <th class="name">{{ $value->name }} × <span>{{ $value->quantity }}</span></th>
-                                                    <td class="price bold-price" style="border-top: 0"> ￥<span>{{ number_format( $value->price) }}</span>
+                                                    <th class="bold-price">Tạm tính</th>
+                                                    <td class="price bold-price"> ￥<span>{{ number_format($totalWtCondition) }}</span></td>
                                                 </tr>
-                                            @endforeach
-                                            <tr>
-                                                <th class="bold-price">Tạm tính</th>
-                                                <td class="price bold-price"> ￥<span>{{ number_format($totalWtCondition) }}</span></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="bold-price">Giao hàng</th>
-                                                @if(isset($shipping))
-                                                    <td class="text-has-shipping">
-                                                        <p class="text-card-shipping_2">Chuyển đến
-                                                            <span class="bold-price">{{ ($shipping->getAttributes())['name'] }}: </span>
-                                                            <span class="bold-price">￥{{ ($shipping->getValue()) }}</span>
-                                                        </p>
-                                                    </td>
-                                                @else
-                                                    <td class="text-no-shipping">
-                                                        <p class="text-card-shipping_2">Nhập địa chỉ của bạn để xem các tùy chọn vận chuyển</p>
-                                                    </td>
-                                                @endif
-                                            </tr>
-                                            <tr class="daibiky_fee    @if(!isset($daibiky))display-none @endif">
-                                                <th class="bold-price">Phí Daibiki</th>
-                                                @if(isset($daibiky))
-                                                    <td class="price bold-price"> ￥<span class="response_daibiky">{{ $daibiky->getValue() }}</span></td>
-                                                @else
-                                                    <td class="price bold-price"> ￥<span class="response_daibiky"></span></td>
-                                                @endif
-                                            </tr>
-                                            <tr>
-                                                <th class="bold-price">Tổng</th>
-                                                <td class="price bold-price "> ￥<span class="total_price">{{ number_format($total) }}</span></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="payment">
-                                        <div class="form-group reset-margin">
-                                            <input type="radio" name="payment_method" id="cash-on" value="cash-on"  @if(isset($daibiky)) checked @endif>
-                                            <label for="cash-on" class="title-text-payment">Trả tiền mặt khi nhận hàng</label>
-                                            <p class="text-payment text-cash-on  @if(!isset($daibiky)) display-none @endif ">
-                                                Phí daibiki thay đổi theo số tiền thu hộ<br>
-                                                – Dưới 1 man: 330 yên<br>
-                                                – Trên 1 man: 440 yên<br>
-                                                Chuyển khoản ngân hàng sẽ không mất phí daibiki.</p>
+                                                <tr>
+                                                    <th class="bold-price">Giao hàng</th>
+                                                    @if(isset($shipping))
+                                                        <td class="text-has-shipping">
+                                                            <p class="text-card-shipping_2">Chuyển đến
+                                                                <span class="bold-price">{{ ($shipping->getAttributes())['name'] }}: </span>
+                                                                <span class="bold-price">￥{{ ($shipping->getValue()) }}</span>
+                                                            </p>
+                                                        </td>
+                                                    @else
+                                                        <td class="text-no-shipping">
+                                                            <p class="text-card-shipping_2">Nhập địa chỉ của bạn để xem các tùy chọn vận chuyển</p>
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                                <tr class="daibiky_fee    @if(!isset($daibiky))display-none @endif">
+                                                    <th class="bold-price">Phí Daibiki</th>
+                                                    @if(isset($daibiky))
+                                                        <td class="price bold-price"> ￥<span class="response_daibiky">{{ $daibiky->getValue() }}</span></td>
+                                                    @else
+                                                        <td class="price bold-price"> ￥<span class="response_daibiky"></span></td>
+                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    <th class="bold-price">Tổng</th>
+                                                    <td class="price bold-price "> ￥<span class="total_price">{{ number_format($total) }}</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="radio" name="payment_method" id="bank-transfer" value="bank-transfer" @if(!isset($daibiky)) checked @endif>
-                                            <label for="bank-transfer" class="title-text-payment">Thanh toán chuyển khoản</label>
-                                            <p class="text-payment text-bank-transfer @if(isset($daibiky)) display-none @endif ">Khách hàng có thể chuyển khoản tại
-                                                Nhật qua ngân hàng bưu điện hoặc chuyển khoản qua tài khoản tại
-                                                Việt Nam là Techcombank (Tỉ giá tính theo giá SBI).
-                                                Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán.
-                                                Đơn hàng sẽ đươc giao sau khi xác nhận đã chuyển tiền.</p>
+                                        <div class="payment">
+                                            <div class="form-group reset-margin">
+                                                <input type="radio" name="payment_method" id="cash-on" value="cash-on"  @if(isset($daibiky)) checked @endif>
+                                                <label for="cash-on" class="title-text-payment">Trả tiền mặt khi nhận hàng</label>
+                                                <p class="text-payment text-cash-on  @if(!isset($daibiky)) display-none @endif ">
+                                                    Phí daibiki thay đổi theo số tiền thu hộ<br>
+                                                    – Dưới 1 man: 330 yên<br>
+                                                    – Trên 1 man: 440 yên<br>
+                                                    Chuyển khoản ngân hàng sẽ không mất phí daibiki.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="radio" name="payment_method" id="bank-transfer" value="bank-transfer" @if(!isset($daibiky)) checked @endif>
+                                                <label for="bank-transfer" class="title-text-payment">Thanh toán chuyển khoản</label>
+                                                <p class="text-payment text-bank-transfer @if(isset($daibiky)) display-none @endif ">Khách hàng có thể chuyển khoản tại
+                                                    Nhật qua ngân hàng bưu điện hoặc chuyển khoản qua tài khoản tại
+                                                    Việt Nam là Techcombank (Tỉ giá tính theo giá SBI).
+                                                    Vui lòng sử dụng Mã đơn hàng của bạn trong phần Nội dung thanh toán.
+                                                    Đơn hàng sẽ đươc giao sau khi xác nhận đã chuyển tiền.</p>
+                                            </div>
                                         </div>
+                                        <div class="normal-btn submit-btn" id="button-checkout">ĐẶT HÀNG</div>
                                     </div>
-                                    <div class="normal-btn submit-btn" id="button-checkout">ĐẶT HÀNG</div>
                                 </div>
                             </div>
                         </div>

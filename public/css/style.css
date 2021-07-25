@@ -768,45 +768,6 @@ a:focus {
     font-weight: bold;
 }
 
-@media (max-width: 576px) {
-    .title, .title-bb {
-        font-size: 30px;
-    }
-
-    #cart-information {
-        margin-top: 20px;
-    }
-
-    #cart-information .form-title {
-        margin-bottom: 10px !important;
-    }
-
-    .footer-top {
-        padding: 30px 0 15px 0px !important;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-    .title, .title-bb {
-        font-size: 38px;
-    }
-
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .title, .title-bb {
-        font-size: 38px;
-    }
-
-    #cart-information {
-        margin-top: 20px;
-    }
-
-    #cart-information .form-title {
-        margin-bottom: 10px !important;
-    }
-}
-
 .title.green-underline:after, .title.coffee-underline:after, .coffee-underline.title-bb:after, .green-underline.title-bb:after {
     content: "";
     background-color: #3d2314;
@@ -2273,32 +2234,6 @@ a:focus {
 #mobile-menu .mobile-product_function a:hover {
     color: #3d2314;
     text-decoration: none;
-}
-
-@media (max-width: 576px) {
-    #mobile-menu {
-        display: block;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 767px) {
-    #mobile-menu {
-        display: block;
-    }
-
-    #mobile-menu .mobile-menu_block #ogami-mobile-menu {
-        width: 50vw;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    #mobile-menu {
-        display: block;
-    }
-
-    #mobile-menu .mobile-menu_block #ogami-mobile-menu {
-        width: 50vw;
-    }
 }
 
 /************************************
@@ -10675,6 +10610,86 @@ span#select2-calc_shipping_state_field-container {
     height: 90px;
 }
 
+.has-border {
+    border: 2px solid #3d2314;
+    padding: 15px 30px 30px;
+}
+.billing-fields {
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+}
+
+.select2-container{
+    width: 100% !important;
+}
+
+
+
 .m-t-25 {
     margin-top: 25px;
 }
+
+
+@media (max-width: 576px) {
+    #mobile-menu {
+        display: block;
+    }
+
+    .footer-top {
+        padding: 30px 0 15px 0px !important;
+    }
+
+    .title, .title-bb {
+        font-size: 30px;
+    }
+
+    #cart-information {
+        margin-top: 20px;
+    }
+
+    #cart-information .form-title{
+        margin-bottom: 10px !important;
+        margin-left: 10px;
+    }
+    .has-border{
+        padding: 15px 5px 5px;
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    #mobile-menu {
+        display: block;
+    }
+
+    #mobile-menu .mobile-menu_block #ogami-mobile-menu {
+        width: 50vw;
+    }
+
+    .title, .title-bb {
+        font-size: 38px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #mobile-menu {
+        display: block;
+    }
+
+    #mobile-menu .mobile-menu_block #ogami-mobile-menu {
+        width: 50vw;
+    }
+
+    .title, .title-bb {
+        font-size: 38px;
+    }
+
+    #cart-information {
+        margin-top: 20px;
+    }
+
+    #cart-information .form-title {
+        margin-bottom: 10px !important;
+    }
+}
+
