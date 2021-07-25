@@ -78,7 +78,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-4 text-right">
+                                <div class="col-12 col-sm-4 d-flex align-items-end text-center">
                                     <a href="{{ route('cate.view', 'tat-ca-san-pham') }}"
                                        class="no-round-btn black cart-update">Tiếp tục xem sản phẩm!
                                     </a>

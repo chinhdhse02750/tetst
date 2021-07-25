@@ -376,7 +376,10 @@ a:focus {
     -ms-transition: 0.3s ease;
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .no-round-btn:hover {
@@ -513,7 +516,7 @@ a:focus {
 
 .no-round-btn.smooth:hover {
     background-color: #c4996c;
-    color: #fff;
+    color: #fff !important;
     border: 2px solid #c4996c;
     text-decoration: none;
 }
@@ -1936,12 +1939,17 @@ a:focus {
         padding: 20px;
     }
 
+    .product .product-select button {
+        height: 30px !important;
+        width: 30px !important;
+    }
+
     .product .product-select {
-        display: none;
+        top: 245px;
     }
 
     .product:after {
-        display: none;
+        /*display: none;*/
     }
 
     .product.list-view, .product.full-list-view {
@@ -2942,7 +2950,7 @@ a:focus {
 
 .order-step .order-step_block .step-block .step::before {
     content: '';
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     top: 0;
     right: 12px;
@@ -2955,8 +2963,7 @@ a:focus {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     background: #fff;
-    z-index: 2;
-}
+ }
 
 .order-step .order-step_block .step-block .step::after {
     content: '';
@@ -8553,7 +8560,7 @@ footer.coffee .newletter .newletter_input button:focus {
 }
 
 .shopping-cart .coupon form input {
-    border-width: 0 0 1px 0;
+    border-width: 0;
     width: auto;
     margin-right: 15px;
 }
@@ -8911,10 +8918,6 @@ footer.coffee .newletter .newletter_input button:focus {
 }
 
 @media only screen and (max-width: 600px) {
-    #btn_search_all {
-        padding: 8px 30px;
-    }
-
     .search-line {
         margin-bottom: 10px;
     }
