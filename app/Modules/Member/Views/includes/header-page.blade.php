@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div
-                        class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
+                            class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
                         <div class="social-link d-flex">
                             <a href=""><i class="fab fa-facebook-f color-fb"> </i></a>
                             <a href=""><i class="fab fa-twitter color-tw"></i></a>
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="mobile-menu_block d-flex align-items-center"><a class="mobile-menu--control" href="#"><i
-                                class="fas fa-bars"></i></a>
+                                    class="fas fa-bars"></i></a>
                         <div id="ogami-mobile-menu">
                             <button class="no-round-btn" id="mobile-menu--closebtn">Close menu</button>
                             <div class="mobile-menu_items">
@@ -91,7 +91,7 @@
                                         </ul>
                                     </li>
                                     <li class="toggleable"><a class="menu-item" href="shop_grid+list_3col.html">Shop</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             @foreach($categories as $menu)
                                                 <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
@@ -101,7 +101,7 @@
                                     </li>
                                     <li class="toggleable"><a class="menu-item"
                                                               href="blog_list_sidebar.html">Blog</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
                                             <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>
@@ -113,7 +113,7 @@
                                     </li>
                                     </li>
                                     <li class="toggleable"><a class="menu-item" href="#">Pages</a><span
-                                            class="sub-menu--expander"><i class="icon_plus"></i></span>
+                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">
                                             <li><a href="login.html">login</a></li>
                                             <li><a href="register.html">register</a></li>
@@ -130,16 +130,16 @@
                                 <h2>My account</h2><a href="login.html">Login</a><a href="register.html">Register</a>
                             </div>
                             <div class="mobile-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i
-                                        class="fab fa-twitter"></i></a><a href=""><i
-                                        class="fab fa-invision"> </i></a><a href=""><i
-                                        class="fab fa-pinterest-p"> </i></a></div>
+                                            class="fab fa-twitter"></i></a><a href=""><i
+                                            class="fab fa-invision"> </i></a><a href=""><i
+                                            class="fab fa-pinterest-p"> </i></a></div>
                         </div>
                         <div class="ogamin-mobile-menu_bg"></div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a
-                            href=""><img src="{{ asset('images/logo.png') }}" alt=""></a></div>
+                                href=""><img src="{{ asset('images/logo.png') }}" alt=""></a></div>
                 </div>
                 <div class="col-3">
                     <div class="mobile-product_function d-flex align-items-center justify-content-end apus-topcart">
@@ -201,10 +201,28 @@
                             <button class="no-round-btn" id="btn_search_all"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
+                    {{--<div class="clearfix search-mobile">--}}
+                        {{--<div class="apus-search-form search-fix clearfix">--}}
+                            {{--<div class="inner-search">--}}
+                                {{--<form action="https://demoapus.com/ogami/" method="get">--}}
+                                    {{--<div class="main-search">--}}
+                                        {{--<div class="autocompleate-wrapper"><input type="text"--}}
+                                                                                  {{--placeholder="Search products here..."--}}
+                                                                                  {{--name="s"--}}
+                                                                                  {{--class="apus-search form-control apus-autocompleate-input"--}}
+                                                                                  {{--autocomplete="off"></div>--}}
+                                    {{--</div>--}}
+                                    {{--<input type="hidden" name="post_type" value="product" class="post_type">--}}
+                                    {{--<button type="submit" class="btn btn-theme radius-0"><i class="fa fa-search"></i>--}}
+                                    {{--</button>--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="col-1 d-none d-lg-block">
                     <div class="product-function d-flex align-items-center justify-content-end">
-                         <div class="apus-topcart">
+                        <div class="apus-topcart">
                             <div id="cart">
                                 <a class="dropdown-toggle mini-cart" data-toggle="dropdown" aria-expanded="false"
                                    href="#"

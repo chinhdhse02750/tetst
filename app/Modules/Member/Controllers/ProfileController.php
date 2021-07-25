@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use App\Repositories\PrefRepository;
+use App\Repositories\OrderRepository;
+use App\Repositories\OrderDetailRepository;
 
 class ProfileController extends Controller
 {
@@ -35,19 +37,36 @@ class ProfileController extends Controller
     protected $prefRepository;
 
     /**
+     * @var
+     */
+    protected $oderRepository;
+
+    /**
+     * @var
+     */
+    protected $oderDetailRepository;
+
+    /**
      * ProfileController constructor.
      * @param UserRepository $userRepository
-     * @param userProfileRepository $userProfileRepository
+     * @param UserProfileRepository $userProfileRepository
+     * @param PrefRepository $prefRepository
+     * @param OrderRepository $oderRepository
+     * @param OrderDetailRepository $oderDetailRepository
      */
     public function __construct(
         UserRepository $userRepository,
         userProfileRepository $userProfileRepository,
-        PrefRepository $prefRepository
+        PrefRepository $prefRepository,
+        OrderRepository $oderRepository,
+        OrderDetailRepository $oderDetailRepository
     ) {
         $this->middleware('auth')->except('logout');
         $this->userRepository = $userRepository;
         $this->userProfileRepository = $userProfileRepository;
         $this->prefRepository = $prefRepository;
+        $this->orderRepository = $oderRepository;
+        $this->oderDetailRepository = $oderDetailRepository;
     }
 
     /**
@@ -93,10 +112,25 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * @return Factory|View
+     */
     public function password()
     {
         return view('profile.change_password_shop');
     }
+
+    /**
+     * @return Factory|View
+     */
+    public function order()
+    {
+        $orders = $this->orderRepository->findByField('customer_id',Auth::id());
+        $countOrder = $orders->count();
+
+        return view('profile.order', compact('orders', 'countOrder') );
+    }
+
 
     /**
      * @param Request $request

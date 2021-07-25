@@ -13,6 +13,7 @@ Route::group([['middleware' => 'auth']], function () {
     Route::post('tai-khoan/update', 'ProfileController@update')->name('profile.update');
     Route::get('/tai-khoan/doi-mat-khau', 'ProfileController@password')->name('profile.password');
     Route::post('/tai-khoan/doi-mat-khau', 'ProfileController@changePassword')->name('profile.change-password');
+    Route::get('/tai-khoan/don-hang', 'ProfileController@order')->name('profile.order');
     Route::get('/contact', 'ContactController@create')->name('contact.index');
     Route::post('/store', 'ContactController@store')->name('contact.store');
     Route::get('/favorites', 'FavoriteController@index')->name('favorites');

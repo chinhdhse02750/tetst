@@ -8,8 +8,8 @@
         </div>
         <div class="department_bottom">
             <ul class="ul-parent">
-                <li class="{{ active_class(Route::is('profile.password')) }} menu-toggle menu-parent">
-                    <a href="{{ route('profile.password') }}"
+                <li class="{{ active_class(Route::is('profile.order')) }} menu-toggle menu-parent">
+                    <a href="{{ route('profile.order') }}"
                        class="department-link link-parent">Đơn hàng</a>
                 </li>
 

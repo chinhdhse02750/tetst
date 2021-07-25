@@ -8,6 +8,6 @@ if (! function_exists('app_name')) {
      */
     function app_name()
     {
-        return config('app.name', 'Oriental club');
+        return config('app.name', 'Hà Nội Tạp Hóa');
     }
 }
