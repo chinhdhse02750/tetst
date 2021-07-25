@@ -124,7 +124,13 @@ class HomeController extends Controller
         $maxPrice = $this->productRepository->all()->max('price');
         $minPrice =  $this->productRepository->all()->min('price');
         $filter = $this->filter($data);
-        $products = $this->productRepository->filter($request->get('search'), $filter);
+        $keyWord = $request->get('search');
+
+        if ($request->get('search') === null){
+            $keyWord = '';
+        }
+
+        $products = $this->productRepository->filter($keyWord, $filter);
 
         return view('shop.search', compact(
             'products',

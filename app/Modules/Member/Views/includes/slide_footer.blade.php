@@ -1,8 +1,7 @@
 <!-- End product block-->
 <div class="partner">
     <div class="container">
-        <div class="partner_block d-flex justify-content-between"
-             data-slick="{&quot;slidesToShow&quot;: 4}">
+        <div class="partner_block d-flex justify-content-between">
             <div class=" partner--logo icon-box featured-box icon-box-center text-center is-small">
                 <div class="icon-box-img">
                     <div class="icon">
@@ -55,7 +54,6 @@
                     <h5 class="uppercase">Giao hàng đảm bảo</h5>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

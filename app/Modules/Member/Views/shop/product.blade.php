@@ -81,10 +81,10 @@
                             <div class="shop-products">
                                 <div class="shop-products_top mini-tab-title underline">
                                     <div class="row align-items-center">
-                                        <div class="col-6 col-xl-4">
+                                        <div class="col-12 col-xl-4">
                                             <h2 class="title">{{ $cateData->name }}</h2>
                                         </div>
-                                        <div class="col-6 text-right">
+                                        <div class="col-12">
                                             <div id="show-filter-sidebar">
                                                 <h5><i class="fas fa-bars"></i>Mở menu</h5>
                                             </div>
