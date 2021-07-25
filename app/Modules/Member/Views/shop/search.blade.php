@@ -79,15 +79,15 @@
                             <div class="shop-products">
                                 <div class="shop-products_top mini-tab-title underline">
                                     <div class="row align-items-center">
-                                        <div class="col-6 col-xl-4">
-                                            <h2 class="title">Kết quả tìm kiếm cho " {{ $data['search'] }} "</h2>
+                                        <div class="col-12">
+                                            <h2 class="title">Kết quả tìm kiếm cho " {{ isset($data['search']) ? $data['search'] : '' }} "</h2>
                                         </div>
-                                        <div class="col-6 text-right">
+                                        <div class="col-12">
                                             <div id="show-filter-sidebar">
                                                 <h5><i class="fas fa-bars"></i>Mở menu</h5>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-xl-8">
+                                        <div class="col-12">
                                             <div class="product-option product-option-custom">
                                                 <form action="" method="GET"
                                                       id="sort_product">

@@ -32,7 +32,8 @@
                                     @if($key < 5)
                                         <div class="deal-block">
                                             <div class="deal-block_detail">
-                                                <h5 class="deal-discount">- {{ $value->percent_sale }}%</h5>
+                                                <h5 class="deal-discount">- {{ number_format($value->percent_sale, 2) }}
+                                                    %</h5>
                                                 <div class="deal-img">
                                                     <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                         <img src="{{ url('storage/tmp/'.$value->first_image) }}"
@@ -56,13 +57,13 @@
                                                      data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                      data-discount_price="{{ $value->discount_price }}">
                                                     <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
+                                                            class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                class="icon_bag_alt"></i></button>
+                                                            class="icon_bag_alt"></i></button>
                                                     <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
+                                                            class="fas fa-random"></i></button>
                                                     <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i>
+                                                            class="far fa-eye"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -73,19 +74,19 @@
                         </div>
                         <div class="sale-product">
                             <div class="sale-product_top mini-tab-title underline pink">
-                                <h2 class="title"><a class="title" href="#">Sản phẩm khuyến mãi</a></h2>
+                                <h2 class="title">Sản phẩm khuyến mãi</h2>
                             </div>
                             <div class="sale-product_bottom">
                                 <div class="row">
                                     @foreach($saleProduct as $key => $value)
                                         @if($key < 5)
-                                            <div class="col-12">
+                                            <div class="col-12 left-sale-prod">
                                                 <div class="mini-product column">
                                                     <div class="mini-product_img-sale">
                                                         <a class="sale-product-img"
                                                            href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}">
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}">
                                                         </a>
                                                     </div>
                                                     <div class="mini-product_info">
@@ -109,8 +110,8 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon1.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon1.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">MIỄN PHÍ SHIP HÀNG</h5>
                                                     <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9999</p>
@@ -119,8 +120,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon2.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon2.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">GIAO HÀNG</h5>
                                                     <p class="benefit-describle">Giao hàng nhanh, rẻ , đúng hẹn</p>
@@ -129,8 +130,8 @@
                                         </div>
                                         <div class="col-12 col-md-6 col-xl-12">
                                             <div class="benefit-detail d-flex flex-row align-items-center"><img
-                                                        class="benefit-img" src="/images/homepage02/benefit-icon3.png"
-                                                        alt="">
+                                                    class="benefit-img" src="/images/homepage02/benefit-icon3.png"
+                                                    alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">BẢO MẬT THANH TOÁN</h5>
                                                     <p class="benefit-describle">100% bảo mật</p>
@@ -206,14 +207,14 @@
                             </div>
                             <div class="best-seller_bottom">
                                 <div id="tab1">
-                                    <div class="row no-gutters-sm">
+                                    <div class="row">
                                         @foreach($featuredProduct as $key => $value)
                                             @if($key < 12)
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}"></a>
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -230,13 +231,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                        class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                        class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -276,13 +277,13 @@
                             </div>
                             <div class="best-seller_bottom">
                                 <div id="tab1">
-                                    <div class="row no-gutters-sm">
+                                    <div class="row">
                                         @foreach($bestSeller as $key => $value)
-                                            <div class="col-6 col-md-3">
+                                            <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                 <div class="product pink"><a class="product-img"
                                                                              href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}"></a>
+                                                            src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                            alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>
                                                     @if($value->discount_price !== null)
                                                         <h3 class="product-price">
@@ -299,13 +300,13 @@
                                                          data-price="{{ $value->price }}"
                                                          data-discount_price="{{ $value->discount_price }}">
                                                         <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
+                                                                class="icon_heart_alt"></i></button>
                                                         <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
+                                                                class="icon_bag_alt"></i></button>
                                                         <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
+                                                                class="fas fa-random"></i></button>
                                                         <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
+                                                                class="far fa-eye"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -333,15 +334,15 @@
                             </div>
                             <div class="best-seller_bottom">
                                 <div id="tab1">
-                                    <div class="row no-gutters-sm">
+                                    <div class="row">
                                         @foreach($products as $key => $value)
                                             @if($key < 8)
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                             <img
-                                                                    src="{{ url('storage/tmp/'.$value->first_image) }}"
-                                                                    alt="{{ $value->first_image }}"></a>
+                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
                                                             <h3 class="product-price">
@@ -357,13 +358,13 @@
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink"><i
-                                                                        class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                        class="far fa-eye"></i></button>
+                                                                    class="far fa-eye"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
