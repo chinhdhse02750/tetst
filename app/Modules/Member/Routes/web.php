@@ -50,4 +50,7 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('m
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
+Route::get('/forgot-password', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('member.forgot.password');
+Route::post('/forgot-password', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('forgot.password');
 Route::get('/lang/{lang}', 'LanguageController@swap')->name('member.lang');
+
