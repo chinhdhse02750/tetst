@@ -139,9 +139,9 @@
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(\Request::is('admin/contact*'))
-                }}" href="{{ route('blog.index') }}">
+                }}" href="{{ route('blogs.index') }}">
                     <i class="nav-icon cil-envelope-closed"></i>
-                    @lang('labels.menu.blog')
+                    @lang('labels.menu.blogs')
                 </a>
             </li>
 
