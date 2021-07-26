@@ -157,6 +157,6 @@ class User extends Authenticatable implements Transformable
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify((new MemberResetPasswordNotification($token))->onQueue('member'));
+        $this->notify((new MemberResetPasswordNotification($token))->onQueue('medium'));
     }
 }
