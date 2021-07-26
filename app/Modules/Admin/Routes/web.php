@@ -59,6 +59,8 @@ Route::middleware('auth:admin')
         Route::get('contact', 'ContactController@index')->name('contact.index');
         Route::get('contact/edit/{id}', 'ContactController@edit')->name('contact.edit');
         Route::put('contact/{id}', 'ContactController@update')->name('contact.update');
+
+        Route::get('blog', 'ContactController@index')->name('blog.index');
     });
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('admin.login');

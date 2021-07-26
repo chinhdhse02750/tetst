@@ -61,6 +61,7 @@ return [
         'account_management' => 'アカウント管理',
         'select_setting' => '名のセッティング候補を選択中',
         'apply_setting' => 'セッティング申し込み',
+        'blog' => 'blog'
     ],
 
     'form' => [
