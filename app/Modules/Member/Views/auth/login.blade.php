@@ -62,7 +62,7 @@
                                     <input id="savepass" type="checkbox">
                                     <label for="savepass">Save Password</label>
                                 </div>
-                                <div class="account-forgot"><a href="#">Quên mật khẩu</a></div>
+                                <div class="account-forgot"><a href="{{route('member.forgot.password')}}">Quên mật khẩu</a></div>
                             </div>
                             <div class="account-function">
                                 <button class="no-round-btn">Đăng nhập</button><a class="create-account" href="{{ route('member.register') }}">Hoặc đăng ký tài khoản</a>
