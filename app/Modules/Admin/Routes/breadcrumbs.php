@@ -259,3 +259,20 @@ Breadcrumbs::for('order.edit', function ($trail, $id) {
     $trail->parent('order.index');
     $trail->push(trans('product.label.edit'), route('order.edit', $id));
 });
+
+
+Breadcrumbs::for('blogs.index', function ($trail) {
+    $trail->push(trans('labels.menu.blogs'), route('blogs.index'));
+});
+
+
+Breadcrumbs::for('blogs.create', function ($trail) {
+    $trail->parent('blogs.index');
+    $trail->push(trans('labels.menu.create_blogs'), route('blogs.create'));
+});
+
+
+Breadcrumbs::for('blogs.edit', function ($trail, $id) {
+    $trail->parent('blogs.index');
+    $trail->push(trans('labels.menu.edit_blogs'), route('blogs.edit', $id));
+});

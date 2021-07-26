@@ -126,7 +126,6 @@
             </li>
 
             <li class="divider"></li>
-
             <li class="nav-item">
                 <a class="nav-link {{
                     active_class(\Request::is('admin/contact*'))
@@ -135,48 +134,19 @@
                     @lang('labels.menu.contact')
                 </a>
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(\Request::is('admin/contact*'))
+                }}" href="{{ route('blogs.index') }}">
+                    <i class="nav-icon cil-envelope-closed"></i>
+                    @lang('labels.menu.blogs')
+                </a>
+            </li>
+
+
             <li class="divider"></li>
-
-            {{--@can('master_data_management')--}}
-            {{--<li class="nav-item nav-dropdown {{--}}
-            {{--active_class(Route::is('admin/auth*'), 'open')--}}
-            {{--}}">--}}
-            {{--<a class="nav-link nav-dropdown-toggle {{--}}
-            {{--active_class(Route::is('admin/auth*'))--}}
-            {{--}}" href="#">--}}
-            {{--<i class="nav-icon cil-cloud"></i>--}}
-            {{--@lang('labels.menu.master')--}}
-            {{--</a>--}}
-
-            {{--<ul class="nav-dropdown-items">--}}
-            {{--<li class="nav-item">--}}
-            {{--<a class="nav-link nav-child --}}{{--}}--}}
-            {{--active_class(Route::is('admin/auth/user*'))--}}
-            {{--}}" href="{{ route('categories.index') }}">--}}
-            {{--<i class="nav-icon cil-view-stream"></i>--}}
-            {{--@lang('labels.menu.category')--}}
-            {{--</a>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item">--}}
-            {{--<a class="nav-link nav-child {{--}}
-            {{--active_class(Route::is('admin/auth/user*'))--}}
-            {{--}}" href="{{ route('prefectures.index') }}">--}}
-            {{--<i class="nav-icon cil-location-pin"></i>--}}
-            {{--@lang('labels.menu.prefecture')--}}
-            {{--</a>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item">--}}
-            {{--<a class="nav-link nav-child {{--}}
-            {{--active_class(Route::is('admin/auth/user*'))--}}
-            {{--}}" href="{{ route('ranks.index') }}">--}}
-            {{--<i class="nav-icon cib-coveralls"></i>--}}
-            {{--@lang('labels.menu.rank_management')--}}
-            {{--</a>--}}
-            {{--</li>--}}
-            {{--</ul>--}}
-            {{--</li>--}}
-            {{--@endcan--}}
-
             <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/auth*'), 'open')
                 }}">

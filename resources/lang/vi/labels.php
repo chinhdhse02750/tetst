@@ -61,6 +61,9 @@ return [
         'account_management' => 'アカウント管理',
         'select_setting' => '名のセッティング候補を選択中',
         'apply_setting' => 'セッティング申し込み',
+        'blogs' => 'Quản lý Blogs',
+        'create_blogs' => 'Tạo Blogs',
+        'edit_blogs' => 'Chỉnh Sửa Blogs'
     ],
 
     'form' => [
