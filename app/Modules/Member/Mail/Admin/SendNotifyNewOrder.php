@@ -10,16 +10,19 @@ class SendNotifyNewOrder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $data;
+    protected $orderContent;
+
+    protected $dataGuest;
 
     /**
      * SendNotifyToMember constructor.
      *
      * @param $data
      */
-    public function __construct($data)
+    public function __construct($orderContent, $dataGuest)
     {
-        $this->data = $data;
+        $this->orderContent = $orderContent;
+        $this->dataGuest = $dataGuest;
     }
 
     /**
@@ -29,15 +32,18 @@ class SendNotifyNewOrder extends Mailable
      */
     public function build()
     {
-        $adminMail = explode(',', env('MAIL_TO_ADMIN'));
-        $subject = '[Order] Has New Order';
+        $userEmail = $this->dataGuest['email'];
+        $adminEmail = env('MAIL_TO_ADMIN');
+        $subject = 'Thông Báo Tiếp Nhận Đơng Hàng';
 
         return $this
-            ->to($adminMail)
+            ->to($userEmail)
+            ->cc($adminEmail)
             ->subject($subject)
             ->markdown('emails.order.new_order')
             ->with([
-                'content' => $this->data,
+                'orderContent' => $this->orderContent,
+                'dataGuest' => $this->dataGuest,
             ]);
     }
 }

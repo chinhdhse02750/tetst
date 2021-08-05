@@ -2,11 +2,11 @@
 
 return [
     'reset_password' => [
-        'subject' => 'パスワードリセットのお知らせ',
+        'subject' => 'Thông báo đặt lại mật khẩu',
         'content' => [
-            'url' => '下記のURLにアクセスし、パスワード再設定手続きへお進みください。',
-            'time_expired' => '*3時間以内に更新の手続きが完了しない場合、上記URLは無効となります。',
-            'text' => '本メールにお心当たりがない場合は、お手数ですが破棄してくださいますようお願いいたします。'
+            'url' => 'Vui lòng truy cập URL bên dưới và tiến hành quy trình đặt lại mật khẩu.',
+            'time_expired' => '* Nếu quy trình cập nhật không được hoàn thành trong vòng 3 giờ, URL trên sẽ không hợp lệ.',
+            'text' => 'Nếu bạn không biết email này, vui lòng loại bỏ nó.'
         ]
     ]
 ];

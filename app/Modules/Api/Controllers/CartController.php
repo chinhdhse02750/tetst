@@ -209,7 +209,7 @@ class CartController extends Controller
                 $this->orderDetailRepository->create($orderDetail);
             }
 
-            $this->activityService->send(new SendNotifyNewOrder($cartContent));
+            $this->activityService->send(new SendNotifyNewOrder($orderDetail, $dataInsert));
 
             return response()->json([
                 'status'  => 'success',
