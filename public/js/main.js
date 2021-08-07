@@ -153,16 +153,21 @@ window.onload = function () {
         // createCountDown('#event-countdown-2','2020/8/10');
         // createCountDown('#event-countdown-3','2020/7/10');
         // createCountDown('#event-countdown-4','2019/7/27');
-        createCountDown('.deal_of_week_count', '2021/08/10');
+        let startOfWeek = moment().startOf('week').toDate();
+        let endOfWeek   = moment().endOf('week').toDate();
+
+        console.log(endOfWeek);
+
+        createCountDown('.deal_of_week_count', endOfWeek);
 
         // Create new countdown day
         function createCountDown(elem, end) {
             $(elem).countdown(end, function (event) {
                 var $this = $(this).html(event.strftime(''
-                    + '<div class="countdown-number"><span>%d</span><br>days</div> '
-                    + '<div class="countdown-number"><span>%H</span><br>hr</div> '
-                    + '<div class="countdown-number"><span>%M</span><br>min</div> '
-                    + '<div class="countdown-number"><span>%S</span><br>sec</div>'));
+                    + '<div class="countdown-number"><span>%d</span><br>Ngày</div> '
+                    + '<div class="countdown-number"><span>%H</span><br>Giờ</div> '
+                    + '<div class="countdown-number"><span>%M</span><br>Phút</div> '
+                    + '<div class="countdown-number"><span>%S</span><br>Giây</div>'));
             });
         }
 

@@ -114,8 +114,7 @@ class ProductController extends Controller
             $newProduct->category()->attach($listCategoryId);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
-            return redirect()
-                ->route('products.index');
+            return redirect()->route('products.index');
         } catch (Exception $e) {
             Log::error('[ERROR_CATEGORY_CREATE]: ' . $e->getMessage());
 
@@ -163,7 +162,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, int $id)
+    public function update(UpdateProductRequest $request, int $id)
     {
         try {
             $data = $request->except(['_token']);
@@ -180,8 +179,8 @@ class ProductController extends Controller
             $thisProduct->tag()->detach($oldListTag);
             $thisProduct->tag()->attach($listTag);
             Session::flash('success_msg', trans('alerts.general.success.updated'));
-            return redirect()
-                ->route('products.index');
+
+            return redirect()->route('products.index');
         } catch (Exception $e) {
             Log::error('[ERROR_CATEGORY_CREATE]: ' . $e->getMessage());
             return redirect()

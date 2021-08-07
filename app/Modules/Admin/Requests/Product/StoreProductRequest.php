@@ -24,49 +24,30 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [];
-        $request = $this->all();
+        \Validator::extend('greater_than', function($attribute, $value, $parameters)
+        {
+            $other = \Request::get($parameters[0]);
 
-        $rules['email'] = 'required|email:rfc,dns|unique:users';
-        $rules['password'] = 'bail|required|min:8';
-        $rules['password_confirmation'] = 'bail|required|same:password';
-        $rules['name'] = 'required';
-        $rules['rank'] = 'required';
-        $rules['tel'] = 'required|numeric';
+            return isset($other) and intval($value) > intval($other);
+        });
 
-        if ($request['type'] == Constants::USER_FEMALE) {
-            $rules['underwear_type'] = 'required';
-            $rules['blood_type'] = 'required';
-            $rules['smoking'] = 'required';
-            $rules['age'] = 'required|numeric';
-            $rules['weight'] = 'required|numeric';
-            $rules['height'] = 'required|numeric';
-        }
+        return [
+            'tag_id' =>'required',
+            'category_id' =>'required',
+            'unit_id' =>'required',
+            'price' => 'required|greater_than:discount_price'
+        ];
 
-        return $rules;
     }
 
     public function messages()
     {
         return [
-            'email.required' => trans('validation.required'),
-            'email.unique' => trans('validation.unique'),
-            'password.required' => trans('validation.required'),
-            'password_confirm.required' => trans('validation.required'),
-            'password_confirm.same' => trans('validation.same'),
-            'name.required' => trans('validation.required'),
-            'rank_id.required' => trans('validation.required'),
-            'tel.required' => trans('validation.required'),
-            'tel.numeric' => trans('validation.numeric'),
-            'age.required' => trans('validation.required'),
-            'age.numeric' => trans('validation.numeric'),
-            'height.required' => trans('validation.required'),
-            'height.numeric' => trans('validation.numeric'),
-            'weight.required' => trans('validation.required'),
-            'weight.numeric' => trans('validation.numeric'),
-            'blood_type.required' => trans('validation.required'),
-            'smoking.required' => trans('validation.required'),
-            'underwear_type.required' => trans('validation.required'),
+            'tag_id.required' => 'Từ khóa không được để trống',
+            'category_id.required' => 'Danh mục không được để trống',
+            'unit_id.required' => 'Đơn vị tính không được để trống',
+            'price.greater_than' => 'Giá khuyến mãi không được lớn hơn hoặc bằng giá bán',
+            'price.required' => 'Giá bán không được để trống',
         ];
     }
 }

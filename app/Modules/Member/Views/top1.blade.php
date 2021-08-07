@@ -32,8 +32,9 @@
                                     @if($key < 5)
                                         <div class="deal-block">
                                             <div class="deal-block_detail">
-                                                <h5 class="deal-discount">- {{ number_format($value->percent_sale, 2) }}
-                                                    %</h5>
+                                                @if($value->discount_price)
+                                                    <h5 class="deal-discount">- {{ number_format($value->percent_sale, 2) }}%</h5>
+                                                @endif
                                                 <div class="deal-img">
                                                     <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                         <img src="{{ url('storage/tmp/'.$value->first_image) }}"
@@ -47,29 +48,31 @@
                                                     {{--                                                    <h5 class="color-type pink deal-type">Oranges</h5><a--}}
                                                     {{--                                                        class="deal-name"--}}
                                                     {{--                                                        href="shop_detail.html">Pure--}}
-                                                    {{--                                                        Pinapple</a>--}}
-                                                    <h3 class="deal-price">¥{{ number_format($value->discount_price) }}
-                                                        <del>¥{{ number_format($value->price) }}</del>
-                                                    </h3>
+                                                    {{--
+                                                                                                           Pinapple</a>--}}
+                                                    @if($value->discount_price)
+                                                        <h3 class="deal-price">¥{{ number_format($value->discount_price) }}
+                                                            <del>¥{{ number_format($value->price) }}</del>
+                                                        </h3>
+                                                    @else
+                                                        <h3 class="deal-price">  ¥{{ $value->price }}</h3>
+                                                    @endif
+
                                                 </div>
-                                                @if($value->stock == 0)
-                                                    <div class="out-of-stock-label">Hết hàng</div>
-                                                @else
-                                                    <div class="deal-select text-center product-select"
-                                                         data-id="{{ $value->id }}"
-                                                         data-name="{{ $value->name }}" data-price="{{ $value->price }}"
-                                                         data-discount_price="{{ $value->discount_price }}">
-                                                        <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
-                                                        <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                    class="icon_bag_alt"></i></button>
-                                                        <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
-                                                        <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i>
-                                                        </button>
-                                                    </div>
-                                                @endif
+                                                <div class="deal-select text-center product-select"
+                                                     data-id="{{ $value->id }}"
+                                                     data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                     data-discount_price="{{ $value->discount_price }}">
+                                                    <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                class="icon_heart_alt"></i></button>
+                                                    <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                class="icon_bag_alt"></i></button>
+                                                    <button class="add-to-compare round-icon-btn pink"><i
+                                                                class="fas fa-random"></i></button>
+                                                    <button class="quickview round-icon-btn pink"><i
+                                                                class="far fa-eye"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     @endif

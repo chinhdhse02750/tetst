@@ -239,7 +239,7 @@
                                         <div class="d-flex justify-content-center">
                                             <input type="submit" class="btn btn-success mr-1 btn-action"
                                                    value="@lang('categories.label.register')"/>
-                                            <a href="{{ route('categories.index') }}"
+                                            <a href="{{ route('products.index') }}"
                                                class="btn btn-danger btn-action">@lang('labels.general.cancel')</a>
                                         </div>
                                     </div>
