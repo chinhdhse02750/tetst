@@ -6,7 +6,6 @@ use App\Entities\Banner;
 use App\Helpers\Common;
 use App\Helpers\Constants;
 use App\Modules\Admin\Requests\Banner\StoreBannerRequest;
-use App\Modules\Admin\Requests\Banner\UpdateBannerRequest;
 use App\Repositories\MediaRepository;
 use App\Traits\MediaTrait;
 use Illuminate\Support\Arr;
@@ -21,6 +20,7 @@ use \Illuminate\Contracts\Foundation\Application;
 use \Illuminate\Contracts\View\Factory;
 use \Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
+use \Illuminate\Http\Request;
 use App\Helpers\Media;
 use Carbon\Carbon;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -29,6 +29,8 @@ class BannerController extends Controller
 {
     protected $bannerRepository;
     protected $mediaRepository;
+    const ACTIVE = 1;
+
     use MediaTrait {
         MediaTrait::__construct as private __fhConstruct;
     }
@@ -80,8 +82,8 @@ class BannerController extends Controller
     public function store(StoreBannerRequest $request)
     {
         try {
-            $bannerData = $request->only(['redirect_url', 'order', 'active']);
-            $mediaData = Media::getDataMedia($request->image, 'banners', true);
+            $bannerData = $request->only(['active']);
+            $mediaData = Media::getDataMedia($request->image, 'banners');
             if (!$banner = $this->storeBanner($bannerData, $mediaData)) {
                 Session::flash('error_msg', trans('alerts.general.error.created'));
 
@@ -115,18 +117,19 @@ class BannerController extends Controller
 
     /**
      * Update the banner in storage.
-     * @param UpdateBannerRequest $request Request.
-     * @param int $id Id banner.
      *
-     * @return RedirectResponse
+     * @param Request $request
+     * @param int $id
+     * @return $this|RedirectResponse
+     * @throws ValidatorException
      * @throws \Exception
      */
-    public function update(UpdateBannerRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
         try {
-            $dataBanner = $request->only(['redirect_url', 'order', 'active']);
+            $dataBanner = $request->only(['active']);
             $dataBanner['active'] = Arr::get($dataBanner, 'active', 0);
-            $media = $request->hasFile('image') ? Media::getDataMedia($request->file('image'), 'banners', true) : [];
+            $media = $request->hasFile('image') ? Media::getDataMedia($request->file('image'), 'banners') : [];
             if ($mediaId = $this->storeMedia($media)) {
                 $dataBanner['media_id'] = $mediaId;
             }
@@ -136,6 +139,10 @@ class BannerController extends Controller
 
                 return redirect()->route('banners.index');
             }
+            if($dataBanner['active'] == self::ACTIVE){
+                $this->bannerRepository->setActiveBanner($id);
+            }
+
 
             Session::flash('success_msg', trans('alerts.general.success.updated'));
 
@@ -205,6 +212,9 @@ class BannerController extends Controller
             $bannerData['media_id'] = $mediaId;
             if (!$banner = $this->bannerRepository->create($bannerData)) {
                 return false;
+            }
+            if($bannerData['active'] == self::ACTIVE){
+                $this->bannerRepository->setActiveBanner($banner->id);
             }
 
             DB::commit();

@@ -86,7 +86,7 @@ trait MediaTrait
      *
      * @param string $name
      * @param string $path
-     *
+     *+
      * @return null|string|boolean
      */
     public function getPublicUrl(string $name, string $path)
