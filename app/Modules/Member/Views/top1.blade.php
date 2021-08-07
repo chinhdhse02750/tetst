@@ -6,9 +6,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-xl-12">
-                        <div class="banner-block">
-                            <img class="image-banner" src="{{$banner->media->media_url}}">
-                        </div>
+                        @if($banner)
+                            <div class="banner-block-img">
+                                <img class="image-banner" src="{{$banner->media->media_url}}">
+                            </div>
+                        @else
+                            <div class="banner-block">
+                                <div class="row no-gutters justify-content-center align-items-md-center">
+                                    <div class="img-block text-center"></div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
