@@ -21693,9 +21693,9 @@ table > tbody > tr:nth-child(1) > td.btn-td.btn-action-user {
 }
 
 .logo-header-admin {
-    BACKGROUND: #2f353a;
-    MAX-WIDTH: 220px;
-    HEIGHT: 100%;
+    background: #2f353a;
+    width: 220px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21704,8 +21704,7 @@ table > tbody > tr:nth-child(1) > td.btn-td.btn-action-user {
 }
 
 .logo-image {
-    width: 100%;
-    height: auto;
+    height: 85%;
 }
 
 .en-detail__dating {
