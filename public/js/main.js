@@ -156,8 +156,6 @@ window.onload = function () {
         let startOfWeek = moment().startOf('week').toDate();
         let endOfWeek   = moment().endOf('week').toDate();
 
-        console.log(endOfWeek);
-
         createCountDown('.deal_of_week_count', endOfWeek);
 
         // Create new countdown day
