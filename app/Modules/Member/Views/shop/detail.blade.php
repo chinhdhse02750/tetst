@@ -111,8 +111,12 @@
                                         {{--                                        <p class="delivery-status">Free delivery</p>--}}
                                         <div class="price-rate">
                                             <h3 class="product-price">
-                                                <del>¥{{ $subData->price }}</del>
-                                                ¥{{ $subData->discount_price }}
+                                                @if($subData->discount_price)
+                                                    <del>¥{{ $subData->price }}</del>
+                                                    ¥{{ $subData->discount_price }}
+                                                @else
+                                                    ¥{{ $subData->price }}
+                                                @endif
                                             </h3>
                                             {{--                                            <h5 class="product-rated"><i class="icon_star"></i><i class="icon_star"></i><i--}}
                                             {{--                                                    class="icon_star"></i><i class="icon_star"></i><i--}}
@@ -140,7 +144,7 @@
                                                  data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
                                                  data-discount_price="{{ $subData->discount_price }}">
                                                 <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
-                                                <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
+                                                {{--<button class="add-to-compare normal-btn outline">+ Add to Compare</button>--}}
                                             </div>
                                         @endif
 
