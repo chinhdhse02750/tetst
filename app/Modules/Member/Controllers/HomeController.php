@@ -4,6 +4,7 @@ namespace App\Modules\Member\Controllers;
 
 use App\Helpers\Constants;
 use App\Repositories\AreaRepository;
+use App\Repositories\BannerRepository;
 use App\Repositories\RankRepository;
 use App\Repositories\UserPrefectureRepository;
 use App\Repositories\UserProfileRepository;
@@ -29,6 +30,7 @@ class HomeController extends Controller
     protected $categoryRepository;
     protected $productRepository;
     protected $unitRepository;
+    protected $bannerRepository;
 
     /**
      * HomeController constructor.
@@ -41,6 +43,7 @@ class HomeController extends Controller
      * @param CategoryRepository $categoryRepository
      * @param ProductRepository $productRepository
      * @param UnitRepository $unitRepository
+     * @param BannerRepository $bannerRepository
      */
     public function __construct(
         UserPrefectureRepository $userPrefectureRepository,
@@ -51,7 +54,9 @@ class HomeController extends Controller
         NewsService $newsService,
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
-        UnitRepository $unitRepository
+        UnitRepository $unitRepository,
+        BannerRepository $bannerRepository
+
     ) {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
@@ -63,6 +68,7 @@ class HomeController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
         $this->unitRepository = $unitRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     /**
@@ -101,6 +107,7 @@ class HomeController extends Controller
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
         $bestSeller = $this->productRepository->getListBestSeller(8);
+        $banner = $this->bannerRepository->with(['media'])->findWhere(['active'=>'1'])->first();
         $news = $this->newsService->getNews();
 
         return view('top1', compact(
@@ -112,7 +119,8 @@ class HomeController extends Controller
             'cart',
             'total',
             'count',
-            'news'
+            'news',
+            'banner'
         ));
     }
 

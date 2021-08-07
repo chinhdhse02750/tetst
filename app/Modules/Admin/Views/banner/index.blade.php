@@ -24,8 +24,6 @@
                             <tr>
                                 <th width="5%">@lang('labels.general.id')</th>
                                 <th width="25%">@lang('banners.label.image')</th>
-                                <th width="20%">@lang('banners.label.redirect_url')</th>
-                                <th width="10%">@lang('banners.label.order')</th>
                                 <th width="10%">@lang('labels.general.created_at')</th>
                                 <th width="10%">@lang('labels.general.updated_at')</th>
                                 <th width="10%">@lang('banners.label.active')</th>
@@ -45,12 +43,6 @@
                                         <div>
                                             <img src="{{$banner->media->media_url}}" height="auto" width="200px">
                                         </div>
-                                    </td>
-                                    <td class="table-text">
-                                        <div>{{$banner->redirect_url}}</div>
-                                    </td>
-                                    <td class="table-text">
-                                        <div>{{$banner->order}}</div>
                                     </td>
                                     <td class="table-text">
                                         <div>{{$banner->created_at}}</div>

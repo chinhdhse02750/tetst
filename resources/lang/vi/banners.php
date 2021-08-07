@@ -3,15 +3,15 @@
 return [
     'label' => [
         'list' => 'バナー一覧',
-        'image' => '画像',
-        'redirect_url' => '遷移先',
-        'order' => '表示順位',
-        'active' => '表示',
-        'inactive' => '非活性',
-        'banner_register' => 'バナー登録',
-        'register_title' => 'バナー登録',
-        'register' => '登録',
-        'edit' => 'バナー編集',
-        'create' => '新規登録'
+        'image' => 'Ảnh hiển thị',
+        'redirect_url' => 'Back Link',
+        'order' => 'Thứ tự',
+        'active' => 'Kích hoạt',
+        'inactive' => 'Không kích hoạt',
+        'banner_register' => 'Thêm mới banner',
+        'register_title' => 'Đăng ký banner',
+        'register' => 'Thêm mới',
+        'edit' => 'Chỉnh sửa',
+        'create' => 'Tạo mới'
     ],
 ];

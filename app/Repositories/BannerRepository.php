@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Entities\Media;
 use App\Entities\Banner;
 use App\Helpers\Constants;
+use GuzzleHttp\Psr7\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -31,6 +32,12 @@ class BannerRepository extends BaseRepository
             ->orderBy('created_at', Constants::FILTER_DEFAULT_SORT_ORDER)
             ->limit(Constants::BANNER_DISPLAY_LIMIT)
             ->get();
+    }
+
+    public function setActiveBanner(int $id)
+    {
+        return Banner::where('id', '<>', $id)
+            ->update(['active' => 0]);
     }
 
     /**
