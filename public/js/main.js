@@ -142,7 +142,7 @@ window.onload = function () {
 
         $('#tab-so3').tabs();
         $('#tab-so3 ul li a').on('click', function (event) {
-            $(this).parent().siblings().removeClass('active')
+            $(this).parent().siblings().removeClass('active');
             $(this).parent().addClass('active')
         });
 
@@ -153,7 +153,7 @@ window.onload = function () {
         // createCountDown('#event-countdown-2','2020/8/10');
         // createCountDown('#event-countdown-3','2020/7/10');
         // createCountDown('#event-countdown-4','2019/7/27');
-        createCountDown('.deal_of_week_count', '2020/11/25');
+        createCountDown('.deal_of_week_count', '2021/08/10');
 
         // Create new countdown day
         function createCountDown(elem, end) {
