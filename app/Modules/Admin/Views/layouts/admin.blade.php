@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="/image/logo.png">
+    <link rel="icon" href="/images/logo.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', app_name())</title>
     <meta name="description" content="@yield('meta_description', 'Oriental-club')">
