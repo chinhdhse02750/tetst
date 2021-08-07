@@ -83,65 +83,6 @@
     		2.14. Tab template
     		2.15. Typography template
 *************************************/
-@font-face {
-    font-family: 'Cera Pro Thin';
-    src: url("../fonts/Cera Pro Thin.otf");
-}
-
-@font-face {
-    font-family: 'Cera Pro Thin Italic';
-    src: url("../fonts/Cera Pro Thin Italic.otf");
-}
-
-@font-face {
-    font-family: 'Cera Pro Light';
-    src: url("../fonts/Cera Pro Light.otf");
-}
-
-@font-face {
-    font-family: 'Cera Pro Light Italic';
-    src: url("../fonts/Cera Pro Light Italic");
-}
-
-@font-face {
-    font-family: "Roboto", sans-serif;
-    src: url("../fonts/sans-serif.otf");
-}
-
-@font-face {
-    font-family: 'sans-serif Italic';
-    src: url("../fonts/sans-serif Italic.otf");
-}
-
-@font-face {
-    font-family: "Roboto", sans-serif;
-    src: url("../fonts/sans-serif.otf");
-}
-
-@font-face {
-    font-family: 'sans-serif Italic';
-    src: url("../fonts/sans-serif Italic.otf");
-}
-
-@font-face {
-    font-family: "Roboto", sans-serif;
-    src: url("../fonts/sans-serif.otf");
-}
-
-@font-face {
-    font-family: 'sans-serif Italic';
-    src: url("../fonts/sans-serif Italic.otf");
-}
-
-@font-face {
-    font-family: 'Cera Pro Black';
-    src: url("../fonts/Cera Pro Black.otf");
-}
-
-@font-face {
-    font-family: 'Cera Pro Black Italic';
-    src: url("../fonts/sans-serif Italic.otf");
-}
 
 /************************************
 	Reset
