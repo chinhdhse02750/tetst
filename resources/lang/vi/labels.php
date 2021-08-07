@@ -24,7 +24,7 @@ return [
         'register' => '新規登録',
         'next' => '次へ',
         'search' =>'検索',
-        'menu' => 'メニュー',
+        'menu' => 'Danh sách',
         'yes' => 'はい',
         'create' => '登録',
         'role' => '役割'
@@ -48,7 +48,7 @@ return [
         'banner' => 'Quản lý banner',
         'notification_management' => 'Quản lý thông tin',
         'balances' => 'ポイント履歴管理',
-        'dashboard' => 'ダッシュボード',
+        'dashboard' => 'Bảng điều khiển',
         'contact' => 'お問い合わせ管理',
         'notification_list' => 'お知らせ一覧',
         'register_info' => '登録情報確認',
