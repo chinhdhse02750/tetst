@@ -30,6 +30,7 @@
                                 <th width="10%">@lang('product.label.price')</th>
                                 <th width="10%">@lang('product.label.discount_price')</th>
                                 <th width="10%">@lang('product.label.unit')</th>
+                                <th width="10%">@lang('product.label.stock')</th>
                                 <th width="10%">@lang('product.label.status')</th>
                                 <th width="10%">@lang('labels.general.action')</th>
                             </tr>
@@ -70,7 +71,9 @@
                                     <td class="table-text">
                                         <div>{{$product->units->name}}</div>
                                     </td>
-
+                                    <td class="table-text">
+                                        <div>{{$product->stock}}</div>
+                                    </td>
                                     <td class="table-text">
                                         <div>
                                             <span class="{{ $product->status === 1 ? "badge badge-success" : "badge badge-danger" }}">
