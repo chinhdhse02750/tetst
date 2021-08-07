@@ -189,6 +189,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->bestSeller()
             ->orderBy('sold', 'DESC')
             ->paginate($paged);
     }
