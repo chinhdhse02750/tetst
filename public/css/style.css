@@ -4961,11 +4961,16 @@ header.coffee-2 .navigation-filter .website-search .filter-search .categories-se
 }
 
 .banner_v2 .banner-block, .banner_v3 .banner-block {
-    /*padding: 70px 0;*/
-    /*background-image: url(../images/shop/banner-top-2.jpg);*/
+    padding: 70px 0;
+    background-image: url(../images/shop/banner-top-2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    height: 460px;
+    width: 100%;
+}
+
+.banner_v2 .banner-block, .banner_v3 .banner-block-img {
     height: 460px;
     width: 100%;
 }
