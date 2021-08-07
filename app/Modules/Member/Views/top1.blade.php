@@ -52,20 +52,24 @@
                                                         <del>¥{{ number_format($value->price) }}</del>
                                                     </h3>
                                                 </div>
-                                                <div class="deal-select text-center product-select"
-                                                     data-id="{{ $value->id }}"
-                                                     data-name="{{ $value->name }}" data-price="{{ $value->price }}"
-                                                     data-discount_price="{{ $value->discount_price }}">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                            class="icon_heart_alt"></i></button>
-                                                    <button class="add-to-cart round-icon-btn pink pink"><i
-                                                            class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                            class="fas fa-random"></i></button>
-                                                    <button class="quickview round-icon-btn pink"><i
-                                                            class="far fa-eye"></i>
-                                                    </button>
-                                                </div>
+                                                @if($value->stock == 0)
+                                                    <div class="out-of-stock-label">Hết hàng</div>
+                                                @else
+                                                    <div class="deal-select text-center product-select"
+                                                         data-id="{{ $value->id }}"
+                                                         data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                         data-discount_price="{{ $value->discount_price }}">
+                                                        <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                    class="icon_heart_alt"></i></button>
+                                                        <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                    class="icon_bag_alt"></i></button>
+                                                        <button class="add-to-compare round-icon-btn pink"><i
+                                                                    class="fas fa-random"></i></button>
+                                                        <button class="quickview round-icon-btn pink"><i
+                                                                    class="far fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     @endif
@@ -226,19 +230,25 @@
                                                                 ¥{{ number_format($value->price) }}
                                                             </h3>
                                                         @endif
-                                                        <div class="product-select" data-id="{{ $value->id }}"
-                                                             data-name="{{ $value->name }}"
-                                                             data-price="{{ $value->price }}"
-                                                             data-discount_price="{{ $value->discount_price }}">
-                                                            <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
-                                                            <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
-                                                            <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
-                                                            <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
-                                                        </div>
+
+                                                        @if($value->stock == 0)
+                                                            <div class="out-of-stock-label">Hết hàng</div>
+                                                        @else
+                                                            <div class="deal-select text-center product-select"
+                                                                 data-id="{{ $value->id }}"
+                                                                 data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                                 data-discount_price="{{ $value->discount_price }}">
+                                                                <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                            class="icon_heart_alt"></i></button>
+                                                                <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                            class="icon_bag_alt"></i></button>
+                                                                <button class="add-to-compare round-icon-btn pink"><i
+                                                                            class="fas fa-random"></i></button>
+                                                                <button class="quickview round-icon-btn pink"><i
+                                                                            class="far fa-eye"></i>
+                                                                </button>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endif
@@ -295,19 +305,24 @@
                                                             ¥{{ number_format($value->price) }}
                                                         </h3>
                                                     @endif
-                                                    <div class="product-select" data-id="{{ $value->id }}"
-                                                         data-name="{{ $value->name }}"
-                                                         data-price="{{ $value->price }}"
-                                                         data-discount_price="{{ $value->discount_price }}">
-                                                        <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
-                                                        <button class="add-to-cart round-icon-btn pink"><i
-                                                                class="icon_bag_alt"></i></button>
-                                                        <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
-                                                        <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i></button>
-                                                    </div>
+                                                    @if($value->stock == 0)
+                                                        <div class="out-of-stock-label">Hết hàng</div>
+                                                    @else
+                                                        <div class="deal-select text-center product-select"
+                                                             data-id="{{ $value->id }}"
+                                                             data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                             data-discount_price="{{ $value->discount_price }}">
+                                                            <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                        class="icon_heart_alt"></i></button>
+                                                            <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                        class="icon_bag_alt"></i></button>
+                                                            <button class="add-to-compare round-icon-btn pink"><i
+                                                                        class="fas fa-random"></i></button>
+                                                            <button class="quickview round-icon-btn pink"><i
+                                                                        class="far fa-eye"></i>
+                                                            </button>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
@@ -353,19 +368,24 @@
                                                             <h3 class="product-price">
                                                                 ¥{{ number_format($value->price) }} </h3>
                                                         @endif
-                                                        <div class="product-select" data-id="{{ $value->id }}"
-                                                             data-name="{{ $value->name }}"
-                                                             data-price="{{ $value->price }}"
-                                                             data-discount_price="{{ $value->discount_price }}">
-                                                            <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
-                                                            <button class="add-to-cart round-icon-btn pink"><i
-                                                                    class="icon_bag_alt"></i></button>
-                                                            <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
-                                                            <button class="quickview round-icon-btn pink"><i
-                                                                    class="far fa-eye"></i></button>
-                                                        </div>
+                                                        @if($value->stock == 0)
+                                                            <div class="out-of-stock-label">Hết hàng</div>
+                                                        @else
+                                                            <div class="deal-select text-center product-select"
+                                                                 data-id="{{ $value->id }}"
+                                                                 data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                                 data-discount_price="{{ $value->discount_price }}">
+                                                                <button class="add-to-wishlist round-icon-btn pink"><i
+                                                                            class="icon_heart_alt"></i></button>
+                                                                <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                            class="icon_bag_alt"></i></button>
+                                                                <button class="add-to-compare round-icon-btn pink"><i
+                                                                            class="fas fa-random"></i></button>
+                                                                <button class="quickview round-icon-btn pink"><i
+                                                                            class="far fa-eye"></i>
+                                                                </button>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endif
