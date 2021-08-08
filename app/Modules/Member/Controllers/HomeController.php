@@ -5,6 +5,7 @@ namespace App\Modules\Member\Controllers;
 use App\Helpers\Constants;
 use App\Repositories\AreaRepository;
 use App\Repositories\BannerRepository;
+use App\Repositories\ListBannerRepository;
 use App\Repositories\RankRepository;
 use App\Repositories\UserPrefectureRepository;
 use App\Repositories\UserProfileRepository;
@@ -30,7 +31,7 @@ class HomeController extends Controller
     protected $categoryRepository;
     protected $productRepository;
     protected $unitRepository;
-    protected $bannerRepository;
+    protected $listBannerRepository;
 
     /**
      * HomeController constructor.
@@ -43,7 +44,7 @@ class HomeController extends Controller
      * @param CategoryRepository $categoryRepository
      * @param ProductRepository $productRepository
      * @param UnitRepository $unitRepository
-     * @param BannerRepository $bannerRepository
+     * @param ListBannerRepository $listBannerRepository
      */
     public function __construct(
         UserPrefectureRepository $userPrefectureRepository,
@@ -55,9 +56,10 @@ class HomeController extends Controller
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,
         UnitRepository $unitRepository,
-        BannerRepository $bannerRepository
+        ListBannerRepository $listBannerRepository
 
-    ) {
+    )
+    {
 //        $this->middleware('auth')->except('logout', 'test');
         $this->userPrefectureRepository = $userPrefectureRepository;
         $this->userRepository = $userRepository;
@@ -68,7 +70,7 @@ class HomeController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
         $this->unitRepository = $unitRepository;
-        $this->bannerRepository = $bannerRepository;
+        $this->listBannerRepository = $listBannerRepository;
     }
 
     /**
@@ -107,7 +109,7 @@ class HomeController extends Controller
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
         $bestSeller = $this->productRepository->getListBestSeller(8);
-        $banner = $this->bannerRepository->with(['media'])->findWhere(['active'=>'1'])->first();
+        $banner = $this->listBannerRepository->findWhere(['active' => '1'])->first();
         $news = $this->newsService->getNews();
 
         return view('top1', compact(
@@ -130,11 +132,11 @@ class HomeController extends Controller
         $data = $request->all();
         $allCategories = $this->categoryRepository->findByField('parent', '1');
         $maxPrice = $this->productRepository->all()->max('price');
-        $minPrice =  $this->productRepository->all()->min('price');
+        $minPrice = $this->productRepository->all()->min('price');
         $filter = $this->filter($data);
         $keyWord = $request->get('search');
 
-        if ($request->get('search') === null){
+        if ($request->get('search') === null) {
             $keyWord = '';
         }
 
@@ -324,7 +326,7 @@ class HomeController extends Controller
                 }
             }
         }
-        if (isset($data['min-price']) &&  isset($data['max-price']) && $data != null) {
+        if (isset($data['min-price']) && isset($data['max-price']) && $data != null) {
             $filter['min'] = $data['min-price'];
             $filter['max'] = $data['max-price'];
         }

@@ -28,8 +28,8 @@
                             @foreach($banners as $banner)
                                 <div class="col-md-4">
                                     <div class="footer__item-blog">
-                                        <a href="{{ $banner->redirect_url }}" class="footer_item-link" target="_blank">
-                                            <img src="{{ $banner->media->media_url }}" alt="{{ $banner->redirect_url }}">
+                                        <a href="{{ $banner->image }}" class="footer_item-link" target="_blank">
+                                            <img src="{{ $banner->image}}" alt="{{ $banner->image}}">
                                         </a>
                                     </div>
                                 </div>

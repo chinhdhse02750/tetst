@@ -9,20 +9,19 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package namespace App\Entities;
  */
-class Blog extends Model
+class ListBanner extends Model
 {
 
-    protected $table = 'blogs';
+    protected $table = 'list_banners';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'blog_title',
-        'blog_content',
-        'blog_img_preivew'
+        'image',
+        'order',
+        'active'
     ];
-
 
 }

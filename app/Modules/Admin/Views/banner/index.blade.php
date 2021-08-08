@@ -41,7 +41,7 @@
                                     </td>
                                     <td class="table-text">
                                         <div>
-                                            <img src="{{$banner->media->media_url}}" height="auto" width="200px">
+                                            <img src="{{$banner->image}}" height="auto" width="200px">
                                         </div>
                                     </td>
                                     <td class="table-text">

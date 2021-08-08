@@ -5,6 +5,7 @@ namespace App\Modules\Admin\Controllers;
 use App\Entities\Product;
 use App\Helpers\Common;
 use App\Helpers\Constants;
+use App\Modules\Admin\Requests\Blogs\EditBlogsRequest;
 use App\Modules\Admin\Requests\Blogs\StoreBlogsRequest;
 use App\Modules\Admin\Requests\Category\StoreCategoryRequest;
 use App\Repositories\BlogRepository;
@@ -74,6 +75,16 @@ class BlogController extends Controller
             $data = $request->except(['_token']);
             $data['blog_title'] = $data['title'];
             $data['blog_content'] = $data['content'];
+
+            if ($request->file('image')) {
+                $imagePath = $request->file('image');
+                $imageName = $imagePath->getClientOriginalName();
+
+                $path = $request->file('image')->storeAs('uploads/blogs', $imageName, 'public');
+            }
+
+            $data['blog_img_preivew'] = '/storage/'.$path;
+
             $this->blogRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
@@ -107,12 +118,20 @@ class BlogController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(StoreBlogsRequest $request, int $id)
+    public function update(EditBlogsRequest $request, int $id)
     {
         try {
             $data = $request->except(['_token']);
             $data['blog_title'] = $data['title'];
             $data['blog_content'] = $data['content'];
+            if ($request->file('image')) {
+                $imagePath = $request->file('image');
+                $imageName = $imagePath->getClientOriginalName();
+
+                $path = $request->file('image')->storeAs('uploads/blogs', $imageName, 'public');
+                $data['blog_img_preivew'] = '/storage/'.$path;
+            }
+
             $this->blogRepository->find($id)->update($data);
 
             Session::flash('success_msg', trans('alerts.general.success.updated'));

@@ -72,7 +72,7 @@
                                             @endif
                                         </div>
                                         <img id="image-preview" type="hidden"/>
-                                        <img src="{{$banner->media->media_url}}" id="banner-image">
+                                        <img src="{{$banner->image}}" id="banner-image">
                                     </div>
                                 </div>
                                 <div class="form-group">
