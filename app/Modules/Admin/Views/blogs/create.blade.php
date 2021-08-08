@@ -14,8 +14,10 @@
                             <h3>@lang('blogs.label.register_title')</h3>
                             <div class="panel-body pt-2">
                                 <form action="{{ route('blogs.store') }}" method="POST"
+                                      enctype="multipart/form-data"
                                       class="form-horizontal">
                                     {{ csrf_field() }}
+
                                     <div class="row form-group">
                                         <label class="control-label col-sm-2">
                                             @lang('blogs.label.title')
@@ -27,6 +29,20 @@
                                         </div>
                                     </div>
 
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-2">
+                                            Hình Ảnh
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <div>
+                                                <input accept="image/*" type='file' name="image" onchange="loadFile(event)"/>
+                                            </div>
+                                            <div class="img_preview">
+                                                <img id="preview_img" class="hidden"/>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <label class="col-md-2 form-control-label"
@@ -100,3 +116,14 @@
 
     </script>
 @stop
+
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('preview_img');
+        output.classList.remove("hidden");
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>

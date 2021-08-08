@@ -2,19 +2,15 @@
 
 namespace App\Modules\Admin\Controllers;
 
-use App\Entities\Banner;
-use App\Helpers\Common;
+
 use App\Helpers\Constants;
 use App\Modules\Admin\Requests\Banner\StoreBannerRequest;
-use App\Repositories\MediaRepository;
-use App\Traits\MediaTrait;
+use App\Repositories\ListBannerRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use App\Repositories\BannerRepository;
-use Illuminate\Support\Facades\Storage;
 use PHPUnit\Exception;
 use \Illuminate\Contracts\Foundation\Application;
 use \Illuminate\Contracts\View\Factory;
@@ -22,42 +18,27 @@ use \Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
 use \Illuminate\Http\Request;
 use App\Helpers\Media;
-use Carbon\Carbon;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class BannerController extends Controller
 {
-    protected $bannerRepository;
-    protected $mediaRepository;
-    const ACTIVE = 1;
+    protected $listBannerRepository;
 
-    use MediaTrait {
-        MediaTrait::__construct as private __fhConstruct;
-    }
+    const ACTIVE = 1;
 
     /**
      * bannerController constructor.
-     * @param BannerRepository $bannerRepository bannerRepository.
-     * @param MediaRepository $mediaRepository MediaRepository.
+     * @param ListBannerRepository $bannerRepository bannerRepository.
      */
-    public function __construct(BannerRepository $bannerRepository, MediaRepository $mediaRepository)
+    public function __construct(ListBannerRepository $listBannerRepository)
     {
-        $this->__fhConstruct();
-        $this->bannerRepository = $bannerRepository;
-        $this->mediaRepository = $mediaRepository;
+        $this->listBannerRepository = $listBannerRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
+
     public function index()
     {
-        $banners = $this->bannerRepository
-            ->with(['media'])
-            ->orderBy('created_at', $direction = 'DESC')
-            ->paginate(Constants::DEFAULT_PER_PAGE);
+        $banners = $this->listBannerRepository->getBannerPaginated(Constants::DEFAULT_PER_PAGE, Constants::USER_ORDER_BY, Constants::USER_SORT);
 
         return view('banner.index', compact('banners'));
     }
@@ -79,23 +60,29 @@ class BannerController extends Controller
      * @return RedirectResponse
      * @throws \Exception
      */
-    public function store(StoreBannerRequest $request)
+    public function store(Request $request)
     {
         try {
-            $bannerData = $request->only(['active']);
-            $mediaData = Media::getDataMedia($request->image, 'banners');
-            if (!$banner = $this->storeBanner($bannerData, $mediaData)) {
-                Session::flash('error_msg', trans('alerts.general.error.created'));
+            $data = $request->except(['_token']);
+            $data['active'] = $request['active'] === null ? 0 : 1;
+            $data['order '] = 1;
 
-                return redirect()->route('banners.index');
+            if ($request->file('image')) {
+                $imagePath = $request->file('image');
+                $imageName = $imagePath->getClientOriginalName();
+
+                $path = $request->file('image')->storeAs('uploads/banner', $imageName, 'public');
             }
 
+            $data['image'] = '/storage/' . $path;
+
+            $this->listBannerRepository->create($data);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
             return redirect()
                 ->route('banners.index');
         } catch (Exception $e) {
-            Log::error('[ERROR_BANNER_CREATE]: '. $e->getMessage());
+            Log::error('[ERROR_BANNER_CREATE]: ' . $e->getMessage());
 
             return redirect()
                 ->route('banners.index')
@@ -110,7 +97,7 @@ class BannerController extends Controller
      */
     public function edit(int $id)
     {
-        $banner = $this->bannerRepository->with('media')->find($id);
+        $banner = $this->listBannerRepository->find($id);
 
         return view('banner.edit', ['banner' => $banner]);
     }
@@ -127,32 +114,26 @@ class BannerController extends Controller
     public function update(Request $request, int $id)
     {
         try {
-            $dataBanner = $request->only(['active']);
-            $dataBanner['active'] = Arr::get($dataBanner, 'active', 0);
-            $media = $request->hasFile('image') ? Media::getDataMedia($request->file('image'), 'banners') : [];
-            if ($mediaId = $this->storeMedia($media)) {
-                $dataBanner['media_id'] = $mediaId;
+            $data = $request->except(['_token']);
+            $data['active'] = $request['active'] === null ? 0 : 1;
+            $data['order '] = 1;
+            if ($request->file('image')) {
+                $imagePath = $request->file('image');
+                $imageName = $imagePath->getClientOriginalName();
+
+                $path = $request->file('image')->storeAs('uploads/blogs', $imageName, 'public');
+                $data['image'] = '/storage/' . $path;
             }
 
-            if (!$this->bannerRepository->update($dataBanner, $id)) {
-                Session::flash('error_msg', trans('alerts.general.error.updated'));
-
-                return redirect()->route('banners.index');
-            }
-            if($dataBanner['active'] == self::ACTIVE){
-                $this->bannerRepository->setActiveBanner($id);
-            }
-
+            $this->listBannerRepository->find($id)->update($data);
 
             Session::flash('success_msg', trans('alerts.general.success.updated'));
-
             return redirect()
                 ->route('banners.index');
         } catch (Exception $e) {
-            Log::error('[ERROR_BANNER_UPDATE]: '. $e->getMessage());
-
+            Log::error('[ERROR_CATEGORY_CREATE]: ' . $e->getMessage());
             return redirect()
-                ->route('banners.index')
+                ->route('products.index')
                 ->withErrors($e->getMessage());
         }//end try
     }
@@ -164,93 +145,15 @@ class BannerController extends Controller
      */
     public function destroy(int $id)
     {
-        try {
-            $banner = $this->bannerRepository->find($id);
-            if (!$banner) {
-                Session::flash('error_msg', trans('alerts.general.error.deleted'));
-
-                return redirect()
-                    ->route('banners.index');
-            } else {
-                $this->mediaRepository->delete($banner['media_id']);
-            }
-            if ($this->bannerRepository->delete($id)) {
-                Session::flash('success_msg', trans('alerts.general.success.deleted'));
-            }
-
-            return redirect()
-                ->route('banners.index');
-        } catch (Exception $e) {
-            Log::error('[ERROR_BANNER_DELETE]: '. $e->getMessage());
-
-            return redirect()
-                ->route('banners.index')
-                ->withErrors($e->getMessage());
-        }//end try
-    }
-
-    /**
-     * @param array $bannerData
-     * @param array $mediaData
-     * @return bool
-     */
-
-    /**
-     * Store media and banner.
-     * @param array $bannerData BannerData.
-     * @param array $mediaData MediaData.
-     * @return bool
-     */
-    private function storeBanner(array $bannerData, array $mediaData): bool
-    {
-        try {
-            DB::beginTransaction();
-            if (!$mediaId = $this->storeMedia($mediaData)) {
-                return false;
-            }
-
-            $bannerData['media_id'] = $mediaId;
-            if (!$banner = $this->bannerRepository->create($bannerData)) {
-                return false;
-            }
-            if($bannerData['active'] == self::ACTIVE){
-                $this->bannerRepository->setActiveBanner($banner->id);
-            }
-
-            DB::commit();
-
-            return true;
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return false;
-        }//end try
-    }
-
-    /**
-     * Create new media and return mediaId.
-     * @param array $mediaData Media Data.
-     * @return int
-     * @throws ValidatorException
-     */
-    private function storeMedia(array $mediaData): int
-    {
-        if (empty($mediaData)) {
-            return 0;
+        $result = $this->listBannerRepository->find($id);
+        if ($result) {
+            $result->delete();
+            Session::flash('success_msg', trans('alerts.general.success.deleted'));
         }
-
-        $dataMedia = [
-            'name' => Arr::get($mediaData, 'name', ''),
-            'thumbnail_name' => '',
-            'type' => Arr::get($mediaData, 'type', ''),
-            'path' => Arr::get($mediaData, 'path', ''),
-            'size' => Arr::get($mediaData, 'size', ''),
-            'thumbnail_size' => '',
-        ];
-        $media = $this->mediaRepository->create($dataMedia)->toArray();
-
-        return Arr::get($media, 'id', 0);
+        return redirect()
+            ->route('banners.index');
     }
+
 
     /**
      * Create a new controller instance.

@@ -14,6 +14,7 @@
                             <h3>@lang('blogs.label.blog_edit')</h3>
                             <div class="panel-body pt-2">
                                 <form action="{{ route('blogs.update', $blog->id) }}" method="POST"
+                                      enctype="multipart/form-data"
                                       class="form-horizontal">
                                     {{ csrf_field() }}
                                     @method('PUT')
@@ -26,6 +27,22 @@
                                             <input type="text" name="title" id="title" class="form-control"
                                                    value="{{ $blog->blog_title }}"
                                                    maxlength="255" required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-2">
+                                            Hình Ảnh
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <div>
+                                                <input accept="image/*" type='file' name="image" onchange="loadFile(event)"/>
+                                            </div>
+                                            <div class="img_preview">
+                                                <img id="edit_preview_img" src="{{ $blog->blog_img_preivew }}"/>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -126,5 +143,16 @@
             });
         });
 
+    </script>
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('edit_preview_img');
+            output.classList.remove("hidden");
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
     </script>
 @stop

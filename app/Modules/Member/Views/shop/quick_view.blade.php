@@ -38,7 +38,7 @@
                      data-name="{{ $products->name }}" data-price="{{ $products->price }}"
                      data-discount_price="{{ $products->discount_price }}">
                     <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
-                    <button class="add-to-compare normal-btn outline">+ Add to Compare</button>
+{{--                    <button class="add-to-compare normal-btn outline">+ Add to Compare</button>--}}
                 </div>
 {{--                <div class="product-share"> <h5>Share link:</h5>--}}
 {{--                    <a href=""><i class="fab fa-facebook-f"> </i></a>--}}

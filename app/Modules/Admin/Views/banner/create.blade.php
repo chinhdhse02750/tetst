@@ -23,40 +23,6 @@
                                         </label>
                                     </div>
                                     <div class="clearfix"></div>
-                                    {{--<div class="row form-group">--}}
-                                        {{--<div class="col-sm-2">--}}
-                                            {{--<label for="redirect_url">@lang('banners.label.redirect_url')<span class="required">*</span></label>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-10">--}}
-                                            {{--<input type="redirect_url"--}}
-                                                   {{--class="form-control {{$errors->has('redirect_url') ? "field-error" : " "}}"--}}
-                                                   {{--name="redirect_url"--}}
-                                                   {{--maxlength="255"--}}
-                                                   {{--value="{{ old('redirect_url')}}">--}}
-                                            {{--@if ($errors->has('redirect_url'))--}}
-                                                {{--<span class="invalid feedback error-alert" role="alert">--}}
-                                                    {{--<small class="message-alert">! {{ $errors->first('redirect_url') }}</small>--}}
-                                                {{--</span>--}}
-                                            {{--@endif--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="row form-group">--}}
-                                        {{--<div class="col-sm-2">--}}
-                                            {{--<label for="order">@lang('banners.label.order')<span class="required">*</span></label>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-10">--}}
-                                            {{--<input type="number"--}}
-                                                   {{--class="form-control {{$errors->has('order') ? "field-error" : " "}}"--}}
-                                                   {{--name="order"--}}
-                                                   {{--maxlength="4"--}}
-                                                   {{--value="{{ old('order')}}">--}}
-                                            {{--@if ($errors->has('order'))--}}
-                                                {{--<span class="invalid feedback error-alert" role="alert">--}}
-                                                    {{--<small class="message-alert">! {{ $errors->first('order') }}</small>--}}
-                                                {{--</span>--}}
-                                            {{--@endif--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
                                     <div class="row form-group">
                                         <div class="col-sm-2">
                                             <label for="redirect_url">@lang('banners.label.image')<span class="required">*</span></label>
@@ -64,13 +30,6 @@
                                         <div class="col-sm-10">
                                             <div class="box">
                                                 <input type="file" id="image" name="image">
-                                                @if ($errors->has('image'))
-                                                    <div>
-                                                        <span class="invalid feedback error-alert" role="alert">
-                                                            <small class="message-alert">! {{ $errors->first('image') }}</small>
-                                                        </span>
-                                                    </div>
-                                                @endif
                                             </div>
                                             <img id="image-preview" type="hidden"/>
                                         </div>

@@ -24,6 +24,7 @@
                             <tr>
                                 <th width="5%">@lang('labels.general.id')</th>
                                 <th width="15%">@lang('blogs.label.title')</th>
+                                <th width="15%">Image</th>
                                 <th width="15%">@lang('blogs.label.created')</th>
                                 <th width="15%">@lang('blogs.label.updated')</th>
                                 <th width="10%">@lang('labels.general.action')</th>
@@ -40,6 +41,11 @@
                                     </td>
                                     <td class="table-text">
                                         <div>{{$blog->blog_title}}</div>
+                                    </td>
+                                    <td class="table-text">
+                                        <div>
+                                            <img src="{{$blog->blog_img_preivew}}" height="auto" width="200px">
+                                        </div>
                                     </td>
                                     <td class="table-text">
                                         <div>{{date('Y-m-d H:i', strtotime($blog->created_at))}}</div>

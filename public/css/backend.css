@@ -21867,3 +21867,15 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+#preview_img, #edit_preview_img {
+    margin-top: 15px;
+    max-height: 200px;
+    object-fit: contain;
+    border: 1px dashed #e4e7ea;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}

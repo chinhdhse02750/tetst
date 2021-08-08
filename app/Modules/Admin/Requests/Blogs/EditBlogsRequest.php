@@ -6,7 +6,7 @@ use App\Helpers\Constants;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreBlogsRequest extends FormRequest
+class EditBlogsRequest extends FormRequest
 {
 
     /**
@@ -28,7 +28,7 @@ class StoreBlogsRequest extends FormRequest
 
         $rules['title'] = 'required';
         $rules['content'] = 'required';
-        $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+//        $rules['image'] = 'required_if|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
 
         return $rules;
     }

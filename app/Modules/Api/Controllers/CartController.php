@@ -209,6 +209,10 @@ class CartController extends Controller
                 $this->orderDetailRepository->create($orderDetail);
             }
 
+            $product = $this->productRepository->find($orderDetail['product_id']);
+            $stockProduct = $product['stock'] - $orderDetail['qty'];
+            $this->productRepository->find($orderDetail['product_id'])->update(['stock' => $stockProduct]);
+
             $this->activityService->send(new SendNotifyNewOrder($orderDetail, $dataInsert));
 
             return response()->json([

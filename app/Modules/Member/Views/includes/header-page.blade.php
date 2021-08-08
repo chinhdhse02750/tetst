@@ -52,16 +52,16 @@
                             <li class="toggleable"><a class="menu-item"
                                                       href="{{ route('cate.view', 'tat-ca-san-pham') }}">Cửa hàng</a>
                             </li>
-                            <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
-                                    <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>
-                                    <li><a href="blog_grid_sidebar.html">Blog Grid sidebar</a></li>
-                                    <li><a href="blog_masonry.html">Blog masonry</a></li>
-                                    <li><a href="blog_grid_1col.html">Blog Grid 1 column sidebar</a></li>
-                                    <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>
-                                </ul>
-                            </li>
+{{--                            <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>--}}
+{{--                                <ul class="sub-menu">--}}
+{{--                                    <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>--}}
+{{--                                    <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>--}}
+{{--                                    <li><a href="blog_grid_sidebar.html">Blog Grid sidebar</a></li>--}}
+{{--                                    <li><a href="blog_masonry.html">Blog masonry</a></li>--}}
+{{--                                    <li><a href="blog_grid_1col.html">Blog Grid 1 column sidebar</a></li>--}}
+{{--                                    <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
                             <li class="toggleable"><a class="menu-item" href="about_us.html">Về Hà Nội Shop</a></li>
                         </ul>
                     </div>
@@ -99,19 +99,19 @@
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li class="toggleable"><a class="menu-item"
-                                                              href="blog_list_sidebar.html">Blog</a><span
-                                                class="sub-menu--expander"><i class="icon_plus"></i></span>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
-                                            <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>
-                                            <li><a href="blog_grid_sidebar.html">Blog Grid sidebar</a></li>
-                                            <li><a href="blog_masonry.html">Blog masonry</a></li>
-                                            <li><a href="blog_grid_1col.html">Blog Grid 1 column sidebar</a></li>
-                                            <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    </li>
+{{--                                    <li class="toggleable"><a class="menu-item"--}}
+{{--                                                              href="blog_list_sidebar.html">Blog</a><span--}}
+{{--                                                class="sub-menu--expander"><i class="icon_plus"></i></span>--}}
+{{--                                        <ul class="sub-menu">--}}
+{{--                                            <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>--}}
+{{--                                            <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>--}}
+{{--                                            <li><a href="blog_grid_sidebar.html">Blog Grid sidebar</a></li>--}}
+{{--                                            <li><a href="blog_masonry.html">Blog masonry</a></li>--}}
+{{--                                            <li><a href="blog_grid_1col.html">Blog Grid 1 column sidebar</a></li>--}}
+{{--                                            <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+
                                     <li class="toggleable"><a class="menu-item" href="#">Pages</a><span
                                                 class="sub-menu--expander"><i class="icon_plus"></i></span>
                                         <ul class="sub-menu">

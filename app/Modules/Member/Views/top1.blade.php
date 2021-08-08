@@ -8,7 +8,7 @@
                     <div class="col-12 col-xl-12">
                         @if($banner)
                             <div class="banner-block-img">
-                                <img class="image-banner" src="{{$banner->media->media_url}}">
+                                <img class="image-banner" src="{{$banner->image}}">
                             </div>
                         @else
                             <div class="banner-block">
