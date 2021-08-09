@@ -15,8 +15,6 @@
                         <div class="social-link d-flex">
                             <a href=""><i class="fab fa-facebook-f color-fb"> </i></a>
                             <a href=""><i class="fab fa-twitter color-tw"></i></a>
-                            <a href=""><i class="fab fa-invision color-in"> </i></a>
-                            <a href=""><i class="fab fa-pinterest-p color-prin"> </i></a>
                         </div>
                         <div class="header__user">
                             <div class="header__user-menu">
