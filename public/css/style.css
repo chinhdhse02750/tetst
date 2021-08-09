@@ -3126,6 +3126,10 @@ a:focus {
     #quickview .quickview-box .shop-detail_info .product-select {
         margin-bottom: 15px !important;
     }
+
+    .shop-detail .shop-detail_img .slide-img, #quickview .quickview-box .shop-detail_img .slide-img {
+        margin-bottom: 15px !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
