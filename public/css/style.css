@@ -3100,7 +3100,7 @@ a:focus {
 @media (max-width: 576px) {
     #quickview .quickview-box {
         width: 80%;
-        height: auto !important;;
+        height: auto !important;
         padding: 15px;
         overflow-y: auto;
         display: inline-block;
@@ -3111,16 +3111,16 @@ a:focus {
     }
 
     .shop-detail .shop-detail_img .big-img .big-img_block img, #quickview .quickview-box .shop-detail_img .big-img .big-img_block img {
-        height: 250px !important;;
+        height: 250px !important;
     }
     #quickview .quickview-box .shop-detail_info .product-describe {
-        margin-bottom: 15px !important;;
+        margin-bottom: 15px !important;
     }
     .shop-detail .shop-detail_info .quantity-select label, #quickview .quickview-box .shop-detail_info .quantity-select label {
-        margin-right: 0px !important;;
+        margin-right: 0px !important;
     }
     .shop-detail .shop-detail_info .quantity-select, #quickview .quickview-box .shop-detail_info .quantity-select {
-        margin-bottom: 15px !important;;
+        margin-bottom: 15px !important;
     }
 
     #quickview .quickview-box .shop-detail_info .product-select {
