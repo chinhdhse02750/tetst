@@ -1,0 +1,12 @@
+apps:
+  - name: hanoishop-queue-worker
+    script: artisan
+    exec_mode: fork
+    interpreter: php
+    instances: 2
+    args:
+      - queue:work
+      - --queue=high,medium,low
+      - --tries=1
+      - --timeout=1800
+      - --sleep=1
