@@ -46,7 +46,7 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->promotion()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->get();
     }
 
@@ -61,7 +61,7 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->dealOfWeek()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->get();
     }
 
@@ -77,7 +77,7 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->featured()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->paginate($paged);
     }
 

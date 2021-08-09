@@ -130,6 +130,27 @@ class CategoryController extends Controller
         return abort(404);
     }
 
+    public function productPromotion(Request $request)
+    {
+        $data = $request->all();
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
+        $maxPrice = $this->productRepository->all()->max('price');
+        $minPrice = $this->productRepository->all()->min('price');
+        $filter = $this->filter($data);
+
+        $products = $this->productRepository->filter($filter);
+
+        return view('shop.search', compact(
+            'products',
+            'data',
+            'maxPrice',
+            'minPrice',
+            'allCategories'
+        ));
+    }
+
+
+
     /**
      * @param Request $request
      * @return Application|Factory|JsonResponse|View

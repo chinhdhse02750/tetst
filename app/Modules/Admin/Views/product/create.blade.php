@@ -22,8 +22,8 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                   maxlength="255" required>
+                                            <input type="text" name="name" id="name" class="form-control" value="{{  old('name') }}"
+                                                   maxlength="255">
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -31,7 +31,7 @@
                                                 class="control-label col-sm-2">@lang('categories.label.description')</label>
                                         <div class="col-sm-10">
                                             <textarea name="description" id="description"
-                                                      class="form-control" maxlength="255"></textarea>
+                                                      class="form-control" maxlength="255">{{  old('description') }}</textarea>
                                         </div>
                                     </div>
 
@@ -69,6 +69,26 @@
                                         <input type="hidden" name="category_id" id="category_id">
                                     </div>
 
+                                    <div class="form-group row">
+                                        <label class="col-md-2 form-control-label"
+                                               for="alcohol">@lang('product.label.select_main_category')</label>
+
+                                        <div class="col-md-10">
+                                            <input type='hidden' value='0' name='best_seller'>
+                                            <input type='hidden' value='0' name='featured'>
+                                            <input type='hidden' value='0' name='deal_of_week'>
+                                            <input type="checkbox" class="radio" name="best_seller" value="1" id="best_seller"/>
+                                            <label for="best_seller">@lang('product.label.bess_seller')</label>
+                                            <br>
+                                            <input type="checkbox" class="radio" name="featured" value="1" id="featured"/>
+                                            <label for="featured">@lang('product.label.featured')</label>
+                                            <br>
+                                            <input type="checkbox" class="radio" name="deal_of_week" value="1" id="deal_of_week"/>
+                                            <label for="deal_of_week">@lang('product.label.deal_of_week')</label>
+
+                                        </div><!--col-->
+                                    </div><!--form-group-->
+
                                     <div class="row form-group">
                                         <label class="col-md-2 form-control-label"
                                                for="">@lang('product.label.select_unit')
@@ -80,6 +100,22 @@
                                                             value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <label class="col-md-2 form-control-label"
+                                               for="">@lang('product.label.select_tag')
+                                            <span class="required">*</span></label>
+                                        <div class="col-md-10">
+                                            <select class="custom-select select-tag"  multiple="multiple">
+                                                @foreach($tags as $tag)
+                                                    <option
+                                                            id="{{ $tag->id }}"
+                                                            value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="hidden" name="tag_id" id="tag_id">
                                         </div>
                                     </div>
 
@@ -112,16 +148,17 @@
                                                 class="form-control-label col-sm-2">@lang('product.label.cost')
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="cost" id="cost" class="form-control">
+                                            <input type="number" name="cost" id="cost" class="form-control" value="{{  old('cost') }}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
                                         <label
                                                 class="form-control-label col-sm-2">@lang('product.label.price')
+                                            <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="price" id="price" class="form-control">
+                                            <input type="number" name="price" id="price" class="form-control" value="{{  old('price') }}">
                                         </div>
                                     </div>
 
@@ -130,17 +167,17 @@
                                                 class="form-control-label col-sm-2">@lang('product.label.discount_price')
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="discount_price" id="discount_price"
+                                            <input type="number" name="discount_price" id="discount_price" value="{{  old('discount_price') }}"
                                                    class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
                                         <label
-                                                class="form-control-label col-sm-2">@lang('product.label.stock')
+                                                class="form-control-label col-sm-2">@lang('product.label.stock') <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="stock" id="stock" class="form-control">
+                                            <input type="number" name="stock" id="stock" value="{{  old('stock') }}" class="form-control">
                                         </div>
                                     </div>
 
@@ -207,6 +244,27 @@
                     $('#category_id').val($('#category_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
                 }
             });
+
+
+            $('.select-tag').select2();
+
+            $('.select-tag').on('select2:select', function (e) {
+                let data = e.params.data;
+                if ($('#tag_id').val() === "") {
+                    $('#tag_id').val(data.id);
+                } else {
+                    $('#tag_id').val($('#tag_id').val() + ',' + data.id);
+                }
+            });
+            $('.select-tag').on('select2:unselect', function (e) {
+                let listID = $('#tag_id').val();
+                let data = e.params.data;
+                if (listID.indexOf(data.id) != -1) {
+                    $('#tag_id').val($('#tag_id').val().replace(data.id, '').replace(/^,|,$/g, '').replace(/,,/g, ','));
+                }
+            });
+
+
         });
 
     </script>
