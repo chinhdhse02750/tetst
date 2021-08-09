@@ -39,7 +39,8 @@
                 <div class="col-md-4 col-lg-4 footer-social row-mobile m-b-15"
                      style="visibility: visible; animation-name: fadeInUp;">
                     <h3 class="text-section-footer">Về Hà Nội Shop</h3>
-                    <div class="fb-page"
+                    <div >
+                        <div class="fb-page"
                          data-href="https://www.facebook.com/H&#xe0;-N&#x1ed9;i-T&#x1ea1;p-Ho&#xe1;-110692747177363/"
                          data-tabs="" data-width="" data-height="" data-small-header="false"
                          data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
@@ -48,6 +49,7 @@
                                 class="fb-xfbml-parse-ignore"><a
                                     href="https://www.facebook.com/H&#xe0;-N&#x1ed9;i-T&#x1ea1;p-Ho&#xe1;-110692747177363/">Hà
                                 Nội Tạp Hoá</a></blockquote>
+                    </div>
                     </div>
                     {{--<div class="footer-social" style="margin-top: 20px">--}}
                     {{--<a class="round-icon-btn bg-fb" href="">--}}

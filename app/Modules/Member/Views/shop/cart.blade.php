@@ -188,10 +188,10 @@
                 @else
                     <div class="cart-empty">
                         <div class="text-empty-cart">Chưa có sản phẩm nào trong giỏ hàng.</div>
-                        <div class="button-empty-cart">
-                            <a href="{{ route('cate.view', 'tat-ca-san-pham') }}"
-                               class="no-round-btn black cart-update wc-forward">Quay trở lại cửa hàng</a>
-                        </div>
+                    </div>
+                    <div class="button-empty-cart">
+                        <a href="{{ route('cate.view', 'tat-ca-san-pham') }}"
+                           class="no-round-btn black cart-update wc-forward">Quay trở lại cửa hàng</a>
                     </div>
                 @endif
 
