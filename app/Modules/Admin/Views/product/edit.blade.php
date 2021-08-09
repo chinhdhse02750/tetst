@@ -194,6 +194,7 @@
                                     <div class="row form-group">
                                         <label
                                                 class="form-control-label col-sm-2">@lang('product.label.price')
+                                            <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="number" value="{{ $products->price }}"
@@ -214,6 +215,7 @@
                                     <div class="row form-group">
                                         <label
                                                 class="form-control-label col-sm-2">@lang('product.label.stock')
+                                            <span class="required">*</span>
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="number" value="{{ $products->stock }}"
