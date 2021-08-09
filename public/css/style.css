@@ -7347,6 +7347,8 @@ footer.coffee .newletter .newletter_input button:focus {
 
 .shop-detail .shop-detail_img .big-img .big-img_block img, #quickview .quickview-box .shop-detail_img .big-img .big-img_block img {
     width: 100%;
+    object-fit: contain;
+    height: 350px;
 }
 
 .shop-detail .shop-detail_img .slide-img, #quickview .quickview-box .shop-detail_img .slide-img {
@@ -7434,6 +7436,8 @@ footer.coffee .newletter .newletter_input button:focus {
 .shop-detail .shop-detail_img .slide-img .slide-img_block img, #quickview .quickview-box .shop-detail_img .slide-img .slide-img_block img {
     max-width: 100%;
     max-height: 100%;
+    height: 75px;
+    object-fit: contain;
 }
 
 .shop-detail .shop-detail_info, #quickview .quickview-box .shop-detail_info {
