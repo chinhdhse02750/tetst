@@ -3067,10 +3067,9 @@ a:focus {
 
 #quickview .quickview-box {
     position: relative;
-    width: 1200px;
-    min-height: 400px;
+    width: 60%;
     background-color: #fff;
-    padding: 80px;
+    padding: 30px;
 }
 
 #quickview .quickview-box #quickview-close-btn {
@@ -8123,7 +8122,7 @@ footer.coffee .newletter .newletter_input button:focus {
     }
 
     .shop-detail .shop-detail_img, #quickview .quickview-box .shop-detail_img {
-        margin-bottom: 30px;
+
     }
 
     .shop-detail .shop-detail_img .big-img .big-img_block, #quickview .quickview-box .shop-detail_img .big-img .big-img_block {
