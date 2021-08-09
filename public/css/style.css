@@ -3100,7 +3100,7 @@ a:focus {
 @media (max-width: 576px) {
     #quickview .quickview-box {
         width: 80%;
-        height: 80%;
+        height: auto !important;;
         padding: 15px;
         overflow-y: auto;
         display: inline-block;
@@ -3108,6 +3108,23 @@ a:focus {
 
     #quickview .quickview-box .shop-detail_img #zoom-btn {
         display: none;
+    }
+
+    .shop-detail .shop-detail_img .big-img .big-img_block img, #quickview .quickview-box .shop-detail_img .big-img .big-img_block img {
+        height: 250px !important;;
+    }
+    #quickview .quickview-box .shop-detail_info .product-describe {
+        margin-bottom: 15px !important;;
+    }
+    .shop-detail .shop-detail_info .quantity-select label, #quickview .quickview-box .shop-detail_info .quantity-select label {
+        margin-right: 0px !important;;
+    }
+    .shop-detail .shop-detail_info .quantity-select, #quickview .quickview-box .shop-detail_info .quantity-select {
+        margin-bottom: 15px !important;;
+    }
+
+    #quickview .quickview-box .shop-detail_info .product-select {
+        margin-bottom: 15px !important;
     }
 }
 
@@ -3128,7 +3145,6 @@ a:focus {
 @media (min-width: 768px) and (max-width: 991px) {
     #quickview .quickview-box {
         width: 85%;
-        height: 85%;
         padding: 30px;
         overflow-y: auto;
         display: inline-block;
@@ -3142,7 +3158,6 @@ a:focus {
 @media (min-width: 992px) and (max-width: 1199px) {
     #quickview .quickview-box {
         width: 85%;
-        height: 85%;
         padding: 30px;
         overflow-y: auto;
         display: inline-block;
@@ -8323,9 +8338,7 @@ footer.coffee .newletter .newletter_input button:focus {
         display: none;
     }
 
-    .shop-detail .shop-detail_img, #quickview .quickview-box .shop-detail_img {
-        margin-bottom: 30px;
-    }
+    .shop-detail .shop-detail_img, #quickview .quickview-box .shop-detail_img {}
 
     .shop-detail .shop-detail_img .big-img .big-img_block, #quickview .quickview-box .shop-detail_img .big-img .big-img_block {
         height: auto;
@@ -8362,9 +8375,7 @@ footer.coffee .newletter .newletter_input button:focus {
         display: none;
     }
 
-    .shop-detail .shop-detail_img, #quickview .quickview-box .shop-detail_img {
-        margin-bottom: 30px;
-    }
+    .shop-detail .shop-detail_img, #quickview .quickview-box .shop-detail_img {}
 
     .shop-detail .shop-detail_img .big-img .big-img_block, #quickview .quickview-box .shop-detail_img .big-img .big-img_block {
         height: auto;
