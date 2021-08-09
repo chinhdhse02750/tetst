@@ -62,14 +62,16 @@
                                                {{--class="btn btn-default"><i class="fas fa-eye"></i></a>--}}
                                             <a href="{{ route('categories.edit', $category->id) }}"
                                                class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="{{ route('categories.destroy', $category->id) }}"
-                                               class="btn btn-danger"
-                                               data-method="delete"
-                                               data-trans-button-cancel="@lang('labels.general.cancel')"
-                                               data-trans-button-confirm="@lang('labels.general.delete')"
-                                               data-trans-title="@lang('alerts.general.confirm.delete')">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
+                                            @if($category->parent != 0)
+                                                <a href="{{ route('categories.destroy', $category->id) }}"
+                                                   class="btn btn-danger"
+                                                   data-method="delete"
+                                                   data-trans-button-cancel="@lang('labels.general.cancel')"
+                                                   data-trans-button-confirm="@lang('labels.general.delete')"
+                                                   data-trans-title="@lang('alerts.general.confirm.delete')">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
+                                            @endif
                                         </form>
                                     </td>
                                 </tr>

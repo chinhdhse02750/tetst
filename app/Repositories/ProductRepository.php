@@ -81,6 +81,23 @@ class ProductRepository extends BaseRepository
             ->paginate($paged);
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getSaleProduct($filter)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->promotion()
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
+            ->paginate($filter['page']);
+    }
+
     /**
      * @param $filter
      * @return mixed

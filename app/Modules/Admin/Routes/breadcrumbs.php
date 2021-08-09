@@ -199,7 +199,7 @@ Breadcrumbs::for('tags.index', function ($trail) {
 });
 Breadcrumbs::for('tags.create', function ($trail) {
     $trail->parent('tags.index');
-    $trail->push(trans('tags.label.unit_register'), route('tags.create'));
+    $trail->push(trans('labels.menu.unit_register'), route('tags.create'));
 });
 Breadcrumbs::for('tags.show', function ($trail, $id) {
     $trail->parent('tags.index');
@@ -244,7 +244,7 @@ Breadcrumbs::for('shipping.edit', function ($trail, $id) {
 
 
 Breadcrumbs::for('order.index', function ($trail) {
-    $trail->push(trans('labels.menu.product'), route('order.index'));
+    $trail->push(trans('labels.menu.orders'), route('order.index'));
 });
 Breadcrumbs::for('order.create', function ($trail) {
     $trail->parent('order.index');

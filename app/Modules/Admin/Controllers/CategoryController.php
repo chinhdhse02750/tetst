@@ -40,6 +40,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryRepository->orderBy('created_at', $direction = 'DESC')
             ->paginate(Constants::DEFAULT_PER_PAGE);
+
         return view('category.index', ['categories' => $categories]);
     }
 
