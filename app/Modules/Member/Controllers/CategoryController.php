@@ -112,6 +112,10 @@ class CategoryController extends Controller
             if ($alias === "tat-ca-san-pham") {
                 $products = $this->productRepository->getListOrder($filter);
             }
+            if ($alias === "san-pham-giam-gia") {
+                $products = $this->productRepository->getSaleProduct($filter);
+            }
+
             $maxPrice = $this->productRepository->all()->max('price');
             $minPrice =  $this->productRepository->all()->min('price');
 
@@ -148,7 +152,6 @@ class CategoryController extends Controller
             'allCategories'
         ));
     }
-
 
 
     /**

@@ -52,9 +52,9 @@
                             <li class="toggleable"><a class="menu-item"
                                                       href="{{ route('cate.view', 'tat-ca-san-pham') }}">Cửa hàng</a>
                             </li>
-                            {{--<li class="toggleable"><a class="menu-item"--}}
-                                                      {{--href="{{ route('cate.view', 'san-pham-giam-gia') }}">Sản phẩm giảm giá</a>--}}
-                            {{--</li>--}}
+                            <li class="toggleable"><a class="menu-item"
+                                                      href="{{ route('cate.view', 'san-pham-giam-gia') }}">Sản phẩm giảm giá</a>
+                            </li>
 
                             {{--                            <li class="toggleable"><a class="menu-item" href="blog_list_sidebar.html">Blog</a>--}}
 {{--                                <ul class="sub-menu">--}}

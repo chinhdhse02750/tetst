@@ -63,7 +63,12 @@ return [
         'apply_setting' => 'セッティング申し込み',
         'blogs' => 'Quản lý Blogs',
         'create_blogs' => 'Tạo Blogs',
-        'edit_blogs' => 'Chỉnh Sửa Blogs'
+        'edit_blogs' => 'Chỉnh Sửa Blogs',
+        'tags' => 'Quản lý từ khóa',
+        'orders' => 'Quản lý đơn hàng',
+        'comments' => 'Quản lý bình luận',
+        'shipping' => 'Quản lý phí Ship',
+        'unit_register' => 'Tạo danh mục'
     ],
 
     'form' => [
