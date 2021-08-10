@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 trait ProductScope
 {
+    /**
+     * @param object $query
+     * @return mixed
+     */
+    public function scopeIsActive(object $query)
+    {
+        return $query->where('status', 1);
+    }
+
 
     /**
      * @param object $query

@@ -45,6 +45,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->promotion()
             ->orderBy('updated_at', 'DESC')
             ->get();
@@ -60,6 +61,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->dealOfWeek()
             ->orderBy('updated_at', 'DESC')
             ->get();
@@ -76,6 +78,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->featured()
             ->orderBy('updated_at', 'DESC')
             ->paginate($paged);
@@ -206,6 +209,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->bestSeller()
             ->orderBy('sold', 'DESC')
             ->paginate($paged);

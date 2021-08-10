@@ -360,7 +360,7 @@
                                 <div id="tab1">
                                     <div class="row">
                                         @foreach($products as $key => $value)
-                                            @if($key < 8)
+                                            @if($key < 12)
                                                 <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="{{ route('product.detail', ['product' => $value->alias]) }}">
