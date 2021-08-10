@@ -98,6 +98,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
+            ->isActive()
             ->with('units')
             ->with('category')->get();
 
