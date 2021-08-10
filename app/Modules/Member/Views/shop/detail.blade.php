@@ -19,7 +19,7 @@
                                 <div class="department_bottom">
                                     <ul>
                                         @foreach($allCategories as $menu)
-                                            <li class="menu-toggle menu-parent {{ ($alias == $menu->alias) ? 'active' : '' }}" >
+                                            <li class="menu-toggle menu-parent {{ ($alias == $menu->alias) ? 'active' : '' }}">
                                                 <a class="department-link link-parent"
                                                    href="{{ route('cate.view', $menu->alias) }}">{{ $menu->name }}</a>
                                                 @if(count($menu->childrenCategories))
@@ -27,8 +27,8 @@
                                                           data-target="#{{ $menu->alias }}"
                                                           class="collapsed text-truncate submenu-indicator">
                                                             {{--<i class="{{ ($menu->alias == $alias--}}
-                                                            {{--|| $menu->childrenCategories->pluck('alias')->contains($alias))--}}
-                                                            {{--? 'icon_plus' : 'icon_minus-06' }} "></i>--}}
+                                                        {{--|| $menu->childrenCategories->pluck('alias')->contains($alias))--}}
+                                                        {{--? 'icon_plus' : 'icon_minus-06' }} "></i>--}}
                                                     </span>
                                                 @endif
                                                 @if(count($menu->childrenCategories))
@@ -143,16 +143,18 @@
                                             <div class="product-select" data-id="{{ $subData->id }}"
                                                  data-name="{{ $subData->name }}" data-price="{{ $subData->price }}"
                                                  data-discount_price="{{ $subData->discount_price }}">
-                                                <button class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
+                                                <button
+                                                    class="add-to-cart normal-btn outline">@lang('product.label.add_to_cart')</button>
                                                 {{--<button class="add-to-compare normal-btn outline">+ Add to Compare</button>--}}
                                             </div>
                                         @endif
 
                                         <div class="product-share">
-                                            <h5>Chia sẻ:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a
-                                                    href=""><i class="fab fa-twitter"></i></a><a href=""><i
-                                                        class="fab fa-invision"> </i></a><a href=""><i
-                                                        class="fab fa-pinterest-p"></i></a>
+                                            <h5>Chia sẻ:</h5>
+                                            <a class="share-fb"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="share-tw"><i class="fab fa-twitter"></i></a>
+                                            <a href=""><i class="fab fa-invision"> </i></a>
+                                            <a href=""><i class="fab fa-pinterest-p"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -191,10 +193,11 @@
                                                                         <div class="row">
                                                                             <div class="col-12 col-sm-3 col-lg-2">
                                                                                 <div class="customer-review_left">
-                                                                                    <div class="customer-review_img text-center">
+                                                                                    <div
+                                                                                        class="customer-review_img text-center">
                                                                                         <img class="img-fluid"
-                                                                                                src="/images/profile.png"
-                                                                                                alt="customer image"></div>
+                                                                                             src="/images/profile.png"
+                                                                                             alt="customer image"></div>
                                                                                     <div class="customer-rate">
                                                                                         @for($i = 0; $i < $value->rating; $i++)
                                                                                             <i class="icon_star"></i>
@@ -218,7 +221,8 @@
                                                     @endif
                                                     <div class="add-review">
                                                         <div class="add-review-status display-none">
-                                                            <h2>Cảm ơn bạn đã gửi đánh giá, đánh giá của bạn sẽ được hiển thị sau khi kiểm duyệt.</h2>
+                                                            <h2>Cảm ơn bạn đã gửi đánh giá, đánh giá của bạn sẽ được
+                                                                hiển thị sau khi kiểm duyệt.</h2>
                                                         </div>
 
                                                         <div class="add-review_top">
@@ -256,7 +260,8 @@
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
-                                                                            <input type="hidden" name="rate-star" id="rate_star">
+                                                                            <input type="hidden" name="rate-star"
+                                                                                   id="rate_star">
                                                                         </div>
                                                                     </div>
 
@@ -271,7 +276,8 @@
                                                                                placeholder="Email*">
                                                                     </div>
                                                                     <div class="col-12">
-                                                                        <textarea class="textarea-form" id="rate_comment"
+                                                                        <textarea class="textarea-form"
+                                                                                  id="rate_comment"
                                                                                   name="rate_comment" cols="30" rows="4"
                                                                                   placeholder="Nhận xét của bạn*"></textarea>
                                                                         <div id="comment-product" class="normal-btn">Gửi
@@ -310,8 +316,7 @@
                 $(this).parent().children('li.star').each(function (e) {
                     if (e < onStar) {
                         $(this).addClass('hover');
-                    }
-                    else {
+                    } else {
                         $(this).removeClass('hover');
                     }
                 });
@@ -342,8 +347,7 @@
                 var msg = "";
                 if (ratingValue > 1) {
                     msg = "Thanks! You rated this " + ratingValue + " stars.";
-                }
-                else {
+                } else {
                     msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
                 }
 
@@ -385,7 +389,7 @@
                     "rate_comment": {
                         required: true,
                     },
-                    "rate-star" :{
+                    "rate-star": {
                         required: true,
                     }
                 },
@@ -433,6 +437,18 @@
                     });
                 }
             });
+
+            $('.share-fb').on('click', function () {
+                var url = window.location.href;
+                window.open("https://www.facebook.com/sharer/sharer.php?u=" + url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                return false;
+            })
+            $('.share-tw').on('click', function () {
+                var url = window.location.href;
+                var urlTw = 'https://twitter.com/intent/tweet?url=' + url + '&via=getboldify';
+                window.open(urlTw, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+                return false;
+            })
         });
     </script>
 @endpush
