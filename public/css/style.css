@@ -1266,11 +1266,12 @@ a:focus {
 .benefit-block .our-benefits .benefit-title {
     font-family: "Roboto", sans-serif;
     font-size: 16px;
-    color: #252525;
     line-height: 1;
     display: block;
     margin-bottom: 5px;
     text-transform: uppercase;
+    font-weight: bold;
+    color: red;
 }
 
 .benefit-block .our-benefits .benefit-describle {
@@ -1288,7 +1289,7 @@ a:focus {
 .benefit-block .our-benefits.column .benefit-detail {
     border-right: 0;
     border-bottom: 1px solid #ebebeb;
-    padding: 30px;
+    padding: 15px;
 }
 
 .benefit-block .our-benefits.column .benefit-detail.boderless {

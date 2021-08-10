@@ -137,7 +137,7 @@
                                                     alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">GIAO HÀNG</h5>
-                                                    <p class="benefit-describle">Giao hàng nhanh, rẻ , đúng hẹn</p>
+                                                    <p class="benefit-describle">Giao hàng nhanh, rẻ, đúng hẹn</p>
                                                 </div>
                                             </div>
                                         </div>
