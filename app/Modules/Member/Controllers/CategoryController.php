@@ -108,16 +108,19 @@ class CategoryController extends Controller
             $data = $request->all();
             $filter = $this->filter($data);
             $products = $this->productRepository->getListProductByCategory($filter, $allId);
-
+            $maxPrice = $this->productRepository->getListProductByCategory($filter, $allId)->max('price');
+            $minPrice =   $this->productRepository->getListProductByCategory($filter, $allId)->min('price');
             if ($alias === "tat-ca-san-pham") {
                 $products = $this->productRepository->getListOrder($filter);
+                $maxPrice = $this->productRepository->getListOrder($filter)->max('price');
+                $minPrice =   $this->productRepository->getListOrder($filter)->min('price');
             }
             if ($alias === "san-pham-giam-gia") {
                 $products = $this->productRepository->getSaleProduct($filter);
+                $maxPrice = $this->productRepository->getSaleProduct($filter)->max('price');
+                $minPrice =   $this->productRepository->getSaleProduct($filter)->min('price');
             }
 
-            $maxPrice = $this->productRepository->all()->max('price');
-            $minPrice =  $this->productRepository->all()->min('price');
 
             return view('shop.product', compact(
                 'products',
