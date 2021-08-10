@@ -22,6 +22,7 @@ use Illuminate\View\View;
 use PHPUnit\Exception;
 use App\Services\ProductService;
 use App\Modules\Admin\Requests\Product\UpdateProductRequest;
+use App\Modules\Admin\Requests\Product\StoreProductRequest;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -89,8 +90,9 @@ class ProductController extends Controller
     {
         $categories = $this->categoryRepository->findByField('parent', '1');
         $units = $this->unitRepository->all();
+        $tags = $this->tagRepository->all();
 
-        return view('product.create', ['categories' => $categories, 'units' => $units]);
+        return view('product.create', ['categories' => $categories, 'units' => $units, 'tags' => $tags]);
     }
 
     /**
@@ -99,7 +101,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreProductRequest $request)
     {
         try {
             $data = $request->except(['_token']);
@@ -108,10 +110,12 @@ class ProductController extends Controller
             $existingCount = Product::where('alias', 'like', $slug . '%')->count();
             $data['alias'] = Common::getUniqueUrl($slug, $existingCount);
             $listCategoryId = explode(',', $data['category_id']);
+            $listTag = explode(',', $data['tag_id']);
             $product = $this->productRepository->create($data);
             $productId = $product->id;
             $newProduct = $this->productRepository->find($productId);
             $newProduct->category()->attach($listCategoryId);
+            $newProduct->tag()->attach($listTag);
             Session::flash('success_msg', trans('alerts.general.success.created'));
 
             return redirect()->route('products.index');

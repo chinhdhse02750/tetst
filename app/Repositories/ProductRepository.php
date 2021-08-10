@@ -46,7 +46,7 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->promotion()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->get();
     }
 
@@ -61,7 +61,7 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->dealOfWeek()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->get();
     }
 
@@ -77,8 +77,25 @@ class ProductRepository extends BaseRepository
                 'category',
             ])
             ->featured()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->paginate($paged);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getSaleProduct($filter)
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->promotion()
+            ->order($filter['sort'], $filter['condition'])
+            ->filterPrice($filter['min'], $filter['max'])
+            ->paginate($filter['page']);
     }
 
     /**

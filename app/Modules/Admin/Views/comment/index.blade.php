@@ -9,12 +9,6 @@
                         @lang('categories.label.list')
                     </h4>
                 </div><!--col-->
-                <div class="col-sm-7 @cannot('create category') d-none @endcannot">
-                    <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-                        <a href="{{ route('tags.create') }}" class="btn btn-primary mr-1 btn-action"
-                           data-original-title="Create New">@lang('categories.label.create')</a>
-                    </div><!--btn-toolbar-->
-                </div><!--col-->
             </div><!--row-->
             <div class="row mt-4">
                 <div class="col">

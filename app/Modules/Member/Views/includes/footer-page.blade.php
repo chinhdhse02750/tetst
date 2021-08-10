@@ -39,21 +39,32 @@
                 <div class="col-md-4 col-lg-4 footer-social row-mobile m-b-15"
                      style="visibility: visible; animation-name: fadeInUp;">
                     <h3 class="text-section-footer">Về Hà Nội Shop</h3>
-
-                    <div class="footer-social">
-                        <a class="round-icon-btn bg-fb" href="">
-                            <i class="fab fa-facebook-f"> </i>
-                        </a>
-                        <a class="round-icon-btn bg-tw" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="round-icon-btn bg-in" href="">
-                            <i class="fab fa-invision"> </i>
-                        </a>
-                        <a class="round-icon-btn bg-prin" href="">
-                            <i class="fab fa-pinterest-p"></i>
-                        </a>
+                    <div >
+                        <div class="fb-page"
+                         data-href="https://www.facebook.com/H&#xe0;-N&#x1ed9;i-T&#x1ea1;p-Ho&#xe1;-110692747177363/"
+                         data-tabs="" data-width="" data-height="" data-small-header="false"
+                         data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote
+                                cite="https://www.facebook.com/H&#xe0;-N&#x1ed9;i-T&#x1ea1;p-Ho&#xe1;-110692747177363/"
+                                class="fb-xfbml-parse-ignore"><a
+                                    href="https://www.facebook.com/H&#xe0;-N&#x1ed9;i-T&#x1ea1;p-Ho&#xe1;-110692747177363/">Hà
+                                Nội Tạp Hoá</a></blockquote>
                     </div>
+                    </div>
+                    {{--<div class="footer-social" style="margin-top: 20px">--}}
+                    {{--<a class="round-icon-btn bg-fb" href="">--}}
+                    {{--<i class="fab fa-facebook-f"> </i>--}}
+                    {{--</a>--}}
+                    {{--<a class="round-icon-btn bg-tw" href="">--}}
+                    {{--<i class="fab fa-twitter"></i>--}}
+                    {{--</a>--}}
+                    {{--<a class="round-icon-btn bg-in" href="">--}}
+                    {{--<i class="fab fa-invision"> </i>--}}
+                    {{--</a>--}}
+                    {{--<a class="round-icon-btn bg-prin" href="">--}}
+                    {{--<i class="fab fa-pinterest-p"></i>--}}
+                    {{--</a>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -77,17 +88,18 @@
     {{--</div>--}}
     {{--</div>--}}
     {{--<div class="footer-credit">--}}
-        {{--<div class="container">--}}
-            {{--<div class="footer-creadit_block d-flex flex-column flex-md-row justify-content-start justify-content-md-between align-items-baseline align-items-md-center">--}}
-                {{--<p class="author">Copyright © 2019 Ogami - All Rights Reserved.</p><img class="payment-method"--}}
-                                                                                        {{--src="/images/payment.png"--}}
-                                                                                        {{--alt="">--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="container">--}}
+    {{--<div class="footer-creadit_block d-flex flex-column flex-md-row justify-content-start justify-content-md-between align-items-baseline align-items-md-center">--}}
+    {{--<p class="author">Copyright © 2019 Ogami - All Rights Reserved.</p><img class="payment-method"--}}
+    {{--src="/images/payment.png"--}}
+    {{--alt="">--}}
+    {{--</div>--}}
+    {{--</div>--}}
     {{--</div>--}}
 </footer>
-
-
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0"
+        nonce="7O58XwtG">
+</script>
 <script>
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "110692747177363");

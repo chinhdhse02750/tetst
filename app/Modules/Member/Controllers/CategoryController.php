@@ -108,12 +108,19 @@ class CategoryController extends Controller
             $data = $request->all();
             $filter = $this->filter($data);
             $products = $this->productRepository->getListProductByCategory($filter, $allId);
-
+            $maxPrice = $this->productRepository->getListProductByCategory($filter, $allId)->max('price');
+            $minPrice =   $this->productRepository->getListProductByCategory($filter, $allId)->min('price');
             if ($alias === "tat-ca-san-pham") {
                 $products = $this->productRepository->getListOrder($filter);
+                $maxPrice = $this->productRepository->getListOrder($filter)->max('price');
+                $minPrice =   $this->productRepository->getListOrder($filter)->min('price');
             }
-            $maxPrice = $this->productRepository->all()->max('price');
-            $minPrice =  $this->productRepository->all()->min('price');
+            if ($alias === "san-pham-giam-gia") {
+                $products = $this->productRepository->getSaleProduct($filter);
+                $maxPrice = $this->productRepository->getSaleProduct($filter)->max('price');
+                $minPrice =   $this->productRepository->getSaleProduct($filter)->min('price');
+            }
+
 
             return view('shop.product', compact(
                 'products',
@@ -129,6 +136,26 @@ class CategoryController extends Controller
 
         return abort(404);
     }
+
+    public function productPromotion(Request $request)
+    {
+        $data = $request->all();
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
+        $maxPrice = $this->productRepository->all()->max('price');
+        $minPrice = $this->productRepository->all()->min('price');
+        $filter = $this->filter($data);
+
+        $products = $this->productRepository->filter($filter);
+
+        return view('shop.search', compact(
+            'products',
+            'data',
+            'maxPrice',
+            'minPrice',
+            'allCategories'
+        ));
+    }
+
 
     /**
      * @param Request $request
