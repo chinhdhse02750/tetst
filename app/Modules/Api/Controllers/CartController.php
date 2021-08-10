@@ -114,8 +114,10 @@ class CartController extends Controller
             \Cart::clearCartConditions();
 
             return response()->json([
-                'status'  => 'success',
-                'message' => 'cart empty'
+                'countItem' => 0,
+                'status'    => 'success',
+                'message'   => 'cart empty',
+                'totalWithoutCondition' => 0
             ], 200);
 
         } elseif (\Cart::remove($data['id'])) {
@@ -124,8 +126,11 @@ class CartController extends Controller
             $total                 = \Cart::getTotal();
             $totalWithoutCondition = \Cart::getSubTotalWithoutConditions();
             $daiBiKyFee            = \Cart::getCondition('daiBiKi');
+            $cartCollection        = \Cart::getContent();
+            $countItem             = $cartCollection->count();
 
             return response()->json([
+                'countItem'             => $countItem,
                 'status'                => 'success',
                 'total'                 => $total,
                 'totalWithoutCondition' => $totalWithoutCondition,

@@ -34,8 +34,8 @@
                                                 <th class="product-quantity" scope="col">Số lượng</th>
                                                 <th class="product-total" scope="col">Tạm tính</th>
                                                 <th class="product-clear" scope="col">
-                                                    <button class="no-round-btn" id="clear-cart"><i
-                                                                class="icon_close"></i></button>
+                                                    {{--<button class="no-round-btn" id="clear-cart"><i--}}
+                                                                {{--class="icon_close"></i></button>--}}
                                                 </th>
                                             </tr>
                                             </thead>
@@ -70,15 +70,15 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-8">
-                                    <div class="coupon">
-                                        <form action="" method="post">
-                                            <input class="no-round-input" type="text" placeholder="Mã khuyến mại">
-                                            <button class="no-round-btn smooth">Áp dụng</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4 d-flex align-items-end text-center">
+                                {{--<div class="col-12 col-sm-8">--}}
+                                    {{--<div class="coupon">--}}
+                                        {{--<form action="" method="post">--}}
+                                            {{--<input class="no-round-input" type="text" placeholder="Mã khuyến mại">--}}
+                                            {{--<button class="no-round-btn smooth">Áp dụng</button>--}}
+                                        {{--</form>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                <div class="col-12 col-sm-12 d-flex align-items-end text-center btn-flex-end">
                                     <a href="{{ route('cate.view', 'tat-ca-san-pham') }}"
                                        class="no-round-btn black cart-update">Tiếp tục xem sản phẩm!
                                     </a>
@@ -222,6 +222,12 @@
                         if (data.status === "success" && data.message) {
                             $('.shopping-cart').hide();
                             $('.cart-empty').removeClass('display-none');
+                            $('.cart_money').text(new Intl.NumberFormat('ja-JP', {
+                                style: 'currency',
+                                currency: 'JPY'
+                            }).format(data.totalWithoutCondition));
+
+                            $('.cart_count').text(data.countItem);
                         } else {
                             if(data.totalWithoutCondition >= 10000){
                                 $('.text-card-shipping_1').text('Bạn được miễn phí ship thường');
@@ -234,6 +240,9 @@
                                 style: 'currency',
                                 currency: 'JPY'
                             }).format(data.totalWithoutCondition));
+
+                            $('.cart_count').text(data.countItem);
+
                             $('.row-product-' + id).remove();
                             $('.all_product_price span').text((new Intl.NumberFormat('ja-JP', {
                                 style: 'currency',

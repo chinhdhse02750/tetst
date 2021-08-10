@@ -326,6 +326,10 @@ a:focus {
     width: 100%;
 }
 
+.btn-flex-end{
+    justify-content: flex-end;
+}
+
 .no-round-btn:hover {
     background-color: transparent;
     color: #c4996c !important;
