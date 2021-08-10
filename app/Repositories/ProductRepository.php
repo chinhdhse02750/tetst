@@ -95,6 +95,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->promotion()
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
@@ -112,6 +113,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
             ->paginate($filter['page']);
@@ -124,6 +126,7 @@ class ProductRepository extends BaseRepository
     public function getListNewProduct(int $paged = Constants::MEMBER_LIST_PER_PAGE)
     {
         return $this->model
+            ->isActive()
             ->orderBy('created_at', $direction = 'DESC')
             ->with('units')
             ->with('category')
@@ -143,6 +146,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->category($cateId)
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
@@ -163,6 +167,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'tag',
             ])
+            ->isActive()
             ->tag($tagId)
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
@@ -188,6 +193,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->category($cateId)
             ->filterPrice(
                 isset($data['min-price']) ? $data['min-price'] : null,
@@ -235,6 +241,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
+            ->isActive()
             ->search($search)
             ->order($filter['sort'], $filter['condition'])
             ->filterPrice($filter['min'], $filter['max'])
