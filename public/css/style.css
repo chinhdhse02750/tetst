@@ -1476,6 +1476,8 @@ a:focus {
     line-height: 1;
     display: block;
     transition: .4s ease;
+    font-weight: bold;
+    color: red;
 }
 
 .product .product-price del, .product .shopping-cart .product-table .table tbody .product-total del, .shopping-cart .product-table .table tbody .product .product-total del, .product .shop-compare .compre-table .table .product-availability del, .shop-compare .compre-table .table .product .product-availability del, .product .shop-compare .compre-table .table .product-weight del, .shop-compare .compre-table .table .product .product-weight del, .product .shop-compare .compre-table .table .product-sku del, .shop-compare .compre-table .table .product .product-sku del {
@@ -10781,5 +10783,9 @@ span#select2-calc_shipping_state_field-container {
         justify-content: space-between;
         align-items: center;
     }
+}
+
+.product-price del {
+    font-weight: bold;
 }
 
