@@ -39,7 +39,8 @@
                                         <div class="deal-block">
                                             <div class="deal-block_detail">
                                                 @if($value->discount_price)
-                                                    <h5 class="deal-discount">- {{ number_format($value->percent_sale, 2) }}%</h5>
+                                                    <h5 class="deal-discount">
+                                                        - {{ number_format($value->percent_sale, 2) }}%</h5>
                                                 @endif
                                                 <div class="deal-img">
                                                     <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
@@ -57,11 +58,12 @@
                                                     {{--
                                                                                                            Pinapple</a>--}}
                                                     @if($value->discount_price)
-                                                        <h3 class="deal-price">¥{{ number_format($value->discount_price) }}
+                                                        <h3 class="deal-price">
+                                                            ¥{{ number_format($value->discount_price) }}
                                                             <del>¥{{ number_format($value->price) }}</del>
                                                         </h3>
                                                     @else
-                                                        <h3 class="deal-price">  ¥{{ $value->price }}</h3>
+                                                        <h3 class="deal-price"> ¥{{ $value->price }}</h3>
                                                     @endif
 
                                                 </div>
@@ -70,13 +72,13 @@
                                                      data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                      data-discount_price="{{ $value->discount_price }}">
                                                     <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                class="icon_heart_alt"></i></button>
+                                                            class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                class="icon_bag_alt"></i></button>
+                                                            class="icon_bag_alt"></i></button>
                                                     <button class="add-to-compare round-icon-btn pink"><i
-                                                                class="fas fa-random"></i></button>
+                                                            class="fas fa-random"></i></button>
                                                     <button class="quickview round-icon-btn pink"><i
-                                                                class="far fa-eye"></i>
+                                                            class="far fa-eye"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -245,16 +247,17 @@
                                                         @else
                                                             <div class="deal-select text-center product-select"
                                                                  data-id="{{ $value->id }}"
-                                                                 data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                                 data-name="{{ $value->name }}"
+                                                                 data-price="{{ $value->price }}"
                                                                  data-discount_price="{{ $value->discount_price }}">
                                                                 <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                            class="icon_heart_alt"></i></button>
+                                                                        class="icon_heart_alt"></i></button>
                                                                 <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                            class="icon_bag_alt"></i></button>
+                                                                        class="icon_bag_alt"></i></button>
                                                                 <button class="add-to-compare round-icon-btn pink"><i
-                                                                            class="fas fa-random"></i></button>
+                                                                        class="fas fa-random"></i></button>
                                                                 <button class="quickview round-icon-btn pink"><i
-                                                                            class="far fa-eye"></i>
+                                                                        class="far fa-eye"></i>
                                                                 </button>
                                                             </div>
                                                         @endif
@@ -319,16 +322,17 @@
                                                     @else
                                                         <div class="deal-select text-center product-select"
                                                              data-id="{{ $value->id }}"
-                                                             data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                             data-name="{{ $value->name }}"
+                                                             data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
                                                             <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
+                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                        class="icon_bag_alt"></i></button>
+                                                                    class="icon_bag_alt"></i></button>
                                                             <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
+                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
-                                                                        class="far fa-eye"></i>
+                                                                    class="far fa-eye"></i>
                                                             </button>
                                                         </div>
                                                     @endif
@@ -382,16 +386,17 @@
                                                         @else
                                                             <div class="deal-select text-center product-select"
                                                                  data-id="{{ $value->id }}"
-                                                                 data-name="{{ $value->name }}" data-price="{{ $value->price }}"
+                                                                 data-name="{{ $value->name }}"
+                                                                 data-price="{{ $value->price }}"
                                                                  data-discount_price="{{ $value->discount_price }}">
                                                                 <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                            class="icon_heart_alt"></i></button>
+                                                                        class="icon_heart_alt"></i></button>
                                                                 <button class="add-to-cart round-icon-btn pink pink"><i
-                                                                            class="icon_bag_alt"></i></button>
+                                                                        class="icon_bag_alt"></i></button>
                                                                 <button class="add-to-compare round-icon-btn pink"><i
-                                                                            class="fas fa-random"></i></button>
+                                                                        class="fas fa-random"></i></button>
                                                                 <button class="quickview round-icon-btn pink"><i
-                                                                            class="far fa-eye"></i>
+                                                                        class="far fa-eye"></i>
                                                                 </button>
                                                             </div>
                                                         @endif
@@ -450,23 +455,37 @@
             @include('includes.slide_footer')
 
         </div>
-@endsection
-@push('script')
-    <script>
-        $(document).ready(function () {
-            var maxHeight = 0;
+        @endsection
+        @push('script')
+            <script>
+                $(document).ready(function () {
+                    var maxHeight = 0;
 
-            $('.product').each(function(){
-                var thisH = $(this).find('.product-name').height();
+                    $('.product').each(function () {
+                        var thisH = $(this).find('.product-name').height();
 
-                if (thisH > maxHeight) { maxHeight = thisH; }
-            });
+                        if (thisH > maxHeight) {
+                            maxHeight = thisH;
+                        }
+                    });
+                    if (maxHeight > 48) {
+                        $('.product').find('.product-name').css({
+                            'height': '54px',
+                            'margin-top': '5px',
+                            'overflow': 'hidden',
+                            'display': '-webkit-box',
+                            '-webkit-line-clamp': '2',
+                            '-webkit-box-orient': 'vertical',
+                            'text-overflow': 'ellipsis'
+                        });
+                    } else {
+                        $('.product').find('.product-name').css({
+                            'height': maxHeight,
+                            'margin-top': '5px',
+                            'overflow': 'hidden',
+                        });
+                    }
 
-            $('.product').find('.product-name').css({
-                'height': maxHeight,
-                'margin-top': '5px',
-                'overflow': 'hidden',
-            });
-        })
-    </script>
-@endpush
+                })
+            </script>
+    @endpush
