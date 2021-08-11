@@ -452,4 +452,21 @@
         </div>
 @endsection
 @push('script')
+    <script>
+        $(document).ready(function () {
+            var maxHeight = 0;
+
+            $('.product').each(function(){
+                var thisH = $(this).find('.product-name').height();
+
+                if (thisH > maxHeight) { maxHeight = thisH; }
+            });
+
+            $('.product').find('.product-name').css({
+                'height': maxHeight,
+                'margin-top': '5px',
+                'overflow': 'hidden',
+            });
+        })
+    </script>
 @endpush
