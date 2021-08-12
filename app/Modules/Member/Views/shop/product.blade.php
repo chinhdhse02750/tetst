@@ -200,6 +200,38 @@
             //     let fullUrl = window.location.href;
             //     window.location.href = fullUrl+"&"+formData;
             // })
+
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var maxHeight = 0;
+
+            $('.product').each(function () {
+                var thisH = $(this).find('.product-name').height();
+
+                if (thisH > maxHeight) {
+                    maxHeight = thisH;
+                }
+            });
+            if (maxHeight > 48) {
+                $('.product').find('.product-name').css({
+                    'height': '54px',
+                    'margin-top': '5px',
+                    'overflow': 'hidden',
+                    'display': '-webkit-box',
+                    '-webkit-line-clamp': '2',
+                    '-webkit-box-orient': 'vertical',
+                    'text-overflow': 'ellipsis'
+                });
+            } else {
+                $('.product').find('.product-name').css({
+                    'height': maxHeight,
+                    'margin-top': '5px',
+                    'overflow': 'hidden',
+                });
+            }
+
+        })
     </script>
 @endpush
