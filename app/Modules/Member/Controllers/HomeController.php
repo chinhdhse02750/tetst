@@ -97,15 +97,11 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $products = $this->productRepository->orderBy('created_at', $direction = 'DESC')
-            ->isActive()
-            ->with('units')
-            ->with('category')->get();
-
         $cart = \Cart::getContent();
         $total = \Cart::getTotal();
         $count = $cart->count();
 
+        $products = $this->productRepository->getListProduct();
         $saleProduct = $this->productRepository->getListSaleProduct();
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();

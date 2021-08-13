@@ -35,6 +35,22 @@ class ProductRepository extends BaseRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getListProduct()
+    {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->isActive()
+            ->orderBy('created_at', 'DESC')
+            ->get();
+    }
+
     /**
      * @return mixed
      */
