@@ -161,7 +161,7 @@
                                                                 <div class="image-frames">
                                                                     <img class="dz-image-display"
                                                                          alt="{{ $value }}"
-                                                                         src="{{ url('storage/tmp/'.$value) }}">
+                                                                         src="{{ url('storage/tmp/thumbnail_'.$value) }}">
                                                                 </div>
                                                                 {{--<span class="file-size dz-name-display">{{ $value->size }}</span>--}}
                                                                 {{--<input type="hidden" name="nameMedia[]" value="{{ $value->name }}">--}}
