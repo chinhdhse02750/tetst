@@ -11,19 +11,19 @@
     <title>@yield('title', app_name())</title>
 
     @stack('styles')
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/custom_bootstrap.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/custom_bootstrap.min.css">
     <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
     <link rel="stylesheet" href="/css/elegant.css">
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/scroll.css">
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/css/frontend.css">
+    <link rel="stylesheet" href="/css/frontend.min.css">
     <link rel="shortcut icon" href="/images/shortcut_logo.png">
-    <link href="/css/member.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/member.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
     @yield('custom_style')
     <script>
@@ -60,7 +60,6 @@
 <script src="/js/jquery.scrollUp.min.js"></script>
 <script src="/js/jquery.zoom.min.js"></script>
 <script src="/js/parallax.js"></script>
-<script src="/js/jquery.fancybox.js"></script>
 <script src="/js/numscroller-1.0.js"></script>
 <script src="/js/vanilla-tilt.min.js"></script>
 <script src="/js/main.js"></script>
