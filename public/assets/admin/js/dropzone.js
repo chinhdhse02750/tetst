@@ -33,7 +33,7 @@ function createDropzone(url, token, buttonDelete, maxInput = 1) {
                     if (!Dropzone.files || !Dropzone.files.length) {
                         uploadedDocumentMap[file.name] = response.data_media.name;
                         let dataImages = uploadSuccess(file.upload.uuid,
-                            response.data_media.name, response.public_url,
+                            response.data_media.name, response.thumbnail_url,
                             response.data_media.size, response.data_media.name,
                             nameInput, buttonDelete, nameClass
                         );

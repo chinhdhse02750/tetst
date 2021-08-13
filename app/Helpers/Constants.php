@@ -47,7 +47,7 @@ class Constants
     const USER_MALE = 0;
     const NOT_TYPE_USER = 99;
     const USER_IS_PICK_UP = 1;
-    const THUMBNAIL_IMAGE_WIDTH = 244;
+    const THUMBNAIL_IMAGE_WIDTH = 150;
     const THUMBNAIL_NAME_PREFIX = 'thumbnail_';
     const THUMBNAIL_VIDEO_PREFIX = 'thumbnail_video_';
     const TIME_CREATE_THUMBNAIL = 3;
