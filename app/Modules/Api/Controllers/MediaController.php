@@ -82,12 +82,22 @@ class MediaController extends Controller
         $mimeType = $file->getMimeType();
 
         $request = Media::getDataMedia($file, Constants::DEFAULT_PUBLIC_PATH, Constants::IS_PUBLIC);
+        $thumbnailImage = $this->getThumbnailImage($file, Constants::DEFAULT_PUBLIC_PATH, $request['name']);
+
+        if (!$thumbnailImage) {
+            return response([
+                'message' => 'Upload Fail!'
+            ], 404);
+        }
+//
         $dataMedia = $this->setDataMedia($request);
         $publicUrl = $this->getPublicUrl($request['name'], $request['path']);
+        $thumbnailUrl = $this->getPublicUrl($thumbnailImage['name'], Constants::DEFAULT_PUBLIC_PATH);
 
         return response()->json([
             'data_media' => $dataMedia,
             'public_url' => $publicUrl,
+            'thumbnail_url' => $thumbnailUrl
         ]);
     }
 

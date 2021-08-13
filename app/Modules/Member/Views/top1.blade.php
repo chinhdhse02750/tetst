@@ -44,7 +44,7 @@
                                                 @endif
                                                 <div class="deal-img">
                                                     <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
-                                                        <img src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                        <img src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                              alt="{{ $value->first_image }}">
                                                     </a>
                                                 </div>
@@ -100,7 +100,7 @@
                                                     <div class="mini-product_img-sale">
                                                         <a class="sale-product-img"
                                                            href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                                 alt="{{ $value->first_image }}">
                                                         </a>
                                                     </div>
@@ -228,7 +228,7 @@
                                                 <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                                 alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
@@ -304,7 +304,7 @@
                                             <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                 <div class="product pink"><a class="product-img"
                                                                              href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                            src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                            src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                             alt="{{ $value->first_image }}"></a>
                                                     <h3 class="product-name">{{ $value->name }}</h3>
                                                     @if($value->discount_price !== null)
@@ -369,7 +369,7 @@
                                                     <div class="product pink"><a class="product-img"
                                                                                  href="{{ route('product.detail', ['product' => $value->alias]) }}">
                                                             <img
-                                                                src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                                src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                                 alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)
