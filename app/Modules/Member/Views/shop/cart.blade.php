@@ -44,7 +44,7 @@
                                                 <tr class="row-product-{{ $value->id }}">
                                                     <td class="product-iamge">
                                                         <div class="img-wrapper">
-                                                            <img src="{{ url('storage/tmp/'.$value->associatedModel->first_image) }}"
+                                                            <img src="{{ url('storage/tmp/thumbnail_'.$value->associatedModel->first_image) }}"
                                                                  alt="{{ $value->associatedModel->first_image }}">
                                                         </div>
                                                     </td>

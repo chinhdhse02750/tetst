@@ -19,7 +19,7 @@
                     <div class="slide-img slide-img_qv">
                         @foreach($images as $key => $value)
                             <div class="slide-img_block">
-                                <img src="{{ url('storage/tmp/'.$value) }}" alt="{{ $value }}">
+                                <img src="{{ url('storage/tmp/thumbnail_'.$value) }}" alt="{{ $value }}">
                             </div>
                         @endforeach
                     </div>

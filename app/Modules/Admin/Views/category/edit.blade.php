@@ -78,7 +78,7 @@
                                                         <div class="dz-image" id="{{ $categories->id }}">
                                                             <div class="image-frames">
                                                                 <img class="dz-image-display"
-                                                                     src="{{ url('storage/tmp/'.$categories->image) }}"
+                                                                     src="{{ url('storage/tmp/thumbnail_'.$categories->image) }}"
                                                                      alt="{{ $categories->image }}">
                                                             </div>
                                                             <input type="hidden" name="image"

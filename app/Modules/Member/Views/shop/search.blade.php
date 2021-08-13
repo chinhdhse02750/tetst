@@ -142,7 +142,7 @@
                                                     <div class="product pink @if( $key%2 == 0) product-left @else product-right @endif">
                                                         <a class="product-img"
                                                            href="{{ route('product.detail', ['product' => $value->alias]) }}">
-                                                            <img src="{{ url('storage/tmp/'.$value->first_image) }}"
+                                                            <img src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
                                                                  alt="{{ $value->first_image }}"></a>
                                                         <h3 class="product-name">{{ $value->name }}</h3>
                                                         @if($value->discount_price !== null)

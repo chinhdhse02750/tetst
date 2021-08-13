@@ -48,7 +48,7 @@
                                     <td class="table-text">
                                         <div class="image-frames"><img class="dz-image-display"
                                                   alt="{{ $product->first_image }}"
-                                                  src="{{ url('storage/tmp/'.$product->first_image) }}">
+                                                  src="{{ url('storage/tmp/thumbnail_'.$product->first_image) }}">
                                         </div>
                                     </td>
                                     <td class="table-text">
