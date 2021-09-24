@@ -161,12 +161,12 @@ class OrderController extends Controller
      */
     public function destroy(int $id)
     {
-        $result = $this->productCommentRepository->find($id);
+        $result = $this->orderRepository->find($id);
         if ($result) {
             $result->delete();
             Session::flash('success_msg', trans('alerts.general.success.deleted'));
         }
-        return redirect()->route('comments.index');
+        return redirect()->route('order.index');
     }
 
     /**
