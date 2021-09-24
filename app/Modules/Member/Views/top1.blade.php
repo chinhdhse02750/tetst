@@ -7,9 +7,28 @@
                 <div class="row">
                     <div class="col-12 col-xl-12">
                         @if($banner)
-                            <div class="banner-block-img">
-                                <img class="image-banner" src="{{$banner->image}}">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @foreach($banner as $key => $val)
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="{{$key}}"
+                                            @if($key == 0) class="active" @endif ></li>
+                                    @endforeach
+
+                                </ol>
+                                <div class="carousel-inner">
+                                    @foreach($banner as $key => $val)
+                                        <div class="carousel-item @if($key == 0) active @endif">
+                                            <img class="image-banner d-block w-100"  src="{{$val->image}}">
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+
+                            {{--<div class="banner-block-img">--}}
+                                {{--@foreach($banner as $bn)--}}
+                                    {{--<img class="image-banner" src="{{$bn->image}}">--}}
+                                {{--@endforeach--}}
+                            {{--</div>--}}
                         @else
                             <div class="banner-block">
                                 <div class="row no-gutters justify-content-center align-items-md-center">

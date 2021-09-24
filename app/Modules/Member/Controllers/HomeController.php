@@ -106,7 +106,7 @@ class HomeController extends Controller
         $featuredProduct = $this->productRepository->getListFeatured();
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
         $bestSeller = $this->productRepository->getListBestSeller(8);
-        $banner = $this->listBannerRepository->findWhere(['active' => '1'])->first();
+        $banner = $this->listBannerRepository->findWhere(['active' => '1']);
         $news = $this->newsService->getNews();
 
         return view('top1', compact(
