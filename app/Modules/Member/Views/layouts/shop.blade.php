@@ -11,7 +11,7 @@
     <title>@yield('title', app_name())</title>
 
     @stack('styles')
-    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/style.min.css?version=1">
     <link rel="stylesheet" href="/css/custom_bootstrap.min.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/fontawesome.min.css">
