@@ -273,7 +273,7 @@ class ProductRepository extends BaseRepository
      * @return mixed
      */
     public function getFilterPaginated(
-        string $search = '',
+        string $search = '', int $status,
         int $paged, string $orderBy, string $sort
     ) {
         return $this->model
@@ -281,7 +281,7 @@ class ProductRepository extends BaseRepository
                 'units',
                 'category',
             ])
-            ->isActive()
+            ->status($status)
             ->name($search)
             ->orderBy($orderBy, $sort)
             ->paginate($paged);

@@ -155,4 +155,13 @@ trait ProductScope
         return $query;
     }
 
+    /**
+     * @param object $query
+     * @return mixed
+     */
+    public function scopeStatus(object $query,  int $status = 1)
+    {
+        return $query->where('status', $status);
+    }
+
 }

@@ -218,7 +218,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $products = $this->productRepository
-            ->getFilterPaginated($request->name, Constants::DEFAULT_PER_PAGE, Constants::USER_ORDER_BY, Constants::USER_SORT);
+            ->getFilterPaginated($request->name, $request->status, Constants::DEFAULT_PER_PAGE, Constants::USER_ORDER_BY, Constants::USER_SORT);
 
 
         return view('product.result_search', ['products' => $products]);
