@@ -138,4 +138,21 @@ trait ProductScope
         return $query;
     }
 
+    /**
+     * Scope name.
+     *
+     * @param Object $query
+     * @param string $name
+     *
+     * @return Object
+     */
+    public function scopeName(Object $query, string $name = null)
+    {
+        if ($name !== null) {
+            $query->where('name', 'LIKE', '%' . $name . '%');
+        }
+
+        return $query;
+    }
+
 }
