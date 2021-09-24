@@ -56,6 +56,7 @@ Route::middleware('auth:admin')
         Route::get('member/{type_user}/point-send/{id}', 'AdjustmentController@createAdjustment')
             ->name('member.point-send');
         Route::get('search-member', 'UserController@search')->name('members.search');
+        Route::get('search-product', 'ProductController@search')->name('product.search');
         Route::get('contact', 'ContactController@index')->name('contact.index');
         Route::get('contact/edit/{id}', 'ContactController@edit')->name('contact.edit');
         Route::put('contact/{id}', 'ContactController@update')->name('contact.update');

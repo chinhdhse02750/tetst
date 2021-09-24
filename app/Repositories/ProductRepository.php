@@ -264,4 +264,26 @@ class ProductRepository extends BaseRepository
             ->paginate($paged);
     }
 
+
+    /**
+     * @param string $search
+     * @param int $paged
+     * @param string $orderBy
+     * @param string $sort
+     * @return mixed
+     */
+    public function getFilterPaginated(
+        string $search = '',
+        int $paged, string $orderBy, string $sort
+    ) {
+        return $this->model
+            ->with([
+                'units',
+                'category',
+            ])
+            ->isActive()
+            ->name($search)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
 }

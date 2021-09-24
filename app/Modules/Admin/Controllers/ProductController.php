@@ -209,6 +209,22 @@ class ProductController extends Controller
     }
 
     /**
+     * Search member.
+     *
+     * @param Request $request
+     * @return array|string
+     * @throws \Throwable
+     */
+    public function search(Request $request)
+    {
+        $products = $this->productRepository
+            ->getFilterPaginated($request->name, Constants::DEFAULT_PER_PAGE, Constants::USER_ORDER_BY, Constants::USER_SORT);
+
+
+        return view('product.result_search', ['products' => $products]);
+    }
+
+    /**
      * Create a new controller instance.
      */
     protected function guard()
