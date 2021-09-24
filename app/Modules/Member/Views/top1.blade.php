@@ -21,6 +21,13 @@
                                             <img class="image-banner d-block w-100"  src="{{$val->image}}">
                                         </div>
                                     @endforeach
+
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="https://timve.com.vn/files/assets/banner_sen_vng_group_1.png" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="https://timve.com.vn/files/assets/banner_sen_vng_group_1.png" alt="Third slide">
+                                    </div>
                                 </div>
                             </div>
 
