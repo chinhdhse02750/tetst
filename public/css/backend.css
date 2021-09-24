@@ -21359,7 +21359,7 @@ body {
 
 .table-responsive td:not(.btn-td) {
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     max-width: 200px
 }
