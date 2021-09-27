@@ -11,13 +11,14 @@
     <title>@yield('title', app_name())</title>
 
     @stack('styles')
-    <link rel="stylesheet" href="/css/style.min.css?version=1">
+    <link rel="stylesheet" href="/css/style.css?version=1">
     <link rel="stylesheet" href="/css/custom_bootstrap.min.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/fontawesome.min.css">
     <link rel="stylesheet" href="/css/elegant.css">
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/slick-theme.css">
     <link rel="stylesheet" href="/css/scroll.css">
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
@@ -63,6 +64,7 @@
 <script src="/js/numscroller-1.0.js"></script>
 <script src="/js/vanilla-tilt.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/slick.min.js"></script>
 {!! script('js/news.js') !!}
 <script>
     newsMarquee(news);

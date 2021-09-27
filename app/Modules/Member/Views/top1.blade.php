@@ -1,5 +1,4 @@
 @extends('layouts.shop')
-
 @section('content')
     <div id="main">
         <div class="banner_v2">
@@ -32,12 +31,6 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-
-                            {{--<div class="banner-block-img">--}}
-                                {{--@foreach($banner as $bn)--}}
-                                    {{--<img class="image-banner" src="{{$bn->image}}">--}}
-                                {{--@endforeach--}}
-                            {{--</div>--}}
                         @else
                             <div class="banner-block">
                                 <div class="row no-gutters justify-content-center align-items-md-center">
@@ -50,6 +43,73 @@
             </div>
         </div>
         <!-- End banner v2-->
+        {{--<div class="menu-slider" style="margin-top: 20px">--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-12 col-md-3">--}}
+                        {{--<div class="quick-banner quick-banner-2">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="bannner-img text-center"><img class="img-fluid" src="assets/images/homepage03/quick_banner_2_img.png" alt=""></div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="banner-text text-center text-md-left">--}}
+                                        {{--<h3 class="day">Black Friday </h3>--}}
+                                        {{--<h3 class="sale">Sale Off <span>60%</span></h3><a class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-12 col-md-3">--}}
+                        {{--<div class="quick-banner quick-banner-2">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="bannner-img text-center"><img class="img-fluid" src="assets/images/homepage03/quick_banner_2_img.png" alt=""></div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="banner-text text-center text-md-left">--}}
+                                        {{--<h3 class="day">Black Friday </h3>--}}
+                                        {{--<h3 class="sale">Sale Off <span>60%</span></h3><a class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-12 col-md-3">--}}
+                        {{--<div class="quick-banner quick-banner-2">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="bannner-img text-center"><img class="img-fluid" src="assets/images/homepage03/quick_banner_2_img.png" alt=""></div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="banner-text text-center text-md-left">--}}
+                                        {{--<h3 class="day">Black Friday </h3>--}}
+                                        {{--<h3 class="sale">Sale Off <span>60%</span></h3><a class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-12 col-md-3">--}}
+                        {{--<div class="quick-banner quick-banner-2">--}}
+                            {{--<div class="row justify-content-center align-items-center">--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="bannner-img text-center"><img class="img-fluid" src="assets/images/homepage03/quick_banner_2_img.png" alt=""></div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-6 col-md-5">--}}
+                                    {{--<div class="banner-text text-center text-md-left">--}}
+                                        {{--<h3 class="day">Black Friday </h3>--}}
+                                        {{--<h3 class="sale">Sale Off <span>60%</span></h3><a class="normal-btn pink" href="shop_grid+list_3col.html">Shop now</a>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
         <div class="home3-product-block">
             <div class="container">
                 <div class="row">
@@ -99,12 +159,8 @@
                                                      data-id="{{ $value->id }}"
                                                      data-name="{{ $value->name }}" data-price="{{ $value->price }}"
                                                      data-discount_price="{{ $value->discount_price }}">
-                                                    <button class="add-to-wishlist round-icon-btn pink"><i
-                                                            class="icon_heart_alt"></i></button>
                                                     <button class="add-to-cart round-icon-btn pink pink"><i
                                                             class="icon_bag_alt"></i></button>
-                                                    <button class="add-to-compare round-icon-btn pink"><i
-                                                            class="fas fa-random"></i></button>
                                                     <button class="quickview round-icon-btn pink"><i
                                                             class="far fa-eye"></i>
                                                     </button>
@@ -113,38 +169,6 @@
                                         </div>
                                     @endif
                                 @endforeach
-                            </div>
-                        </div>
-                        <div class="sale-product">
-                            <div class="sale-product_top mini-tab-title underline pink">
-                                <h2 class="title">Sản phẩm khuyến mãi</h2>
-                            </div>
-                            <div class="sale-product_bottom">
-                                <div class="row">
-                                    @foreach($saleProduct as $key => $value)
-                                        @if($key < 5)
-                                            <div class="col-12 left-sale-prod">
-                                                <div class="mini-product column">
-                                                    <div class="mini-product_img-sale">
-                                                        <a class="sale-product-img"
-                                                           href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
-                                                                src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
-                                                                alt="{{ $value->first_image }}">
-                                                        </a>
-                                                    </div>
-                                                    <div class="mini-product_info">
-                                                        <a href="{{ route('product.detail', ['product' => $value->alias]) }}">
-                                                            {{ $value->name }}
-                                                        </a>
-                                                        <p>¥{{ number_format($value->discount_price) }}
-                                                            <del>¥{{ number_format($value->price) }}</del>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
                             </div>
                         </div>
                         <div class="sidebar-benefit">
@@ -157,7 +181,7 @@
                                                     alt="">
                                                 <div class="benefit-detail_info">
                                                     <h5 class="benefit-title">MIỄN PHÍ SHIP HÀNG</h5>
-                                                    <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9999</p>
+                                                    <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9990</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,8 +273,8 @@
                                 </div>
                             </div>
                             <div class="best-seller_bottom">
-                                <div id="tab1">
-                                    <div class="row">
+                                <div class="tab1">
+                                    <div class="row responsive">
                                         @foreach($featuredProduct as $key => $value)
                                             @if($key < 12)
                                                 <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
@@ -278,12 +302,8 @@
                                                                  data-name="{{ $value->name }}"
                                                                  data-price="{{ $value->price }}"
                                                                  data-discount_price="{{ $value->discount_price }}">
-                                                                <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
                                                                 <button class="add-to-cart round-icon-btn pink pink"><i
                                                                         class="icon_bag_alt"></i></button>
-                                                                <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
                                                                 <button class="quickview round-icon-btn pink"><i
                                                                         class="far fa-eye"></i>
                                                                 </button>
@@ -326,8 +346,8 @@
                                 </div>
                             </div>
                             <div class="best-seller_bottom">
-                                <div id="tab1">
-                                    <div class="row">
+                                <div class="tab1">
+                                    <div class="row responsive">
                                         @foreach($bestSeller as $key => $value)
                                             <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
                                                 <div class="product pink"><a class="product-img"
@@ -353,12 +373,8 @@
                                                              data-name="{{ $value->name }}"
                                                              data-price="{{ $value->price }}"
                                                              data-discount_price="{{ $value->discount_price }}">
-                                                            <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                    class="icon_heart_alt"></i></button>
                                                             <button class="add-to-cart round-icon-btn pink pink"><i
                                                                     class="icon_bag_alt"></i></button>
-                                                            <button class="add-to-compare round-icon-btn pink"><i
-                                                                    class="fas fa-random"></i></button>
                                                             <button class="quickview round-icon-btn pink"><i
                                                                     class="far fa-eye"></i>
                                                             </button>
@@ -371,7 +387,59 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-so2">
+                        @if(!$saleProduct)
+                            <div id="tab-so2">
+                            <div class="sale-product_top mini-tab-title underline pink">
+                                <div class="row align-items-md-center">
+                                    <div class="col-12 col-md-4">
+                                        <h2 class="title">Sản phẩm khuyến mãi</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="best-product_bottom">
+                                <div class="tab1">
+                                    <div class="row responsive">
+                                        @foreach($saleProduct as $key => $value)
+                                            <div class="col-6 col-md-3 {{$key%2? 'p-l-sm':'p-r-sm'}}">
+                                                <div class="product pink"><a class="product-img"
+                                                                             href="{{ route('product.detail', ['product' => $value->alias]) }}"><img
+                                                            src="{{ url('storage/tmp/thumbnail_'.$value->first_image) }}"
+                                                            alt="{{ $value->first_image }}"></a>
+                                                    <h3 class="product-name">{{ $value->name }}</h3>
+                                                    @if($value->discount_price !== null)
+                                                        <h3 class="product-price">
+                                                            ¥{{ number_format($value->discount_price) }}
+                                                            <del>¥{{ number_format($value->price) }}</del>
+                                                        </h3>
+                                                    @else
+                                                        <h3 class="product-price">
+                                                            ¥{{ number_format($value->price) }}
+                                                        </h3>
+                                                    @endif
+                                                    @if($value->stock == 0)
+                                                        <div class="out-of-stock-label">Hết hàng</div>
+                                                    @else
+                                                        <div class="deal-select text-center product-select"
+                                                             data-id="{{ $value->id }}"
+                                                             data-name="{{ $value->name }}"
+                                                             data-price="{{ $value->price }}"
+                                                             data-discount_price="{{ $value->discount_price }}">
+                                                            <button class="add-to-cart round-icon-btn pink pink"><i
+                                                                    class="icon_bag_alt"></i></button>
+                                                            <button class="quickview round-icon-btn pink"><i
+                                                                    class="far fa-eye"></i>
+                                                            </button>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <div id="tab-so3">
                             <div class="best-seller_top mini-tab-title underline pink">
                                 <div class="row align-items-md-center">
                                     <div class="col-12 col-md-4">
@@ -389,7 +457,7 @@
                                 </div>
                             </div>
                             <div class="best-seller_bottom">
-                                <div id="tab1">
+                                <div class="tab1">
                                     <div class="row">
                                         @foreach($products as $key => $value)
                                             @if($key < 12)
@@ -417,12 +485,8 @@
                                                                  data-name="{{ $value->name }}"
                                                                  data-price="{{ $value->price }}"
                                                                  data-discount_price="{{ $value->discount_price }}">
-                                                                <button class="add-to-wishlist round-icon-btn pink"><i
-                                                                        class="icon_heart_alt"></i></button>
                                                                 <button class="add-to-cart round-icon-btn pink pink"><i
                                                                         class="icon_bag_alt"></i></button>
-                                                                <button class="add-to-compare round-icon-btn pink"><i
-                                                                        class="fas fa-random"></i></button>
                                                                 <button class="quickview round-icon-btn pink"><i
                                                                         class="far fa-eye"></i>
                                                                 </button>
@@ -513,6 +577,43 @@
                             'overflow': 'hidden',
                         });
                     }
+
+                    $('.responsive').slick({
+                        dots: false,
+                        infinite: true,
+                        speed: 300,
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                        responsive: [
+                            {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3,
+                                    infinite: true,
+                                    dots: false
+                                }
+                            },
+                            {
+                                breakpoint: 600,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
+                                }
+                            }
+                            // You can unslick at a given breakpoint now by adding:
+                            // settings: "unslick"
+                            // instead of a settings object
+                        ]
+                    });
+
 
                 })
             </script>
