@@ -107,6 +107,7 @@ class HomeController extends Controller
         $dealOfWeekProduct = $this->productRepository->getListDealOfWeek();
         $bestSeller = $this->productRepository->getListBestSeller(8);
         $banner = $this->listBannerRepository->findWhere(['active' => '1']);
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
         $news = $this->newsService->getNews();
 
         return view('top1', compact(
@@ -119,7 +120,8 @@ class HomeController extends Controller
             'total',
             'count',
             'news',
-            'banner'
+            'banner',
+            'allCategories'
         ));
     }
 

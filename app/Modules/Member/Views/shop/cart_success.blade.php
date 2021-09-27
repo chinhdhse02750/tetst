@@ -37,7 +37,7 @@
                                     <div class="benefit-detail d-flex flex-column align-items-center">
                                         <img class="benefit-img" src="/images/benefit-icon1.png" alt="">
                                         <h5 class="benefit-title">Miễn phí ship hàng</h5>
-                                        <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9999</p>
+                                        <p class="benefit-describle">Cho tất cả đơn hàng trên ￥9990</p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-3">

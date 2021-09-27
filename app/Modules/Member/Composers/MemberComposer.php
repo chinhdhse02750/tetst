@@ -90,12 +90,12 @@ class MemberComposer
         $cart = \Cart::getContent();
         $total = \Cart::getSubTotalWithoutConditions();
         $count =  $cart->count();
-        $categories = $this->categoryRepository->findByField('parent', '1');
+        $allCategories = $this->categoryRepository->findByField('parent', '1');
 
         return $view->with(compact(
             'total',
             'count',
-            'categories',
+            'allCategories',
             'search'
         ));
     }
